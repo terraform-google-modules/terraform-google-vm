@@ -13,29 +13,27 @@
 # limitations under the License.
 
 ---
-driver:
-  name: terraform
-
 provisioner:
   name: terraform
 
 platforms:
-- name: gcp
+- name: local
 
 verifier:
   name: terraform
-  # inspec_options: "-t gcp://"
+  systems:
+    - name: system
+      backend: local
 
 suites:
-  -
-    name: barebones
+  - name: full
     driver:
-      root_module_directory: examples/barebones-test-fixture
-      variables:
-        project_name: <%= ENV['PROJECT_NAME'] %>
-    verifier:
-      groups:
-        -
-          name: default
-          controls:
-            - umig
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/full
+
+  - name: minimal
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/minimal

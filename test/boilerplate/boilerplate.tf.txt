@@ -13,19 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-###############
-# Data Sources
-###############
-
-data "google_compute_zones" "available" {}
-
-data "google_compute_image" "image" {
-  project = "${var.image_name != "" ? var.img_src_project : "centos-cloud"}"
-  name    = "${var.image_name != "" ? var.image_name : "centos-6-v20180716"}"
-}
-
-data "google_compute_image" "image_family" {
-  project = "${var.image_family != "" ? var.img_src_project : "centos-cloud"}"
-  family  = "${var.image_family != "" ? var.image_family : "centos-6"}"
-}

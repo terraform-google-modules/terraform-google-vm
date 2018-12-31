@@ -78,15 +78,5 @@ resource "google_compute_instance_group" "instance_group" {
   zone      = "${element(data.google_compute_zones.available.names, count.index)}"
   instances = ["${matchkeys(google_compute_instance.compute_instance.*.self_link, google_compute_instance.compute_instance.*.zone, list(data.google_compute_zones.available.names[count.index]))}"]
 
-  named_port = "${var.named_port}"
+  named_port = "${var.named_ports}"
 }
-
-/*
-resource "google_compute_instance_group" "instance_group_no_named_port" {
-  count     = "${local.instance_group_count_no_named_ports}"
-  name      = "${local.hostname_prefix}-instance-group-${format("%03d", count.index + 1)}"
-  zone      = "${element(data.google_compute_zones.available.names, count.index)}"
-  instances = ["${matchkeys(google_compute_instance.compute_instance.*.self_link, google_compute_instance.compute_instance.*.zone, list(data.google_compute_zones.available.names[count.index]))}"]
-}
-*/
-

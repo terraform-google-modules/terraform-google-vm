@@ -14,16 +14,30 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
+output "umig_self_links" {
+  value = "${module.umig_named_ports.umig_self_links}"
 }
 
-module "umig_simple" {
-  source                = "../../../../examples/umig/simple"
-  credentials_path      = "${local.credentials_path}"
-  project_id            = "${var.project_id}"
-  region                = "${var.region}"
-  subnetwork            = "${google_compute_subnetwork.main.name}"
-  num_instances         = "${var.num_instances}"
-  service_account_email = "${var.service_account_email}"
+output "instances_self_links" {
+  value = "${module.umig_named_ports.instances_self_links}"
+}
+
+output "project_id" {
+  value = "${var.project_id}"
+}
+
+output "region" {
+  value = "${var.region}"
+}
+
+output "credentials_path" {
+  value = "${local.credentials_path}"
+}
+
+output "available_zones" {
+  value = "${module.umig_named_ports.available_zones}"
+}
+
+output "num_instances" {
+  value = "${var.num_instances}"
 }

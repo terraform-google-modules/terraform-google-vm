@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
+provider "google" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
 }
 
-module "umig_simple" {
-  source                = "../../../../examples/umig/simple"
-  credentials_path      = "${local.credentials_path}"
-  project_id            = "${var.project_id}"
+module "umig" {
+  source                = "../../../umig"
   region                = "${var.region}"
-  subnetwork            = "${google_compute_subnetwork.main.name}"
+  subnetwork            = "${var.subnetwork}"
   num_instances         = "${var.num_instances}"
   service_account_email = "${var.service_account_email}"
+  named_ports           = "${var.named_ports}"
 }

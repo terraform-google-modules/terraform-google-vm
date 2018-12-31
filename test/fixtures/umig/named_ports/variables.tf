@@ -14,16 +14,22 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
 }
 
-module "umig_simple" {
-  source                = "../../../../examples/umig/simple"
-  credentials_path      = "${local.credentials_path}"
-  project_id            = "${var.project_id}"
-  region                = "${var.region}"
-  subnetwork            = "${google_compute_subnetwork.main.name}"
-  num_instances         = "${var.num_instances}"
-  service_account_email = "${var.service_account_email}"
+variable "region" {
+  description = "The GCP region to create and test resources in"
+}
+
+variable "credentials_path_relative" {
+  description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
+}
+
+variable "num_instances" {
+  description = "Number of instances to create"
+}
+
+variable "service_account_email" {
+  description = "Service account email"
 }

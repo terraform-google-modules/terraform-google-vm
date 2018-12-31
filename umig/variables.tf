@@ -86,8 +86,7 @@ variable "service_account_scopes" {
   default     = []
 }
 
-#TODO: This needs work - does not work when you actually try to specify a value
-variable "named_port" {
+variable "named_ports" {
   description = "Named name and named port"
   type        = "list"
   default     = []

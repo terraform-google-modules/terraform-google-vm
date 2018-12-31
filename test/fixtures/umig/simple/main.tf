@@ -24,6 +24,6 @@ module "umig_simple" {
   project_id            = "${var.project_id}"
   region                = "${var.region}"
   subnetwork            = "default"
-  num_instances         = "3"
+  num_instances         = "${var.num_instances}"
   service_account_email = "${var.service_account_email}"
 }

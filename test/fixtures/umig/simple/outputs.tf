@@ -21,3 +21,23 @@ output "umig_self_links" {
 output "instances_self_links" {
   value = "${module.umig_simple.instances_self_links}"
 }
+
+output "project_id" {
+  value = "${var.project_id}"
+}
+
+output "region" {
+  value = "${var.region}"
+}
+
+output "credentials_path" {
+  value = "${local.credentials_path}"
+}
+
+output "available_zones" {
+  value = "${module.umig_simple.available_zones}"
+}
+
+output "num_instances" {
+  value = "${var.num_instances}"
+}

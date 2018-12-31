@@ -24,3 +24,9 @@ attributes:
   - name: region
     required: true
     type: string
+  - name: available_zones
+    required: true
+    type: array
+  - name: num_instances
+    required: true
+    type: string

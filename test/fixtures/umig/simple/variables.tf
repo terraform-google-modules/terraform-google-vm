@@ -26,6 +26,10 @@ variable "credentials_path_relative" {
   description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
 }
 
+variable "num_instances" {
+  description = "Number of instances to create"
+}
+
 variable "service_account_email" {
   description = "Service account email"
 }

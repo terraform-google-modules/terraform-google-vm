@@ -21,3 +21,7 @@ output "umig_self_links" {
 output "instances_self_links" {
   value = "${module.umig.instances_self_links}"
 }
+
+output "available_zones" {
+  value = "${module.umig.available_zones}"
+}

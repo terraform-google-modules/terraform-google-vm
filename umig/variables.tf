@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-variable "project" {
-  description = "Project ID"
-}
-
 variable "region" {
   description = "GCP region"
   default     = "us-west1"

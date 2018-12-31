@@ -13,6 +13,9 @@
 # limitations under the License.
 
 ---
+driver:
+  name: terraform
+
 provisioner:
   name: terraform
 
@@ -26,14 +29,8 @@ verifier:
       backend: local
 
 suites:
-  - name: full
+  - name: umig_simple
     driver:
       name: terraform
       command_timeout: 1800
-      root_module_directory: test/fixtures/full
-
-  - name: minimal
-    driver:
-      name: terraform
-      command_timeout: 1800
-      root_module_directory: test/fixtures/minimal
+      root_module_directory: test/fixtures/umig/simple

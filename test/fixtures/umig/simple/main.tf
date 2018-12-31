@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = "~> 0.11.7"
+locals {
+  credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
-provider "google" {
-  project = "${var.project}"
-  region  = "${var.region}"
+module "umig_simple" {
+  source                = "../../../../examples/umig/simple"
+  credentials_path      = "${local.credentials_path}"
+  project_id            = "${var.project_id}"
+  region                = "${var.region}"
+  subnetwork            = "default"
+  num_instances         = "3"
+  service_account_email = "${var.service_account_email}"
 }
-
-provider "random" {}

@@ -14,11 +14,26 @@
  * limitations under the License.
  */
 
-module "umig" {
-  source                = "../.."
-  project               = "${var.project}"
-  region                = "${var.region}"
-  subnetwork            = "default"
-  num_instances         = "3"
-  service_account_email = "${var.service_account_email}"
+variable "credentials_path" {
+  description = "The path to the GCP credentials JSON file"
+}
+
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
+}
+
+variable "region" {
+  description = "The GCP region to create and test resources in"
+}
+
+variable "subnetwork" {
+  description = "The subnetwork to host the compute instances in"
+}
+
+variable "num_instances" {
+  description = "Number of instances to create"
+}
+
+variable "service_account_email" {
+  description = "Service account email"
 }

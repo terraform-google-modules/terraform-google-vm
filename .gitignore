@@ -15,3 +15,5 @@ Gemfile.lock
 __pycache__/
 *.iml
 marketo-tk-tester.json
+
+*.json

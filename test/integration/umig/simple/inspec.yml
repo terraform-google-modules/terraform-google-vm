@@ -13,8 +13,14 @@
 # limitations under the License.
 
 ---
-name: default
-inspec_version: '>= 2.2.35'
-depends:
-  - name: inspec-gcp
-    url: https://github.com/inspec/inspec-gcp/archive/master.tar.gz
+name: umig_simple
+attributes:
+  - name: project_id
+    required: true
+    type: string
+  - name: credentials_path
+    required: true
+    type: string
+  - name: region
+    required: true
+    type: string

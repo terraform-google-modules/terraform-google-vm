@@ -14,11 +14,6 @@
  * limitations under the License.
  */
 
-variable "region" {
-  description = "GCP region"
-  default     = "us-west1"
-}
-
 variable "subnetwork" {
   description = "Subnet to deploy to"
 }

@@ -56,6 +56,7 @@ resource "google_compute_instance" "compute_instance" {
 
   network_interface {
     subnetwork = "${var.subnetwork}"
+    network    = ""
 
     #address    = "${var.instance_ips[count.index]}"
   }

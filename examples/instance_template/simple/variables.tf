@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-resource "random_string" "suffix" {
-  length  = 4
-  special = false
-  upper   = false
+variable "credentials_path" {
+  description = "The path to the GCP credentials JSON file"
 }
 
-resource "google_compute_network" "main" {
-  project                 = "${var.project_id}"
-  name                    = "cft-vm-test-${random_string.suffix.result}"
-  auto_create_subnetworks = "false"
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
 }
 
-resource "google_compute_subnetwork" "main" {
-  project       = "${var.project_id}"
-  region        = "${var.region}"
-  name          = "cft-vm-test-${random_string.suffix.result}"
-  ip_cidr_range = "10.128.0.0/20"
-  network       = "${google_compute_network.main.self_link}"
+variable "region" {
+  description = "The GCP region to create and test resources in"
+}
+
+variable "subnetwork" {
+  description = "The name of the subnetwork create this instance in."
+  default     = ""
+}
+
+variable "service_account" {
+  type        = "map"
+  description = "Service account email address and scopes"
 }

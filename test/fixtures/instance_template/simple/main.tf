@@ -14,22 +14,19 @@
  * limitations under the License.
  */
 
-resource "random_string" "suffix" {
-  length  = 4
-  special = false
-  upper   = false
+locals {
+  credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
-resource "google_compute_network" "main" {
-  project                 = "${var.project_id}"
-  name                    = "cft-vm-test-${random_string.suffix.result}"
-  auto_create_subnetworks = "false"
-}
+module "instance_template_simple" {
+  source           = "../../../../examples/instance_template/simple"
+  credentials_path = "${local.credentials_path}"
+  project_id       = "${var.project_id}"
+  region           = "${var.region}"
+  subnetwork       = "${google_compute_subnetwork.main.name}"
 
-resource "google_compute_subnetwork" "main" {
-  project       = "${var.project_id}"
-  region        = "${var.region}"
-  name          = "cft-vm-test-${random_string.suffix.result}"
-  ip_cidr_range = "10.128.0.0/20"
-  network       = "${google_compute_network.main.self_link}"
+  service_account = {
+    email  = "${var.service_account_email}"
+    scopes = ["cloud-platorm"]
+  }
 }

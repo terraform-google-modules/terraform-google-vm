@@ -21,7 +21,7 @@ output "umig_self_links" {
 
 output "instances_self_links" {
   description = "List of self_links for compute instances"
-  value       = ["${google_compute_instance.compute_instance.*.self_link}"]
+  value       = ["${google_compute_instance_from_template.compute_instance.*.self_link}"]
 }
 
 output "available_zones" {

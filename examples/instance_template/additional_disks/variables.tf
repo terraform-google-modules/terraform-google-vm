@@ -27,11 +27,8 @@ variable "region" {
 }
 
 variable "subnetwork" {
-  description = "The subnetwork to host the compute instances in"
-}
-
-variable "num_instances" {
-  description = "Number of instances to create"
+  description = "The name of the subnetwork create this instance in."
+  default     = ""
 }
 
 variable "service_account" {

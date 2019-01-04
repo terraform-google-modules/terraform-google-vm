@@ -14,49 +14,24 @@
  * limitations under the License.
  */
 
+variable "network" {
+  description = "Network to deploy to. Only one of network or subnetwork should be specified."
+  default     = ""
+}
+
 variable "subnetwork" {
-  description = "Subnet to deploy to"
+  description = "Subnet to deploy to. Only one of network or subnetwork should be specified."
+  default     = ""
+}
+
+variable "subnetwork_project" {
+  description = "The project that subnetwork belongs to"
+  default     = ""
 }
 
 variable "hostname" {
   description = "Hostname of instances"
   default     = ""
-}
-
-variable "machine_type" {
-  description = "Machine Type"
-  default     = "n1-standard-4"
-}
-
-variable "img_src_project" {
-  description = "Project holding images"
-  default     = ""
-}
-
-variable "image_name" {
-  description = "Disk image name"
-  default     = ""
-}
-
-variable "image_family" {
-  description = "Disk image family"
-  default     = ""
-}
-
-variable "root_volume_size_gb" {
-  description = "Root volume size in GB"
-  default     = "40"
-}
-
-variable "tags" {
-  description = "Network tags to apply to all instances"
-  default     = []
-}
-
-variable "labels" {
-  description = "Labels to apply to all instances"
-  type        = "map"
-  default     = {}
 }
 
 variable "instance_ips" {
@@ -70,25 +45,12 @@ variable "num_instances" {
   default     = "1"
 }
 
-variable "service_account_email" {
-  description = "Service account email"
-  default     = ""
-}
-
-variable "service_account_scopes" {
-  description = "Service account scopes"
-  type        = "list"
-  default     = []
-}
-
 variable "named_ports" {
   description = "Named name and named port"
   type        = "list"
   default     = []
 }
 
-variable "metadata" {
-  type        = "map"
-  description = "Metadata for each instance, provided as a map"
-  default     = {}
+variable "instance_template" {
+  description = "Instance template self_link used to create compute instances"
 }

@@ -45,12 +45,12 @@ variable "labels" {
 # disk
 #######
 variable "source_image" {
-  description = "Source disk image."
+  description = "Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image."
   default     = ""
 }
 
 variable "source_image_family" {
-  description = "Source image family."
+  description = "Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image."
   default     = ""
 }
 
@@ -72,6 +72,12 @@ variable "disk_type" {
 variable "auto_delete" {
   description = "Whether or not the disk should be auto-deleted"
   default     = "true"
+}
+
+variable "additional_disks" {
+  description = "List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name"
+  type        = "list"
+  default     = []
 }
 
 ####################

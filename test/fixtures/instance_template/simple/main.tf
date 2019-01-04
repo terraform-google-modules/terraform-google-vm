@@ -24,9 +24,5 @@ module "instance_template_simple" {
   project_id       = "${var.project_id}"
   region           = "${var.region}"
   subnetwork       = "${google_compute_subnetwork.main.name}"
-
-  service_account = {
-    email  = "${var.service_account_email}"
-    scopes = ["cloud-platorm"]
-  }
+  service_account  = "${var.service_account}"
 }

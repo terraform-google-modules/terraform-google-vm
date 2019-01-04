@@ -14,27 +14,19 @@
  * limitations under the License.
  */
 
-variable "credentials_path" {
-  description = "The path to the GCP credentials JSON file"
+locals {
+  credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
-variable "project_id" {
-  description = "The GCP project to use for integration tests"
-}
+module "instance_template_additional_disks" {
+  source           = "../../../../examples/instance_template/additional_disks"
+  credentials_path = "${local.credentials_path}"
+  project_id       = "${var.project_id}"
+  region           = "${var.region}"
+  subnetwork       = "${google_compute_subnetwork.main.name}"
 
-variable "region" {
-  description = "The GCP region to create and test resources in"
-}
-
-variable "subnetwork" {
-  description = "The subnetwork to host the compute instances in"
-}
-
-variable "num_instances" {
-  description = "Number of instances to create"
-}
-
-variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+  service_account = {
+    email  = "${var.service_account_email}"
+    scopes = ["cloud-platorm"]
+  }
 }

@@ -4,6 +4,9 @@ credentials_path_relative = "../../../../credentials.json"
 
 region = "us-central1"
 
-service_account_email = "terraform@sso-test-project-c454.iam.gserviceaccount.com"
+service_account = {
+  email  = "terraform@sso-test-project-c454.iam.gserviceaccount.com"
+  scopes = ["cloud-platform"]
+}
 
 num_instances = "4"

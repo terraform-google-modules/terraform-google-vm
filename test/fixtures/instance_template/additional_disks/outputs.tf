@@ -14,27 +14,10 @@
  * limitations under the License.
  */
 
-variable "credentials_path" {
-  description = "The path to the GCP credentials JSON file"
+output "self_link" {
+  value = "${module.instance_template_additional_disks.self_link}"
 }
 
-variable "project_id" {
-  description = "The GCP project to use for integration tests"
-}
-
-variable "region" {
-  description = "The GCP region to create and test resources in"
-}
-
-variable "subnetwork" {
-  description = "The subnetwork to host the compute instances in"
-}
-
-variable "num_instances" {
-  description = "Number of instances to create"
-}
-
-variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+output "name" {
+  value = "${module.instance_template_additional_disks.name}"
 }

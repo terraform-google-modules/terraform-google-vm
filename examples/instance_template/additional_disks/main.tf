@@ -24,11 +24,32 @@ module "instance_template" {
   source          = "../../../instance_template"
   subnetwork      = "${var.subnetwork}"
   service_account = "${var.service_account}"
-}
 
-module "umig" {
-  source            = "../../../umig"
-  subnetwork        = "${var.subnetwork}"
-  num_instances     = "${var.num_instances}"
-  instance_template = "${module.instance_template.self_link}"
+  additional_disks = [
+    {
+      disk_size_gb = 10
+      disk_type    = "pd-standard"
+      auto_delete  = true
+    },
+    {
+      disk_size_gb = 10
+      disk_type    = "pd-standard"
+      auto_delete  = true
+    },
+    {
+      disk_size_gb = 10
+      disk_type    = "pd-standard"
+      auto_delete  = true
+    },
+    {
+      disk_size_gb = 10
+      disk_type    = "pd-standard"
+      auto_delete  = true
+    },
+    {
+      disk_size_gb = 10
+      disk_type    = "pd-standard"
+      auto_delete  = true
+    },
+  ]
 }

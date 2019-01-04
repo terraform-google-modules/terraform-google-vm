@@ -12,49 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ARG BUILD_TERRAFORM_IMAGE
-ARG BUILD_RUBY_VERSION
-FROM $BUILD_TERRAFORM_IMAGE as cfkt_terraform
+ARG BASE_IMAGE
 
-
-
-FROM ruby:$BUILD_RUBY_VERSION-alpine
+FROM $BASE_IMAGE
 
 RUN apk add --no-cache \
-        bash \
-        curl \
-        git \
-        g++ \
-        jq \
-        make \
-        musl-dev \
-        python
+    ca-certificates=20171114-r3
 
-SHELL ["/bin/bash", "-c"]
-
-ENV APP_BASE_DIR="/cftk"
-
-COPY --from=cfkt_terraform $APP_BASE_DIR $APP_BASE_DIR
-
-ENV HOME="$APP_BASE_DIR/home"
-ENV PATH $APP_BASE_DIR/bin:$APP_BASE_DIR/google-cloud-sdk/bin:$PATH
-ENV GOOGLE_APPLICATION_CREDENTIALS="$CREDENTIALS_PATH" \
-    CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE="$CREDENTIALS_PATH"
-
-# Fix base64 inconsistency
-SHELL ["/bin/bash", "-c"]
-RUN echo 'base64() { if [[ $@ == "--decode" ]]; then command base64 -d | more; else command base64 "$@"; fi; }' >> $APP_BASE_DIR/home/.bashrc
-
-RUN terraform --version && \
-    gcloud --version && \
-    ruby --version && \
-    bundle --version
-
-WORKDIR $APP_BASE_DIR/workdir
-
-COPY ./Gemfile ./
+WORKDIR /opt/kitchen
+COPY Gemfile .
 
 RUN bundle install
 
 RUN gcloud components install beta --quiet
 RUN gcloud components install alpha --quiet
+
+WORKDIR $APP_BASE_DIR/workdir

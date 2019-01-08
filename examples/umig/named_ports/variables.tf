@@ -34,8 +34,9 @@ variable "num_instances" {
   description = "Number of instances to create"
 }
 
-variable "service_account_email" {
-  description = "Service account email"
+variable "service_account" {
+  type        = "map"
+  description = "Service account email address and scopes"
 }
 
 variable "named_ports" {

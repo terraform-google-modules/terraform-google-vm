@@ -13,29 +13,20 @@
 # limitations under the License.
 
 ---
-driver:
-  name: terraform
-
-provisioner:
-  name: terraform
-
-platforms:
-- name: local
-
-verifier:
-  name: terraform
-  systems:
-    - name: system
-      backend: local
-
-suites:
-  - name: umig_simple
-    driver:
-      name: terraform
-      command_timeout: 1800
-      root_module_directory: test/fixtures/umig/simple
-  - name: umig_named_ports
-    driver:
-      name: terraform
-      command_timeout: 1800
-      root_module_directory: test/fixtures/umig/named_ports
+name: umig_named_ports
+attributes:
+  - name: project_id
+    required: true
+    type: string
+  - name: credentials_path
+    required: true
+    type: string
+  - name: region
+    required: true
+    type: string
+  - name: available_zones
+    required: true
+    type: array
+  - name: num_instances
+    required: true
+    type: string

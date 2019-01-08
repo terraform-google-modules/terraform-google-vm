@@ -42,6 +42,8 @@ resource "google_compute_instance_from_template" "compute_instance" {
     #address    = "${var.instance_ips[count.index]}"
   }
 
+  metadata_startup_script = "${var.startup_script}"
+
   source_instance_template = "${var.instance_template}"
 }
 

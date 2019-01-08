@@ -19,13 +19,13 @@ locals {
 }
 
 module "umig_named_ports" {
-  source                = "../../../../examples/umig/named_ports"
-  credentials_path      = "${local.credentials_path}"
-  project_id            = "${var.project_id}"
-  region                = "${var.region}"
-  subnetwork            = "${google_compute_subnetwork.main.name}"
-  num_instances         = "${var.num_instances}"
-  service_account_email = "${var.service_account_email}"
+  source           = "../../../../examples/umig/named_ports"
+  credentials_path = "${local.credentials_path}"
+  project_id       = "${var.project_id}"
+  region           = "${var.region}"
+  subnetwork       = "${google_compute_subnetwork.main.name}"
+  num_instances    = "${var.num_instances}"
+  service_account  = "${var.service_account}"
 
   named_ports = [
     {

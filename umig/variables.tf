@@ -54,3 +54,8 @@ variable "named_ports" {
 variable "instance_template" {
   description = "Instance template self_link used to create compute instances"
 }
+
+variable "startup_script" {
+  description = "User startup script to run when instances spin up"
+  default     = ""
+}

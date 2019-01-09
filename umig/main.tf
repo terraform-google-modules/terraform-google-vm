@@ -15,8 +15,15 @@
  */
 
 locals {
-  hostname             = "${var.hostname == "" ? "default" : var.hostname}"
-  instance_group_count = "${min(var.num_instances, length(data.google_compute_zones.available.names))}"
+  hostname      = "${var.hostname == "" ? "default" : var.hostname}"
+  num_instances = "${length(var.instance_ips) == 0 ? var.num_instances : length(var.instance_ips)}"
+
+  # local.instance_ips is the same as var.instance_ips with a dummy element appended
+  # at the end of the list to work around "list does not have any elements so cannot
+  # determine type" error when var.instance_ips is empty
+  instance_ips = "${concat(var.instance_ips, list("NOT_AN_IP"))}"
+
+  instance_group_count = "${min(local.num_instances, length(data.google_compute_zones.available.names))}"
 }
 
 ###############
@@ -30,7 +37,7 @@ data "google_compute_zones" "available" {}
 #############
 
 resource "google_compute_instance_from_template" "compute_instance" {
-  count = "${var.num_instances}"
+  count = "${local.num_instances}"
   name  = "${local.hostname}-${format("%03d", count.index + 1)}"
   zone  = "${data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)]}"
 
@@ -38,12 +45,10 @@ resource "google_compute_instance_from_template" "compute_instance" {
     subnetwork         = "${var.subnetwork}"
     subnetwork_project = "${var.subnetwork_project}"
     network            = "${var.network}"
-
-    #address    = "${var.instance_ips[count.index]}"
+    network_ip         = "${length(var.instance_ips) == 0 ? "" : element(local.instance_ips, count.index)}"
   }
 
-  metadata_startup_script = "${var.startup_script}"
-
+  metadata_startup_script  = "${var.startup_script}"
   source_instance_template = "${var.instance_template}"
 }
 

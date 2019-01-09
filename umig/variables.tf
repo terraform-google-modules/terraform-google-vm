@@ -41,7 +41,7 @@ variable "instance_ips" {
 }
 
 variable "num_instances" {
-  description = "Number of instances to create"
+  description = "Number of instances to create. This value is ignored if instance_ips is provided."
   default     = "1"
 }
 

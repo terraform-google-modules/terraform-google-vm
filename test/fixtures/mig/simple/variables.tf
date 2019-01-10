@@ -26,10 +26,8 @@ variable "credentials_path_relative" {
   description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
 }
 
-variable "static_ips" {
-  type        = "list"
-  description = "List of static IPs for VM instances"
-  default     = []
+variable "target_size" {
+  description = "The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set."
 }
 
 variable "service_account" {

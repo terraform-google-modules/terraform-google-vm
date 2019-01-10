@@ -32,11 +32,10 @@ module "instance_template" {
   service_account = "${var.service_account}"
 }
 
-module "umig" {
-  source            = "../../../umig"
-  umig_enabled      = true
-  subnetwork        = "${var.subnetwork}"
-  num_instances     = "${var.num_instances}"
+module "mig" {
+  source            = "../../../mig"
+  region            = "${var.region}"
+  target_size       = "${var.target_size}"
   hostname          = "simple"
   instance_template = "${module.instance_template.self_link}"
 }

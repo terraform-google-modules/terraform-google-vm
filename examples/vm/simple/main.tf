@@ -14,25 +14,21 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The GCP project to use for integration tests"
+provider "google" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
 }
 
-variable "region" {
-  description = "The GCP region to create and test resources in"
+provider "google-beta" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
 }
 
-variable "credentials_path_relative" {
-  description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
-}
-
-variable "static_ips" {
-  type        = "list"
-  description = "List of static IPs for VM instances"
-  default     = []
-}
-
-variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+module "vm" {
+  source          = "../../.."
+  region          = "${var.region}"
+  subnetwork      = "${var.subnetwork}"
+  service_account = "${var.service_account}"
 }

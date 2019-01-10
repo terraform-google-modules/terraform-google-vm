@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+variable "credentials_path" {
+  description = "The path to the GCP credentials JSON file"
+}
+
 variable "project_id" {
   description = "The GCP project to use for integration tests"
 }
@@ -22,14 +26,8 @@ variable "region" {
   description = "The GCP region to create and test resources in"
 }
 
-variable "credentials_path_relative" {
-  description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
-}
-
-variable "static_ips" {
-  type        = "list"
-  description = "List of static IPs for VM instances"
-  default     = []
+variable "subnetwork" {
+  description = "The subnetwork to host the compute instances in"
 }
 
 variable "service_account" {

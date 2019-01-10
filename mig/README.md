@@ -1,13 +1,9 @@
-# Unmanaged Instance Group (UMIG)
-
-This is a module to spin up N number of compute instances with an unmanaged instance group, where N is either:
-1. the number of static IPs in the `var.instance_ips` input list, or
-2. the number of instances specified in `var.num_instances`.
+# Managed Instance Group (MIG)
 
 
 ## Example usage
 
-See the [simple](examples/umig/simple) test fixture example for usage.
+See the [simple](examples/mig/simple) test fixture example for usage.
 
 ## Testing
 

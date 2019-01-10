@@ -14,25 +14,22 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The GCP project to use for integration tests"
+output "mig_self_link" {
+  value = "${module.mig_simple.mig_self_link}"
 }
 
-variable "region" {
-  description = "The GCP region to create and test resources in"
+output "project_id" {
+  value = "${var.project_id}"
 }
 
-variable "credentials_path_relative" {
-  description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
+output "region" {
+  value = "${var.region}"
 }
 
-variable "static_ips" {
-  type        = "list"
-  description = "List of static IPs for VM instances"
-  default     = []
+output "credentials_path" {
+  value = "${local.credentials_path}"
 }
 
-variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+output "target_size" {
+  value = "${var.target_size}"
 }

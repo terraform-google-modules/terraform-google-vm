@@ -16,12 +16,12 @@
 
 locals {
   hostname      = "${var.hostname == "" ? "default" : var.hostname}"
-  num_instances = "${length(var.instance_ips) == 0 ? var.num_instances : length(var.instance_ips)}"
+  num_instances = "${length(var.static_ips) == 0 ? var.num_instances : length(var.static_ips)}"
 
-  # local.instance_ips is the same as var.instance_ips with a dummy element appended
+  # local.static_ips is the same as var.static_ips with a dummy element appended
   # at the end of the list to work around "list does not have any elements so cannot
-  # determine type" error when var.instance_ips is empty
-  instance_ips = "${concat(var.instance_ips, list("NOT_AN_IP"))}"
+  # determine type" error when var.static_ips is empty
+  static_ips = "${concat(var.static_ips, list("NOT_AN_IP"))}"
 
   instance_group_count = "${min(local.num_instances, length(data.google_compute_zones.available.names))}"
 }
@@ -37,23 +37,24 @@ data "google_compute_zones" "available" {}
 #############
 
 resource "google_compute_instance_from_template" "compute_instance" {
-  count = "${local.num_instances}"
-  name  = "${local.hostname}-${format("%03d", count.index + 1)}"
-  zone  = "${data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)]}"
+  provider = "google"
+  count    = "${var.umig_enabled ? local.num_instances : 0}"
+  name     = "${local.hostname}-${format("%03d", count.index + 1)}"
+  zone     = "${data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)]}"
 
   network_interface {
+    network            = "${var.network}"
     subnetwork         = "${var.subnetwork}"
     subnetwork_project = "${var.subnetwork_project}"
-    network            = "${var.network}"
-    network_ip         = "${length(var.instance_ips) == 0 ? "" : element(local.instance_ips, count.index)}"
+    network_ip         = "${length(var.static_ips) == 0 ? "" : element(local.static_ips, count.index)}"
   }
 
-  metadata_startup_script  = "${var.startup_script}"
   source_instance_template = "${var.instance_template}"
 }
 
 resource "google_compute_instance_group" "instance_group" {
-  count     = "${local.instance_group_count}"
+  provider  = "google"
+  count     = "${var.umig_enabled ? local.instance_group_count : 0}"
   name      = "${local.hostname}-instance-group-${format("%03d", count.index + 1)}"
   zone      = "${element(data.google_compute_zones.available.names, count.index)}"
   instances = ["${matchkeys(google_compute_instance_from_template.compute_instance.*.self_link, google_compute_instance_from_template.compute_instance.*.zone, list(data.google_compute_zones.available.names[count.index]))}"]

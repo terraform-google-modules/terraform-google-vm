@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+variable "umig_enabled" {
+  description = "Enable this UMIG module."
+  default     = false
+}
+
 variable "network" {
   description = "Network to deploy to. Only one of network or subnetwork should be specified."
   default     = ""
@@ -34,14 +39,14 @@ variable "hostname" {
   default     = ""
 }
 
-variable "instance_ips" {
+variable "static_ips" {
   type        = "list"
   description = "List of static IPs for VM instances"
   default     = []
 }
 
 variable "num_instances" {
-  description = "Number of instances to create. This value is ignored if instance_ips is provided."
+  description = "Number of instances to create. This value is ignored if static_ips is provided."
   default     = "1"
 }
 
@@ -53,9 +58,4 @@ variable "named_ports" {
 
 variable "instance_template" {
   description = "Instance template self_link used to create compute instances"
-}
-
-variable "startup_script" {
-  description = "User startup script to run when instances spin up"
-  default     = ""
 }

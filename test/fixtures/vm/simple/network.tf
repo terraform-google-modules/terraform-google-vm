@@ -14,25 +14,22 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The GCP project to use for integration tests"
+resource "random_string" "suffix" {
+  length  = 4
+  special = false
+  upper   = false
 }
 
-variable "region" {
-  description = "The GCP region to create and test resources in"
+resource "google_compute_network" "main" {
+  project                 = "${var.project_id}"
+  name                    = "cft-vm-test-${random_string.suffix.result}"
+  auto_create_subnetworks = "false"
 }
 
-variable "credentials_path_relative" {
-  description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
-}
-
-variable "static_ips" {
-  type        = "list"
-  description = "List of static IPs for VM instances"
-  default     = []
-}
-
-variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+resource "google_compute_subnetwork" "main" {
+  project       = "${var.project_id}"
+  region        = "${var.region}"
+  name          = "cft-vm-test-${random_string.suffix.result}"
+  ip_cidr_range = "10.128.0.0/20"
+  network       = "${google_compute_network.main.self_link}"
 }

@@ -20,6 +20,12 @@ provider "google" {
   region      = "${var.region}"
 }
 
+provider "google-beta" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
+}
+
 module "instance_template" {
   source          = "../../../instance_template"
   subnetwork      = "${var.subnetwork}"
@@ -28,6 +34,7 @@ module "instance_template" {
 
 module "umig" {
   source            = "../../../umig"
+  umig_enabled      = true
   subnetwork        = "${var.subnetwork}"
   num_instances     = "${var.num_instances}"
   hostname          = "named-ports"

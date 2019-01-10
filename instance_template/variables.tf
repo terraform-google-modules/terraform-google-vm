@@ -60,17 +60,17 @@ variable "source_image_project" {
 }
 
 variable "disk_size_gb" {
-  description = "Disk size in GB"
+  description = "Boot disk size in GB"
   default     = "100"
 }
 
 variable "disk_type" {
-  description = "Disk type, can be either pd-ssd, local-ssd, or pd-standard"
+  description = "Boot disk type, can be either pd-ssd, local-ssd, or pd-standard"
   default     = "pd-standard"
 }
 
 variable "auto_delete" {
-  description = "Whether or not the disk should be auto-deleted"
+  description = "Whether or not the boot disk should be auto-deleted"
   default     = "true"
 }
 
@@ -101,6 +101,12 @@ variable "subnetwork_project" {
 ###########
 # metadata
 ###########
+
+variable "startup_script" {
+  description = "User startup script to run when instances spin up"
+  default     = ""
+}
+
 variable "metadata" {
   type        = "map"
   description = "Metadata, provided as a map"

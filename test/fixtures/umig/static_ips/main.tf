@@ -24,6 +24,6 @@ module "umig_static_ips" {
   project_id       = "${var.project_id}"
   region           = "${var.region}"
   subnetwork       = "${google_compute_subnetwork.main.name}"
-  instance_ips     = "${var.instance_ips}"
+  static_ips       = "${var.static_ips}"
   service_account  = "${var.service_account}"
 }

@@ -35,7 +35,7 @@ variable "num_instances" {
   default     = "1"
 }
 
-variable "instance_ips" {
+variable "static_ips" {
   type        = "list"
   description = "List of static IPs for VM instances"
 }

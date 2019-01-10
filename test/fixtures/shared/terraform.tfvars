@@ -9,7 +9,9 @@ service_account = {
   scopes = ["cloud-platform"]
 }
 
-num_instances = "4"
+num_instances = 4
+
+target_size = 4
 
 instance_ips = [
   "10.128.0.10",

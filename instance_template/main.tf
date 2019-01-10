@@ -28,14 +28,14 @@ data "google_compute_image" "image_family" {
 # Boot disk only
 #################
 resource "google_compute_instance_template" "tpl_0" {
-  count        = "${length(var.additional_disks) == 0 ? 1 : 0}"
-  name_prefix  = "${var.name_prefix}-"
-  machine_type = "${var.machine_type}"
-  labels       = "${var.labels}"
-  metadata     = "${var.metadata}"
-  tags         = "${var.tags}"
-
-  can_ip_forward = "${var.can_ip_forward}"
+  count                   = "${length(var.additional_disks) == 0 ? 1 : 0}"
+  name_prefix             = "${var.name_prefix}-"
+  machine_type            = "${var.machine_type}"
+  labels                  = "${var.labels}"
+  metadata                = "${var.metadata}"
+  tags                    = "${var.tags}"
+  can_ip_forward          = "${var.can_ip_forward}"
+  metadata_startup_script = "${var.startup_script}"
 
   disk {
     source_image = "${var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link}"
@@ -63,14 +63,14 @@ resource "google_compute_instance_template" "tpl_0" {
 ####################
 
 resource "google_compute_instance_template" "tpl_1" {
-  count        = "${length(var.additional_disks) == 1 ? 1 : 0}"
-  name_prefix  = "${var.name_prefix}-"
-  machine_type = "${var.machine_type}"
-  labels       = "${var.labels}"
-  metadata     = "${var.metadata}"
-  tags         = "${var.tags}"
-
-  can_ip_forward = "${var.can_ip_forward}"
+  count                   = "${length(var.additional_disks) == 1 ? 1 : 0}"
+  name_prefix             = "${var.name_prefix}-"
+  machine_type            = "${var.machine_type}"
+  labels                  = "${var.labels}"
+  metadata                = "${var.metadata}"
+  tags                    = "${var.tags}"
+  can_ip_forward          = "${var.can_ip_forward}"
+  metadata_startup_script = "${var.startup_script}"
 
   disk {
     source_image = "${var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link}"
@@ -104,14 +104,14 @@ resource "google_compute_instance_template" "tpl_1" {
 # 2 additional disks
 #####################
 resource "google_compute_instance_template" "tpl_2" {
-  count        = "${length(var.additional_disks) == 2 ? 1 : 0}"
-  name_prefix  = "${var.name_prefix}-"
-  machine_type = "${var.machine_type}"
-  labels       = "${var.labels}"
-  metadata     = "${var.metadata}"
-  tags         = "${var.tags}"
-
-  can_ip_forward = "${var.can_ip_forward}"
+  count                   = "${length(var.additional_disks) == 2 ? 1 : 0}"
+  name_prefix             = "${var.name_prefix}-"
+  machine_type            = "${var.machine_type}"
+  labels                  = "${var.labels}"
+  metadata                = "${var.metadata}"
+  tags                    = "${var.tags}"
+  can_ip_forward          = "${var.can_ip_forward}"
+  metadata_startup_script = "${var.startup_script}"
 
   disk {
     source_image = "${var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link}"
@@ -152,14 +152,14 @@ resource "google_compute_instance_template" "tpl_2" {
 # 3 additional disks
 #####################
 resource "google_compute_instance_template" "tpl_3" {
-  count        = "${length(var.additional_disks) == 3 ? 1 : 0}"
-  name_prefix  = "${var.name_prefix}-"
-  machine_type = "${var.machine_type}"
-  labels       = "${var.labels}"
-  metadata     = "${var.metadata}"
-  tags         = "${var.tags}"
-
-  can_ip_forward = "${var.can_ip_forward}"
+  count                   = "${length(var.additional_disks) == 3 ? 1 : 0}"
+  name_prefix             = "${var.name_prefix}-"
+  machine_type            = "${var.machine_type}"
+  labels                  = "${var.labels}"
+  metadata                = "${var.metadata}"
+  tags                    = "${var.tags}"
+  can_ip_forward          = "${var.can_ip_forward}"
+  metadata_startup_script = "${var.startup_script}"
 
   disk {
     source_image = "${var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link}"
@@ -207,14 +207,14 @@ resource "google_compute_instance_template" "tpl_3" {
 # 4 additional disks
 #####################
 resource "google_compute_instance_template" "tpl_4" {
-  count        = "${length(var.additional_disks) == 4 ? 1 : 0}"
-  name_prefix  = "${var.name_prefix}-"
-  machine_type = "${var.machine_type}"
-  labels       = "${var.labels}"
-  metadata     = "${var.metadata}"
-  tags         = "${var.tags}"
-
-  can_ip_forward = "${var.can_ip_forward}"
+  count                   = "${length(var.additional_disks) == 4 ? 1 : 0}"
+  name_prefix             = "${var.name_prefix}-"
+  machine_type            = "${var.machine_type}"
+  labels                  = "${var.labels}"
+  metadata                = "${var.metadata}"
+  tags                    = "${var.tags}"
+  can_ip_forward          = "${var.can_ip_forward}"
+  metadata_startup_script = "${var.startup_script}"
 
   disk {
     source_image = "${var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link}"
@@ -269,14 +269,14 @@ resource "google_compute_instance_template" "tpl_4" {
 # 5 additional disks
 #####################
 resource "google_compute_instance_template" "tpl_5" {
-  count        = "${length(var.additional_disks) == 5 ? 1 : 0}"
-  name_prefix  = "${var.name_prefix}-"
-  machine_type = "${var.machine_type}"
-  labels       = "${var.labels}"
-  metadata     = "${var.metadata}"
-  tags         = "${var.tags}"
-
-  can_ip_forward = "${var.can_ip_forward}"
+  count                   = "${length(var.additional_disks) == 5 ? 1 : 0}"
+  name_prefix             = "${var.name_prefix}-"
+  machine_type            = "${var.machine_type}"
+  labels                  = "${var.labels}"
+  metadata                = "${var.metadata}"
+  tags                    = "${var.tags}"
+  can_ip_forward          = "${var.can_ip_forward}"
+  metadata_startup_script = "${var.startup_script}"
 
   disk {
     source_image = "${var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link}"

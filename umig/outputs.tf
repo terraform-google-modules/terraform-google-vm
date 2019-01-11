@@ -16,7 +16,7 @@
 
 output "umig_self_links" {
   description = "List of self_links for unmanaged instance groups"
-  value       = "${google_compute_instance_group.instance_group.*.self_link}"
+  value       = ["${google_compute_instance_group.instance_group.*.self_link}"]
 }
 
 output "instances_self_links" {

@@ -1,7 +1,7 @@
 # Unmanaged Instance Group (UMIG)
 
 This is a module to spin up N number of compute instances with an unmanaged instance group, where N is either:
-1. the number of static IPs in the `var.instance_ips` input list, or
+1. the number of static IPs in the `var.static_ips` input list, or
 2. the number of instances specified in `var.num_instances`.
 
 
@@ -12,31 +12,28 @@ See the [simple](examples/umig/simple) test fixture example for usage.
 ## Testing
 
 
+[^]: (autogen_docs_start)
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| hostname | Hostname of instances | string | `` | no |
-| image_family | Disk image family | string | `` | no |
-| image_name | Disk image name | string | `` | no |
-| img_src_project | Project holding images | string | `` | no |
-| instance_ips | List of static IPs for VM instances | list | `<list>` | no |
-| labels | Labels to apply to all instances | map | `<map>` | no |
-| machine_type | Machine Type | string | `n1-standard-4` | no |
-| metadata | Metadata for each instance, provided as a map | map | `<map>` | no |
-| named_port | Named name and named port | list | `<list>` | no |
-| num_instances | Number of instances to create | string | `1` | no |
-| project | Project ID | string | - | yes |
-| region | GCP region | string | `us-west1` | no |
-| root_volume_size_gb | Root volume size in GB | string | `40` | no |
-| service_account_email | Service account email | string | `` | no |
-| service_account_scopes | Service account scopes | list | `<list>` | no |
-| subnetwork | Subnet to deploy to | string | - | yes |
-| tags | Network tags to apply to all instances | string | `<list>` | no |
+| hostname | Hostname of instances | string | `""` | no |
+| instance\_template | Instance template self_link used to create compute instances | string | n/a | yes |
+| named\_ports | Named name and named port | list | `<list>` | no |
+| network | Network to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
+| num\_instances | Number of instances to create. This value is ignored if static_ips is provided. | string | `"1"` | no |
+| static\_ips | List of static IPs for VM instances | list | `<list>` | no |
+| subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
+| subnetwork\_project | The project that subnetwork belongs to | string | `""` | no |
+| umig\_enabled | Enable this UMIG module. | string | `"false"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| instances_self_links | List of self_links for compute instances |
-| umig_self_links | List of self_links for unmanaged instance groups |
+| available\_zones | List of available zones in region |
+| instances\_self\_links | List of self_links for compute instances |
+| umig\_self\_links | List of self_links for unmanaged instance groups |
+
+[^]: (autogen_docs_end)

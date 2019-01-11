@@ -15,5 +15,6 @@
  */
 
 output "mig_self_link" {
-  value = "${module.mig.mig_self_link}"
+  description = "Self-link of the managed instance group"
+  value       = "${module.mig.mig_self_link}"
 }

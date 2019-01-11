@@ -9,13 +9,11 @@ service_account = {
   scopes = ["cloud-platform"]
 }
 
-num_instances = 4
-
-target_size = 4
-
-instance_ips = [
+static_ips = [
   "10.128.0.10",
   "10.128.0.11",
   "10.128.0.12",
   "10.128.0.13",
 ]
+
+num_instances = 4

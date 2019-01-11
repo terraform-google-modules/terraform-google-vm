@@ -16,14 +16,14 @@ project_id = attribute('project_id')
 credentials_path = attribute('credentials_path')
 region     = attribute('region')
 available_zones = attribute('available_zones')
-instance_ips = attribute('instance_ips')
+static_ips = attribute('static_ips')
 
 ENV['CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE'] = File.absolute_path(
   credentials_path,
   File.join(__dir__, "../../../fixtures/umig/umig_static_ips"))
 
-expected_instances = instance_ips.length
-expected_instance_groups = [available_zones.length, instance_ips.length].min
+expected_instances = static_ips.length
+expected_instance_groups = [available_zones.length, static_ips.length].min
 
 control "UMIG" do
   title "Static IPs"
@@ -56,8 +56,8 @@ control "UMIG" do
           expect(instance['zone']).to match(/^(.*)#{available_zones[idx%available_zones.length]}$/)
         end
 
-        it "should have IP #{instance_ips[idx]}" do
-          expect(instance['networkInterfaces'][0]['networkIP']).to eq(instance_ips[idx])
+        it "should have IP #{static_ips[idx]}" do
+          expect(instance['networkInterfaces'][0]['networkIP']).to eq(static_ips[idx])
         end
       end
     end

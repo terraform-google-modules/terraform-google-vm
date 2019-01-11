@@ -28,7 +28,7 @@ expected_instance_groups = [available_zones.length, num_instances].min
 control "UMIG" do
   title "Simple Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~simple*'") do
+  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~umig-simple*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -49,7 +49,7 @@ control "UMIG" do
     (0...expected_instances).each do |idx|
       describe "instance 00#{idx+1}" do
         let(:instance) do
-          data.find { |i| i['name'] == "simple-00#{idx+1}" }
+          data.find { |i| i['name'] == "umig-simple-00#{idx+1}" }
         end
         
         it "should be in zone #{available_zones[idx%available_zones.length]}" do
@@ -59,7 +59,7 @@ control "UMIG" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~simple*'") do
+  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~umig-simple*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -80,7 +80,7 @@ control "UMIG" do
     (0...expected_instance_groups).each do |idx|
       describe "instance group 00#{idx+1}" do
         let(:instance_group) do
-          data.find { |i| i['name'] == "simple-instance-group-00#{idx+1}" }
+          data.find { |i| i['name'] == "umig-simple-instance-group-00#{idx+1}" }
         end
         
         it "should be in zone #{available_zones[idx]}" do

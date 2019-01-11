@@ -27,6 +27,6 @@ attributes:
   - name: available_zones
     required: true
     type: array
-  - name: instance_ips
+  - name: static_ips
     required: true
     type: array

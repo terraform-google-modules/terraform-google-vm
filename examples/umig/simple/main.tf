@@ -37,6 +37,6 @@ module "umig" {
   umig_enabled      = true
   subnetwork        = "${var.subnetwork}"
   num_instances     = "${var.num_instances}"
-  hostname          = "simple"
+  hostname          = "umig-simple"
   instance_template = "${module.instance_template.self_link}"
 }

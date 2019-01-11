@@ -14,30 +14,24 @@
  * limitations under the License.
  */
 
-output "umig_self_links" {
-  value = "${module.umig_static_ips.umig_self_links}"
+provider "google" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
 }
 
-output "instances_self_links" {
-  value = "${module.umig_static_ips.instances_self_links}"
+provider "google-beta" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
 }
 
-output "project_id" {
-  value = "${var.project_id}"
-}
-
-output "region" {
-  value = "${var.region}"
-}
-
-output "credentials_path" {
-  value = "${local.credentials_path}"
-}
-
-output "available_zones" {
-  value = "${module.umig_static_ips.available_zones}"
-}
-
-output "static_ips" {
-  value = "${var.static_ips}"
+module "vm" {
+  source          = "../../.."
+  region          = "${var.region}"
+  hostname        = "vm-minimal"
+  subnetwork      = "${var.subnetwork}"
+  service_account = "${var.service_account}"
+  tags            = "${var.tags}"
+  labels          = "${var.labels}"
 }

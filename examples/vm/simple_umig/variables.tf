@@ -14,30 +14,27 @@
  * limitations under the License.
  */
 
-output "umig_self_links" {
-  value = "${module.umig_static_ips.umig_self_links}"
+variable "credentials_path" {
+  description = "The path to the GCP credentials JSON file"
 }
 
-output "instances_self_links" {
-  value = "${module.umig_static_ips.instances_self_links}"
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
 }
 
-output "project_id" {
-  value = "${var.project_id}"
+variable "region" {
+  description = "The GCP region to create and test resources in"
 }
 
-output "region" {
-  value = "${var.region}"
+variable "subnetwork" {
+  description = "The subnetwork to host the compute instances in"
 }
 
-output "credentials_path" {
-  value = "${local.credentials_path}"
+variable "service_account" {
+  type        = "map"
+  description = "Service account email address and scopes"
 }
 
-output "available_zones" {
-  value = "${module.umig_static_ips.available_zones}"
-}
-
-output "static_ips" {
-  value = "${var.static_ips}"
+variable "umig_enabled" {
+  description = "Enable unmanaged instance group module"
 }

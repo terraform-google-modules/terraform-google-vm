@@ -21,7 +21,7 @@ variable "name_prefix" {
 
 variable "machine_type" {
   description = "Machine type to create, e.g. n1-standard-1"
-  default     = "n1-standard-4"
+  default     = "n1-standard-1"
 }
 
 variable "can_ip_forward" {

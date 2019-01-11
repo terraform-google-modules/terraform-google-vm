@@ -34,3 +34,13 @@ variable "service_account" {
   type        = "map"
   description = "Service account email address and scopes"
 }
+
+variable "tags" {
+  type        = "list"
+  description = "Network tags, provided as a list"
+}
+
+variable "labels" {
+  type        = "map"
+  description = "Labels, provided as a map"
+}

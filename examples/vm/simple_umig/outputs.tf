@@ -14,30 +14,3 @@
  * limitations under the License.
  */
 
-output "umig_self_links" {
-  value = "${module.umig_static_ips.umig_self_links}"
-}
-
-output "instances_self_links" {
-  value = "${module.umig_static_ips.instances_self_links}"
-}
-
-output "project_id" {
-  value = "${var.project_id}"
-}
-
-output "region" {
-  value = "${var.region}"
-}
-
-output "credentials_path" {
-  value = "${local.credentials_path}"
-}
-
-output "available_zones" {
-  value = "${module.umig_static_ips.available_zones}"
-}
-
-output "static_ips" {
-  value = "${var.static_ips}"
-}

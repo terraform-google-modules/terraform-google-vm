@@ -14,30 +14,16 @@
  * limitations under the License.
  */
 
-output "umig_self_links" {
-  value = "${module.umig_static_ips.umig_self_links}"
+locals {
+  credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
-output "instances_self_links" {
-  value = "${module.umig_static_ips.instances_self_links}"
-}
-
-output "project_id" {
-  value = "${var.project_id}"
-}
-
-output "region" {
-  value = "${var.region}"
-}
-
-output "credentials_path" {
-  value = "${local.credentials_path}"
-}
-
-output "available_zones" {
-  value = "${module.umig_static_ips.available_zones}"
-}
-
-output "static_ips" {
-  value = "${var.static_ips}"
+module "vm" {
+  source           = "../../../../examples/vm/simple_umig"
+  credentials_path = "${local.credentials_path}"
+  project_id       = "${var.project_id}"
+  region           = "${var.region}"
+  subnetwork       = "${google_compute_subnetwork.main.name}"
+  service_account  = "${var.service_account}"
+  umig_enabled     = true
 }

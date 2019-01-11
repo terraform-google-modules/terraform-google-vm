@@ -14,30 +14,19 @@
  * limitations under the License.
  */
 
-output "umig_self_links" {
-  value = "${module.umig_static_ips.umig_self_links}"
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
 }
 
-output "instances_self_links" {
-  value = "${module.umig_static_ips.instances_self_links}"
+variable "region" {
+  description = "The GCP region to create and test resources in"
 }
 
-output "project_id" {
-  value = "${var.project_id}"
+variable "credentials_path_relative" {
+  description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
 }
 
-output "region" {
-  value = "${var.region}"
-}
-
-output "credentials_path" {
-  value = "${local.credentials_path}"
-}
-
-output "available_zones" {
-  value = "${module.umig_static_ips.available_zones}"
-}
-
-output "static_ips" {
-  value = "${var.static_ips}"
+variable "service_account" {
+  type        = "map"
+  description = "Service account email address and scopes"
 }

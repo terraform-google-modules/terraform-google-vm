@@ -16,5 +16,5 @@
 
 output "mig_self_link" {
   description = "self_link of managed instance group"
-  value       = "${element(google_compute_region_instance_group_manager.mig.*.self_link,0)}"
+  value       = "${element(coalescelist(google_compute_region_instance_group_manager.mig.*.self_link, list("")),0)}"
 }

@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
+output "project_id" {
+  value = "${var.project_id}"
 }
 
-module "vm_simple" {
-  source           = "../../../../examples/vm/simple"
-  credentials_path = "${local.credentials_path}"
-  project_id       = "${var.project_id}"
-  region           = "${var.region}"
-  subnetwork       = "${google_compute_subnetwork.main.name}"
-  service_account  = "${var.service_account}"
+output "region" {
+  value = "${var.region}"
+}
+
+output "credentials_path" {
+  value = "${local.credentials_path}"
 }

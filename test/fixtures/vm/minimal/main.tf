@@ -14,21 +14,20 @@
  * limitations under the License.
  */
 
-provider "google" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
-}
-
-provider "google-beta" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
+locals {
+  credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
 module "vm" {
-  source          = "../../.."
-  region          = "${var.region}"
-  subnetwork      = "${var.subnetwork}"
-  service_account = "${var.service_account}"
+  source           = "../../../../examples/vm/minimal"
+  credentials_path = "${local.credentials_path}"
+  project_id       = "${var.project_id}"
+  region           = "${var.region}"
+  subnetwork       = "${google_compute_subnetwork.main.name}"
+  service_account  = "${var.service_account}"
+  tags             = ["foo", "bar"]
+
+  labels = {
+    environment = "dev"
+  }
 }

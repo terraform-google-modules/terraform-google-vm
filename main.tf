@@ -15,25 +15,31 @@
  */
 
 module "instance_template" {
-  source               = "./instance_template"
-  name_prefix          = "${var.hostname}-instance-template"
-  network              = "${var.network}"
-  subnetwork           = "${var.subnetwork}"
-  subnetwork_project   = "${var.subnetwork_project}"
-  machine_type         = "${var.machine_type}"
-  can_ip_forward       = "${var.can_ip_forward}"
-  tags                 = "${var.tags}"
-  labels               = "${var.labels}"
+  source          = "./instance_template"
+  name_prefix     = "${var.hostname}-instance-template"
+  machine_type    = "${var.machine_type}"
+  tags            = "${var.tags}"
+  labels          = "${var.labels}"
+  startup_script  = "${var.startup_script}"
+  metadata        = "${var.metadata}"
+  service_account = "${var.service_account}"
+
+  /* network */
+  network            = "${var.network}"
+  subnetwork         = "${var.subnetwork}"
+  subnetwork_project = "${var.subnetwork_project}"
+  can_ip_forward     = "${var.can_ip_forward}"
+
+  /* image */
   source_image         = "${var.source_image}"
   source_image_family  = "${var.source_image_family}"
   source_image_project = "${var.source_image_project}"
-  disk_size_gb         = "${var.disk_size_gb}"
-  disk_type            = "${var.disk_type}"
-  auto_delete          = "${var.auto_delete}"
-  additional_disks     = "${var.additional_disks}"
-  startup_script       = "${var.startup_script}"
-  metadata             = "${var.metadata}"
-  service_account      = "${var.service_account}"
+
+  /* disks */
+  disk_size_gb     = "${var.disk_size_gb}"
+  disk_type        = "${var.disk_type}"
+  auto_delete      = "${var.auto_delete}"
+  additional_disks = "${var.additional_disks}"
 }
 
 module "mig" {

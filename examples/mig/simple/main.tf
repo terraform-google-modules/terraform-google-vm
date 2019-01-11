@@ -36,6 +36,6 @@ module "mig" {
   source            = "../../../mig"
   region            = "${var.region}"
   target_size       = "${var.target_size}"
-  hostname          = "simple"
+  hostname          = "mig-simple"
   instance_template = "${module.instance_template.self_link}"
 }

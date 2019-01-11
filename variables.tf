@@ -139,7 +139,7 @@ variable "service_account" {
 
 variable "target_size" {
   description = "The target number of running instances for this managed or unmanaged instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set."
-  default     = 2
+  default     = 1
 }
 
 variable "target_pools" {

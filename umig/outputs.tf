@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-output "umig_self_links" {
-  description = "List of self_links for unmanaged instance groups"
+output "self_links" {
+  description = "List of self-links for unmanaged instance groups"
   value       = ["${google_compute_instance_group.instance_group.*.self_link}"]
 }
 
 output "instances_self_links" {
-  description = "List of self_links for compute instances"
+  description = "List of self-links for compute instances"
   value       = ["${google_compute_instance_from_template.compute_instance.*.self_link}"]
 }
 

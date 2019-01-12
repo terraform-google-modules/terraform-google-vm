@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-output "umig_self_links" {
-  value = "${module.umig_static_ips.umig_self_links}"
+output "self_links" {
+  value = "${module.umig_static_ips.self_links}"
 }
 
 output "instances_self_links" {

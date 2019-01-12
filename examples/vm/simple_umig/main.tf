@@ -29,7 +29,10 @@ provider "google-beta" {
 module "vm" {
   source          = "../../.."
   umig_enabled    = "${var.umig_enabled}"
+  hostname        = "vm-simple-umig"
   region          = "${var.region}"
   subnetwork      = "${var.subnetwork}"
   service_account = "${var.service_account}"
+  tags            = "${var.tags}"
+  labels          = "${var.labels}"
 }

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-output "umig_self_links" {
-  value = "${module.umig_named_ports.umig_self_links}"
+output "self_links" {
+  value = "${module.umig_named_ports.self_links}"
 }
 
 output "instances_self_links" {

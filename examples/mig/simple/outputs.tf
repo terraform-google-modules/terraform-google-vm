@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-output "mig_self_link" {
+output "self_link" {
   description = "Self-link of the managed instance group"
-  value       = "${module.mig.mig_self_link}"
+  value       = "${module.mig.self_link}"
 }

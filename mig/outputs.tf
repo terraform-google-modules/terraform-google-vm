@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-output "mig_self_link" {
-  description = "self_link of managed instance group"
+output "self_link" {
+  description = "Self-link of managed instance group"
   value       = "${element(coalescelist(google_compute_region_instance_group_manager.mig.*.self_link, list("")),0)}"
 }

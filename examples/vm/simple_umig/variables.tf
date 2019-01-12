@@ -38,3 +38,13 @@ variable "service_account" {
 variable "umig_enabled" {
   description = "Enable unmanaged instance group module"
 }
+
+variable "tags" {
+  type        = "list"
+  description = "Network tags, provided as a list"
+}
+
+variable "labels" {
+  type        = "map"
+  description = "Labels, provided as a map"
+}

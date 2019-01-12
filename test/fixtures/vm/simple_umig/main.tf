@@ -26,4 +26,9 @@ module "vm" {
   subnetwork       = "${google_compute_subnetwork.main.name}"
   service_account  = "${var.service_account}"
   umig_enabled     = true
+  tags             = ["foo", "bar"]
+
+  labels = {
+    environment = "dev"
+  }
 }

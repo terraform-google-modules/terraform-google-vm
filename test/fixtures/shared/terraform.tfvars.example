@@ -1,0 +1,19 @@
+project_id = ""
+
+credentials_path_relative = "../../../../credentials.json"
+
+region = "us-central1"
+
+service_account = {
+  email  = ""
+  scopes = ["cloud-platform"]
+}
+
+static_ips = [
+  "10.128.0.10",
+  "10.128.0.11",
+  "10.128.0.12",
+  "10.128.0.13",
+]
+
+num_instances = 4

@@ -1,6 +1,7 @@
 **/.terraform/**
 **tfstate*
 **/*.pem
+terraform.tfvars
 **/account.json
 **/credentials
 .DS_Store

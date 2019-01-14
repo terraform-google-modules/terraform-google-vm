@@ -29,21 +29,6 @@ verifier:
       backend: local
 
 suites:
-  #- name: umig_simple
-  #  driver:
-  #    name: terraform
-  #    command_timeout: 1800
-  #    root_module_directory: test/fixtures/umig/simple
-  #- name: umig_named_ports
-  #  driver:
-  #    name: terraform
-  #    command_timeout: 1800
-  #    root_module_directory: test/fixtures/umig/named_ports
-  #- name: umig_static_ips
-  #  driver:
-  #    name: terraform
-  #    command_timeout: 1800
-  #    root_module_directory: test/fixtures/umig/static_ips
   - name: vm_minimal
     driver:
       name: terraform
@@ -54,3 +39,8 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/vm/simple_umig
+  - name: vm_autoscaler
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/vm/autoscaler

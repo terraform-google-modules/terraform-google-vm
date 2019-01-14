@@ -52,7 +52,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
   }
 }
 
-resource "google_compute_autoscaler" "autoscaler" {
+resource "google_compute_region_autoscaler" "autoscaler" {
   provider = "google"
   count    = "${var.mig_enabled && var.autoscaling_enabled ? 1 : 0}"
   name     = "${var.hostname}-autoscaler"

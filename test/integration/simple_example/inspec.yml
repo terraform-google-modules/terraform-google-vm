@@ -1,0 +1,8 @@
+name: simple_example
+attributes:
+  - name: project_id
+    required: true
+    type: string
+  - name: region
+    required: true
+    type: string

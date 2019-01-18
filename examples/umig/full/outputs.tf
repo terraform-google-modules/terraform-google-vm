@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
+output "instance_template_self_link" {
+  description = "Self-link of instance template"
+  value       = "${module.instance_template.self_link}"
 }
 
-module "vm" {
-  source           = "../../../../examples/vm/simple_umig"
-  credentials_path = "${local.credentials_path}"
-  project_id       = "${var.project_id}"
-  region           = "${var.region}"
-  subnetwork       = "${google_compute_subnetwork.main.name}"
-  service_account  = "${var.service_account}"
-  umig_enabled     = true
-  tags             = ["foo", "bar"]
+output "umig_self_links" {
+  description = "List of self-links for unmanaged instance groups"
+  value       = "${module.umig.self_links}"
+}
 
-  labels = {
-    environment = "dev"
-  }
+output "mig_self_link" {
+  description = "Self-link for managed instance group"
+  value       = "${module.mig.self_link}"
 }

@@ -58,7 +58,7 @@ variable "name_prefix" {
 
 variable "machine_type" {
   description = "Machine type to create, e.g. n1-standard-1"
-  default     = "n1-standard-4"
+  default     = "n1-standard-1"
 }
 
 variable "can_ip_forward" {
@@ -133,127 +133,18 @@ variable "service_account" {
   description = "Service account email address and scopes"
 }
 
-##########################
-# Mananged Instance Group
-##########################
+############################
+# Unmananged Instance Group
+############################
 
 variable "target_size" {
   description = "The target number of running instances for this managed or unmanaged instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set."
   default     = 1
 }
 
-variable "target_pools" {
-  description = "The target load balancing pools to assign this group to."
-  type        = "list"
-  default     = []
-}
-
-variable "distribution_policy_zones" {
-  description = "The distribution policy, i.e. which zone(s) should instances be create in. Default is all zones in given region."
-  type        = "list"
-  default     = []
-}
-
-variable "update_policy" {
-  description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy"
-  type        = "list"
-  default     = []
-}
-
-/* health checks */
-
-variable "http_healthcheck_enable" {
-  description = "Enable HTTP healthcheck"
-  default     = false
-}
-
-variable "tcp_healthcheck_enable" {
-  description = "Enable TCP healthcheck"
-  default     = false
-}
-
-variable "hc_initial_delay_sec" {
-  description = "Health check, intial delay in seconds."
-  default     = 30
-}
-
-variable "hc_interval_sec" {
-  description = "Health check interval in seconds."
-  default     = 30
-}
-
-variable "hc_timeout_sec" {
-  description = "Health check timeout in seconds."
-  default     = 10
-}
-
-variable "hc_healthy_threshold" {
-  description = "Health check healthy threshold."
-  default     = 1
-}
-
-variable "hc_unhealthy_threshold" {
-  description = "Health check unhealthy threshold."
-  default     = 5
-}
-
-variable "hc_path" {
-  description = "Health check http path to check."
-  default     = "/"
-}
-
-variable "hc_port" {
-  description = "Health check port."
-  default     = ""
-}
-
-/* autoscaler */
-
-variable "autoscaling_enabled" {
-  description = "Creates an autoscaler for the managed instance group"
-  default     = false
-}
-
-variable "max_replicas" {
-  description = "The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas."
-  default     = 10
-}
-
-variable "min_replicas" {
-  description = "The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0."
-  default     = 2
-}
-
-variable "cooldown_period" {
-  description = "The number of seconds that the autoscaler should wait before it starts collecting information from a new instance."
-  default     = 60
-}
-
-variable "autoscaling_cpu" {
-  description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization"
-  type        = "list"
-  default     = []
-}
-
-variable "autoscaling_metric" {
-  description = "Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#metric"
-  type        = "list"
-  default     = []
-}
-
-variable "autoscaling_lb" {
-  description = "Autoscaling, load balancing utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#load_balancing_utilization"
-  type        = "list"
-  default     = []
-}
-
-############################
-# Unmananged Instance Group
-############################
-
 variable "umig_enabled" {
   description = "Enable this UMIG module."
-  default     = false
+  default     = true
 }
 
 variable "static_ips" {

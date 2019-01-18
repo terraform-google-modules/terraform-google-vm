@@ -26,12 +26,21 @@ provider "google-beta" {
   region      = "${var.region}"
 }
 
-module "vm" {
-  source          = "../../.."
-  region          = "${var.region}"
-  hostname        = "vm-minimal"
+module "instance_template" {
+  source          = "../../../instance_template"
   subnetwork      = "${var.subnetwork}"
   service_account = "${var.service_account}"
   tags            = "${var.tags}"
   labels          = "${var.labels}"
+}
+
+module "mig" {
+  source              = "../../../mig"
+  region              = "${var.region}"
+  hostname            = "mig-autoscaler"
+  subnetwork          = "${var.subnetwork}"
+  autoscaling_enabled = "${var.autoscaling_enabled}"
+  min_replicas        = "${var.min_replicas}"
+  autoscaling_cpu     = "${var.autoscaling_cpu}"
+  instance_template   = "${module.instance_template.self_link}"
 }

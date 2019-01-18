@@ -26,4 +26,9 @@ module "mig_simple" {
   subnetwork       = "${google_compute_subnetwork.main.name}"
   target_size      = 4
   service_account  = "${var.service_account}"
+  tags             = ["foo", "bar"]
+
+  labels = {
+    environment = "dev"
+  }
 }

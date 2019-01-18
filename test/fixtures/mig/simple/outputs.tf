@@ -15,7 +15,7 @@
  */
 
 output "mig_self_link" {
-  value = "${module.mig_simple.mig_self_link}"
+  value = "${module.mig_simple.self_link}"
 }
 
 output "project_id" {
@@ -28,8 +28,4 @@ output "region" {
 
 output "credentials_path" {
   value = "${local.credentials_path}"
-}
-
-output "target_size" {
-  value = "${var.target_size}"
 }

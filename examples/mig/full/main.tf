@@ -15,7 +15,7 @@
  */
 
 module "instance_template" {
-  source          = "./instance_template"
+  source          = "../../../instance_template"
   name_prefix     = "${var.hostname}-instance-template"
   machine_type    = "${var.machine_type}"
   tags            = "${var.tags}"
@@ -43,7 +43,7 @@ module "instance_template" {
 }
 
 module "mig" {
-  source                    = "./mig"
+  source                    = "../../../mig"
   mig_enabled               = "${!var.umig_enabled}"
   network                   = "${var.network}"
   subnetwork                = "${var.subnetwork}"
@@ -76,17 +76,4 @@ module "mig" {
   autoscaling_cpu     = "${var.autoscaling_cpu}"
   autoscaling_metric  = "${var.autoscaling_metric}"
   autoscaling_lb      = "${var.autoscaling_lb}"
-}
-
-module "umig" {
-  source             = "./umig"
-  umig_enabled       = "${var.umig_enabled}"
-  network            = "${var.network}"
-  subnetwork         = "${var.subnetwork}"
-  subnetwork_project = "${var.subnetwork_project}"
-  hostname           = "${var.hostname}"
-  static_ips         = "${var.static_ips}"
-  num_instances      = "${var.target_size}"
-  instance_template  = "${module.instance_template.self_link}"
-  named_ports        = "${var.named_ports}"
 }

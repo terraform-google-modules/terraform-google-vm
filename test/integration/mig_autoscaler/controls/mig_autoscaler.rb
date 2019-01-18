@@ -18,15 +18,15 @@ region     = attribute('region')
 
 ENV['CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE'] = File.absolute_path(
   credentials_path,
-  File.join(__dir__, "../../../fixtures/vm/minimal"))
+  File.join(__dir__, "../../../fixtures/mig/autoscaler"))
 
-expected_instances = 1
+expected_instances = 4
 expected_instance_groups = 1
 
-control "VM" do
-  title "Minimal Configuration"
+control "MIG" do
+  title "Autoscaling Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~vm-minimal*'") do
+  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~mig-autoscaler*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -71,7 +71,26 @@ control "VM" do
 
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~vm-minimal*'") do
+  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~mig-autoscaler*'") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq '' }
+
+    let!(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout)
+      else
+        {}
+      end
+    end
+
+    describe "number of instance groups" do
+      it "should be #{expected_instance_groups}" do
+        expect(data.length).to eq(expected_instance_groups)
+      end
+    end
+  end
+
+  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~mig-autoscaler*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -89,5 +108,23 @@ control "VM" do
       end
     end
 
+    describe "autoscaled" do
+      it "should be yes" do
+        expect(data[0]['autoscaled']).to eq("yes")
+      end
+    end
+
+    describe "autoscaler scaling policy" do
+      it "minNumReplicas should be 4" do
+        expect(data[0]['autoscaler']['autoscalingPolicy']['minNumReplicas']).to eq(4)
+      end
+    end
+
+    describe "autoscaler scaling policy" do
+      it "cpuUtilization target should be 0.6" do
+        expect(data[0]['autoscaler']['autoscalingPolicy']['cpuUtilization']['utilizationTarget']).to eq(0.6)
+      end
+    end
   end
+
 end

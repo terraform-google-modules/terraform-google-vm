@@ -18,8 +18,8 @@ locals {
   credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
-module "vm" {
-  source           = "../../../../examples/vm/minimal"
+module "mig_autoscaler" {
+  source           = "../../../../examples/mig/autoscaler"
   credentials_path = "${local.credentials_path}"
   project_id       = "${var.project_id}"
   region           = "${var.region}"
@@ -30,4 +30,11 @@ module "vm" {
   labels = {
     environment = "dev"
   }
+
+  autoscaling_enabled = true
+  min_replicas        = 4
+
+  autoscaling_cpu = [{
+    target = 0.6
+  }]
 }

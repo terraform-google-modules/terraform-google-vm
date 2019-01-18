@@ -18,15 +18,15 @@ region     = attribute('region')
 
 ENV['CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE'] = File.absolute_path(
   credentials_path,
-  File.join(__dir__, "../../../fixtures/vm/autoscaler"))
+  File.join(__dir__, "../../../fixtures/mig/simple"))
 
 expected_instances = 4
 expected_instance_groups = 1
 
-control "VM" do
-  title "Autoscaling Configuration"
+control "MIG" do
+  title "Simple Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~vm-autoscaler*'") do
+  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~mig-simple*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -71,7 +71,7 @@ control "VM" do
 
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~vm-autoscaler*'") do
+  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~mig-simple*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -90,7 +90,7 @@ control "VM" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~vm-autoscaler*'") do
+  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~mig-simple*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -108,23 +108,6 @@ control "VM" do
       end
     end
 
-    describe "autoscaled" do
-      it "should be yes" do
-        expect(data[0]['autoscaled']).to eq("yes")
-      end
-    end
-
-    describe "autoscaler scaling policy" do
-      it "minNumReplicas should be 4" do
-        expect(data[0]['autoscaler']['autoscalingPolicy']['minNumReplicas']).to eq(4)
-      end
-    end
-
-    describe "autoscaler scaling policy" do
-      it "cpuUtilization target should be 0.6" do
-        expect(data[0]['autoscaler']['autoscalingPolicy']['cpuUtilization']['utilizationTarget']).to eq(0.6)
-      end
-    end
   end
 
 end

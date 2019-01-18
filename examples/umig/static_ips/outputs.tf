@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-output "umig_self_links" {
+output "self_links" {
   description = "List of self-links of unmanaged instance groups"
-  value       = "${module.umig.umig_self_links}"
+  value       = "${module.umig.self_links}"
 }
 
 output "instances_self_links" {

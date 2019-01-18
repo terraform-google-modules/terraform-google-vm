@@ -37,7 +37,7 @@ module "umig" {
   umig_enabled      = true
   subnetwork        = "${var.subnetwork}"
   num_instances     = "${var.num_instances}"
-  hostname          = "named-ports"
+  hostname          = "umig-named-ports"
   instance_template = "${module.instance_template.self_link}"
   named_ports       = "${var.named_ports}"
 }

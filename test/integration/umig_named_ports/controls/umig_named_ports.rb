@@ -28,7 +28,7 @@ expected_instance_groups = [available_zones.length, num_instances].min
 control "UMIG" do
   title "With named ports"
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~named-ports*'") do
+  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^umig-named-ports*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -49,7 +49,7 @@ control "UMIG" do
     (0...expected_instance_groups).each do |idx|
       describe "instance group 00#{idx+1}" do
         let(:instance_group) do
-          data.find { |i| i['name'] == "named-ports-instance-group-00#{idx+1}" }
+          data.find { |i| i['name'] == "umig-named-ports-instance-group-00#{idx+1}" }
         end
         
         it "should have 2 named ports" do

@@ -26,7 +26,7 @@ expected_instance_groups = 1
 control "MIG" do
   title "Simple Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~mig-simple*'") do
+  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~^mig-simple*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -71,7 +71,7 @@ control "MIG" do
 
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~mig-simple*'") do
+  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^mig-simple*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -90,7 +90,7 @@ control "MIG" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~mig-simple*'") do
+  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~^mig-simple*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 

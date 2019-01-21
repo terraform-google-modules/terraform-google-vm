@@ -15,17 +15,21 @@
  */
 
 output "mig_self_link" {
-  value = "${module.mig_simple.self_link}"
+  description = "Self-link to managed instance group"
+  value       = "${module.mig_simple.self_link}"
 }
 
 output "project_id" {
-  value = "${var.project_id}"
+  description = "The GCP project to use for integration tests"
+  value       = "${var.project_id}"
 }
 
 output "region" {
-  value = "${var.region}"
+  description = "The GCP region to create and test resources in"
+  value       = "${var.region}"
 }
 
 output "credentials_path" {
-  value = "${local.credentials_path}"
+  description = "The path to the GCP credentials JSON file"
+  value       = "${local.credentials_path}"
 }

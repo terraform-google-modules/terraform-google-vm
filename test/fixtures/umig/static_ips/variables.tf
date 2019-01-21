@@ -18,10 +18,6 @@ variable "project_id" {
   description = "The GCP project to use for integration tests"
 }
 
-variable "region" {
-  description = "The GCP region to create and test resources in"
-}
-
 variable "credentials_path_relative" {
   description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
 }
@@ -29,9 +25,4 @@ variable "credentials_path_relative" {
 variable "service_account" {
   type        = "map"
   description = "Service account email address and scopes"
-}
-
-variable "static_ips" {
-  type        = "list"
-  description = "List of static IPs for VM instances."
 }

@@ -14,11 +14,6 @@
  * limitations under the License.
  */
 
-variable "mig_enabled" {
-  description = "Enable this managed instance group module"
-  default     = true
-}
-
 variable "hostname" {
   description = "Hostname prefix for instances"
   default     = "default"
@@ -69,12 +64,12 @@ variable "update_policy" {
 
 variable "http_healthcheck_enable" {
   description = "Enable HTTP healthcheck"
-  default     = false
+  default     = "false"
 }
 
 variable "tcp_healthcheck_enable" {
   description = "Enable TCP healthcheck"
-  default     = false
+  default     = "false"
 }
 
 variable "hc_initial_delay_sec" {
@@ -117,7 +112,7 @@ variable "hc_port" {
 #############
 variable "autoscaling_enabled" {
   description = "Creates an autoscaler for the managed instance group"
-  default     = false
+  default     = "false"
 }
 
 variable "max_replicas" {

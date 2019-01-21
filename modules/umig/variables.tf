@@ -14,11 +14,6 @@
  * limitations under the License.
  */
 
-variable "umig_enabled" {
-  description = "Enable this UMIG module."
-  default     = false
-}
-
 variable "network" {
   description = "Network to deploy to. Only one of network or subnetwork should be specified."
   default     = ""

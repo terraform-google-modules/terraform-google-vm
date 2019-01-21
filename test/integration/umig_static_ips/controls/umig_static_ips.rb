@@ -14,16 +14,13 @@
 
 project_id = attribute('project_id')
 credentials_path = attribute('credentials_path')
-region     = attribute('region')
-available_zones = attribute('available_zones')
-static_ips = attribute('static_ips')
 
 ENV['CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE'] = File.absolute_path(
   credentials_path,
   File.join(__dir__, "../../../fixtures/umig/umig_static_ips"))
 
-expected_instances = static_ips.length
-expected_instance_groups = [available_zones.length, static_ips.length].min
+expected_instances = 4
+expected_instance_groups = 4
 
 control "UMIG" do
   title "Static IPs"
@@ -46,21 +43,62 @@ control "UMIG" do
       end
     end
 
-    (0...expected_instances).each do |idx|
-      describe "instance 00#{idx+1}" do
-        let(:instance) do
-          data.find { |i| i['name'] == "umig-static-ips-00#{idx+1}" }
-        end
-        
-        it "should be in zone #{available_zones[idx%available_zones.length]}" do
-          expect(instance['zone']).to match(/^(.*)#{available_zones[idx%available_zones.length]}$/)
-        end
+    describe "instance 001" do
+      let(:instance) do
+        data.find { |i| i['name'] == "umig-static-ips-001" }
+      end
+      
+      it "should be in zone us-central1-a}" do
+        expect(instance['zone']).to match(/.*us-central1-a$/)
+      end
 
-        it "should have IP #{static_ips[idx]}" do
-          expect(instance['networkInterfaces'][0]['networkIP']).to eq(static_ips[idx])
-        end
+      it "should have IP 10.128.0.10}" do
+        expect(instance['networkInterfaces'][0]['networkIP']).to eq("10.128.0.10")
       end
     end
+
+    describe "instance 002" do
+      let(:instance) do
+        data.find { |i| i['name'] == "umig-static-ips-002" }
+      end
+      
+      it "should be in zone us-central1-b}" do
+        expect(instance['zone']).to match(/.*us-central1-b$/)
+      end
+
+      it "should have IP 10.128.0.11}" do
+        expect(instance['networkInterfaces'][0]['networkIP']).to eq("10.128.0.11")
+      end
+    end
+
+    describe "instance 003" do
+      let(:instance) do
+        data.find { |i| i['name'] == "umig-static-ips-003" }
+      end
+      
+      it "should be in zone us-central1-c}" do
+        expect(instance['zone']).to match(/.*us-central1-c$/)
+      end
+
+      it "should have IP 10.128.0.12}" do
+        expect(instance['networkInterfaces'][0]['networkIP']).to eq("10.128.0.12")
+      end
+    end
+
+    describe "instance 004" do
+      let(:instance) do
+        data.find { |i| i['name'] == "umig-static-ips-004" }
+      end
+      
+      it "should be in zone us-central1-f}" do
+        expect(instance['zone']).to match(/.*us-central1-f$/)
+      end
+
+      it "should have IP 10.128.0.13}" do
+        expect(instance['networkInterfaces'][0]['networkIP']).to eq("10.128.0.13")
+      end
+    end
+
   end
 
   describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^umig-static-ips*'") do
@@ -81,23 +119,61 @@ control "UMIG" do
       end
     end
 
-    (0...expected_instance_groups).each do |idx|
-      describe "instance group 00#{idx+1}" do
-        let(:instance_group) do
-          data.find { |i| i['name'] == "umig-static-ips-instance-group-00#{idx+1}" }
-        end
-        
-        it "should be in zone #{available_zones[idx]}" do
-          expect(instance_group['zone']).to match(/^(.*)#{available_zones[idx]}$/)
-        end
-        
-        # This should work for any combination of number of instances and region/zones
-        base_size = expected_instances/available_zones.length
-        additional_instance = (expected_instances % available_zones.length > idx) ? 1 : 0
-        it "should have size #{base_size + additional_instance}" do
-          expect(instance_group['size']).to eq(base_size + additional_instance)
-        end
+    describe "instance group 001" do
+      let(:instance_group) do
+        data.find { |i| i['name'] == "umig-static-ips-instance-group-001" }
+      end
+      
+      it "should be in zone us-central1-a" do
+        expect(instance_group['zone']).to match(/.*us-central1-a$/)
+      end
+      
+      it "should have size 1" do
+        expect(instance_group['size']).to eq(1)
       end
     end
+
+    describe "instance group 002" do
+      let(:instance_group) do
+        data.find { |i| i['name'] == "umig-static-ips-instance-group-002" }
+      end
+      
+      it "should be in zone us-central1-b" do
+        expect(instance_group['zone']).to match(/.*us-central1-b$/)
+      end
+      
+      it "should have size 1" do
+        expect(instance_group['size']).to eq(1)
+      end
+    end
+
+    describe "instance group 003" do
+      let(:instance_group) do
+        data.find { |i| i['name'] == "umig-static-ips-instance-group-003" }
+      end
+      
+      it "should be in zone us-central1-c" do
+        expect(instance_group['zone']).to match(/.*us-central1-c$/)
+      end
+      
+      it "should have size 1" do
+        expect(instance_group['size']).to eq(1)
+      end
+    end
+
+    describe "instance group 004" do
+      let(:instance_group) do
+        data.find { |i| i['name'] == "umig-static-ips-instance-group-004" }
+      end
+      
+      it "should be in zone us-central1-f" do
+        expect(instance_group['zone']).to match(/.*us-central1-f$/)
+      end
+      
+      it "should have size 1" do
+        expect(instance_group['size']).to eq(1)
+      end
+    end
+
   end
 end

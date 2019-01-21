@@ -45,10 +45,9 @@ control "MIG" do
     end
 
     describe "network tags" do
-      it "should include 'foo' and 'bar'" do
+      it "should include 'foo'" do
         data.each do |instance|
           expect(instance['tags']['items']).to include("foo")
-          expect(instance['tags']['items']).to include("bar")
         end
       end
     end

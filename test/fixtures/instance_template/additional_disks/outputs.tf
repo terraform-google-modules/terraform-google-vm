@@ -15,9 +15,11 @@
  */
 
 output "self_link" {
-  value = "${module.instance_template_additional_disks.self_link}"
+  description = "Self-link to instance template"
+  value       = "${module.instance_template_additional_disks.self_link}"
 }
 
 output "name" {
-  value = "${module.instance_template_additional_disks.name}"
+  description = "Name of instance template"
+  value       = "${module.instance_template_additional_disks.name}"
 }

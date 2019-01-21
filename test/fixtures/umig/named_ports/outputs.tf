@@ -15,29 +15,21 @@
  */
 
 output "self_links" {
-  value = "${module.umig_named_ports.self_links}"
+  description = "List of self-links to unmanaged instance groups"
+  value       = "${module.umig_named_ports.self_links}"
 }
 
 output "instances_self_links" {
-  value = "${module.umig_named_ports.instances_self_links}"
+  description = "List of instance self-links"
+  value       = "${module.umig_named_ports.instances_self_links}"
 }
 
 output "project_id" {
-  value = "${var.project_id}"
-}
-
-output "region" {
-  value = "${var.region}"
+  description = "The GCP project to use for integration tests"
+  value       = "${var.project_id}"
 }
 
 output "credentials_path" {
-  value = "${local.credentials_path}"
-}
-
-output "available_zones" {
-  value = "${module.umig_named_ports.available_zones}"
-}
-
-output "num_instances" {
-  value = "${var.num_instances}"
+  description = "The path to the GCP credentials JSON file"
+  value       = "${local.credentials_path}"
 }

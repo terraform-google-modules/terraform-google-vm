@@ -22,8 +22,15 @@ module "umig_static_ips" {
   source           = "../../../../examples/umig/static_ips"
   credentials_path = "${local.credentials_path}"
   project_id       = "${var.project_id}"
-  region           = "${var.region}"
+  region           = "us-central1"
   subnetwork       = "${google_compute_subnetwork.main.name}"
-  static_ips       = "${var.static_ips}"
-  service_account  = "${var.service_account}"
+
+  static_ips = [
+    "10.128.0.10",
+    "10.128.0.11",
+    "10.128.0.12",
+    "10.128.0.13",
+  ]
+
+  service_account = "${var.service_account}"
 }

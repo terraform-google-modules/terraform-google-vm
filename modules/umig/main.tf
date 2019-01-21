@@ -38,7 +38,7 @@ data "google_compute_zones" "available" {}
 
 resource "google_compute_instance_from_template" "compute_instance" {
   provider = "google"
-  count    = "${var.umig_enabled ? local.num_instances : 0}"
+  count    = "${local.num_instances}"
   name     = "${local.hostname}-${format("%03d", count.index + 1)}"
   zone     = "${data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)]}"
 
@@ -54,7 +54,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
 
 resource "google_compute_instance_group" "instance_group" {
   provider  = "google"
-  count     = "${var.umig_enabled ? local.instance_group_count : 0}"
+  count     = "${local.instance_group_count}"
   name      = "${local.hostname}-instance-group-${format("%03d", count.index + 1)}"
   zone      = "${element(data.google_compute_zones.available.names, count.index)}"
   instances = ["${matchkeys(google_compute_instance_from_template.compute_instance.*.self_link, google_compute_instance_from_template.compute_instance.*.zone, list(data.google_compute_zones.available.names[count.index]))}"]

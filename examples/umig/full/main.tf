@@ -14,8 +14,22 @@
  * limitations under the License.
  */
 
+provider "google" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
+  version     = "~> 1.19"
+}
+
+provider "google-beta" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
+  version     = "~> 1.19"
+}
+
 module "instance_template" {
-  source          = "../../../instance_template"
+  source          = "../../../modules/instance_template"
   name_prefix     = "${var.hostname}-instance-template"
   machine_type    = "${var.machine_type}"
   tags            = "${var.tags}"
@@ -43,8 +57,7 @@ module "instance_template" {
 }
 
 module "umig" {
-  source             = "../../../umig"
-  umig_enabled       = "${var.umig_enabled}"
+  source             = "../../../modules/umig"
   network            = "${var.network}"
   subnetwork         = "${var.subnetwork}"
   subnetwork_project = "${var.subnetwork_project}"

@@ -142,11 +142,6 @@ variable "target_size" {
   default     = 1
 }
 
-variable "umig_enabled" {
-  description = "Enable this UMIG module."
-  default     = true
-}
-
 variable "static_ips" {
   type        = "list"
   description = "List of static IPs for VM instances."

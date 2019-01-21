@@ -21,12 +21,3 @@ attributes:
   - name: credentials_path
     required: true
     type: string
-  - name: region
-    required: true
-    type: string
-  - name: available_zones
-    required: true
-    type: array
-  - name: static_ips
-    required: true
-    type: array

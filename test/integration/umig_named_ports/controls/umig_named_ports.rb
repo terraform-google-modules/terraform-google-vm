@@ -14,16 +14,13 @@
 
 project_id = attribute('project_id')
 credentials_path = attribute('credentials_path')
-region     = attribute('region')
-available_zones = attribute('available_zones')
-num_instances = attribute('num_instances').to_i
 
 ENV['CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE'] = File.absolute_path(
   credentials_path,
-  File.join(__dir__, "../../../fixtures/umig/simple"))
+  File.join(__dir__, "../../../fixtures/umig/named_ports"))
 
-expected_instances = num_instances
-expected_instance_groups = [available_zones.length, num_instances].min
+expected_instances = 4
+expected_instance_groups = 4
 
 control "UMIG" do
   title "With named ports"
@@ -46,16 +43,43 @@ control "UMIG" do
       end
     end
 
-    (0...expected_instance_groups).each do |idx|
-      describe "instance group 00#{idx+1}" do
-        let(:instance_group) do
-          data.find { |i| i['name'] == "umig-named-ports-instance-group-00#{idx+1}" }
-        end
-        
-        it "should have 2 named ports" do
-          expect(instance_group['namedPorts'].length).to eq(2)
-        end
-        
+    describe "instance group 001" do
+      let(:instance_group) do
+        data.find { |i| i['name'] == "umig-named-ports-instance-group-001" }
+      end
+      
+      it "should have 2 named ports" do
+        expect(instance_group['namedPorts'].length).to eq(2)
+      end
+    end
+
+    describe "instance group 002" do
+      let(:instance_group) do
+        data.find { |i| i['name'] == "umig-named-ports-instance-group-002" }
+      end
+      
+      it "should have 2 named ports" do
+        expect(instance_group['namedPorts'].length).to eq(2)
+      end
+    end
+
+    describe "instance group 003" do
+      let(:instance_group) do
+        data.find { |i| i['name'] == "umig-named-ports-instance-group-003" }
+      end
+      
+      it "should have 2 named ports" do
+        expect(instance_group['namedPorts'].length).to eq(2)
+      end
+    end
+
+    describe "instance group 004" do
+      let(:instance_group) do
+        data.find { |i| i['name'] == "umig-named-ports-instance-group-004" }
+      end
+      
+      it "should have 2 named ports" do
+        expect(instance_group['namedPorts'].length).to eq(2)
       end
     end
   end

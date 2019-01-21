@@ -164,12 +164,12 @@ variable "update_policy" {
 
 variable "http_healthcheck_enable" {
   description = "Enable HTTP healthcheck"
-  default     = false
+  default     = "false"
 }
 
 variable "tcp_healthcheck_enable" {
   description = "Enable TCP healthcheck"
-  default     = false
+  default     = "false"
 }
 
 variable "hc_initial_delay_sec" {
@@ -208,11 +208,6 @@ variable "hc_port" {
 }
 
 /* autoscaler */
-
-variable "autoscaling_enabled" {
-  description = "Creates an autoscaler for the managed instance group"
-  default     = false
-}
 
 variable "max_replicas" {
   description = "The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas."

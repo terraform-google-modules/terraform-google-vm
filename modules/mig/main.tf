@@ -25,7 +25,6 @@ data "google_compute_zones" "available" {}
 
 resource "google_compute_region_instance_group_manager" "mig" {
   provider           = "google-beta"
-  count              = "${var.mig_enabled ? 1 : 0}"
   base_instance_name = "${var.hostname}"
 
   version = {
@@ -54,7 +53,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
 
 resource "google_compute_region_autoscaler" "autoscaler" {
   provider = "google"
-  count    = "${var.mig_enabled && var.autoscaling_enabled ? 1 : 0}"
+  count    = "${var.autoscaling_enabled ? 1 : 0}"
   name     = "${var.hostname}-autoscaler"
   target   = "${google_compute_region_instance_group_manager.mig.self_link}"
 
@@ -70,7 +69,7 @@ resource "google_compute_region_autoscaler" "autoscaler" {
 
 resource "google_compute_health_check" "http_healthcheck" {
   provider = "google"
-  count    = "${var.mig_enabled && var.http_healthcheck_enable ? 1 : 0}"
+  count    = "${var.http_healthcheck_enable ? 1 : 0}"
   name     = "${var.hostname}-http-healthcheck"
 
   check_interval_sec  = "${var.hc_interval_sec}"
@@ -86,7 +85,7 @@ resource "google_compute_health_check" "http_healthcheck" {
 
 resource "google_compute_health_check" "tcp_healthcheck" {
   provider = "google"
-  count    = "${var.mig_enabled && var.tcp_healthcheck_enable ? 1 : 0}"
+  count    = "${var.tcp_healthcheck_enable ? 1 : 0}"
   name     = "${var.hostname}-tcp-healthcheck"
 
   check_interval_sec  = "${var.hc_interval_sec}"

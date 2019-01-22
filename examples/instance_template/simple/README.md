@@ -1,5 +1,7 @@
 # instance-template-simple
 
+This is a simple, minimal example of how to use the instance_template module.
+
 [^]: (autogen_docs_start)
 
 ## Inputs

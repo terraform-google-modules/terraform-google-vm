@@ -1,5 +1,8 @@
 # umig-named-ports
 
+This is an example of how to use the UMIG module to create unmanaged instance
+groups with named ports
+
 [^]: (autogen_docs_start)
 
 ## Inputs
@@ -20,6 +23,6 @@
 |------|-------------|
 | available\_zones | List of available zones in region |
 | instances\_self\_links | List of self-links for compute instances |
-| umig\_self\_links | List of self-links of unmanaged instance groups |
+| self\_links | List of self-links of unmanaged instance groups |
 
 [^]: (autogen_docs_end)

@@ -1,5 +1,7 @@
 # umig-simple
 
+This is a simple, minimal example of how to use the UMIG module
+
 [^]: (autogen_docs_start)
 
 ## Inputs
@@ -19,6 +21,6 @@
 |------|-------------|
 | available\_zones | List of available zones in region |
 | instances\_self\_links | List of self-links for compute instances |
-| umig\_self\_links | List of self-links of unmanaged instance groups |
+| self\_links | List of self-links of unmanaged instance groups |
 
 [^]: (autogen_docs_end)

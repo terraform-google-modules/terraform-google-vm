@@ -1,5 +1,8 @@
 # instance-template-additional-disks
 
+This example demonstrates how to use the instance_template module to create
+instance templates with additional persistent disks.
+
 [^]: (autogen_docs_start)
 
 ## Inputs

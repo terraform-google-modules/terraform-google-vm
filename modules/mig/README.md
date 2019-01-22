@@ -1,9 +1,11 @@
 # Managed Instance Group (MIG)
 
+This module is used to create a [google_compute_region_instance_group_manager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html),
+and optionally, an autoscaler and healthchecks.
 
-## Example usage
+## Usage
 
-See the [simple](examples/mig/simple) test fixture example for usage.
+See the [simple](examples/mig/simple) for a usage example.
 
 ## Testing
 
@@ -30,7 +32,6 @@ See the [simple](examples/mig/simple) test fixture example for usage.
 | http\_healthcheck\_enable | Enable HTTP healthcheck | string | `"false"` | no |
 | instance\_template | Instance template self_link used to create compute instances | string | n/a | yes |
 | max\_replicas | The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas. | string | `"10"` | no |
-| mig\_enabled | Enable this managed instance group module | string | `"true"` | no |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | string | `"2"` | no |
 | named\_ports | Named name and named port | list | `<list>` | no |
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
@@ -46,6 +47,6 @@ See the [simple](examples/mig/simple) test fixture example for usage.
 
 | Name | Description |
 |------|-------------|
-| mig\_self\_link | self_link of managed instance group |
+| self\_link | Self-link of managed instance group |
 
 [^]: (autogen_docs_end)

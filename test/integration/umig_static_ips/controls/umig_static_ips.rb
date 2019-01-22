@@ -33,7 +33,7 @@ control "UMIG" do
       if subject.exit_status == 0
         JSON.parse(subject.stdout)
       else
-        {}
+        []
       end
     end
 
@@ -109,7 +109,7 @@ control "UMIG" do
       if subject.exit_status == 0
         JSON.parse(subject.stdout)
       else
-        {}
+        []
       end
     end
 

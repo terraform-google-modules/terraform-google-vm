@@ -166,7 +166,7 @@ variable "subnetwork_project" {
 }
 
 variable "named_ports" {
-  description = "Named name and named port"
+  description = "Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports"
   type        = "list"
   default     = []
 }

@@ -119,5 +119,5 @@ variable "metadata" {
 
 variable "service_account" {
   type        = "map"
-  description = "Service account email address and scopes"
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }

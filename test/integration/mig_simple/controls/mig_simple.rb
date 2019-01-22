@@ -34,7 +34,7 @@ control "MIG" do
       if subject.exit_status == 0
         JSON.parse(subject.stdout)
       else
-        {}
+        []]
       end
     end
 
@@ -78,7 +78,7 @@ control "MIG" do
       if subject.exit_status == 0
         JSON.parse(subject.stdout)
       else
-        {}
+        []
       end
     end
 
@@ -97,7 +97,7 @@ control "MIG" do
       if subject.exit_status == 0
         JSON.parse(subject.stdout)
       else
-        {}
+        []
       end
     end
 

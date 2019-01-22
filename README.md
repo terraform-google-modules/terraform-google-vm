@@ -2,13 +2,21 @@
 
 This is a collection of opinionated submodules that can be used as building blocks to provision VMs in GCP:
 
-* [Instance template](instance_template)
-* [Managed instance group](mig)
-* [Unmanaged instance group](umig)
+* [Instance template](modules/instance_template)
+* [Managed instance group](modules/mig)
+* [Unmanaged instance group](modules/umig)
 
 ## Examples
 
 Examples of how to use these modules can be found in the [examples](examples) folder.
+
+## Project APIs
+
+The following APIs must be enabled on your project:
+- `compute.googleapis.com`
+- `iam.googleapis.com`
+
+See also the [project_services](modules/project_services) module (optional).
 
 ## Test Configuration
 

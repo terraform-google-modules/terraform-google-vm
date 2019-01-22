@@ -29,6 +29,16 @@ verifier:
       backend: local
 
 suites:
+  - name: it_simple
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/instance_template/simple
+  - name: it_additional_disks
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/instance_template/additional_disks
   - name: mig_simple
     driver:
       name: terraform

@@ -14,7 +14,7 @@ provided the [prerequisites](#prerequisites) below are satisfied.
 
 1. Enable Service Usage API: `serviceusage.googleapis.com`
 2. Service account used to run Terraform has permissions to manage project APIs: 
-[`roles/serviceusage.serviceUsageAdmin`](https://cloud.google.com/iam/docs/understanding-roles#service-usage-roles)
+[`roles/serviceusage.serviceUsageAdmin`](https://cloud.google.com/iam/docs/understanding-roles#service-usage-roles) or `Owner`
 
 ## Usage
 

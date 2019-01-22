@@ -21,43 +21,30 @@ provider "google" {
   version     = "~> 1.19"
 }
 
-provider "google-beta" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
-  version     = "~> 1.19"
-}
-
 module "instance_template" {
   source          = "../../../modules/instance_template"
   subnetwork      = "${var.subnetwork}"
   service_account = "${var.service_account}"
+  name_prefix     = "additional-disks"
 
   additional_disks = [
     {
       disk_size_gb = 10
       disk_type    = "pd-standard"
-      auto_delete  = true
+      auto_delete  = "true"
+      boot         = "false"
     },
     {
-      disk_size_gb = 10
+      disk_size_gb = 20
       disk_type    = "pd-standard"
-      auto_delete  = true
+      auto_delete  = "true"
+      boot         = "false"
     },
     {
-      disk_size_gb = 10
+      disk_size_gb = 30
       disk_type    = "pd-standard"
-      auto_delete  = true
-    },
-    {
-      disk_size_gb = 10
-      disk_type    = "pd-standard"
-      auto_delete  = true
-    },
-    {
-      disk_size_gb = 10
-      disk_type    = "pd-standard"
-      auto_delete  = true
+      auto_delete  = "true"
+      boot         = "false"
     },
   ]
 }

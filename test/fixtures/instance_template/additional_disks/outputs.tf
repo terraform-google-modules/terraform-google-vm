@@ -23,3 +23,13 @@ output "name" {
   description = "Name of instance template"
   value       = "${module.instance_template_additional_disks.name}"
 }
+
+output "project_id" {
+  description = "The GCP project to use for integration tests"
+  value       = "${var.project_id}"
+}
+
+output "credentials_path" {
+  description = "The path to the GCP credentials JSON file"
+  value       = "${local.credentials_path}"
+}

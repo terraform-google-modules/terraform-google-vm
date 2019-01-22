@@ -15,9 +15,9 @@
  */
 
 output "self_link" {
-  value = "${element(coalescelist(google_compute_instance_template.tpl_0.*.self_link, google_compute_instance_template.tpl_1.*.self_link, google_compute_instance_template.tpl_2.*.self_link, google_compute_instance_template.tpl_3.*.self_link, google_compute_instance_template.tpl_4.*.self_link, google_compute_instance_template.tpl_5.*.self_link), 0)}"
+  value = "${google_compute_instance_template.tpl.self_link}"
 }
 
 output "name" {
-  value = "${element(coalescelist(google_compute_instance_template.tpl_0.*.name, google_compute_instance_template.tpl_1.*.name, google_compute_instance_template.tpl_2.*.name, google_compute_instance_template.tpl_3.*.name, google_compute_instance_template.tpl_4.*.name, google_compute_instance_template.tpl_5.*.name), 0)}"
+  value = "${google_compute_instance_template.tpl.name}"
 }

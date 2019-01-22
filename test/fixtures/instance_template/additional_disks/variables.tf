@@ -26,6 +26,7 @@ variable "credentials_path_relative" {
   description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
 }
 
-variable "service_account_email" {
-  description = "Service account email"
+variable "service_account" {
+  type        = "map"
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }

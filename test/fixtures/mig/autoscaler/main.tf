@@ -31,7 +31,7 @@ module "mig_autoscaler" {
     environment = "dev"
   }
 
-  autoscaling_enabled = true
+  autoscaling_enabled = "true"
   min_replicas        = 4
 
   autoscaling_cpu = [{

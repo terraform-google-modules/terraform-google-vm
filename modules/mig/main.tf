@@ -47,7 +47,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
   update_policy             = ["${var.update_policy}"]
 
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy = "true"
   }
 }
 

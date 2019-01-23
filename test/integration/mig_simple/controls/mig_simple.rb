@@ -34,7 +34,7 @@ control "MIG" do
       if subject.exit_status == 0
         JSON.parse(subject.stdout)
       else
-        []]
+        []
       end
     end
 
@@ -44,27 +44,75 @@ control "MIG" do
       end
     end
 
-    describe "network tags" do
+    describe "network tags for instance 1" do
       it "should include 'foo'" do
-        data.each do |instance|
-          expect(instance['tags']['items']).to include("foo")
-        end
+        expect(data[0]['tags']['items']).to include("foo")
       end
     end
 
-    describe "labels" do
+    describe "network tags for instance 2" do
+      it "should include 'foo'" do
+        expect(data[1]['tags']['items']).to include("foo")
+      end
+    end
+
+    describe "network tags for instance 3" do
+      it "should include 'foo'" do
+        expect(data[2]['tags']['items']).to include("foo")
+      end
+    end
+
+    describe "network tags for instance 4" do
+      it "should include 'foo'" do
+        expect(data[3]['tags']['items']).to include("foo")
+      end
+    end
+
+    describe "labels for instance 1" do
       it "should include 'environment' key" do
-        data.each do |instance|
-          expect(instance['labels']).to include("environment")
-        end
+        expect(data[0]['labels']).to include("environment")
       end
     end
 
-    describe "labels" do
+    describe "labels for instance 2" do
+      it "should include 'environment' key" do
+        expect(data[1]['labels']).to include("environment")
+      end
+    end
+
+    describe "labels for instance 3" do
+      it "should include 'environment' key" do
+        expect(data[2]['labels']).to include("environment")
+      end
+    end
+
+    describe "labels for instance 4" do
+      it "should include 'environment' key" do
+        expect(data[3]['labels']).to include("environment")
+      end
+    end
+
+    describe "labels for instance 1" do
       it "'environment' should have value 'dev'" do
-        data.each do |instance|
-          expect(instance['labels']['environment']).to eq("dev")
-        end
+        expect(data[0]['labels']['environment']).to eq("dev")
+      end
+    end
+
+    describe "labels for instance 2" do
+      it "'environment' should have value 'dev'" do
+        expect(data[1]['labels']['environment']).to eq("dev")
+      end
+    end
+
+    describe "labels for instance 3" do
+      it "'environment' should have value 'dev'" do
+        expect(data[2]['labels']['environment']).to eq("dev")
+      end
+    end
+
+    describe "labels for instance 4" do
+      it "'environment' should have value 'dev'" do
+        expect(data[3]['labels']['environment']).to eq("dev")
       end
     end
 

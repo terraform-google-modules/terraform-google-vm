@@ -33,7 +33,7 @@ See the [simple](examples/mig/simple) for a usage example.
 | instance\_template | Instance template self_link used to create compute instances | string | n/a | yes |
 | max\_replicas | The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas. | string | `"10"` | no |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | string | `"2"` | no |
-| named\_ports | Named name and named port | list | `<list>` | no |
+| named\_ports | Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports | list | `<list>` | no |
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
 | region | The GCP region where the managed instance group resides. | string | n/a | yes |
 | subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |

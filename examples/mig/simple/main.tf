@@ -32,8 +32,6 @@ module "instance_template" {
   source          = "../../../modules/instance_template"
   subnetwork      = "${var.subnetwork}"
   service_account = "${var.service_account}"
-  tags            = "${var.tags}"
-  labels          = "${var.labels}"
 }
 
 module "mig" {

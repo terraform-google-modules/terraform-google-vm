@@ -30,16 +30,6 @@ variable "subnetwork" {
   description = "The subnetwork to host the compute instances in"
 }
 
-variable "tags" {
-  type        = "list"
-  description = "Network tags, provided as a list"
-}
-
-variable "labels" {
-  type        = "map"
-  description = "Labels, provided as a map"
-}
-
 variable "target_size" {
   description = "The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set."
 }

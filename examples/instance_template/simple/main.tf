@@ -26,4 +26,6 @@ module "instance_template" {
   subnetwork      = "${var.subnetwork}"
   service_account = "${var.service_account}"
   name_prefix     = "simple"
+  tags            = "${var.tags}"
+  labels          = "${var.labels}"
 }

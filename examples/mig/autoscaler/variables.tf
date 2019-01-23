@@ -35,16 +35,6 @@ variable "service_account" {
   description = "Service account email address and scopes"
 }
 
-variable "tags" {
-  type        = "list"
-  description = "Network tags, provided as a list"
-}
-
-variable "labels" {
-  type        = "map"
-  description = "Labels, provided as a map"
-}
-
 variable "autoscaling_enabled" {
   description = "Creates an autoscaler for the managed instance group"
 }

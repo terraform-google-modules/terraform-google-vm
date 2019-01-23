@@ -25,4 +25,9 @@ module "instance_template_simple" {
   region           = "${var.region}"
   subnetwork       = "${google_compute_subnetwork.main.name}"
   service_account  = "${var.service_account}"
+  tags             = ["foo", "bar"]
+
+  labels = {
+    environment = "dev"
+  }
 }

@@ -48,5 +48,29 @@ control "Instance Template" do
         expect(data[0]['properties']['disks'].length).to eq(expected_disks)
       end
     end
+
+    describe "network tags" do
+      it "should include 'foo'" do
+        expect(data[0]['properties']['tags']['items']).to include("foo")
+      end
+    end
+
+    describe "network tags" do
+      it "should include 'bar'" do
+        expect(data[0]['properties']['tags']['items']).to include("bar")
+      end
+    end
+
+    describe "labels" do
+      it "should include 'environment' key" do
+        expect(data[0]['properties']['labels']).to include("environment")
+      end
+    end
+
+    describe "label" do
+      it "'environment' should have value 'dev'" do
+        expect(data[0]['properties']['labels']['environment']).to eq("dev")
+      end
+    end
   end
 end

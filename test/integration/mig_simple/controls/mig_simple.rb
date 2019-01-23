@@ -43,79 +43,6 @@ control "MIG" do
         expect(data.length).to eq(expected_instances)
       end
     end
-
-    describe "network tags for instance 1" do
-      it "should include 'foo'" do
-        expect(data[0]['tags']['items']).to include("foo")
-      end
-    end
-
-    describe "network tags for instance 2" do
-      it "should include 'foo'" do
-        expect(data[1]['tags']['items']).to include("foo")
-      end
-    end
-
-    describe "network tags for instance 3" do
-      it "should include 'foo'" do
-        expect(data[2]['tags']['items']).to include("foo")
-      end
-    end
-
-    describe "network tags for instance 4" do
-      it "should include 'foo'" do
-        expect(data[3]['tags']['items']).to include("foo")
-      end
-    end
-
-    describe "labels for instance 1" do
-      it "should include 'environment' key" do
-        expect(data[0]['labels']).to include("environment")
-      end
-    end
-
-    describe "labels for instance 2" do
-      it "should include 'environment' key" do
-        expect(data[1]['labels']).to include("environment")
-      end
-    end
-
-    describe "labels for instance 3" do
-      it "should include 'environment' key" do
-        expect(data[2]['labels']).to include("environment")
-      end
-    end
-
-    describe "labels for instance 4" do
-      it "should include 'environment' key" do
-        expect(data[3]['labels']).to include("environment")
-      end
-    end
-
-    describe "labels for instance 1" do
-      it "'environment' should have value 'dev'" do
-        expect(data[0]['labels']['environment']).to eq("dev")
-      end
-    end
-
-    describe "labels for instance 2" do
-      it "'environment' should have value 'dev'" do
-        expect(data[1]['labels']['environment']).to eq("dev")
-      end
-    end
-
-    describe "labels for instance 3" do
-      it "'environment' should have value 'dev'" do
-        expect(data[2]['labels']['environment']).to eq("dev")
-      end
-    end
-
-    describe "labels for instance 4" do
-      it "'environment' should have value 'dev'" do
-        expect(data[3]['labels']['environment']).to eq("dev")
-      end
-    end
-
   end
 
   describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^mig-simple*'") do
@@ -154,7 +81,6 @@ control "MIG" do
         expect(data.length).to eq(expected_instance_groups)
       end
     end
-
   end
 
 end

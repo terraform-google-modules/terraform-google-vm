@@ -50,16 +50,16 @@ make docker_run
 The root directory of the module will be mounted to `/cft/workdir` in the container. For example, to run the `mig-autoscaler` test suite:
 
 ```
-kitchen test mig-autosaler
+bundle exec kitchen test mig-autosaler
 ```
 
 or
 
 ```
-kitchen create mig-autoscaler
-kitchen converge mig-autoscaler
-kitchen verify mig-autoscaler
-kitchen destroy mig-autoscaler
+bundle exec kitchen create mig-autoscaler
+bundle exec kitchen converge mig-autoscaler
+bundle exec kitchen verify mig-autoscaler
+bundle exec kitchen destroy mig-autoscaler
 ```
 
 ## Permissions

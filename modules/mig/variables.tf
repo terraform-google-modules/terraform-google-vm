@@ -55,10 +55,6 @@ variable "update_policy" {
 }
 
 ##############
-# Autohealing
-##############
-
-##############
 # Healthcheck
 ##############
 

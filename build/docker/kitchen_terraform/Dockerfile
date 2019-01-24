@@ -19,12 +19,9 @@ FROM $BASE_IMAGE
 RUN apk add --no-cache \
     ca-certificates=20171114-r3
 
-WORKDIR /opt/kitchen
+WORKDIR $APP_BASE_DIR/workdir
 COPY Gemfile .
-
 RUN bundle install
 
 RUN gcloud components install beta --quiet
 RUN gcloud components install alpha --quiet
-
-WORKDIR $APP_BASE_DIR/workdir

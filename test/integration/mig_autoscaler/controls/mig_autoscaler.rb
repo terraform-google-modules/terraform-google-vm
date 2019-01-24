@@ -82,8 +82,8 @@ control "MIG" do
       end
     end
 
-    describe "autoscaled" do
-      it "should be yes" do
+    describe "autoscaling" do
+      it "should be enabled" do
         expect(data[0]['autoscaled']).to eq("yes")
       end
     end

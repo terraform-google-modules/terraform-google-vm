@@ -35,13 +35,13 @@ module "instance_template" {
       boot         = "false"
     },
     {
-      disk_size_gb = 20
+      disk_size_gb = 10
       disk_type    = "pd-standard"
       auto_delete  = "true"
       boot         = "false"
     },
     {
-      disk_size_gb = 30
+      disk_size_gb = 10
       disk_type    = "pd-standard"
       auto_delete  = "true"
       boot         = "false"

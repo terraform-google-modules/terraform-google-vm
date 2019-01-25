@@ -67,8 +67,3 @@ bundle exec kitchen destroy mig-autoscaler
 The service account used to execute tests for this module should have the following roles:
 - [`roles/compute.admin`](https://cloud.google.com/iam/docs/understanding-roles#compute-engine-roles)
 - [`roles/iam.serviceAccountUser`](https://cloud.google.com/iam/docs/understanding-roles#service-accounts-roles)
-
-
-[^]: (autogen_docs_start)
-
-[^]: (autogen_docs_end)

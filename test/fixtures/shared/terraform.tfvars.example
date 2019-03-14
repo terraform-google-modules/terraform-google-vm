@@ -1,0 +1,10 @@
+project_id = ""
+
+credentials_path_relative = "../../../../credentials.json"
+
+region = "us-central1"
+
+service_account = {
+  email  = ""
+  scopes = ["cloud-platform"]
+}

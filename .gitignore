@@ -1,0 +1,17 @@
+**/.terraform/**
+**tfstate*
+**/*.pem
+terraform.tfvars
+**/account.json
+**/credentials
+.DS_Store
+.kitchen
+.terraform
+.terraform.tfstate.d
+
+# JetBrains - PyCharm, IntelliJ, etc.
+.idea/
+__pycache__/
+*.iml
+
+*.json

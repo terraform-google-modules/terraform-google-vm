@@ -5,7 +5,7 @@ and optionally, an autoscaler and healthchecks.
 
 ## Usage
 
-See the [simple](examples/mig/simple) for a usage example.
+See the [simple example](../../examples/mig/simple) for a usage example.
 
 ## Testing
 

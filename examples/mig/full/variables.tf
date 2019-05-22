@@ -37,6 +37,16 @@ variable "subnetwork" {
   default     = ""
 }
 
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
+  default     = ""
+}
+
+variable "credentials_path" {
+  description = "The path to the GCP credentials JSON file"
+  default     = ""
+}
+
 variable "subnetwork_project" {
   description = "The project that subnetwork belongs to"
   default     = ""
@@ -240,4 +250,8 @@ variable "autoscaling_lb" {
   description = "Autoscaling, load balancing utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#load_balancing_utilization"
   type        = "list"
   default     = []
+}
+
+variable "autoscaling_enabled" {
+  description = "Creates an autoscaler for the managed instance group"
 }

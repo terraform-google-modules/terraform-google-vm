@@ -23,8 +23,3 @@ output "umig_self_links" {
   description = "List of self-links for unmanaged instance groups"
   value       = "${module.umig.self_links}"
 }
-
-output "mig_self_link" {
-  description = "Self-link for managed instance group"
-  value       = "${module.mig.self_link}"
-}

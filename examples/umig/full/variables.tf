@@ -18,6 +18,15 @@
 # Common
 #########
 
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
+}
+
+variable "credentials_path" {
+  description = "The path to the GCP credentials JSON file"
+  default     = ""
+}
+
 variable "hostname" {
   description = "Hostname prefix for instances."
   default     = "default"

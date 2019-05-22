@@ -47,7 +47,7 @@ control "UMIG" do
       let(:instance_group) do
         data.find { |i| i['name'] == "umig-named-ports-instance-group-001" }
       end
-      
+
       it "should have 2 named ports" do
         expect(instance_group['namedPorts'].length).to eq(2)
       end
@@ -57,7 +57,7 @@ control "UMIG" do
       let(:instance_group) do
         data.find { |i| i['name'] == "umig-named-ports-instance-group-002" }
       end
-      
+
       it "should have 2 named ports" do
         expect(instance_group['namedPorts'].length).to eq(2)
       end
@@ -67,7 +67,7 @@ control "UMIG" do
       let(:instance_group) do
         data.find { |i| i['name'] == "umig-named-ports-instance-group-003" }
       end
-      
+
       it "should have 2 named ports" do
         expect(instance_group['namedPorts'].length).to eq(2)
       end
@@ -77,7 +77,7 @@ control "UMIG" do
       let(:instance_group) do
         data.find { |i| i['name'] == "umig-named-ports-instance-group-004" }
       end
-      
+
       it "should have 2 named ports" do
         expect(instance_group['namedPorts'].length).to eq(2)
       end

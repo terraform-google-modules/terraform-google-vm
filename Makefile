@@ -1,4 +1,4 @@
-# Copyright 2019 Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -68,9 +68,14 @@ test_check_headers:
 	@echo "Testing the validity of the header check"
 	@python test/test_verify_boilerplate.py
 
+#.PHONY: check_headers
+#check_headers:
+#	@source test/make.sh && check_headers
 .PHONY: check_headers
-check_headers:
-	@source test/make.sh && check_headers
+check_headers: ## Check that source files have appropriate boilerplate
+	@echo "Checking file headers"
+	@python test/verify_boilerplate.py
+
 
 # Integration tests
 .PHONY: test_integration

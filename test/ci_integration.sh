@@ -19,7 +19,7 @@
 DELETE_AT_EXIT="$(mktemp -d)"
 finish() {
   echo 'BEGIN: finish() trap handler' >&2
-  kitchen destroy "$SUITE"
+  bundler exec kitchen destroy "$SUITE"
   [[ -d "${DELETE_AT_EXIT}" ]] && rm -rf "${DELETE_AT_EXIT}"
   echo 'END: finish() trap handler' >&2
 }
@@ -40,6 +40,8 @@ setup_environment() {
   export TF_VAR_project_id="$PROJECT_ID"
   export TF_VAR_credentials_path="${CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE}"
   export TF_VAR_region="${REGION:-us-east4}"
+  export TF_VAR_service_account="${SERVICE_ACCOUNT_JSON}"
+  export TF_VAR_credentials_path_relative="${tmpfile}"
 }
 
 main() {

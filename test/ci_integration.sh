@@ -31,7 +31,16 @@ setup_environment() {
   local tmpfile
   tmpfile="$(mktemp)"
   echo "${SERVICE_ACCOUNT_JSON}" > "${tmpfile}"
-  echo "${SERVICE_ACCOUNT_JSON}" > "../../../../credentials.json"
+  #echo "${SERVICE_ACCOUNT_JSON}" > "../../../../credentials.json"
+  echo "------"
+  pwd
+  echo"--"
+  ls -la .
+  "---"
+  ls -la ../workdir/
+  echo "--"
+  ls -la ../shared/
+  echo "----"
   client_email="$(jq -r .client_email "${tmpfile}")"
   # gcloud variables
   export CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE="${tmpfile}"
@@ -42,7 +51,7 @@ setup_environment() {
   export TF_VAR_project_id="$PROJECT_ID"
   export TF_VAR_region="${REGION:-us-east4}"
   export TF_VAR_service_account='{email="'$client_email'", scopes = ["cloud-platform"]}'
-  export TF_VAR_credentials_path_relative="../../../../credentials.json"
+  export TF_VAR_credentials_path_relative="../workdir/credentials.json"
 }
 
 main() {

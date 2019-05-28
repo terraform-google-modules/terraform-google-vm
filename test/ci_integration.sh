@@ -33,8 +33,6 @@ setup_environment() {
   echo "${SERVICE_ACCOUNT_JSON}" > "${tmpfile}"
 
   cat "${tmpfile}" > test/fixtures/shared/credentials.json
-  ls -la test/fixtures/shared/
-
 
   client_email="$(jq -r .client_email "${tmpfile}")"
   # gcloud variables

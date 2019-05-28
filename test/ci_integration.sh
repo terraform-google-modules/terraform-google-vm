@@ -34,7 +34,7 @@ setup_environment() {
   #echo "${SERVICE_ACCOUNT_JSON}" > "../../../../credentials.json"
   echo "------"
   pwd
-  echo"--"
+  echo "--"
   ls -la .
   "---"
   ls -la ../workdir/

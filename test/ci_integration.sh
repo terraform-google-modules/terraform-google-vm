@@ -31,6 +31,7 @@ setup_environment() {
   local tmpfile
   tmpfile="$(mktemp)"
   echo "${SERVICE_ACCOUNT_JSON}" > "${tmpfile}"
+  client_email="$(jq -r .client_email "${tmpfile}")"
   # gcloud variables
   export CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE="${tmpfile}"
   # Application default credentials (Terraform google provider and inspec-gcp)
@@ -38,10 +39,9 @@ setup_environment() {
 
   # Terraform variables
   export TF_VAR_project_id="$PROJECT_ID"
-  export TF_VAR_credentials_path="${CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE}"
   export TF_VAR_region="${REGION:-us-east4}"
-  export TF_VAR_service_account="${SERVICE_ACCOUNT_JSON}"
-  export TF_VAR_credentials_path_relative="${tmpfile}"
+  export TF_VAR_service_account='{email="'$client_email'", scopes = ["cloud-platform"]}'
+  export TF_VAR_credentials_path_relative="../../../../credentials.json"
 }
 
 main() {

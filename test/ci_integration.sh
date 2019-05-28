@@ -36,7 +36,7 @@ setup_environment() {
   pwd
   echo "--"
   ls -la .
-  "---"
+  echo "---"
   ls -la ../workdir/
   echo "--"
   ls -la ../shared/

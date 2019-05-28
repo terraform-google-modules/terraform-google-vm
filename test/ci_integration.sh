@@ -44,7 +44,7 @@ setup_environment() {
 
   # Terraform variables
   export TF_VAR_project_id="$PROJECT_ID"
-  export TF_VAR_region="${REGION:-us-east4}"
+  export TF_VAR_region="${REGION:-us-central1}"
   export TF_VAR_service_account='{email="'$client_email'", scopes = ["cloud-platform"]}'
   export TF_VAR_credentials_path_relative="../../shared/credentials.json"
 }

@@ -1,6 +1,6 @@
 # Unmanaged Instance Group (UMIG)
 
-This module is used to create compute instances using 
+This module is used to create compute instances using
 [google_compute_instance_from_template](https://www.terraform.io/docs/providers/google/r/compute_instance_from_template.html), and [google_compute_instance_groups](https://www.terraform.io/docs/providers/google/r/compute_instance_group.html).
 
 ## Usage

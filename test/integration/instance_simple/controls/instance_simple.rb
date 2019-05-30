@@ -46,7 +46,7 @@ control "Compute Instances" do
       let(:instance) do
         data.find { |i| i['name'] == "instance-simple-001" }
       end
-      
+
       it "should be in zone us-central1-a}" do
         expect(instance['zone']).to match(/.*us-central1-a$/)
       end
@@ -56,7 +56,7 @@ control "Compute Instances" do
       let(:instance) do
         data.find { |i| i['name'] == "instance-simple-002" }
       end
-      
+
       it "should be in zone us-central1-b}" do
         expect(instance['zone']).to match(/.*us-central1-b$/)
       end
@@ -66,7 +66,7 @@ control "Compute Instances" do
       let(:instance) do
         data.find { |i| i['name'] == "instance-simple-003" }
       end
-      
+
       it "should be in zone us-central1-c}" do
         expect(instance['zone']).to match(/.*us-central1-c$/)
       end
@@ -76,7 +76,7 @@ control "Compute Instances" do
       let(:instance) do
         data.find { |i| i['name'] == "instance-simple-004" }
       end
-      
+
       it "should be in zone us-central1-f}" do
         expect(instance['zone']).to match(/.*us-central1-f$/)
       end

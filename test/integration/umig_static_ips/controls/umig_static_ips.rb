@@ -47,7 +47,7 @@ control "UMIG" do
       let(:instance) do
         data.find { |i| i['name'] == "umig-static-ips-001" }
       end
-      
+
       it "should be in zone us-central1-a}" do
         expect(instance['zone']).to match(/.*us-central1-a$/)
       end
@@ -61,7 +61,7 @@ control "UMIG" do
       let(:instance) do
         data.find { |i| i['name'] == "umig-static-ips-002" }
       end
-      
+
       it "should be in zone us-central1-b}" do
         expect(instance['zone']).to match(/.*us-central1-b$/)
       end
@@ -75,7 +75,7 @@ control "UMIG" do
       let(:instance) do
         data.find { |i| i['name'] == "umig-static-ips-003" }
       end
-      
+
       it "should be in zone us-central1-c}" do
         expect(instance['zone']).to match(/.*us-central1-c$/)
       end
@@ -89,7 +89,7 @@ control "UMIG" do
       let(:instance) do
         data.find { |i| i['name'] == "umig-static-ips-004" }
       end
-      
+
       it "should be in zone us-central1-f}" do
         expect(instance['zone']).to match(/.*us-central1-f$/)
       end

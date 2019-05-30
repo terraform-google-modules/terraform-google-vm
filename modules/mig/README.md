@@ -47,6 +47,7 @@ See the [simple example](../../examples/mig/simple) for a usage example.
 
 | Name | Description |
 |------|-------------|
+| instance\_group | Instance-group url of managed instance group |
 | self\_link | Self-link of managed instance group |
 
 [^]: (autogen_docs_end)

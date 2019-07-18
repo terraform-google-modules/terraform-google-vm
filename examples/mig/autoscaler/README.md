@@ -9,7 +9,7 @@ group with an autoscaler.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| autoscaling\_cpu | Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization | list | n/a | yes |
+| autoscaling\_cpu | Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute\_autoscaler.html#cpu\_utilization | list | n/a | yes |
 | autoscaling\_enabled | Creates an autoscaler for the managed instance group | string | n/a | yes |
 | credentials\_path | The path to the GCP credentials JSON file | string | n/a | yes |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | string | n/a | yes |

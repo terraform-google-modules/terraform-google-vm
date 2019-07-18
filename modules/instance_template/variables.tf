@@ -41,6 +41,11 @@ variable "labels" {
   default     = {}
 }
 
+variable "preemptible" {
+  description = "Allow the instance to be preempted"
+  default     = "false"
+}
+
 #######
 # disk
 #######

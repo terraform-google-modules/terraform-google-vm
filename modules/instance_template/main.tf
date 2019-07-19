@@ -66,4 +66,8 @@ resource "google_compute_instance_template" "tpl" {
   lifecycle {
     create_before_destroy = "true"
   }
+
+  scheduling {
+    preemptible = "${var.preemptible}"
+  }
 }

@@ -31,8 +31,12 @@ variable "subnetwork" {
 }
 
 variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+  default = null
+  type = object({
+    email  = string
+    scopes = set(string)
+  })
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }
 
 variable "autoscaling_enabled" {
@@ -43,7 +47,10 @@ variable "min_replicas" {
   description = "The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0."
 }
 
+
+
 variable "autoscaling_cpu" {
   description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization"
-  type        = "list"
+  type        = list(map(number))
 }
+

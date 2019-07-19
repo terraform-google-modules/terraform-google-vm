@@ -15,17 +15,18 @@
  */
 
 provider "google" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
-  version     = "~> 1.19"
+  credentials = file(var.credentials_path)
+  project     = var.project_id
+  region      = var.region
+  version     = "~> 2.7.0"
 }
 
 module "instance_template" {
   source          = "../../../modules/instance_template"
-  subnetwork      = "${var.subnetwork}"
-  service_account = "${var.service_account}"
+  subnetwork      = var.subnetwork
+  service_account = var.service_account
   name_prefix     = "simple"
-  tags            = "${var.tags}"
-  labels          = "${var.labels}"
+  tags            = var.tags
+  labels          = var.labels
 }
+

@@ -35,7 +35,7 @@ variable "hostname" {
 }
 
 variable "static_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of static IPs for VM instances"
   default     = []
 }
@@ -48,3 +48,4 @@ variable "num_instances" {
 variable "instance_template" {
   description = "Instance template self_link used to create compute instances"
 }
+

@@ -46,6 +46,11 @@ variable "preemptible" {
   default     = "false"
 }
 
+variable "create_both_preemptible_and_regular" {
+  description = "Create both preemptible and regular instance templates if it's true"
+  default     = "false"
+}
+
 #######
 # disk
 #######

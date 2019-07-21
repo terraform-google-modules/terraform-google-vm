@@ -19,6 +19,7 @@ See the [simple](examples/instance_template/simple) for a usage example.
 | additional\_disks | List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute\_instance\_template.html#disk\_name | list | `<list>` | no |
 | auto\_delete | Whether or not the boot disk should be auto-deleted | string | `"true"` | no |
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | string | `"false"` | no |
+| create\_both\_preemptible\_and\_regular | Create both preemptible and regular instance templates if it's true | string | `"false"` | no |
 | disk\_size\_gb | Boot disk size in GB | string | `"100"` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | string | `"pd-standard"` | no |
 | labels | Labels, provided as a map | map | `<map>` | no |
@@ -40,6 +41,8 @@ See the [simple](examples/instance_template/simple) for a usage example.
 
 | Name | Description |
 |------|-------------|
+| another\_name |  |
+| another\_self\_link |  |
 | name |  |
 | self\_link |  |
 

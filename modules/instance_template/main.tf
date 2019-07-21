@@ -68,6 +68,35 @@ resource "google_compute_instance_template" "tpl" {
   }
 
   scheduling {
-    preemptible = "${var.preemptible}"
+    preemptible       = "${var.preemptible}"
+    automatic_restart = "${var.preemptible ? "false" : "true"}"
+  }
+}
+
+resource "google_compute_instance_template" "tpl2" {
+  count = "${var.create_both_preemptible_and_regular ? 1 : 0}"
+  name_prefix             = "${var.name_prefix}-2-"
+  machine_type            = "${var.machine_type}"
+  labels                  = "${var.labels}"
+  metadata                = "${var.metadata}"
+  tags                    = "${var.tags}"
+  can_ip_forward          = "${var.can_ip_forward}"
+  metadata_startup_script = "${var.startup_script}"
+  disk                    = ["${local.all_disks}"]
+  service_account         = ["${var.service_account}"]
+
+  network_interface {
+    network            = "${var.network}"
+    subnetwork         = "${var.subnetwork}"
+    subnetwork_project = "${var.subnetwork_project}"
+  }
+
+  lifecycle {
+    create_before_destroy = "true"
+  }
+
+  scheduling {
+    preemptible       = "${var.preemptible ? "false" : "true"}"
+    automatic_restart = "${var.preemptible}"
   }
 }

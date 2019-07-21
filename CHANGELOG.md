@@ -7,6 +7,12 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- the `preemptible` option on the `instance_template` submodule. [#14]
+- the `create_both_preemptible_and_regular` option on the `instance_template` submodule. [#17]
+- `another_name` and `another_self_link` outputs on the `instance_template` submodule. [#17]
+
 ## [0.2.0] - 2019-05-30
 
 ### Added

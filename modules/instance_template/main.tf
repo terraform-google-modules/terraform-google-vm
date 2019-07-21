@@ -74,7 +74,7 @@ resource "google_compute_instance_template" "tpl" {
 }
 
 resource "google_compute_instance_template" "tpl2" {
-  count = "${var.create_both_preemptible_and_regular ? 1 : 0}"
+  count                   = "${var.create_both_preemptible_and_regular ? 1 : 0}"
   name_prefix             = "${var.name_prefix}-2-"
   machine_type            = "${var.machine_type}"
   labels                  = "${var.labels}"

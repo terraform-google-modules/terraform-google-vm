@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 
-output "self_link" {
-  value = "${google_compute_instance_template.tpl.self_link}"
+provider "google" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
+  version     = "~> 1.19"
 }
 
-output "name" {
-  value = "${google_compute_instance_template.tpl.name}"
-}
+module "instance_template" {
+  source          = "../../../modules/instance_template"
+  subnetwork      = "${var.subnetwork}"
+  service_account = "${var.service_account}"
+  name_prefix     = "additional-it"
+  tags            = "${var.tags}"
+  labels          = "${var.labels}"
 
-output "another_self_link" {
-  value = "${google_compute_instance_template.tpl2.0.self_link}"
-}
-
-output "another_name" {
-  value = "${google_compute_instance_template.tpl2.0.name}"
+  create_both_preemptible_and_regular = "true"
 }

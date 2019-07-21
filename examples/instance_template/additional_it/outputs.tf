@@ -15,17 +15,21 @@
  */
 
 output "self_link" {
-  value = "${google_compute_instance_template.tpl.self_link}"
+  description = "Self-link to the instance template"
+  value       = "${module.instance_template.self_link}"
 }
 
 output "name" {
-  value = "${google_compute_instance_template.tpl.name}"
+  description = "Name of the instance templates"
+  value       = "${module.instance_template.name}"
 }
 
 output "another_self_link" {
-  value = "${google_compute_instance_template.tpl2.0.self_link}"
+  description = "Self-link to the another instance template"
+  value       = "${module.instance_template.another_self_link}"
 }
 
 output "another_name" {
-  value = "${google_compute_instance_template.tpl2.0.name}"
+  description = "Name of the another instance templates"
+  value       = "${module.instance_template.another_name}"
 }

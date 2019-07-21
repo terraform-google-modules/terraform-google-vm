@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-output "self_link" {
-  value = "${google_compute_instance_template.tpl.self_link}"
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
 }
 
-output "name" {
-  value = "${google_compute_instance_template.tpl.name}"
+variable "region" {
+  description = "The GCP region to create and test resources in"
 }
 
-output "another_self_link" {
-  value = "${google_compute_instance_template.tpl2.0.self_link}"
+variable "credentials_path_relative" {
+  description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
 }
 
-output "another_name" {
-  value = "${google_compute_instance_template.tpl2.0.name}"
+variable "service_account" {
+  type        = "map"
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }

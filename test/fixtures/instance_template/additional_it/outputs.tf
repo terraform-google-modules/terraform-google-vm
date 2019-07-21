@@ -15,17 +15,21 @@
  */
 
 output "self_link" {
-  value = "${google_compute_instance_template.tpl.self_link}"
-}
-
-output "name" {
-  value = "${google_compute_instance_template.tpl.name}"
+  description = "Self-link to the instance template"
+  value       = "${module.instance_template_additional_it.self_link}"
 }
 
 output "another_self_link" {
-  value = "${google_compute_instance_template.tpl2.0.self_link}"
+  description = "Self-link to the another instance template"
+  value       = "${module.instance_template_additional_it.another_self_link}"
 }
 
-output "another_name" {
-  value = "${google_compute_instance_template.tpl2.0.name}"
+output "project_id" {
+  description = "The GCP project to use for integration tests"
+  value       = "${var.project_id}"
+}
+
+output "credentials_path" {
+  description = "The path to the GCP credentials JSON file"
+  value       = "${local.credentials_path}"
 }

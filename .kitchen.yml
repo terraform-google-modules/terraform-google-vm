@@ -74,3 +74,8 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/umig/static_ips
+  - name: mig_with_percent_simple
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/mig_with_percent/simple

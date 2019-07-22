@@ -8,6 +8,7 @@ terraform.tfvars
 .kitchen
 .terraform
 .terraform.tfstate.d
+*.pyc
 
 # JetBrains - PyCharm, IntelliJ, etc.
 .idea/

@@ -16,7 +16,7 @@
 
 variable "name_prefix" {
   description = "Name prefix for the instance template"
-  default     = "default-instance-template"
+  default     = "default-it"
 }
 
 variable "machine_type" {

@@ -21,7 +21,7 @@ See the [simple](examples/preemptible_and_regular_instance_templates/simple) for
 | labels | Labels, provided as a map | map | `<map>` | no |
 | machine\_type | Machine type to create, e.g. n1-standard-1 | string | `"n1-standard-1"` | no |
 | metadata | Metadata, provided as a map | map | `<map>` | no |
-| name\_prefix | Name prefix for the instance template | string | `"default-instance-template"` | no |
+| name\_prefix | Name prefix for the instance template | string | `"default-it"` | no |
 | network | The name or self\_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | string | `""` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute\_instance\_template.html#service\_account. | map | n/a | yes |
 | source\_image | Source disk image. If neither source\_image nor source\_image\_family is specified, defaults to the latest public CentOS image. | string | `""` | no |

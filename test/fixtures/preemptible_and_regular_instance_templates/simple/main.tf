@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-provider "google" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
-  version     = "~> 1.19"
+locals {
+  credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
-module "instance_template" {
-  source          = "../../../modules/instance_template"
-  subnetwork      = "${var.subnetwork}"
-  service_account = "${var.service_account}"
-  name_prefix     = "additional-it"
-  tags            = "${var.tags}"
-  labels          = "${var.labels}"
+module "preemptible_and_regular_instance_templates" {
+  source           = "../../../../examples/preemptible_and_regular_instance_templates/simple"
+  credentials_path = "${local.credentials_path}"
+  project_id       = "${var.project_id}"
+  region           = "${var.region}"
+  subnetwork       = "${google_compute_subnetwork.main.name}"
+  service_account  = "${var.service_account}"
+  tags             = ["foo", "bar"]
 
-  create_both_preemptible_and_regular = "true"
+  labels = {
+    environment = "dev"
+  }
 }

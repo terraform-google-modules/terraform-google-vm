@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
+output "preemptible_self_link" {
+  value = "${module.preemptible.self_link}"
 }
 
-module "instance_template_additional_it" {
-  source           = "../../../../examples/instance_template/additional_it"
-  credentials_path = "${local.credentials_path}"
-  project_id       = "${var.project_id}"
-  region           = "${var.region}"
-  subnetwork       = "${google_compute_subnetwork.main.name}"
-  service_account  = "${var.service_account}"
-  tags             = ["foo", "bar"]
+output "preemptible_name" {
+  value = "${module.preemptible.name}"
+}
 
-  labels = {
-    environment = "dev"
-  }
+output "regular_self_link" {
+  value = "${module.regular.self_link}"
+}
+
+output "regular_name" {
+  value = "${module.regular.name}"
 }

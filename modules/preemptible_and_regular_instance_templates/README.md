@@ -1,14 +1,11 @@
-# instance_template
+# preemptible_and_regular_instance_templates
 
-This submodule allows you to create an `google_compute_instance_template`
-resource, which is used as the basis for the other instance, managed, and
-unmanaged instance groups submodules.
+This submodule allows you to create two `google_compute_instance_template`
+resources, that consist of preemptible and regular VMs.
 
 ## Usage
 
-See the [simple](examples/instance_template/simple) for a usage example.
-
-## Testing
+See the [simple](examples/preemptible_and_regular_instance_templates/simple) for a usage example.
 
 [^]: (autogen_docs_start)
 
@@ -26,7 +23,6 @@ See the [simple](examples/instance_template/simple) for a usage example.
 | metadata | Metadata, provided as a map | map | `<map>` | no |
 | name\_prefix | Name prefix for the instance template | string | `"default-instance-template"` | no |
 | network | The name or self\_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | string | `""` | no |
-| preemptible | Allow the instance to be preempted | string | `"false"` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute\_instance\_template.html#service\_account. | map | n/a | yes |
 | source\_image | Source disk image. If neither source\_image nor source\_image\_family is specified, defaults to the latest public CentOS image. | string | `""` | no |
 | source\_image\_family | Source image family. If neither source\_image nor source\_image\_family is specified, defaults to the latest public CentOS image. | string | `""` | no |
@@ -40,7 +36,9 @@ See the [simple](examples/instance_template/simple) for a usage example.
 
 | Name | Description |
 |------|-------------|
-| name |  |
-| self\_link |  |
+| preemptible\_name |  |
+| preemptible\_self\_link |  |
+| regular\_name |  |
+| regular\_self\_link |  |
 
 [^]: (autogen_docs_end)

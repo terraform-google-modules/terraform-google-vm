@@ -1,4 +1,4 @@
-# instance-template-additional\_it
+# preemptible_and_regular_instance_templates-simple
 
 This creates instance templates for both preemptible VM and regular VM
 
@@ -20,9 +20,9 @@ This creates instance templates for both preemptible VM and regular VM
 
 | Name | Description |
 |------|-------------|
-| another\_name | Name of the another instance templates |
-| another\_self\_link | Self-link to the another instance template |
-| name | Name of the instance templates |
-| self\_link | Self-link to the instance template |
+| preemptible\_name | Name of the preemptible instance templates |
+| preemptible\_self\_link | Self-link to the preemptible instance template |
+| regular\_name | Name of the regular instance templates |
+| regular\_self\_link | Self-link to the regular instance template |
 
 [^]: (autogen_docs_end)

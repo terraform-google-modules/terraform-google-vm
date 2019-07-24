@@ -17,15 +17,15 @@ credentials_path = attribute('credentials_path')
 
 ENV['CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE'] = File.absolute_path(
   credentials_path,
-  File.join(__dir__, "../../../fixtures/instance_template/additional_it"))
+  File.join(__dir__, "../../../fixtures/preemptible_and_regular_instance_templates/simple"))
 
-expected_templates = 2
+expected_templates = 1
 expected_disks = 1
 
 control "Instance Template" do
   title "Simple configuration"
 
-  describe command("gcloud --project=#{project_id} compute instance-templates list --format=json --filter='name~^additional-it*'") do
+  describe command("gcloud --project=#{project_id} compute instance-templates list --format=json --filter='name~^pvm-and-regular-simple-regular*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -41,8 +41,6 @@ control "Instance Template" do
       it "should be #{expected_disks}" do
         expect(data[0]['properties']['scheduling']['preemptible']).to be_truthy
         expect(data[0]['properties']['scheduling']['automaticRestart']).to be_falsey
-        expect(data[1]['properties']['scheduling']['preemptible']).to be_falsey
-        expect(data[1]['properties']['scheduling']['automaticRestart']).to be_truthy
       end
     end
 
@@ -55,35 +53,86 @@ control "Instance Template" do
     describe "number of disks" do
       it "should be #{expected_disks}" do
         expect(data[0]['properties']['disks'].length).to eq(expected_disks)
-        expect(data[1]['properties']['disks'].length).to eq(expected_disks)
       end
     end
 
     describe "network tags" do
       it "should include 'foo'" do
         expect(data[0]['properties']['tags']['items']).to include("foo")
-        expect(data[1]['properties']['tags']['items']).to include("foo")
       end
     end
 
     describe "network tags" do
       it "should include 'bar'" do
         expect(data[0]['properties']['tags']['items']).to include("bar")
-        expect(data[1]['properties']['tags']['items']).to include("bar")
       end
     end
 
     describe "labels" do
       it "should include 'environment' key" do
         expect(data[0]['properties']['labels']).to include("environment")
-        expect(data[1]['properties']['labels']).to include("environment")
       end
     end
 
     describe "label" do
       it "'environment' should have value 'dev'" do
         expect(data[0]['properties']['labels']['environment']).to eq("dev")
-        expect(data[1]['properties']['labels']['environment']).to eq("dev")
+      end
+    end
+  end
+
+  describe command("gcloud --project=#{project_id} compute instance-templates list --format=json --filter='name~^pvm-and-regular-simple-preemptible*'") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq '' }
+
+    let!(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout)
+      else
+        []
+      end
+    end
+
+    describe "kind of templates" do
+      it "should be #{expected_disks}" do
+        expect(data[0]['properties']['scheduling']['preemptible']).to be_falsey
+        expect(data[0]['properties']['scheduling']['automaticRestart']).to be_truthy
+      end
+    end
+
+    describe "number of templates" do
+      it "should be #{expected_templates}" do
+        expect(data.length).to eq(expected_templates)
+      end
+    end
+
+    describe "number of disks" do
+      it "should be #{expected_disks}" do
+        expect(data[0]['properties']['disks'].length).to eq(expected_disks)
+      end
+    end
+
+    describe "network tags" do
+      it "should include 'foo'" do
+        expect(data[0]['properties']['tags']['items']).to include("foo")
+      end
+    end
+
+    describe "network tags" do
+      it "should include 'bar'" do
+        expect(data[0]['properties']['tags']['items']).to include("bar")
+      end
+    end
+
+    describe "labels" do
+      it "should include 'environment' key" do
+        expect(data[0]['properties']['labels']).to include("environment")
+      end
+    end
+
+    describe "label" do
+      it "'environment' should have value 'dev'" do
+        expect(data[0]['properties']['labels']['environment']).to eq("dev")
       end
     end
   end

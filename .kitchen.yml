@@ -39,11 +39,11 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/instance_template/additional_disks
-  - name: it_additional_it
+  - name: preemptible_and_regular_instance_templates_simple
     driver:
       name: terraform
       command_timeout: 1800
-      root_module_directory: test/fixtures/instance_template/additional_it
+      root_module_directory: test/fixtures/preemptible_and_regular_instance_templates/simple
   - name: instance_simple
     driver:
       name: terraform

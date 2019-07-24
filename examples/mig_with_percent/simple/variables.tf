@@ -30,10 +30,6 @@ variable "subnetwork" {
   description = "The subnetwork to host the compute instances in"
 }
 
-variable "target_size" {
-  description = "The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set."
-}
-
 variable "service_account" {
   type        = "map"
   description = "Service account email address and scopes"

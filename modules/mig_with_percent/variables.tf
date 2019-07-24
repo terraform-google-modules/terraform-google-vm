@@ -23,15 +23,15 @@ variable "region" {
   description = "The GCP region where the managed instance group resides."
 }
 
-variable "instance_template_version0" {
-  description = "Instance template self_link used to create compute instances for initial version"
+variable "instance_template_initial_version" {
+  description = "Instance template self_link used to create compute instances for the initial version"
 }
 
-variable "instance_template_version1" {
-  description = "Instance template self_link used to create compute instances for second version"
+variable "instance_template_next_version" {
+  description = "Instance template self_link used to create compute instances for the second version"
 }
 
-variable "version1_percent" {
+variable "next_version_percent" {
   description = "Percentage of instances defined in the second version"
 }
 

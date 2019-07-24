@@ -21,7 +21,9 @@ locals {
   }
 }
 
-data "google_compute_zones" "available" {}
+data "google_compute_zones" "available" {
+  region = "${var.region}"
+}
 
 resource "google_compute_region_instance_group_manager" "mig_with_percent" {
   provider           = "google-beta"
@@ -29,15 +31,15 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
 
   version = {
     name              = "${var.hostname}-mig-version-0"
-    instance_template = "${var.instance_template_version0}"
+    instance_template = "${var.instance_template_initial_version}"
   }
 
   version = {
     name              = "${var.hostname}-mig-version-1"
-    instance_template = "${var.instance_template_version1}"
+    instance_template = "${var.instance_template_next_version}"
 
     target_size {
-      percent = "${var.version1_percent}"
+      percent = "${var.next_version_percent}"
     }
   }
 

@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
+provider "google" {
+  credentials = "${file(var.credentials_path)}"
+  project     = "${var.project_id}"
+  region      = "${var.region}"
+  version     = "~> 1.19"
 }
 
-module "instance_template_additional_it" {
-  source           = "../../../../examples/instance_template/additional_it"
-  credentials_path = "${local.credentials_path}"
-  project_id       = "${var.project_id}"
-  region           = "${var.region}"
-  subnetwork       = "${google_compute_subnetwork.main.name}"
-  service_account  = "${var.service_account}"
-  tags             = ["foo", "bar"]
-
-  labels = {
-    environment = "dev"
-  }
+module "preemptible_and_regular_instance_templates" {
+  source          = "../../../modules/preemptible_and_regular_instance_templates"
+  subnetwork      = "${var.subnetwork}"
+  service_account = "${var.service_account}"
+  name_prefix     = "pvm-and-regular-simple"
+  tags            = "${var.tags}"
+  labels          = "${var.labels}"
 }

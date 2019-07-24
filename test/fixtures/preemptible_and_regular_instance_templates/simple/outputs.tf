@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-output "self_link" {
-  description = "Self-link to the instance template"
-  value       = "${module.instance_template_additional_it.self_link}"
+output "preemptible_self_link" {
+  description = "Self-link to the preemptible instance template"
+  value       = "${module.preemptible_and_regular_instance_templates.preemptible_self_link}"
 }
 
-output "another_self_link" {
-  description = "Self-link to the another instance template"
-  value       = "${module.instance_template_additional_it.another_self_link}"
+output "regular_self_link" {
+  description = "Self-link to the regular instance template"
+  value       = "${module.preemptible_and_regular_instance_templates.regular_self_link}"
 }
 
 output "project_id" {

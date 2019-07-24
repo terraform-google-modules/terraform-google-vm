@@ -14,22 +14,20 @@
  * limitations under the License.
  */
 
-output "self_link" {
-  description = "Self-link to the instance template"
-  value       = "${module.instance_template.self_link}"
+locals {
+  credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
-output "name" {
-  description = "Name of the instance templates"
-  value       = "${module.instance_template.name}"
-}
+module "preemptible_and_regular_instance_templates" {
+  source           = "../../../../examples/preemptible_and_regular_instance_templates/simple"
+  credentials_path = "${local.credentials_path}"
+  project_id       = "${var.project_id}"
+  region           = "${var.region}"
+  subnetwork       = "${google_compute_subnetwork.main.name}"
+  service_account  = "${var.service_account}"
+  tags             = ["foo", "bar"]
 
-output "another_self_link" {
-  description = "Self-link to the another instance template"
-  value       = "${module.instance_template.another_self_link}"
-}
-
-output "another_name" {
-  description = "Name of the another instance templates"
-  value       = "${module.instance_template.another_name}"
+  labels = {
+    environment = "dev"
+  }
 }

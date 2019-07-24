@@ -10,8 +10,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - the `preemptible` option on the `instance_template` submodule. [#14]
-- the `create_both_preemptible_and_regular` option on the `instance_template` submodule. [#18]
-- `another_name` and `another_self_link` outputs on the `instance_template` submodule. [#18]
+- `preemptible_and_regular_instance_templates` submodule. [#18]
 
 ## [0.2.0] - 2019-05-30
 
@@ -29,3 +28,5 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [0.2.0]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-vm/releases/tag/v0.1.0
 [#10]: https://github.com/terraform-google-modules/terraform-google-vm/pull/10
+[#14]: https://github.com/terraform-google-modules/terraform-google-vm/pull/14
+[#18]: https://github.com/terraform-google-modules/terraform-google-vm/pull/18

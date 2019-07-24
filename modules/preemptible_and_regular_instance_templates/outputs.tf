@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-provider "google" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
-  version     = "~> 1.19"
+output "preemptible_self_link" {
+  value = "${module.preemptible.self_link}"
 }
 
-module "instance_template" {
-  source          = "../../../modules/instance_template"
-  subnetwork      = "${var.subnetwork}"
-  service_account = "${var.service_account}"
-  name_prefix     = "additional-it"
-  tags            = "${var.tags}"
-  labels          = "${var.labels}"
+output "preemptible_name" {
+  value = "${module.preemptible.name}"
+}
 
-  create_both_preemptible_and_regular = "true"
+output "regular_self_link" {
+  value = "${module.regular.self_link}"
+}
+
+output "regular_name" {
+  value = "${module.regular.name}"
 }

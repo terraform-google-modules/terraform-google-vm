@@ -21,11 +21,3 @@ output "self_link" {
 output "name" {
   value = "${google_compute_instance_template.tpl.name}"
 }
-
-output "another_self_link" {
-  value = "${google_compute_instance_template.tpl2.0.self_link}"
-}
-
-output "another_name" {
-  value = "${google_compute_instance_template.tpl2.0.name}"
-}

@@ -98,7 +98,6 @@ resource "google_compute_instance_template" "tpl" {
   }
 
   scheduling {
-    preemptible = "${var.preemptible}"
+    preemptible = var.preemptible
   }
 }
-

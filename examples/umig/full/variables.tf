@@ -53,8 +53,11 @@ variable "subnetwork_project" {
 
 variable "named_ports" {
   description = "Named name and named port"
-  type        = "list"
-  default     = []
+  type = list(object({
+    name = string
+    port = number
+  }))
+  default = []
 }
 
 ####################
@@ -76,13 +79,13 @@ variable "can_ip_forward" {
 }
 
 variable "tags" {
-  type        = "list"
+  type        = list(string)
   description = "Network tags, provided as a list"
   default     = []
 }
 
 variable "labels" {
-  type        = "map"
+  type        = map(string)
   description = "Labels, provided as a map"
   default     = {}
 }
@@ -120,8 +123,13 @@ variable "auto_delete" {
 
 variable "additional_disks" {
   description = "List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name"
-  type        = "list"
-  default     = []
+  type = list(object({
+    auto_delete  = bool
+    boot         = bool
+    disk_size_gb = number
+    disk_type    = string
+  }))
+  default = []
 }
 
 /* metadata */
@@ -131,15 +139,19 @@ variable "startup_script" {
 }
 
 variable "metadata" {
-  type        = "map"
+  type        = map(string)
   description = "Metadata, provided as a map"
   default     = {}
 }
 
 /* service account */
 variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+  default = null
+  type = object({
+    email  = string
+    scopes = set(string)
+  })
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }
 
 ############################
@@ -152,7 +164,8 @@ variable "target_size" {
 }
 
 variable "static_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of static IPs for VM instances."
   default     = []
 }
+

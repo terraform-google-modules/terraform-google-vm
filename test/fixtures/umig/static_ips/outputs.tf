@@ -16,20 +16,21 @@
 
 output "self_links" {
   description = "List of self-links to unmanaged instance groups"
-  value       = "${module.umig_static_ips.self_links}"
+  value       = module.umig_static_ips.self_links
 }
 
 output "instances_self_links" {
   description = "List of instance self-links"
-  value       = "${module.umig_static_ips.instances_self_links}"
+  value       = module.umig_static_ips.instances_self_links
 }
 
 output "project_id" {
   description = "The GCP project to use for integration tests"
-  value       = "${var.project_id}"
+  value       = var.project_id
 }
 
 output "credentials_path" {
   description = "The path to the GCP credentials JSON file"
-  value       = "${local.credentials_path}"
+  value       = local.credentials_path
 }
+

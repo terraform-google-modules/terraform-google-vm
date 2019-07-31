@@ -35,11 +35,19 @@ variable "num_instances" {
 }
 
 variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+  default = null
+  type = object({
+    email  = string
+    scopes = set(string)
+  })
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }
 
 variable "named_ports" {
-  description = "List of named ports"
-  type        = "list"
+  description = "Named name and named port"
+  type = list(object({
+    name = string
+    port = number
+  }))
+  default = []
 }

@@ -20,14 +20,15 @@ locals {
 
 module "instance_template_simple" {
   source           = "../../../../examples/instance_template/simple"
-  credentials_path = "${local.credentials_path}"
-  project_id       = "${var.project_id}"
-  region           = "${var.region}"
-  subnetwork       = "${google_compute_subnetwork.main.name}"
-  service_account  = "${var.service_account}"
+  credentials_path = local.credentials_path
+  project_id       = var.project_id
+  region           = var.region
+  subnetwork       = google_compute_subnetwork.main.name
+  service_account  = var.service_account
   tags             = ["foo", "bar"]
 
   labels = {
     environment = "dev"
   }
 }
+

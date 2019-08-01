@@ -35,7 +35,7 @@ variable "hostname" {
 }
 
 variable "static_ips" {
-  type        = "list"
+  type        = list(string)
   description = "List of static IPs for VM instances"
   default     = []
 }
@@ -47,10 +47,14 @@ variable "num_instances" {
 
 variable "named_ports" {
   description = "Named name and named port"
-  type        = "list"
-  default     = []
+  type = list(object({
+    name = string
+    port = number
+  }))
+  default = []
 }
 
 variable "instance_template" {
   description = "Instance template self_link used to create compute instances"
 }
+

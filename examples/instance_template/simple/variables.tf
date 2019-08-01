@@ -32,16 +32,21 @@ variable "subnetwork" {
 }
 
 variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+  default = null
+  type = object({
+    email  = string
+    scopes = set(string)
+  })
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }
 
 variable "tags" {
-  type        = "list"
+  type        = list(string)
   description = "Network tags, provided as a list"
 }
 
 variable "labels" {
-  type        = "map"
+  type        = map(string)
   description = "Labels, provided as a map"
 }
+

@@ -5,7 +5,7 @@ resources, that consist of preemptible and regular VMs.
 
 ## Usage
 
-See the [simple](examples/preemptible_and_regular_instance_templates/simple) for a usage example.
+See the [simple](../../examples/preemptible_and_regular_instance_templates/simple) for a usage example.
 
 [^]: (autogen_docs_start)
 

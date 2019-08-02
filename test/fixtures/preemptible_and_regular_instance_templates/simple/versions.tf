@@ -14,20 +14,6 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
-}
-
-module "preemptible_and_regular_instance_templates" {
-  source           = "../../../../examples/preemptible_and_regular_instance_templates/simple"
-  credentials_path = local.credentials_path
-  project_id       = var.project_id
-  region           = var.region
-  subnetwork       = google_compute_subnetwork.main.name
-  service_account  = var.service_account
-  tags             = ["foo", "bar"]
-
-  labels = {
-    environment = "dev"
-  }
+terraform {
+  required_version = ">= 0.12"
 }

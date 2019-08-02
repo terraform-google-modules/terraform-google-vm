@@ -15,32 +15,33 @@
  */
 
 provider "google" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
-  version     = "~> 1.19"
+  credentials = file(var.credentials_path)
+  project     = var.project_id
+  region      = var.region
+  version     = "~> 2.7.0"
 }
 
 provider "google-beta" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
-  version     = "~> 1.19"
+  credentials = file(var.credentials_path)
+  project     = var.project_id
+  region      = var.region
+  version     = "~> 2.7.0"
 }
 
 module "instance_template" {
   source          = "../../../modules/instance_template"
-  subnetwork      = "${var.subnetwork}"
-  service_account = "${var.service_account}"
+  subnetwork      = var.subnetwork
+  service_account = var.service_account
 }
 
 module "mig" {
   source              = "../../../modules/mig"
-  region              = "${var.region}"
+  region              = var.region
   hostname            = "mig-autoscaler"
-  subnetwork          = "${var.subnetwork}"
-  autoscaling_enabled = "${var.autoscaling_enabled}"
-  min_replicas        = "${var.min_replicas}"
-  autoscaling_cpu     = "${var.autoscaling_cpu}"
-  instance_template   = "${module.instance_template.self_link}"
+  subnetwork          = var.subnetwork
+  autoscaling_enabled = var.autoscaling_enabled
+  min_replicas        = var.min_replicas
+  autoscaling_cpu     = var.autoscaling_cpu
+  instance_template   = module.instance_template.self_link
 }
+

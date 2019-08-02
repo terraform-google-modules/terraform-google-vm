@@ -54,8 +54,11 @@ variable "subnetwork_project" {
 
 variable "named_ports" {
   description = "Named name and named port"
-  type        = "list"
-  default     = []
+  type = list(object({
+    name = string
+    port = number
+  }))
+  default = []
 }
 
 ####################
@@ -77,13 +80,13 @@ variable "can_ip_forward" {
 }
 
 variable "tags" {
-  type        = "list"
+  type        = list(string)
   description = "Network tags, provided as a list"
   default     = []
 }
 
 variable "labels" {
-  type        = "map"
+  type        = map(string)
   description = "Labels, provided as a map"
   default     = {}
 }
@@ -121,9 +124,15 @@ variable "auto_delete" {
 
 variable "additional_disks" {
   description = "List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name"
-  type        = "list"
-  default     = []
+  type = list(object({
+    auto_delete  = bool
+    boot         = bool
+    disk_size_gb = number
+    disk_type    = string
+  }))
+  default = []
 }
+
 
 /* metadata */
 variable "startup_script" {
@@ -132,15 +141,19 @@ variable "startup_script" {
 }
 
 variable "metadata" {
-  type        = "map"
+  type        = map(string)
   description = "Metadata, provided as a map"
   default     = {}
 }
 
 /* service account */
 variable "service_account" {
-  type        = "map"
-  description = "Service account email address and scopes"
+  default = null
+  type = object({
+    email  = string
+    scopes = set(string)
+  })
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }
 
 ##########################
@@ -154,20 +167,28 @@ variable "target_size" {
 
 variable "target_pools" {
   description = "The target load balancing pools to assign this group to."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "distribution_policy_zones" {
   description = "The distribution policy, i.e. which zone(s) should instances be create in. Default is all zones in given region."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "update_policy" {
   description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy"
-  type        = "list"
-  default     = []
+  type = list(object({
+    max_surge_fixed         = number
+    max_surge_percent       = number
+    max_unavailable_fixed   = number
+    max_unavailable_percent = number
+    min_ready_sec           = number
+    minimal_action          = string
+    type                    = string
+  }))
+  default = []
 }
 
 /* health checks */
@@ -236,22 +257,29 @@ variable "cooldown_period" {
 
 variable "autoscaling_cpu" {
   description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization"
-  type        = "list"
+  type        = list(map(number))
   default     = []
 }
 
 variable "autoscaling_metric" {
   description = "Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#metric"
-  type        = "list"
-  default     = []
+  type = list(object({
+    name   = string
+    target = number
+    type   = string
+  }))
+  default = []
 }
 
 variable "autoscaling_lb" {
   description = "Autoscaling, load balancing utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#load_balancing_utilization"
-  type        = "list"
+  type        = list(map(number))
   default     = []
 }
 
 variable "autoscaling_enabled" {
   description = "Creates an autoscaler for the managed instance group"
+  type        = bool
+  default     = false
 }
+

@@ -7,6 +7,10 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- `preemptible_and_regular_instance_templates` submodule. [#18]
+
 ## [1.0.0] - 2019-07-31
 
 ### Added
@@ -36,3 +40,4 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [#10]: https://github.com/terraform-google-modules/terraform-google-vm/pull/10
 [#14]: https://github.com/terraform-google-modules/terraform-google-vm/pull/14
 [#16]: https://github.com/terraform-google-modules/terraform-google-vm/pull/16
+[#18]: https://github.com/terraform-google-modules/terraform-google-vm/pull/18

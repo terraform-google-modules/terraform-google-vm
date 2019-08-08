@@ -97,7 +97,9 @@ resource "google_compute_instance_template" "tpl" {
     create_before_destroy = "true"
   }
 
+  // scheduling must have automatic_restart be false when preemptible is true.
   scheduling {
-    preemptible = var.preemptible
+    preemptible       = var.preemptible
+    automatic_restart = ! var.preemptible
   }
 }

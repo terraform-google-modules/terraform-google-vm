@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-output "self_link" {
-  description = "Self-link of instance template"
-  value       = google_compute_instance_template.tpl.self_link
+provider "google" {
+  credentials = file(var.credentials_path)
+  project     = var.project_id
+  region      = var.region
+  version     = "~> 2.11"
 }
 
-output "name" {
-  description = "Name of instance template"
-  value       = google_compute_instance_template.tpl.name
+module "preemptible_and_regular_instance_templates" {
+  source          = "../../../modules/preemptible_and_regular_instance_templates"
+  subnetwork      = var.subnetwork
+  service_account = var.service_account
+  name_prefix     = "pvm-and-regular-simple"
+  tags            = var.tags
+  labels          = var.labels
 }

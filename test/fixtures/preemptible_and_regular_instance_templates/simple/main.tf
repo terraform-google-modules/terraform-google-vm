@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-output "self_link" {
-  description = "Self-link of instance template"
-  value       = google_compute_instance_template.tpl.self_link
+locals {
+  credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
-output "name" {
-  description = "Name of instance template"
-  value       = google_compute_instance_template.tpl.name
+module "preemptible_and_regular_instance_templates" {
+  source           = "../../../../examples/preemptible_and_regular_instance_templates/simple"
+  credentials_path = local.credentials_path
+  project_id       = var.project_id
+  region           = var.region
+  subnetwork       = google_compute_subnetwork.main.name
+  service_account  = var.service_account
+  tags             = ["foo", "bar"]
+
+  labels = {
+    environment = "dev"
+  }
 }

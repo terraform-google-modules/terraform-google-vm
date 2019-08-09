@@ -6,7 +6,7 @@ unmanaged instance groups submodules.
 
 ## Usage
 
-See the [simple](examples/instance_template/simple) for a usage example.
+See the [simple](../../examples/instance_template/simple) for a usage example.
 
 ## Testing
 

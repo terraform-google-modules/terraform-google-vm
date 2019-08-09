@@ -36,21 +36,14 @@ function basefiles() {
   test -f README.md || echo "Missing README.md"
 }
 
-# This function runs the hadolint linter on
-# every file named 'Dockerfile'
-function docker() {
-  echo "Running hadolint on Dockerfiles"
-  find . -name "Dockerfile" -exec hadolint {} \;
-}
-
 # This function runs 'terraform validate' against all
 # files ending in '.tf'
 function check_terraform() {
   echo "Running terraform validate"
   #shellcheck disable=SC2156
-  find . -name "*.tf" -not -path "./test/fixtures/shared/*" -not -path "./test/fixtures/all_examples/*" -exec bash -c 'terraform validate --check-variables=false $(dirname "{}")' \;
+  find . -name "*.tf" -not -path "./test/fixtures/shared/*" -not -path "./test/fixtures/all_examples/*" -exec bash -c 'cd $(dirname "{}") && terraform init && terraform validate ' \;
   echo "Running terraform fmt"
-  terraform fmt -check=true -write=false
+  find . -type f -name "*.tf" -exec terraform fmt  -check=true -write=false {} \;
 }
 
 # This function runs 'go fmt' and 'go vet' on every file

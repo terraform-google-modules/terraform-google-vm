@@ -15,17 +15,17 @@
  */
 
 provider "google" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
-  version     = "~> 1.19"
+  credentials = file(var.credentials_path)
+  project     = var.project_id
+  region      = var.region
+  version     = "~> 2.11"
 }
 
 module "preemptible_and_regular_instance_templates" {
   source          = "../../../modules/preemptible_and_regular_instance_templates"
-  subnetwork      = "${var.subnetwork}"
-  service_account = "${var.service_account}"
+  subnetwork      = var.subnetwork
+  service_account = var.service_account
   name_prefix     = "pvm-and-regular-simple"
-  tags            = "${var.tags}"
-  labels          = "${var.labels}"
+  tags            = var.tags
+  labels          = var.labels
 }

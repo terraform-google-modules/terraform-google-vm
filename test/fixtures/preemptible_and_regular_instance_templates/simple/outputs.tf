@@ -16,20 +16,20 @@
 
 output "preemptible_self_link" {
   description = "Self-link to the preemptible instance template"
-  value       = "${module.preemptible_and_regular_instance_templates.preemptible_self_link}"
+  value       = module.preemptible_and_regular_instance_templates.preemptible_self_link
 }
 
 output "regular_self_link" {
   description = "Self-link to the regular instance template"
-  value       = "${module.preemptible_and_regular_instance_templates.regular_self_link}"
+  value       = module.preemptible_and_regular_instance_templates.regular_self_link
 }
 
 output "project_id" {
   description = "The GCP project to use for integration tests"
-  value       = "${var.project_id}"
+  value       = var.project_id
 }
 
 output "credentials_path" {
   description = "The path to the GCP credentials JSON file"
-  value       = "${local.credentials_path}"
+  value       = local.credentials_path
 }

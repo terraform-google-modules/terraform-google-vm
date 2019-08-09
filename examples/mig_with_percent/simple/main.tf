@@ -15,31 +15,31 @@
  */
 
 provider "google" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
+  credentials = file(var.credentials_path)
+  project     = var.project_id
+  region      = var.region
   version     = "~> 2.11"
 }
 
 provider "google-beta" {
-  credentials = "${file(var.credentials_path)}"
-  project     = "${var.project_id}"
-  region      = "${var.region}"
+  credentials = file(var.credentials_path)
+  project     = var.project_id
+  region      = var.region
   version     = "~> 2.11"
 }
 
 module "preemptible_and_regular_instance_templates" {
   source          = "../../../modules/preemptible_and_regular_instance_templates"
-  subnetwork      = "${var.subnetwork}"
-  service_account = "${var.service_account}"
+  subnetwork      = var.subnetwork
+  service_account = var.service_account
 }
 
 module "mig_with_percent" {
   source                            = "../../../modules/mig_with_percent"
-  region                            = "${var.region}"
+  region                            = var.region
   target_size                       = 4
   hostname                          = "mig-with-percent-simple"
-  instance_template_initial_version = "${module.preemptible_and_regular_instance_templates.regular_self_link}"
-  instance_template_next_version    = "${module.preemptible_and_regular_instance_templates.preemptible_self_link}"
+  instance_template_initial_version = module.preemptible_and_regular_instance_templates.regular_self_link
+  instance_template_next_version    = module.preemptible_and_regular_instance_templates.preemptible_self_link
   next_version_percent              = 50
 }

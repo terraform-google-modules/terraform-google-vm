@@ -27,6 +27,10 @@ variable "credentials_path_relative" {
 }
 
 variable "service_account" {
-  type        = "map"
+  default = null
+  type = object({
+    email  = string
+    scopes = set(string)
+  })
   description = "Service account email address and scopes"
 }

@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+variable "project_id" {
+  type        = string
+  description = "The GCP project ID"
+  default     = ""
+}
+
 variable "hostname" {
   description = "Hostname prefix for instances"
   default     = "default"

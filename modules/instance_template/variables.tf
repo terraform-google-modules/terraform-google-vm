@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+variable "project_id" {
+  type        = string
+  description = "The GCP project ID"
+  default     = ""
+}
+
 variable "name_prefix" {
   description = "Name prefix for the instance template"
   default     = "default-instance-template"

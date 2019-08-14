@@ -16,12 +16,12 @@
 
 output "preemptible_self_link" {
   description = "Self-link to the preemptible instance template"
-  value       = module.preemptible_and_regular_instance_templates.preemptible_self_link
+  value       = module.templates_simple.preemptible_self_link
 }
 
 output "regular_self_link" {
   description = "Self-link to the regular instance template"
-  value       = module.preemptible_and_regular_instance_templates.regular_self_link
+  value       = module.templates_simple.regular_self_link
 }
 
 output "project_id" {

@@ -49,7 +49,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
   network_interface {
     network            = var.network
     subnetwork         = var.subnetwork
-    subnetwork_project = var.subnetwork_project
+    subnetwork_project = var.subnetwork_project == "" ? var.project_id : var.subnetwork_project
     network_ip         = length(var.static_ips) == 0 ? "" : element(local.static_ips, count.index)
   }
 
@@ -60,6 +60,7 @@ resource "google_compute_instance_group" "instance_group" {
   provider = google
   count    = local.instance_group_count
   name     = "${local.hostname}-instance-group-${format("%03d", count.index + 1)}"
+  project  = var.project_id
   zone     = element(data.google_compute_zones.available.names, count.index)
   instances = matchkeys(
     google_compute_instance_from_template.compute_instance.*.self_link,

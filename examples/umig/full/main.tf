@@ -32,6 +32,7 @@ module "instance_template" {
   source          = "../../../modules/instance_template"
   name_prefix     = "${var.hostname}-instance-template"
   machine_type    = var.machine_type
+  project_id      = var.project_id
   tags            = var.tags
   labels          = var.labels
   startup_script  = var.startup_script
@@ -58,6 +59,7 @@ module "instance_template" {
 
 module "umig" {
   source             = "../../../modules/umig"
+  project_id         = var.project_id
   network            = var.network
   subnetwork         = var.subnetwork
   subnetwork_project = var.subnetwork_project

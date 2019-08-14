@@ -3,18 +3,17 @@
 This is an example of how to use the UMIG module to create unmanaged instance
 groups with named ports
 
-[^]: (autogen_docs_start)
-
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | credentials\_path | The path to the GCP credentials JSON file | string | n/a | yes |
-| named\_ports | List of named ports | list | n/a | yes |
+| named\_ports | Named name and named port | object | `<list>` | no |
 | num\_instances | Number of instances to create | string | n/a | yes |
 | project\_id | The GCP project to use for integration tests | string | n/a | yes |
 | region | The GCP region to create and test resources in | string | n/a | yes |
-| service\_account | Service account email address and scopes | map | n/a | yes |
+| service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute\_instance\_template.html#service\_account. | object | `"null"` | no |
 | subnetwork | The subnetwork to host the compute instances in | string | n/a | yes |
 
 ## Outputs
@@ -25,4 +24,4 @@ groups with named ports
 | instances\_self\_links | List of self-links for compute instances |
 | self\_links | List of self-links of unmanaged instance groups |
 
-[^]: (autogen_docs_end)
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

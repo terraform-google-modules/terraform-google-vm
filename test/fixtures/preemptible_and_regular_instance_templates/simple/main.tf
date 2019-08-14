@@ -18,7 +18,7 @@ locals {
   credentials_path = "${path.module}/${var.credentials_path_relative}"
 }
 
-module "preemptible_and_regular_instance_templates" {
+module "templates_simple" {
   source           = "../../../../examples/preemptible_and_regular_instance_templates/simple"
   credentials_path = local.credentials_path
   project_id       = var.project_id

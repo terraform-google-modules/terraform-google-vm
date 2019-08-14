@@ -10,6 +10,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - `preemptible_and_regular_instance_templates` submodule. [#18]
+- `mig_with_percent` submodule. [#18]
 
 ## [1.0.0] - 2019-07-31
 

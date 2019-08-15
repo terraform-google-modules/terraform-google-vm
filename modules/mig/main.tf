@@ -27,11 +27,13 @@ locals {
 }
 
 data "google_compute_zones" "available" {
+  project = var.project_id
 }
 
 resource "google_compute_region_instance_group_manager" "mig" {
   provider           = google-beta
   base_instance_name = var.hostname
+  project            = var.project_id
 
   version {
     name              = "${var.hostname}-mig-version-0"
@@ -77,6 +79,7 @@ resource "google_compute_region_autoscaler" "autoscaler" {
   provider = google
   count    = var.autoscaling_enabled ? 1 : 0
   name     = "${var.hostname}-autoscaler"
+  project  = var.project_id
   target   = google_compute_region_instance_group_manager.mig.self_link
 
   autoscaling_policy {
@@ -110,6 +113,7 @@ resource "google_compute_health_check" "http_healthcheck" {
   provider = google
   count    = var.http_healthcheck_enable ? 1 : 0
   name     = "${var.hostname}-http-healthcheck"
+  project  = var.project_id
 
   check_interval_sec  = var.hc_interval_sec
   timeout_sec         = var.hc_timeout_sec
@@ -125,6 +129,7 @@ resource "google_compute_health_check" "http_healthcheck" {
 resource "google_compute_health_check" "tcp_healthcheck" {
   provider = google
   count    = var.tcp_healthcheck_enable ? 1 : 0
+  project  = var.project_id
   name     = "${var.hostname}-tcp-healthcheck"
 
   check_interval_sec  = var.hc_interval_sec

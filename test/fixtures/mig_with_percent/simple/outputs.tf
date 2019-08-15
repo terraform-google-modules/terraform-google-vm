@@ -14,14 +14,9 @@
  * limitations under the License.
  */
 
-output "preemptible_self_link" {
-  description = "Self-link to the preemptible instance template"
-  value       = module.preemptible_and_regular_instance_templates.preemptible_self_link
-}
-
-output "regular_self_link" {
-  description = "Self-link to the regular instance template"
-  value       = module.preemptible_and_regular_instance_templates.regular_self_link
+output "self_link" {
+  description = "Self-link of the managed instance group"
+  value       = module.mig_with_percent_simple.self_link
 }
 
 output "project_id" {
@@ -33,3 +28,9 @@ output "credentials_path" {
   description = "The path to the GCP credentials JSON file"
   value       = local.credentials_path
 }
+
+output "region" {
+  description = "The GCP region to create and test resources in"
+  value       = var.region
+}
+

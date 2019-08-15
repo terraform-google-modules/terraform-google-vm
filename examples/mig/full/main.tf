@@ -31,6 +31,7 @@ provider "google-beta" {
 module "instance_template" {
   source          = "../../../modules/instance_template"
   name_prefix     = "${var.hostname}-instance-template"
+  project_id      = var.project_id
   machine_type    = var.machine_type
   tags            = var.tags
   labels          = var.labels
@@ -58,6 +59,7 @@ module "instance_template" {
 
 module "mig" {
   source                    = "../../../modules/mig"
+  project_id                = var.project_id
   network                   = var.network
   subnetwork                = var.subnetwork
   subnetwork_project        = var.subnetwork_project

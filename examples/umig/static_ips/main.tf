@@ -36,6 +36,7 @@ module "instance_template" {
 
 module "umig" {
   source            = "../../../modules/umig"
+  project_id        = var.project_id
   subnetwork        = var.subnetwork
   num_instances     = var.num_instances
   hostname          = "umig-static-ips"

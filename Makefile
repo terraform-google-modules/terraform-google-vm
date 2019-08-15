@@ -52,10 +52,6 @@ check_golang:
 check_terraform:
 	@source test/make.sh && check_terraform
 
-.PHONY: check_docker
-check_docker:
-	@source test/make.sh && docker
-
 .PHONY: check_base_files
 check_base_files:
 	@source test/make.sh && basefiles

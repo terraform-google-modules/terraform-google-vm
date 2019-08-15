@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+variable "project_id" {
+  type        = string
+  description = "The GCP project ID"
+  default     = null
+}
+
 variable "network" {
   description = "Network to deploy to. Only one of network or subnetwork should be specified."
   default     = ""

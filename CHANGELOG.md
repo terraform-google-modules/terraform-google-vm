@@ -9,6 +9,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added variable `project_id`. [#26]
+
 - `preemptible_and_regular_instance_templates` submodule. [#18]
 - `mig_with_percent` submodule. [#18]
 
@@ -42,3 +44,4 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [#14]: https://github.com/terraform-google-modules/terraform-google-vm/pull/14
 [#16]: https://github.com/terraform-google-modules/terraform-google-vm/pull/16
 [#18]: https://github.com/terraform-google-modules/terraform-google-vm/pull/18
+[#26]: https://github.com/terraform-google-modules/terraform-google-vm/pull/26

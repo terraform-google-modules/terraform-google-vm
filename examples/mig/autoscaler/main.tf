@@ -30,12 +30,14 @@ provider "google-beta" {
 
 module "instance_template" {
   source          = "../../../modules/instance_template"
+  project_id      = var.project_id
   subnetwork      = var.subnetwork
   service_account = var.service_account
 }
 
 module "mig" {
   source              = "../../../modules/mig"
+  project_id          = var.project_id
   region              = var.region
   hostname            = "mig-autoscaler"
   subnetwork          = var.subnetwork

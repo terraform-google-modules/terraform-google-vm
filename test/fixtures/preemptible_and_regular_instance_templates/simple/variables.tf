@@ -28,7 +28,7 @@ variable "credentials_path_relative" {
 
 variable "service_account" {
   default = null
-  type    = object({
+  type = object({
     email  = string
     scopes = list(string)
   })

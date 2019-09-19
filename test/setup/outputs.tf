@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The GCP project to use for integration tests"
+output "project_id" {
+  value = module.project_ci_vm.project_id
 }
 
-variable "credentials_path_relative" {
-  description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
+output "sa_key" {
+  value     = google_service_account_key.ci_vm_account.private_key
+  sensitive = true
 }
 
-variable "service_account" {
-  default = null
-  type = object({
-    email  = string
-    scopes = set(string)
-  })
-  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
+output "sa_email" {
+  value = google_service_account.ci_vm_account.email
 }

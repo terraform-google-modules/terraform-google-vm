@@ -61,11 +61,15 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
   target_pools = var.target_pools
   target_size  = var.autoscaling_enabled ? var.min_replicas : var.target_size
 
-  auto_healing_policies {
-    health_check      = length(local.healthchecks) > 0 ? local.healthchecks[0] : ""
-    initial_delay_sec = length(local.healthchecks) > 0 ? var.hc_initial_delay_sec : 0
+  dynamic "auto_healing_policies" {
+    for_each = local.healthchecks
+    iterator = healthcheck
+    content {
+      health_check      = healthcheck.value
+      initial_delay_sec = var.hc_initial_delay_sec
+    }
   }
-
+  
   distribution_policy_zones = local.distribution_policy_zones
   dynamic "update_policy" {
     for_each = var.update_policy

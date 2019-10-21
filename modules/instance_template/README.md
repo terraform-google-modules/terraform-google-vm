@@ -20,6 +20,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | string | `"false"` | no |
 | disk\_size\_gb | Boot disk size in GB | string | `"100"` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | string | `"pd-standard"` | no |
+| enable\_shielded\_vm | Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images | string | `"false"` | no |
 | labels | Labels, provided as a map | map(string) | `<map>` | no |
 | machine\_type | Machine type to create, e.g. n1-standard-1 | string | `"n1-standard-1"` | no |
 | metadata | Metadata, provided as a map | map(string) | `<map>` | no |
@@ -28,9 +29,10 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | preemptible | Allow the instance to be preempted | bool | `"false"` | no |
 | project\_id | The GCP project ID | string | `"null"` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account. | object | n/a | yes |
+| shielded\_instance\_config | Not used unless enable_shielded_vm is true. Shielded VM configuration for the instance. | object | `<map>` | no |
 | source\_image | Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image. | string | `""` | no |
-| source\_image\_family | Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image. | string | `""` | no |
-| source\_image\_project | Project where the source image comes from | string | `""` | no |
+| source\_image\_family | Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image. | string | `"centos-7"` | no |
+| source\_image\_project | Project where the source image comes from. The default project contains images that support Shielded VMs if desired | string | `"gce-uefi-images"` | no |
 | startup\_script | User startup script to run when instances spin up | string | `""` | no |
 | subnetwork | The name of the subnetwork to attach this interface to. The subnetwork must exist in the same region this instance will be created in. Either network or subnetwork must be provided. | string | `""` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used. | string | `""` | no |

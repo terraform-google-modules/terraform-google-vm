@@ -43,6 +43,12 @@ locals {
   ]
 
   all_disks = concat(local.boot_disk, var.additional_disks)
+
+  # NOTE: Even if all the shielded_instance_config values are false, if the
+  # config block exists and an unsupported image is chosen, the apply will fail
+  # so we use a single-value array with the default value to initialize the block
+  # only if it is enabled.
+  shielded_vm_configs = var.enable_shielded_vm ? [true] : []
 }
 
 ####################
@@ -80,6 +86,7 @@ resource "google_compute_instance_template" "tpl" {
       }
     }
   }
+
   dynamic "service_account" {
     for_each = [var.service_account]
     content {
@@ -98,9 +105,18 @@ resource "google_compute_instance_template" "tpl" {
     create_before_destroy = "true"
   }
 
-  // scheduling must have automatic_restart be false when preemptible is true.
+  # scheduling must have automatic_restart be false when preemptible is true.
   scheduling {
     preemptible       = var.preemptible
     automatic_restart = ! var.preemptible
+  }
+
+  dynamic "shielded_instance_config" {
+    for_each = local.shielded_vm_configs
+    content {
+      enable_secure_boot          = lookup(var.shielded_instance_config, "enable_secure_boot", shielded_instance_config.value)
+      enable_vtpm                 = lookup(var.shielded_instance_config, "enable_vtpm", shielded_instance_config.value)
+      enable_integrity_monitoring = lookup(var.shielded_instance_config, "enable_integrity_monitoring", shielded_instance_config.value)
+    }
   }
 }

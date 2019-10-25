@@ -11,7 +11,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-- `distribution_policy_zones` ignoring [#37]
+- Fix bug with `distribution_policy_zones` forcing permadiff. [#37]
 
 ## [1.1.0] - 2019-10-23
 

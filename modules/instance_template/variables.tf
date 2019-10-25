@@ -63,12 +63,12 @@ variable "source_image" {
 
 variable "source_image_family" {
   description = "Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image."
-  default     = ""
+  default     = "centos-7"
 }
 
 variable "source_image_project" {
-  description = "Project where the source image comes from"
-  default     = ""
+  description = "Project where the source image comes from. The default project contains images that support Shielded VMs if desired"
+  default     = "gce-uefi-images"
 }
 
 variable "disk_size_gb" {
@@ -140,4 +140,27 @@ variable "service_account" {
     scopes = set(string)
   })
   description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
+}
+
+###########################
+# Shielded VMs
+###########################
+variable "enable_shielded_vm" {
+  default     = false
+  description = "Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images"
+}
+
+variable "shielded_instance_config" {
+  description = "Not used unless enable_shielded_vm is true. Shielded VM configuration for the instance."
+  type = object({
+    enable_secure_boot          = bool
+    enable_vtpm                 = bool
+    enable_integrity_monitoring = bool
+  })
+
+  default = {
+    enable_secure_boot          = true
+    enable_vtpm                 = true
+    enable_integrity_monitoring = true
+  }
 }

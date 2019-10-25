@@ -7,6 +7,11 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.1] - 2019-10-25
+### Fixed
+
+- Fix bug with `distribution_policy_zones` forcing permadiff. [#37]
+
 ## [1.1.0] - 2019-10-23
 
 ### Added
@@ -49,4 +54,5 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [#18]: https://github.com/terraform-google-modules/terraform-google-vm/pull/18
 [#19]: https://github.com/terraform-google-modules/terraform-google-vm/pull/19
 [#26]: https://github.com/terraform-google-modules/terraform-google-vm/pull/26
+[#37]: https://github.com/terraform-google-modules/terraform-google-vm/pull/37
 [#38]: https://github.com/terraform-google-modules/terraform-google-vm/pull/38

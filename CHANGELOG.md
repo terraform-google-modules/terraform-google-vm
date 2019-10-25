@@ -7,6 +7,14 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.1] - 2019-10-25
+
+### Fixed
+
+- `distribution_policy_zones` ignoring [#37]
+
+## [1.1.0] - 2019-10-23
+
 ### Added
 
 - Added variable `project_id`. [#26]
@@ -45,3 +53,4 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [#16]: https://github.com/terraform-google-modules/terraform-google-vm/pull/16
 [#18]: https://github.com/terraform-google-modules/terraform-google-vm/pull/18
 [#26]: https://github.com/terraform-google-modules/terraform-google-vm/pull/26
+[#37]: https://github.com/terraform-google-modules/terraform-google-vm/pull/37

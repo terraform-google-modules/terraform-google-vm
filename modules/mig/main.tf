@@ -20,8 +20,8 @@ locals {
     google_compute_health_check.tcp_healthcheck.*.self_link,
   )
   distribution_policy_zones_base = {
-    default = data.google_compute_zones.available.names
-    user    = var.distribution_policy_zones
+      default = data.google_compute_zones.available.names
+      user    = var.distribution_policy_zones
   }
   distribution_policy_zones = local.distribution_policy_zones_base[length(var.distribution_policy_zones) == 0 ? "default" : "user"]
 }
@@ -143,4 +143,3 @@ resource "google_compute_health_check" "tcp_healthcheck" {
     port = var.hc_port
   }
 }
-

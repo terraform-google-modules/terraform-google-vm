@@ -74,7 +74,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
 
   lifecycle {
     create_before_destroy = "true"
-    ignore_changes = ["distribution_policy_zones"]
+    ignore_changes        = ["distribution_policy_zones"]
   }
 }
 
@@ -83,6 +83,7 @@ resource "google_compute_region_autoscaler" "autoscaler" {
   count    = var.autoscaling_enabled ? 1 : 0
   name     = "${var.hostname}-autoscaler"
   project  = var.project_id
+  region   = var.region
   target   = google_compute_region_instance_group_manager.mig.self_link
 
   autoscaling_policy {

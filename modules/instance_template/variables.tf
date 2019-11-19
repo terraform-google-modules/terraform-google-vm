@@ -174,7 +174,7 @@ variable "public_ip" {
 }
 
 variable "access_config" {
-  description = "VM instance 'access_config' block"
+  description = "Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet."
   type        = map(string)
   default     = {}
 }

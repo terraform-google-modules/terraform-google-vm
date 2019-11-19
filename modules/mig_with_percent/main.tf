@@ -82,7 +82,7 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
 
   lifecycle {
     create_before_destroy = "true"
-    ignore_changes = ["distribution_policy_zones"]
+    ignore_changes        = ["distribution_policy_zones"]
   }
 }
 

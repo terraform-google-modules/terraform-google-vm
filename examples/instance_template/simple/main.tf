@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+
+resource "google_compute_address" "ip_address" {
+  name = "external-ip"
+}
+
+locals {
+  access_config = {
+    nat_ip = google_compute_address.ip_address.address
+  }
+}
 
 provider "google" {
   credentials = file(var.credentials_path)
@@ -29,5 +40,7 @@ module "instance_template" {
   name_prefix     = "simple"
   tags            = var.tags
   labels          = var.labels
+  public_ip       = "true"
+  access_config   = local.access_config
 }
 

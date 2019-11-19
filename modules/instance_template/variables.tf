@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -163,4 +163,18 @@ variable "shielded_instance_config" {
     enable_vtpm                 = true
     enable_integrity_monitoring = true
   }
+}
+
+###########################
+# Public IP
+###########################
+variable "public_ip" {
+  description = "Determines whether a public IP address is added to your VM instance."
+  default     = false
+}
+
+variable "access_config" {
+  description = "VM instance 'access_config' block"
+  type        = map(string)
+  default     = {}
 }

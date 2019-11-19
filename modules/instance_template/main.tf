@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -99,6 +99,10 @@ resource "google_compute_instance_template" "tpl" {
     network            = var.network
     subnetwork         = var.subnetwork
     subnetwork_project = var.subnetwork_project
+    dynamic "access_config" {
+      for_each = var.public_ip ? [var.access_config] : []
+      content {}
+    }
   }
 
   lifecycle {

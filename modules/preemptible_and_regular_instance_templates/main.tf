@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +39,8 @@ module "preemptible" {
   network              = var.network
   subnetwork           = var.subnetwork
   subnetwork_project   = var.subnetwork_project
+  public_ip            = var.public_ip
+  access_config        = var.access_config
   preemptible          = true
 }
 
@@ -63,5 +65,7 @@ module "regular" {
   network              = var.network
   subnetwork           = var.subnetwork
   subnetwork_project   = var.subnetwork_project
+  public_ip            = var.public_ip
+  access_config        = var.access_config
   preemptible          = false
 }

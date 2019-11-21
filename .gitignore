@@ -5,7 +5,6 @@ terraform.tfvars
 **/account.json
 **/credentials
 .DS_Store
-.kitchen
 .terraform
 .terraform.tfstate.d
 *.pyc
@@ -16,3 +15,9 @@ __pycache__/
 *.iml
 
 *.json
+
+# Kitchen files
+**/inspec.lock
+**/.kitchen
+**/kitchen.local.yml
+**/Gemfile.lock

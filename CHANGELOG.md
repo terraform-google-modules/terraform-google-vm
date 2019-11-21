@@ -7,6 +7,10 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Support for public IPs. Added `public_ip` and `access_config` variables. [#43]
+
 ## [1.1.1] - 2019-10-25
 ### Fixed
 
@@ -57,3 +61,4 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [#26]: https://github.com/terraform-google-modules/terraform-google-vm/pull/26
 [#37]: https://github.com/terraform-google-modules/terraform-google-vm/pull/37
 [#38]: https://github.com/terraform-google-modules/terraform-google-vm/pull/38
+[#43]: https://github.com/terraform-google-modules/terraform-google-vm/pull/43

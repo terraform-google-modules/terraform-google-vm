@@ -24,7 +24,7 @@ See the [simple](../../examples/preemptible_and_regular_instance_templates/simpl
 | name\_prefix | Name prefix for the instance template | string | `"default-it"` | no |
 | network | The name or self_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | string | `""` | no |
 | project\_id | The GCP project ID | string | `"null"` | no |
-| public\_ip | Determines whether a public IP address is added to your VM instance. | string | `"false"` | no |
+| public\_ip | Determines whether a public IP address is added to your VM instance. | bool | `"false"` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account. | object | n/a | yes |
 | source\_image | Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image. | string | `""` | no |
 | source\_image\_family | Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image. | string | `""` | no |

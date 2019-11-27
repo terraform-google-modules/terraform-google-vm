@@ -170,6 +170,7 @@ variable "shielded_instance_config" {
 ###########################
 variable "public_ip" {
   description = "Determines whether a public IP address is added to your VM instance."
+  type        = bool
   default     = false
 }
 

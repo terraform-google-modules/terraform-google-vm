@@ -7,9 +7,15 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.0] - 2019-11-28
+
 ### Added
 
 - Support for public IPs. Added `access_config` variable. [#43]
+
+### Fixed
+
+- The `region` variable is passed to all relevant resources. [#42] [#44]
 
 ## [1.1.1] - 2019-10-25
 ### Fixed
@@ -47,7 +53,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - `instance_template`, `mig`, and `umig` modules
 - examples, basic tests and fixtures for all modules
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v0.2.0...v1.0.0
@@ -61,4 +68,6 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [#26]: https://github.com/terraform-google-modules/terraform-google-vm/pull/26
 [#37]: https://github.com/terraform-google-modules/terraform-google-vm/pull/37
 [#38]: https://github.com/terraform-google-modules/terraform-google-vm/pull/38
+[#42]: https://github.com/terraform-google-modules/terraform-google-vm/pull/42
 [#43]: https://github.com/terraform-google-modules/terraform-google-vm/pull/43
+[#44]: https://github.com/terraform-google-modules/terraform-google-vm/pull/44

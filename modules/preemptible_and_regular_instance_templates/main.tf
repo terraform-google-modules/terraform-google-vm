@@ -39,7 +39,6 @@ module "preemptible" {
   network              = var.network
   subnetwork           = var.subnetwork
   subnetwork_project   = var.subnetwork_project
-  public_ip            = var.public_ip
   access_config        = var.access_config
   preemptible          = true
 }
@@ -65,7 +64,6 @@ module "regular" {
   network              = var.network
   subnetwork           = var.subnetwork
   subnetwork_project   = var.subnetwork_project
-  public_ip            = var.public_ip
   access_config        = var.access_config
   preemptible          = false
 }

@@ -100,10 +100,10 @@ resource "google_compute_instance_template" "tpl" {
     subnetwork         = var.subnetwork
     subnetwork_project = var.subnetwork_project
     dynamic "access_config" {
-      for_each = var.public_ip ? [var.access_config] : []
+      for_each = var.access_config
       content {
-        nat_ip       = lookup(access_config.value, "nat_ip", null)
-        network_tier = lookup(access_config.value, "network_tier", null)
+        nat_ip       = access_config.value.nat_ip
+        network_tier = access_config.value.network_tier
       }
     }
   }

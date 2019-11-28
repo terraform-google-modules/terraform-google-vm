@@ -15,7 +15,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | map(string) | `<map>` | no |
+| access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | object | `<list>` | no |
 | additional\_disks | List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name | object | `<list>` | no |
 | auto\_delete | Whether or not the boot disk should be auto-deleted | string | `"true"` | no |
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | string | `"false"` | no |
@@ -29,7 +29,6 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | network | The name or self_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | string | `""` | no |
 | preemptible | Allow the instance to be preempted | bool | `"false"` | no |
 | project\_id | The GCP project ID | string | `"null"` | no |
-| public\_ip | Determines whether a public IP address is added to your VM instance. | bool | `"false"` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account. | object | n/a | yes |
 | shielded\_instance\_config | Not used unless enable_shielded_vm is true. Shielded VM configuration for the instance. | object | `<map>` | no |
 | source\_image | Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image. | string | `""` | no |

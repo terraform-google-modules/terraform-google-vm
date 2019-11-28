@@ -9,7 +9,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Support for public IPs. Added `public_ip` and `access_config` variables. [#43]
+- Support for public IPs. Added `access_config` variable. [#43]
 
 ## [1.1.1] - 2019-10-25
 ### Fixed

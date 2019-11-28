@@ -21,7 +21,8 @@ resource "google_compute_address" "ip_address" {
 
 locals {
   access_config = {
-    nat_ip = google_compute_address.ip_address.address
+    nat_ip       = google_compute_address.ip_address.address
+    network_tier = "PREMIUM"
   }
 }
 
@@ -40,7 +41,6 @@ module "instance_template" {
   name_prefix     = "simple"
   tags            = var.tags
   labels          = var.labels
-  public_ip       = true
-  access_config   = local.access_config
+  access_config   = [local.access_config]
 }
 

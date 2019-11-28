@@ -15,6 +15,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | object | `<list>` | no |
 | additional\_disks | List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name | object | `<list>` | no |
 | auto\_delete | Whether or not the boot disk should be auto-deleted | string | `"true"` | no |
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | string | `"false"` | no |

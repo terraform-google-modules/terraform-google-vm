@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -134,4 +134,16 @@ variable "service_account" {
     scopes = set(string)
   })
   description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
+}
+
+###########################
+# Public IP
+###########################
+variable "access_config" {
+  description = "Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet."
+  type        = list(object({
+    nat_ip       = string
+    network_tier = string
+  }))
+  default     = []
 }

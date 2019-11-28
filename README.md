@@ -28,7 +28,7 @@ See also the [project_services](modules/project_services) module (optional).
 ## Notes
 
 `distribution_policy_zones` cannot be changed during use. If you have changed them yourself or
- used to have a default value, then you'll have to force recreate a MIG group yourself.
+used to have a default value, then you'll have to force recreate a MIG group yourself.
 
 ## Test Configuration
 

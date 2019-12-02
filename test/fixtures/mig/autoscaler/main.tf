@@ -27,6 +27,7 @@ module "mig_autoscaler" {
   service_account     = var.service_account
   autoscaling_enabled = "true"
   min_replicas        = 4
+  name_prefix         = random_string.suffix.result
 
   autoscaling_cpu = [
     {

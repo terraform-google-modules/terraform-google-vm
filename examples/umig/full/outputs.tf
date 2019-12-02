@@ -24,3 +24,7 @@ output "umig_self_links" {
   value       = module.umig.self_links
 }
 
+output "instance_template_name" {
+  description = "Instance template name"
+  value       = module.instance_template.name
+}

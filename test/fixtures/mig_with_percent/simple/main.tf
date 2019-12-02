@@ -25,4 +25,5 @@ module "mig_with_percent_simple" {
   region           = var.region
   subnetwork       = google_compute_subnetwork.main.name
   service_account  = var.service_account
+  name_prefix      = random_string.suffix.result
 }

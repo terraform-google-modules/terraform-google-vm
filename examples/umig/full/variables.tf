@@ -64,8 +64,9 @@ variable "named_ports" {
 # Instance Template
 ####################
 variable "name_prefix" {
-  description = "Name prefix for the instance template"
   default     = "default-instance-template"
+  type        = string
+  description = "Optional name prefix for resources"
 }
 
 variable "machine_type" {

@@ -34,3 +34,7 @@ output "credentials_path" {
   value       = local.credentials_path
 }
 
+output "instance_template_name" {
+  description = "Instance template name"
+  value       = module.umig_named_ports.instance_template_name
+}

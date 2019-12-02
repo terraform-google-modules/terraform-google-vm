@@ -38,3 +38,9 @@ variable "service_account" {
   })
   description = "Service account email address and scopes"
 }
+
+variable "name_prefix" {
+  default     = null
+  type        = string
+  description = "Optional name prefix for resources"
+}

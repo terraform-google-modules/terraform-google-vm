@@ -32,6 +32,7 @@ module "instance_template" {
   source          = "../../../modules/instance_template"
   subnetwork      = var.subnetwork
   service_account = var.service_account
+  name_prefix     = var.name_prefix
 }
 
 module "umig" {

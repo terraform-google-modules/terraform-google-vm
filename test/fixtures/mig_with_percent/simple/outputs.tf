@@ -34,3 +34,7 @@ output "region" {
   value       = var.region
 }
 
+output "preemptible_name" {
+  description = "Instance template name"
+  value       = module.mig_with_percent_simple.preemptible_name
+}

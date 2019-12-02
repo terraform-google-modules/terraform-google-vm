@@ -26,6 +26,7 @@ module "preemptible_and_regular_instance_templates" {
   subnetwork       = google_compute_subnetwork.main.name
   service_account  = var.service_account
   tags             = ["foo", "bar"]
+  name_prefix      = random_string.suffix.result
 
   labels = {
     environment = "dev"

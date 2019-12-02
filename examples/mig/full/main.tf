@@ -30,7 +30,7 @@ provider "google-beta" {
 
 module "instance_template" {
   source          = "../../../modules/instance_template"
-  name_prefix     = "${var.hostname}-instance-template"
+  name_prefix     = var.name_prefix != null ? var.name_prefix : "${var.hostname}-instance-template"
   project_id      = var.project_id
   machine_type    = var.machine_type
   tags            = var.tags

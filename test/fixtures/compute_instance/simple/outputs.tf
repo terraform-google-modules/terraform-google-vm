@@ -29,3 +29,7 @@ output "credentials_path" {
   value       = local.credentials_path
 }
 
+output "instance_template_name" {
+  description = "Instance template name"
+  value       = module.instance_simple.instance_template_name
+}

@@ -24,3 +24,12 @@ output "available_zones" {
   value       = module.compute_instance.available_zones
 }
 
+output "instance_template_name" {
+  description = "Instance template name"
+  value       = module.instance_template.name
+}
+
+output "instances_names" {
+  description = "List of names of compute instances"
+  value       = module.compute_instance.instances_names
+}

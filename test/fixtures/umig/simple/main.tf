@@ -26,5 +26,6 @@ module "umig_simple" {
   subnetwork       = google_compute_subnetwork.main.name
   num_instances    = 4
   service_account  = var.service_account
+  name_prefix      = random_string.suffix.result
 }
 

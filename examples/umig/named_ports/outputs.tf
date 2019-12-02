@@ -29,3 +29,7 @@ output "available_zones" {
   value       = module.umig.available_zones
 }
 
+output "instance_template_name" {
+  description = "Instance template name"
+  value       = module.instance_template.name
+}

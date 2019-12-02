@@ -32,6 +32,7 @@ module "instance_template" {
   subnetwork         = var.subnetwork
   service_account    = var.service_account
   subnetwork_project = var.project_id
+  name_prefix        = var.name_prefix
 }
 
 module "mig" {

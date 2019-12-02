@@ -24,3 +24,7 @@ output "mig_self_link" {
   value       = module.mig.self_link
 }
 
+output "instance_template_name" {
+  description = "Instance template name"
+  value       = module.instance_template.name
+}

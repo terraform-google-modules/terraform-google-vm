@@ -33,3 +33,8 @@ output "credentials_path" {
   description = "The path to the GCP credentials JSON file"
   value       = local.credentials_path
 }
+
+output "preemptible_name" {
+  description = "Instance template name"
+  value       = module.preemptible_and_regular_instance_templates.preemptible_name
+}

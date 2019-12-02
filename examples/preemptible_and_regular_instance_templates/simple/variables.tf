@@ -49,3 +49,9 @@ variable "labels" {
   type        = map(string)
   description = "Labels, provided as a map"
 }
+
+variable "name_prefix" {
+  default     = "pvm-and-regular-simple"
+  type        = string
+  description = "Optional name prefix for resources"
+}

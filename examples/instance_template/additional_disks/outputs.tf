@@ -23,4 +23,3 @@ output "name" {
   description = "Name of the instance templates"
   value       = module.instance_template.name
 }
-

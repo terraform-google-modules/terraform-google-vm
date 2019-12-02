@@ -24,6 +24,7 @@ module "umig_static_ips" {
   project_id       = var.project_id
   region           = "us-central1"
   subnetwork       = google_compute_subnetwork.main.name
+  name_prefix      = random_string.suffix.result
 
   static_ips = [
     "10.128.0.10",

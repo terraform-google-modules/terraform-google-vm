@@ -51,3 +51,9 @@ variable "named_ports" {
   }))
   default = []
 }
+
+variable "name_prefix" {
+  default     = null
+  type        = string
+  description = "Optional name prefix for resources"
+}

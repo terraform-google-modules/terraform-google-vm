@@ -47,10 +47,13 @@ variable "min_replicas" {
   description = "The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0."
 }
 
-
-
 variable "autoscaling_cpu" {
   description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization"
   type        = list(map(number))
 }
 
+variable "name_prefix" {
+  default     = null
+  type        = string
+  description = "Optional name prefix for resources"
+}

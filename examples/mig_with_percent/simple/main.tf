@@ -32,6 +32,7 @@ module "preemptible_and_regular_instance_templates" {
   source          = "../../../modules/preemptible_and_regular_instance_templates"
   subnetwork      = var.subnetwork
   service_account = var.service_account
+  name_prefix     = var.name_prefix
 }
 
 module "mig_with_percent" {

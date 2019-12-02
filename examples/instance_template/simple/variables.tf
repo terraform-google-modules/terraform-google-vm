@@ -50,3 +50,8 @@ variable "labels" {
   description = "Labels, provided as a map"
 }
 
+variable "name_prefix" {
+  default     = "simple"
+  type        = string
+  description = "Optional name prefix for resources"
+}

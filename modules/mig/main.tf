@@ -73,8 +73,8 @@ resource "google_compute_region_instance_group_manager" "mig" {
   }
 
   lifecycle {
-    create_before_destroy = "true"
-    ignore_changes        = ["distribution_policy_zones"]
+    create_before_destroy = true
+    ignore_changes        = [distribution_policy_zones]
   }
 }
 

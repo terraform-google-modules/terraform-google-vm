@@ -45,5 +45,6 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 |------|-------------|
 | name | Name of instance template |
 | self\_link | Self-link of instance template |
+| target\_tags | Tags that will be associated with instance(s) |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

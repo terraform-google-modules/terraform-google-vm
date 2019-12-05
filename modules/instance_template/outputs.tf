@@ -24,7 +24,7 @@ output "name" {
   value       = google_compute_instance_template.tpl.name
 }
 
-output "target_tags" {
+output "tags" {
   description = "Tags that will be associated with instance(s)"
-  value       = var.tags
+  value       = google_compute_instance_template.tpl.tags
 }

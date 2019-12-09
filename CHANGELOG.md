@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [1.3.0] - 2019-12-09
+
+### Added
+
+- Output for `tags` from `instance_template` [#33]
 
 ## [1.2.0] - 2019-11-28
 

@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+provider "random" {
+  version = "~> 2.2"
+}
+
 resource "random_string" "suffix" {
   length  = 4
   special = "false"
@@ -33,4 +37,3 @@ resource "google_compute_subnetwork" "main" {
   ip_cidr_range = "10.128.0.0/20"
   network       = google_compute_network.main.self_link
 }
-

@@ -21,13 +21,6 @@ provider "google" {
   version     = "~> 2.7.0"
 }
 
-provider "google-beta" {
-  credentials = file(var.credentials_path)
-  project     = var.project_id
-  region      = var.region
-  version     = "~> 2.7.0"
-}
-
 module "instance_template" {
   source          = "../../../modules/instance_template"
   name_prefix     = "${var.hostname}-instance-template"
@@ -69,4 +62,3 @@ module "umig" {
   instance_template  = module.instance_template.self_link
   named_ports        = var.named_ports
 }
-

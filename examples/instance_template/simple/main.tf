@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+provider "google" {
+  credentials = file(var.credentials_path)
+  project     = var.project_id
+  region      = var.region
+  version     = "~> 2.7.0"
+}
 
 resource "google_compute_address" "ip_address" {
   name = "external-ip"
@@ -26,13 +32,6 @@ locals {
   }
 }
 
-provider "google" {
-  credentials = file(var.credentials_path)
-  project     = var.project_id
-  region      = var.region
-  version     = "~> 2.7.0"
-}
-
 module "instance_template" {
   source          = "../../../modules/instance_template"
   project_id      = var.project_id
@@ -43,4 +42,3 @@ module "instance_template" {
   labels          = var.labels
   access_config   = [local.access_config]
 }
-

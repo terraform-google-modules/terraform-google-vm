@@ -27,4 +27,3 @@ module "instance_simple" {
   num_instances    = 4
   service_account  = var.service_account
 }
-

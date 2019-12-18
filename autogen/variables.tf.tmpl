@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// This file was automatically generated from a template in ./autogen
+{{ autogeneration_note }}
 
 variable "project_id" {
   type        = string
@@ -31,6 +31,12 @@ variable "region" {
   description = "The GCP region where the managed instance group resides."
 }
 
+{% if mig %}
+variable "instance_template" {
+  description = "Instance template self_link used to create compute instances"
+}
+
+{% else %}
 variable "instance_template_initial_version" {
   description = "Instance template self_link used to create compute instances for the initial version"
 }
@@ -43,6 +49,7 @@ variable "next_version_percent" {
   description = "Percentage of instances defined in the second version"
 }
 
+{% endif %}
 variable "target_size" {
   description = "The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set."
   default     = 1

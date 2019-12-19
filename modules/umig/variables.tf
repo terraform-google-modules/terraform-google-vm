@@ -25,6 +25,11 @@ variable "network" {
   default     = ""
 }
 
+variable "region" {
+  description = "The GCP region where the unmanaged instance group resides."
+  type        = string
+}
+
 variable "subnetwork" {
   description = "Subnet to deploy to. Only one of network or subnetwork should be specified."
   default     = ""

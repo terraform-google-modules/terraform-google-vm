@@ -21,6 +21,7 @@ See the [simple](examples/umig/simple) for a usage example.
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
 | num\_instances | Number of instances to create. This value is ignored if static_ips is provided. | string | `"1"` | no |
 | project\_id | The GCP project ID | string | `"null"` | no |
+| region | The GCP region where the unmanaged instance group resides. | string | n/a | yes |
 | static\_ips | List of static IPs for VM instances | list(string) | `<list>` | no |
 | subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
 | subnetwork\_project | The project that subnetwork belongs to | string | `""` | no |

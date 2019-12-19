@@ -35,4 +35,5 @@ module "umig" {
   hostname          = "umig-named-ports"
   instance_template = module.instance_template.self_link
   named_ports       = var.named_ports
+  region            = var.region
 }

@@ -51,6 +51,13 @@ resource "google_compute_instance_from_template" "compute_instance" {
     subnetwork         = var.subnetwork
     subnetwork_project = var.subnetwork_project
     network_ip         = length(var.static_ips) == 0 ? "" : element(local.static_ips, count.index)
+
+    dynamic "access_config" {
+      for_each = list(element(var.static_external_ips, count.index))
+      content {
+        nat_ip = access_config.value
+      }
+    }
   }
 
   source_instance_template = var.instance_template

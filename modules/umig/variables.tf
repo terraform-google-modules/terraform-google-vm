@@ -46,6 +46,12 @@ variable "static_ips" {
   default     = []
 }
 
+variable "static_external_ips" {
+  type = list(string)
+  description = "List of static external IPs for VM instances"
+  default = []
+}
+
 variable "num_instances" {
   description = "Number of instances to create. This value is ignored if static_ips is provided."
   default     = "1"
@@ -63,4 +69,3 @@ variable "named_ports" {
 variable "instance_template" {
   description = "Instance template self_link used to create compute instances"
 }
-

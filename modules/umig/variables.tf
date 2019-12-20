@@ -47,9 +47,9 @@ variable "static_ips" {
 }
 
 variable "static_external_ips" {
-  type = list(string)
+  type        = list(string)
   description = "List of static external IPs for VM instances"
-  default = []
+  default     = []
 }
 
 variable "num_instances" {

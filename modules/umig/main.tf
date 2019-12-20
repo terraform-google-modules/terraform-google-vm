@@ -53,7 +53,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
     network_ip         = length(var.static_ips) == 0 ? "" : element(local.static_ips, count.index)
 
     dynamic "access_config" {
-      for_each = list(element(var.static_external_ips, count.index))
+      for_each = list(length(var.static_external_ips) == 0 ? "" : element(var.static_external_ips, count.index))
       content {
         nat_ip = access_config.value
       }

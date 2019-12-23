@@ -73,7 +73,7 @@ module "mig" {
   named_ports               = var.named_ports
 
   /* health check */
-  http_healthcheck_enable = var.health_check
+  health_check = var.health_check
 
   /* autoscaler */
   autoscaling_enabled = var.autoscaling_enabled

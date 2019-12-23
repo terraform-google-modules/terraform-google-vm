@@ -192,49 +192,36 @@ variable "update_policy" {
 
 /* health checks */
 
-variable "http_healthcheck_enable" {
-  description = "Enable HTTP healthcheck"
-  default     = "false"
-}
-
-variable "tcp_healthcheck_enable" {
-  description = "Enable TCP healthcheck"
-  default     = "false"
-}
-
-variable "hc_initial_delay_sec" {
-  description = "Health check, intial delay in seconds."
-  default     = 30
-}
-
-variable "hc_interval_sec" {
-  description = "Health check interval in seconds."
-  default     = 30
-}
-
-variable "hc_timeout_sec" {
-  description = "Health check timeout in seconds."
-  default     = 10
-}
-
-variable "hc_healthy_threshold" {
-  description = "Health check healthy threshold."
-  default     = 1
-}
-
-variable "hc_unhealthy_threshold" {
-  description = "Health check unhealthy threshold."
-  default     = 5
-}
-
-variable "hc_path" {
-  description = "Health check http path to check."
-  default     = "/"
-}
-
-variable "hc_port" {
-  description = "Health check port."
-  default     = ""
+variable "health_check" {
+  description = "Health check to determine whether instances are responsive and able to do work"
+  type = object({
+    type                = string
+    initial_delay_sec   = number
+    check_interval_sec  = number
+    healthy_threshold   = number
+    timeout_sec         = number
+    unhealthy_threshold = number
+    response            = string
+    proxy_header        = string
+    port                = number
+    request             = string
+    request_path        = string
+    host                = string
+  })
+  default = {
+    type                = "http"
+    initial_delay_sec   = 30
+    check_interval_sec  = 30
+    healthy_threshold   = 1
+    timeout_sec         = 10
+    unhealthy_threshold = 5
+    response            = ""
+    proxy_header        = "NONE"
+    port                = 80
+    request             = ""
+    request_path        = "/"
+    host                = ""
+  }
 }
 
 /* autoscaler */

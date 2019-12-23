@@ -18,8 +18,8 @@
 
 locals {
   healthchecks = concat(
-    google_compute_health_check.http_healthcheck.*.self_link,
-    google_compute_health_check.tcp_healthcheck.*.self_link,
+    google_compute_health_check.http.*.self_link,
+    google_compute_health_check.tcp.*.self_link,
   )
   distribution_policy_zones_base = {
     default = data.google_compute_zones.available.names
@@ -57,7 +57,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
 
   auto_healing_policies {
     health_check      = length(local.healthchecks) > 0 ? local.healthchecks[0] : ""
-    initial_delay_sec = length(local.healthchecks) > 0 ? var.hc_initial_delay_sec : 0
+    initial_delay_sec = length(local.healthchecks) > 0 ? var.health_check["initial_delay_sec"] : 0
   }
 
   distribution_policy_zones = local.distribution_policy_zones
@@ -115,35 +115,39 @@ resource "google_compute_region_autoscaler" "autoscaler" {
   }
 }
 
-resource "google_compute_health_check" "http_healthcheck" {
-  provider = google
-  count    = var.http_healthcheck_enable ? 1 : 0
-  name     = "${var.hostname}-http-healthcheck"
-  project  = var.project_id
+resource "google_compute_health_check" "http" {
+  count   = var.health_check["type"] == "http" ? 1 : 0
+  project = var.project_id
+  name    = "${var.hostname}-http-healthcheck"
 
-  check_interval_sec  = var.hc_interval_sec
-  timeout_sec         = var.hc_timeout_sec
-  healthy_threshold   = var.hc_healthy_threshold
-  unhealthy_threshold = var.hc_unhealthy_threshold
+  check_interval_sec  = var.health_check["check_interval_sec"]
+  healthy_threshold   = var.health_check["healthy_threshold"]
+  timeout_sec         = var.health_check["timeout_sec"]
+  unhealthy_threshold = var.health_check["unhealthy_threshold"]
 
   http_health_check {
-    request_path = var.hc_path
-    port         = var.hc_port
+    port         = var.health_check["port"]
+    request_path = var.health_check["request_path"]
+    host         = var.health_check["host"]
+    response     = var.health_check["response"]
+    proxy_header = var.health_check["proxy_header"]
   }
 }
 
-resource "google_compute_health_check" "tcp_healthcheck" {
-  provider = google
-  count    = var.tcp_healthcheck_enable ? 1 : 0
-  project  = var.project_id
-  name     = "${var.hostname}-tcp-healthcheck"
+resource "google_compute_health_check" "tcp" {
+  count   = var.health_check["type"] == "tcp" ? 1 : 0
+  project = var.project_id
+  name    = "${var.hostname}-tcp-healthcheck"
 
-  check_interval_sec  = var.hc_interval_sec
-  timeout_sec         = var.hc_timeout_sec
-  healthy_threshold   = var.hc_healthy_threshold
-  unhealthy_threshold = var.hc_unhealthy_threshold
+  timeout_sec         = var.health_check["timeout_sec"]
+  check_interval_sec  = var.health_check["check_interval_sec"]
+  healthy_threshold   = var.health_check["healthy_threshold"]
+  unhealthy_threshold = var.health_check["unhealthy_threshold"]
 
   tcp_health_check {
-    port = var.hc_port
+    port         = var.health_check["port"]
+    request      = var.health_check["request"]
+    response     = var.health_check["response"]
+    proxy_header = var.health_check["proxy_header"]
   }
 }

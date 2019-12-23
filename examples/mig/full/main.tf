@@ -72,16 +72,8 @@ module "mig" {
   update_policy             = var.update_policy
   named_ports               = var.named_ports
 
-  /* health checks */
-  http_healthcheck_enable = var.http_healthcheck_enable
-  tcp_healthcheck_enable  = var.tcp_healthcheck_enable
-  hc_initial_delay_sec    = var.hc_initial_delay_sec
-  hc_interval_sec         = var.hc_interval_sec
-  hc_timeout_sec          = var.hc_timeout_sec
-  hc_healthy_threshold    = var.hc_healthy_threshold
-  hc_unhealthy_threshold  = var.hc_unhealthy_threshold
-  hc_path                 = var.hc_path
-  hc_port                 = var.hc_port
+  /* health check */
+  http_healthcheck_enable = var.health_check
 
   /* autoscaler */
   autoscaling_enabled = var.autoscaling_enabled

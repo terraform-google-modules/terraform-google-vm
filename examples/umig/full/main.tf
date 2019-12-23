@@ -21,6 +21,17 @@ provider "google" {
   version     = "~> 2.7.0"
 }
 
+resource "google_compute_address" "ip_address" {
+  name = "external-ip"
+}
+
+locals {
+  access_config = {
+    nat_ip       = google_compute_address.ip_address.address
+    network_tier = "PREMIUM"
+  }
+}
+
 module "instance_template" {
   source          = "../../../modules/instance_template"
   name_prefix     = "${var.hostname}-instance-template"
@@ -61,4 +72,5 @@ module "umig" {
   num_instances      = var.target_size
   instance_template  = module.instance_template.self_link
   named_ports        = var.named_ports
+  access_config      = [local.access_config]
 }

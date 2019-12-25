@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+### Changed
+
+- Replace health check related variables with a single object type parameter called `health_check` on the `mig` and `mig_with_percent` submodules [#56]
+
 ## [1.3.0] - 2019-12-09
 
 ### Added
@@ -77,3 +82,4 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [#42]: https://github.com/terraform-google-modules/terraform-google-vm/pull/42
 [#43]: https://github.com/terraform-google-modules/terraform-google-vm/pull/43
 [#44]: https://github.com/terraform-google-modules/terraform-google-vm/pull/44
+[#56]: https://github.com/terraform-google-modules/terraform-google-vm/pull/56

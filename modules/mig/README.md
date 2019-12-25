@@ -7,6 +7,12 @@ and optionally, an autoscaler and healthchecks.
 
 See the [simple example](../../examples/mig/simple) for a usage example.
 
+## Upgrading
+
+The current version is 2.X. The following guides are available to assist with upgrades:
+
+- [1.X -> 2.0](../../docs/upgrading_to_mig_v2.0.md)
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 

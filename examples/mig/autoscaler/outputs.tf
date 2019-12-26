@@ -24,3 +24,7 @@ output "mig_self_link" {
   value       = module.mig.self_link
 }
 
+output "region" {
+  description = "The GCP region to create and test resources in"
+  value       = var.region
+}

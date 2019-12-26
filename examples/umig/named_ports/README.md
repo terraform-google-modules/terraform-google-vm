@@ -8,11 +8,10 @@ groups with named ports
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| credentials\_path | The path to the GCP credentials JSON file | string | n/a | yes |
 | named\_ports | Named name and named port | object | `<list>` | no |
 | num\_instances | Number of instances to create | string | n/a | yes |
 | project\_id | The GCP project to use for integration tests | string | n/a | yes |
-| region | The GCP region to create and test resources in | string | n/a | yes |
+| region | The GCP region to create and test resources in | string | `"us-central1"` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account. | object | `"null"` | no |
 | subnetwork | The subnetwork to host the compute instances in | string | n/a | yes |
 

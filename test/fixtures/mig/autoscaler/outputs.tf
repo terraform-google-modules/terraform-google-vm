@@ -21,11 +21,8 @@ output "project_id" {
 
 output "region" {
   description = "The GCP region to create and test resources in"
-  value       = var.region
+  value       = module.mig_autoscaler.region
 }
 
-output "credentials_path" {
-  description = "The path to the GCP credentials JSON file"
-  value       = local.credentials_path
-}
+
 

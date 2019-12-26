@@ -22,5 +22,6 @@ group with an autoscaler.
 |------|-------------|
 | instance\_template\_self\_link | Self-link of instance template |
 | mig\_self\_link | Self-link for managed instance group |
+| region | The GCP region to create and test resources in |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

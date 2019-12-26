@@ -17,7 +17,6 @@
 module "mig_autoscaler" {
   source              = "../../../../examples/mig/autoscaler"
   project_id          = var.project_id
-  region              = var.region
   subnetwork          = google_compute_subnetwork.main.name
   service_account     = var.service_account
   autoscaling_enabled = "true"

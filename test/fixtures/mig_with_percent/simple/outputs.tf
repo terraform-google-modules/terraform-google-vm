@@ -24,10 +24,8 @@ output "project_id" {
   value       = var.project_id
 }
 
-
-
 output "region" {
   description = "The GCP region to create and test resources in"
-  value       = var.region
+  value       = module.mig_with_percent_simple.region
 }
 

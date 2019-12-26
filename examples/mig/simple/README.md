@@ -18,6 +18,7 @@ managed instance group.
 
 | Name | Description |
 |------|-------------|
+| region | The GCP region to create and test resources in |
 | self\_link | Self-link of the managed instance group |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

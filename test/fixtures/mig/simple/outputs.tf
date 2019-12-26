@@ -26,7 +26,7 @@ output "project_id" {
 
 output "region" {
   description = "The GCP region to create and test resources in"
-  value       = var.region
+  value       = module.mig_simple.region
 }
 
 

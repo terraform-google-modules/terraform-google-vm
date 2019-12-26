@@ -18,10 +18,6 @@ variable "project_id" {
   description = "The GCP project to use for integration tests"
 }
 
-variable "region" {
-  description = "The GCP region to create and test resources in"
-}
-
 variable "service_account" {
   default = null
   type = object({

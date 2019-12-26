@@ -15,11 +15,11 @@
  */
 
 module "mig_simple" {
-  source           = "../../../../examples/mig/simple"
-  project_id       = var.project_id
-  region           = var.region
-  subnetwork       = google_compute_subnetwork.main.name
-  target_size      = 4
-  service_account  = var.service_account
+  source          = "../../../../examples/mig/simple"
+  project_id      = var.project_id
+  region          = var.region
+  subnetwork      = google_compute_subnetwork.main.name
+  target_size     = 4
+  service_account = var.service_account
 }
 

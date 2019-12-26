@@ -16,10 +16,10 @@
 
 
 module "instance_simple" {
-  source           = "../../../../examples/compute_instance/simple"
-  project_id       = var.project_id
-  region           = "us-central1"
-  subnetwork       = google_compute_subnetwork.main.name
-  num_instances    = 4
-  service_account  = var.service_account
+  source          = "../../../../examples/compute_instance/simple"
+  project_id      = var.project_id
+  region          = "us-central1"
+  subnetwork      = google_compute_subnetwork.main.name
+  num_instances   = 4
+  service_account = var.service_account
 }

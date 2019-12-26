@@ -15,12 +15,12 @@
  */
 
 module "preemptible_and_regular_instance_templates" {
-  source           = "../../../../examples/preemptible_and_regular_instance_templates/simple"
-  project_id       = var.project_id
-  region           = var.region
-  subnetwork       = google_compute_subnetwork.main.name
-  service_account  = var.service_account
-  tags             = ["foo", "bar"]
+  source          = "../../../../examples/preemptible_and_regular_instance_templates/simple"
+  project_id      = var.project_id
+  region          = var.region
+  subnetwork      = google_compute_subnetwork.main.name
+  service_account = var.service_account
+  tags            = ["foo", "bar"]
 
   labels = {
     environment = "dev"

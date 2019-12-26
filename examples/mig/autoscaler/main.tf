@@ -16,16 +16,16 @@
 
 provider "google" {
 
-  project     = var.project_id
-  region      = var.region
-  version     = "~> 2.7.0"
+  project = var.project_id
+  region  = var.region
+  version = "~> 2.7.0"
 }
 
 provider "google-beta" {
 
-  project     = var.project_id
-  region      = var.region
-  version     = "~> 2.7.0"
+  project = var.project_id
+  region  = var.region
+  version = "~> 2.7.0"
 }
 
 module "instance_template" {

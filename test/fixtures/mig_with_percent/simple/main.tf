@@ -15,9 +15,9 @@
  */
 
 module "mig_with_percent_simple" {
-  source           = "../../../../examples/mig_with_percent/simple"
-  project_id       = var.project_id
-  region           = var.region
-  subnetwork       = google_compute_subnetwork.main.name
-  service_account  = var.service_account
+  source          = "../../../../examples/mig_with_percent/simple"
+  project_id      = var.project_id
+  region          = var.region
+  subnetwork      = google_compute_subnetwork.main.name
+  service_account = var.service_account
 }

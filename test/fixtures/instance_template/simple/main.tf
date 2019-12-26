@@ -15,12 +15,12 @@
  */
 
 module "instance_template_simple" {
-  source           = "../../../../examples/instance_template/simple"
-  project_id       = var.project_id
-  region           = var.region
-  subnetwork       = google_compute_subnetwork.main.name
-  service_account  = var.service_account
-  tags             = ["foo", "bar"]
+  source          = "../../../../examples/instance_template/simple"
+  project_id      = var.project_id
+  region          = var.region
+  subnetwork      = google_compute_subnetwork.main.name
+  service_account = var.service_account
+  tags            = ["foo", "bar"]
 
   labels = {
     environment = "dev"

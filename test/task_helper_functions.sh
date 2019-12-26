@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-function generate() {
+function generate_modules() {
   pip3 install --user -r /workspace/helpers/generate_modules/requirements.txt
   /workspace/helpers/generate_modules/generate_modules.py
 }

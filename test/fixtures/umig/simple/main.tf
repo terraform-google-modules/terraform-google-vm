@@ -14,13 +14,8 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
-}
-
 module "umig_simple" {
   source           = "../../../../examples/umig/simple"
-  credentials_path = local.credentials_path
   project_id       = var.project_id
   region           = "us-central1"
   subnetwork       = google_compute_subnetwork.main.name

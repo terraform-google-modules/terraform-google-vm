@@ -14,13 +14,8 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
-}
-
 module "instance_template_simple" {
   source           = "../../../../examples/instance_template/simple"
-  credentials_path = local.credentials_path
   project_id       = var.project_id
   region           = var.region
   subnetwork       = google_compute_subnetwork.main.name

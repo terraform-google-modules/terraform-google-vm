@@ -15,14 +15,14 @@
  */
 
 provider "google" {
-  credentials = file(var.credentials_path)
+
   project     = var.project_id
   region      = var.region
   version     = "~> 2.11"
 }
 
 provider "google-beta" {
-  credentials = file(var.credentials_path)
+
   project     = var.project_id
   region      = var.region
   version     = "~> 2.11"

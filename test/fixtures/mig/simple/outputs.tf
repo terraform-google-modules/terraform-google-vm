@@ -29,8 +29,5 @@ output "region" {
   value       = var.region
 }
 
-output "credentials_path" {
-  description = "The path to the GCP credentials JSON file"
-  value       = local.credentials_path
-}
+
 

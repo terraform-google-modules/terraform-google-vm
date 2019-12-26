@@ -23,6 +23,9 @@ output "sa_key" {
   sensitive = true
 }
 
-output "sa_email" {
-  value = google_service_account.ci_vm_account.email
+output "service_account" {
+  value = {
+    email  = google_service_account.ci_vm_account.email
+    scopes = ["cloud-platform"]
+  }
 }

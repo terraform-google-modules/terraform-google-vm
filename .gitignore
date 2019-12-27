@@ -14,8 +14,6 @@ terraform.tfvars
 __pycache__/
 *.iml
 
-*.json
-
 # Kitchen files
 **/inspec.lock
 **/.kitchen

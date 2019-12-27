@@ -93,4 +93,4 @@ docker_generate_modules:
 generate_docs: docker_generate_docs
 
 .PHONY: generate_modules
-generate: docker_generate_modules
+generate_modules: docker_generate_modules

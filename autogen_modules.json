@@ -1,0 +1,23 @@
+[
+  {
+    "template_folder": "./autogen",
+    "path": "./modules/mig",
+    "options": {
+      "module_path": "//modules/mig",
+      "module_name": "mig",
+      "module_name_hr": "mig",
+      "mig": true
+    }
+  },
+
+  {
+    "template_folder": "./autogen",
+    "path": "./modules/mig_with_percent",
+    "options": {
+      "module_path": "//modules/mig_with_percent",
+      "module_name": "mig_with_percent",
+      "module_name_hr": "mig-with-percent",
+      "mig_with_percent": true
+    }
+  }
+]

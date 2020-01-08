@@ -13,11 +13,6 @@
 # limitations under the License.
 
 project_id = attribute('project_id')
-credentials_path = attribute('credentials_path')
-
-ENV['CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE'] = File.absolute_path(
-  credentials_path,
-  File.join(__dir__, "../../../fixtures/instance_template/simple"))
 
 expected_templates = 1
 expected_disks = 1

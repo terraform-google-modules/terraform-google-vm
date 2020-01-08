@@ -29,8 +29,5 @@ output "project_id" {
   value       = var.project_id
 }
 
-output "credentials_path" {
-  description = "The path to the GCP credentials JSON file"
-  value       = local.credentials_path
-}
+
 

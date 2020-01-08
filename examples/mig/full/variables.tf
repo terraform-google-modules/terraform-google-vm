@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,8 @@ variable "hostname" {
 
 variable "region" {
   description = "The GCP region where instances will be deployed."
+  type        = string
+  default     = "us-central1"
 }
 
 variable "network" {
@@ -39,12 +41,10 @@ variable "subnetwork" {
 
 variable "project_id" {
   description = "The GCP project to use for integration tests"
+  type        = string
 }
 
-variable "credentials_path" {
-  description = "The path to the GCP credentials JSON file"
-  default     = ""
-}
+
 
 variable "subnetwork_project" {
   description = "The project that subnetwork belongs to"

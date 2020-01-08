@@ -14,18 +14,13 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
-}
-
 module "umig_named_ports" {
-  source           = "../../../../examples/umig/named_ports"
-  credentials_path = local.credentials_path
-  project_id       = var.project_id
-  region           = "us-central1"
-  subnetwork       = google_compute_subnetwork.main.name
-  num_instances    = 4
-  service_account  = var.service_account
+  source          = "../../../../examples/umig/named_ports"
+  project_id      = var.project_id
+  region          = "us-central1"
+  subnetwork      = google_compute_subnetwork.main.name
+  num_instances   = 4
+  service_account = var.service_account
 
   named_ports = [
     {

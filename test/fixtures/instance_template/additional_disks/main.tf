@@ -14,16 +14,10 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_path = "${path.module}/${var.credentials_path_relative}"
-}
-
 module "instance_template_additional_disks" {
-  source           = "../../../../examples/instance_template/additional_disks"
-  credentials_path = local.credentials_path
-  project_id       = var.project_id
-  region           = var.region
-  subnetwork       = google_compute_subnetwork.main.name
-  service_account  = var.service_account
+  source          = "../../../../examples/instance_template/additional_disks"
+  project_id      = var.project_id
+  subnetwork      = google_compute_subnetwork.main.name
+  service_account = var.service_account
 }
 

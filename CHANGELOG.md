@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+### Added
+
+- `access_config` variable on the `umig` submodule. [#57]
+
+
 ## [1.3.0] - 2019-12-09
 
 ### Added
@@ -16,7 +22,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Support for public IPs. Added `access_config` variable. [#43]
+- `access_config` variable on the `instance_template` and `preemptible_and_regular_instance_templates` submodules. [#43]
 
 ### Fixed
 
@@ -77,3 +83,4 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [#42]: https://github.com/terraform-google-modules/terraform-google-vm/pull/42
 [#43]: https://github.com/terraform-google-modules/terraform-google-vm/pull/43
 [#44]: https://github.com/terraform-google-modules/terraform-google-vm/pull/44
+[#57]: https://github.com/terraform-google-modules/terraform-google-vm/pull/57

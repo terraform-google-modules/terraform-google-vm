@@ -15,6 +15,7 @@ See the [simple](examples/umig/simple) for a usage example.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | object | `<list>` | no |
 | hostname | Hostname of instances | string | `""` | no |
 | instance\_template | Instance template self_link used to create compute instances | string | n/a | yes |
 | named\_ports | Named name and named port | object | `<list>` | no |

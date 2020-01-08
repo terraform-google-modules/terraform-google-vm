@@ -7,10 +7,15 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.4.0] - 2020-01-08
+
 ### Added
 
 - `access_config` variable on the `umig` submodule. [#57]
 
+### Changed
+
+- The required Terraform provider versions are enforced. [#52]
 
 ## [1.3.0] - 2019-12-09
 
@@ -64,7 +69,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - `instance_template`, `mig`, and `umig` modules
 - examples, basic tests and fixtures for all modules
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.1.0...v1.1.1
@@ -83,4 +89,5 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [#42]: https://github.com/terraform-google-modules/terraform-google-vm/pull/42
 [#43]: https://github.com/terraform-google-modules/terraform-google-vm/pull/43
 [#44]: https://github.com/terraform-google-modules/terraform-google-vm/pull/44
+[#52]: https://github.com/terraform-google-modules/terraform-google-vm/pull/52
 [#57]: https://github.com/terraform-google-modules/terraform-google-vm/pull/57

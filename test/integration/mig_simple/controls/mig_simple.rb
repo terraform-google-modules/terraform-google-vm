@@ -13,12 +13,7 @@
 # limitations under the License.
 
 project_id = attribute('project_id')
-credentials_path = attribute('credentials_path')
 region     = attribute('region')
-
-ENV['CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE'] = File.absolute_path(
-  credentials_path,
-  File.join(__dir__, "../../../fixtures/mig/simple"))
 
 expected_instances = 4
 expected_instance_groups = 1

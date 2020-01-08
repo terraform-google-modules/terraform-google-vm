@@ -18,15 +18,11 @@ variable "project_id" {
   description = "The GCP project to use for integration tests"
 }
 
-variable "credentials_path_relative" {
-  description = "The relative path from the fixture directory to the GCP credentials file that will run Terraform tests"
-}
-
 variable "service_account" {
   default = null
   type = object({
     email  = string
-    scopes = set(string)
+    scopes = list(string)
   })
   description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }

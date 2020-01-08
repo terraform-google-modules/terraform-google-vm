@@ -8,9 +8,8 @@ managed instance group.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| credentials\_path | The path to the GCP credentials JSON file | string | n/a | yes |
 | project\_id | The GCP project to use for integration tests | string | n/a | yes |
-| region | The GCP region to create and test resources in | string | n/a | yes |
+| region | The GCP region to create and test resources in | string | `"us-central1"` | no |
 | service\_account | Service account email address and scopes | object | `"null"` | no |
 | subnetwork | The subnetwork to host the compute instances in | string | n/a | yes |
 
@@ -18,6 +17,7 @@ managed instance group.
 
 | Name | Description |
 |------|-------------|
+| region | The GCP region to create and test resources in |
 | self\_link | Self-link of the managed instance group |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -15,10 +15,10 @@
  */
 
 provider "google" {
-  credentials = file(var.credentials_path)
-  project     = var.project_id
-  region      = var.region
-  version     = "~> 2.11"
+
+  project = var.project_id
+  region  = var.region
+  version = "~> 2.11"
 }
 
 module "preemptible_and_regular_instance_templates" {

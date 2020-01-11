@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,17 +15,21 @@
  */
 
 provider "google" {
-  credentials = file(var.credentials_path)
-  project     = var.project_id
-  region      = var.region
-  version     = "~> 2.7.0"
+
+  project = var.project_id
+  region  = var.region
+  version = "~> 2.7.0"
 }
 
-provider "google-beta" {
-  credentials = file(var.credentials_path)
-  project     = var.project_id
-  region      = var.region
-  version     = "~> 2.7.0"
+resource "google_compute_address" "ip_address" {
+  name = "external-ip"
+}
+
+locals {
+  access_config = {
+    nat_ip       = google_compute_address.ip_address.address
+    network_tier = "PREMIUM"
+  }
 }
 
 module "instance_template" {
@@ -68,5 +72,6 @@ module "umig" {
   num_instances      = var.target_size
   instance_template  = module.instance_template.self_link
   named_ports        = var.named_ports
+  region             = var.region
+  access_config      = [local.access_config]
 }
-

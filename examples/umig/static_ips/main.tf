@@ -15,17 +15,10 @@
  */
 
 provider "google" {
-  credentials = file(var.credentials_path)
-  project     = var.project_id
-  region      = var.region
-  version     = "~> 2.7.0"
-}
 
-provider "google-beta" {
-  credentials = file(var.credentials_path)
-  project     = var.project_id
-  region      = var.region
-  version     = "~> 2.7.0"
+  project = var.project_id
+  region  = var.region
+  version = "~> 2.7.0"
 }
 
 module "instance_template" {
@@ -42,5 +35,5 @@ module "umig" {
   hostname          = "umig-static-ips"
   instance_template = module.instance_template.self_link
   static_ips        = var.static_ips
+  region            = var.region
 }
-

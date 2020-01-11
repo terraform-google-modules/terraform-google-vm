@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// This file was automatically generated from a template in ./autogen
+
 locals {
   healthchecks = concat(
     google_compute_health_check.http_healthcheck.*.self_link,
@@ -81,8 +83,8 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
   }
 
   lifecycle {
-    create_before_destroy = "true"
-    ignore_changes        = ["distribution_policy_zones"]
+    create_before_destroy = true
+    ignore_changes        = [distribution_policy_zones]
   }
 }
 
@@ -142,8 +144,8 @@ resource "google_compute_health_check" "http_healthcheck" {
 resource "google_compute_health_check" "tcp_healthcheck" {
   provider = google
   count    = var.tcp_healthcheck_enable ? 1 : 0
-  name     = "${var.hostname}-tcp-healthcheck"
   project  = var.project_id
+  name     = "${var.hostname}-tcp-healthcheck"
 
   check_interval_sec  = var.hc_interval_sec
   timeout_sec         = var.hc_timeout_sec

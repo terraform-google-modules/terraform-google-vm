@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,9 @@ locals {
 ###############
 
 data "google_compute_zones" "available" {
+  project = var.project_id
+  region  = var.region
+  status  = "UP"
 }
 
 #############
@@ -51,6 +54,14 @@ resource "google_compute_instance_from_template" "compute_instance" {
     subnetwork         = var.subnetwork
     subnetwork_project = var.subnetwork_project
     network_ip         = length(var.static_ips) == 0 ? "" : element(local.static_ips, count.index)
+
+    dynamic "access_config" {
+      for_each = var.access_config
+      content {
+        nat_ip       = access_config.value.nat_ip
+        network_tier = access_config.value.network_tier
+      }
+    }
   }
 
   source_instance_template = var.instance_template

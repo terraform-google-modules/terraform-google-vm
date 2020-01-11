@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// This file was automatically generated from a template in ./autogen
+
 output "self_link" {
   description = "Self-link of managed instance group"
   value       = google_compute_region_instance_group_manager.mig_with_percent.self_link

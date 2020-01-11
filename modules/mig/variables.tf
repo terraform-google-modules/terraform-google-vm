@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// This file was automatically generated from a template in ./autogen
+
 variable "project_id" {
   type        = string
   description = "The GCP project ID"
@@ -180,7 +182,7 @@ variable "subnetwork_project" {
 }
 
 variable "named_ports" {
-  description = "Named name and named port"
+  description = "Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports"
   type = list(object({
     name = string
     port = number

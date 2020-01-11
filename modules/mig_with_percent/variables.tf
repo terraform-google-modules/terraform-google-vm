@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// This file was automatically generated from a template in ./autogen
+
 variable "project_id" {
   type        = string
   description = "The GCP project ID"

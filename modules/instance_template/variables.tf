@@ -53,6 +53,12 @@ variable "preemptible" {
   default     = false
 }
 
+variable "region" {
+  type        = string
+  description = "Region where the instance template should be created."
+  default     = null
+}
+
 #######
 # disk
 #######

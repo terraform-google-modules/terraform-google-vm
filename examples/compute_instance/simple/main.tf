@@ -17,18 +17,19 @@
 provider "google" {
 
   project = var.project_id
-  region  = var.region
   version = "~> 2.7.0"
 }
 
 module "instance_template" {
   source          = "../../../modules/instance_template"
+  region          = var.region
   subnetwork      = var.subnetwork
   service_account = var.service_account
 }
 
 module "compute_instance" {
   source            = "../../../modules/compute_instance"
+  region            = var.region
   subnetwork        = var.subnetwork
   num_instances     = var.num_instances
   hostname          = "instance-simple"

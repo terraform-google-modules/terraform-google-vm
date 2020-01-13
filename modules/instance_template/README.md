@@ -29,6 +29,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | network | The name or self_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | string | `""` | no |
 | preemptible | Allow the instance to be preempted | bool | `"false"` | no |
 | project\_id | The GCP project ID | string | `"null"` | no |
+| region | Region where the instance template should be created. | string | `"null"` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account. | object | n/a | yes |
 | shielded\_instance\_config | Not used unless enable_shielded_vm is true. Shielded VM configuration for the instance. | object | `<map>` | no |
 | source\_image | Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image. | string | `""` | no |

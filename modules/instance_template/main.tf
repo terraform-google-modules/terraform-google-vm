@@ -63,6 +63,7 @@ resource "google_compute_instance_template" "tpl" {
   tags                    = var.tags
   can_ip_forward          = var.can_ip_forward
   metadata_startup_script = var.startup_script
+  region                  = var.region
   dynamic "disk" {
     for_each = local.all_disks
     content {

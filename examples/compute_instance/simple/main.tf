@@ -28,11 +28,10 @@ module "instance_template" {
 }
 
 module "compute_instance" {
-  source             = "../../../modules/compute_instance"
-  region             = var.region
-  subnetwork         = var.subnetwork
-  subnetwork_project = var.project_id
-  num_instances      = var.num_instances
-  hostname           = "instance-simple"
-  instance_template  = module.instance_template.self_link
+  source            = "../../../modules/compute_instance"
+  region            = var.region
+  subnetwork        = var.subnetwork
+  num_instances     = var.num_instances
+  hostname          = "instance-simple"
+  instance_template = module.instance_template.self_link
 }

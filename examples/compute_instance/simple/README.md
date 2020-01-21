@@ -11,7 +11,7 @@ This is a simple, minimal example of how to use the compute_instance module
 | project\_id | The GCP project to use for integration tests | string | n/a | yes |
 | region | The GCP region to create and test resources in | string | `"us-central1"` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account. | object | `"null"` | no |
-| subnetwork | The subnetwork to host the compute instances in | string | n/a | yes |
+| subnetwork | The subnetwork selflink to host the compute instances in | string | n/a | yes |
 
 ## Outputs
 

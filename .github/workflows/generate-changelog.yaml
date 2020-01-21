@@ -15,9 +15,9 @@ jobs:
       - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '12.x'
       - name: Update dependencies
-        run: npm install -g standard-version
+        run: npm install -g standard-version@7.1.0
       - name: Generate changelog
         run: standard-version
       - run: cat CHANGELOG.md

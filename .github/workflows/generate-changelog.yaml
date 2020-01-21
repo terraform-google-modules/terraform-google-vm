@@ -21,6 +21,7 @@ jobs:
       - name: Generate changelog
         run: standard-version
       - run: cat CHANGELOG.md
+      - run: git tag -l
       - run: git diff
       - run: git checkout "${GITHUB_REF:11}"
       - name: Create Pull Request

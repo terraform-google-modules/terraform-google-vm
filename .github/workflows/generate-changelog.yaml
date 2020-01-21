@@ -18,10 +18,12 @@ jobs:
           node-version: '10.x'
       - name: Update dependencies
         run: npm install -g standard-version
+      - run: git checkout "${GITHUB_REF:11}"
       - name: Generate changelog
         run: |
           standard-version
-      - run: git checkout "${GITHUB_REF:11}"
+      - run: cat CHANGELOG.md
+      - run: git diff
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v2

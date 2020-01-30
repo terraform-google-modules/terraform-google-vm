@@ -28,7 +28,7 @@ variable "region" {
 }
 
 variable "subnetwork" {
-  description = "The subnetwork to host the compute instances in"
+  description = "The subnetwork selflink to host the compute instances in"
 }
 
 variable "num_instances" {

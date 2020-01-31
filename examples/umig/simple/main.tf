@@ -34,4 +34,5 @@ module "umig" {
   num_instances     = var.num_instances
   hostname          = "umig-simple"
   instance_template = module.instance_template.self_link
+  region            = var.region
 }

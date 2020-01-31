@@ -35,4 +35,5 @@ module "umig" {
   hostname          = "umig-static-ips"
   instance_template = module.instance_template.self_link
   static_ips        = var.static_ips
+  region            = var.region
 }

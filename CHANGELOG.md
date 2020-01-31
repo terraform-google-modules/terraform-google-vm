@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file. See [standa
 
 * derive project id for instance from instance template ([#63](https://github.com/terraform-google-modules/terraform-google-vm/issues/63)) ([3e2c8cd](https://github.com/terraform-google-modules/terraform-google-vm/commit/3e2c8cdeb2d0e6f1fe53bc2d0a9369c9dc59f013))
 
+### Changed
+
+- Replace health check related variables with a single object type parameter called `health_check` on the `mig` and
+  `mig_with_percent` submodules. [#56]
+
 ## [1.4.0] - 2020-01-08
 
 ### Added
@@ -92,4 +97,5 @@ All notable changes to this project will be documented in this file. See [standa
 [#43]: https://github.com/terraform-google-modules/terraform-google-vm/pull/43
 [#44]: https://github.com/terraform-google-modules/terraform-google-vm/pull/44
 [#52]: https://github.com/terraform-google-modules/terraform-google-vm/pull/52
+[#56]: https://github.com/terraform-google-modules/terraform-google-vm/pull/56
 [#57]: https://github.com/terraform-google-modules/terraform-google-vm/pull/57

@@ -10,6 +10,13 @@ The following dependencies must be installed on the development system:
 - [Google Cloud SDK][google-cloud-sdk]
 - [make]
 
+## Generating Modules
+To regenerate the repo, including modules and documentation, run:
+
+```
+make build
+```
+
 ## Generating Documentation for Inputs and Outputs
 
 The Inputs and Outputs tables in the READMEs of the root module,

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.0 (2020-01-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* Health check variables and resources were reorganized in this backwards-incompatible release. See the [upgrade guide](./docs/upgrading_to_mig_v2.0.md) for details.
+
+### Features
+
+* Fix healthchecks inconsistency. ([#56](https://github.com/terraform-google-modules/terraform-google-vm/issues/56)) ([5926dfc](https://github.com/terraform-google-modules/terraform-google-vm/commit/5926dfce9d38c154092132666919c539cad48f6c))
+
 ### [1.4.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.4.0...v1.4.1) (2020-01-21)
 
 

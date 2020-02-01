@@ -1,6 +1,18 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
+
+## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v1.4.1...v2.0.0) (2020-01-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* Health check variables and resources were reorganized in this backwards-incompatible release. See the [upgrade guide](./docs/upgrading_to_mig_v2.0.md) for details.
+
+### Features
+
+* Change the readme formatting ([f2e87b3](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/f2e87b3912e0095fde909cb5e0e1b4706d315edb))
+* Fix healthchecks inconsistency. ([#56](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/56)) ([5926dfc](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/5926dfce9d38c154092132666919c539cad48f6c))
 
 ### [1.4.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v1.4.0...v1.4.1) (2020-01-21)
 
@@ -8,6 +20,11 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * derive project id for instance from instance template ([#63](https://github.com/terraform-google-modules/terraform-google-vm/issues/63)) ([3e2c8cd](https://github.com/terraform-google-modules/terraform-google-vm/commit/3e2c8cdeb2d0e6f1fe53bc2d0a9369c9dc59f013))
+
+### Changed
+
+- Replace health check related variables with a single object type parameter called `health_check` on the `mig` and
+  `mig_with_percent` submodules. [#56]
 
 ## [1.4.0] - 2020-01-08
 
@@ -92,4 +109,5 @@ All notable changes to this project will be documented in this file. See [standa
 [#43]: https://github.com/terraform-google-modules/terraform-google-vm/pull/43
 [#44]: https://github.com/terraform-google-modules/terraform-google-vm/pull/44
 [#52]: https://github.com/terraform-google-modules/terraform-google-vm/pull/52
+[#56]: https://github.com/terraform-google-modules/terraform-google-vm/pull/56
 [#57]: https://github.com/terraform-google-modules/terraform-google-vm/pull/57

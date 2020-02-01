@@ -55,6 +55,10 @@ suites:
       command_timeout: 1800
       root_module_directory: test/fixtures/mig/simple
   - name: mig_autoscaler
+    lifecycle:
+      pre_verify:
+        # Wait for instances to be created
+        - local: sleep 300
     driver:
       name: terraform
       command_timeout: 1800

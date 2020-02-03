@@ -61,7 +61,7 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
     }
   }
   target_pools = var.target_pools
-  target_size  = var.autoscaling_enabled ? var.min_replicas : var.target_size
+  target_size  = var.autoscaling_enabled ? null : var.target_size
 
   dynamic "auto_healing_policies" {
     for_each = local.healthchecks

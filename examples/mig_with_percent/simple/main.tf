@@ -25,7 +25,7 @@ provider "google-beta" {
 
   project = var.project_id
   region  = var.region
-  version = "~> 2.11"
+  version = "=> 2.11, < 4.0.0"
 }
 
 module "preemptible_and_regular_instance_templates" {

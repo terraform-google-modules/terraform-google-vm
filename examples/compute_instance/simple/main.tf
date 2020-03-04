@@ -16,7 +16,7 @@
 
 provider "google" {
 
-  version = "~> 2.7.0"
+  version = "~> 3.0"
 }
 
 module "instance_template" {

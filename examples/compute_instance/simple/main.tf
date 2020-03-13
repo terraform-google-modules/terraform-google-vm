@@ -34,4 +34,8 @@ module "compute_instance" {
   num_instances     = var.num_instances
   hostname          = "instance-simple"
   instance_template = module.instance_template.self_link
+  access_config = [{
+    nat_ip       = var.nat_ip
+    network_tier = var.network_tier
+  },]
 }

@@ -124,7 +124,7 @@ resource "google_compute_region_autoscaler" "autoscaler" {
     }
   }
 
-  depends_on = ["google_compute_region_instance_group_manager.mig_with_percent"]
+  depends_on = [google_compute_region_instance_group_manager.mig_with_percent]
 }
 
 resource "google_compute_health_check" "http" {

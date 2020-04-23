@@ -99,13 +99,6 @@ variable "additional_disks" {
     boot         = bool
     disk_size_gb = number
     disk_type    = string
-    device_name  = string
-    disk_name    = string
-    interface    = string
-    mode         = string
-    source       = string
-    source_image = string
-    type         = string
   }))
   default = []
 }

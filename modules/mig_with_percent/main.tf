@@ -29,7 +29,8 @@ locals {
 }
 
 data "google_compute_zones" "available" {
-  region = var.region
+  region  = var.region
+  project = var.project_id
 }
 
 resource "google_compute_region_instance_group_manager" "mig_with_percent" {

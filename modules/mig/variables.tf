@@ -53,19 +53,31 @@ variable "distribution_policy_zones" {
 }
 
 #################
+# Stateful disk
+#################
+variable "stateful_disk" {
+  description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy"
+  type = list(object({
+    device_name = string
+    delete_rule = string
+  }))
+  default = []
+}
+#################
 # Rolling Update
 #################
 
 variable "update_policy" {
   description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy"
   type = list(object({
-    max_surge_fixed         = number
-    max_surge_percent       = number
-    max_unavailable_fixed   = number
-    max_unavailable_percent = number
-    min_ready_sec           = number
-    minimal_action          = string
-    type                    = string
+    max_surge_fixed              = number
+    instance_redistribution_type = string
+    max_surge_percent            = number
+    max_unavailable_fixed        = number
+    max_unavailable_percent      = number
+    min_ready_sec                = number
+    minimal_action               = string
+    type                         = string
   }))
   default = []
 }

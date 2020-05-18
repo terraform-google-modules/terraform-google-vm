@@ -56,7 +56,7 @@ variable "distribution_policy_zones" {
 # Stateful disk
 #################
 variable "stateful_disk" {
-  description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy"
+  description = "https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs"
   type = list(object({
     device_name = string
     delete_rule = string
@@ -68,7 +68,7 @@ variable "stateful_disk" {
 #################
 
 variable "update_policy" {
-  description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy"
+  description = "Disks created on the instances that will be preserved on instance delete. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy"
   type = list(object({
     max_surge_fixed              = number
     instance_redistribution_type = string

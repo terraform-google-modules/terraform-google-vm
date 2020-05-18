@@ -64,11 +64,10 @@ resource "google_compute_region_instance_group_manager" "mig" {
   }
 
   dynamic "stateful_disk" {
-    for_each = var.stateful_disk
+    for_each = var.stateful_disks
     content {
       device_name = stateful_disk.value.device_name
       delete_rule = lookup(stateful_disk.value, "delete_rule", null)
-
     }
   }
 

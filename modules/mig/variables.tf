@@ -53,9 +53,9 @@ variable "distribution_policy_zones" {
 }
 
 #################
-# Stateful disk
+# Stateful disks
 #################
-variable "stateful_disk" {
+variable "stateful_disks" {
   description = "Disks created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs"
   type = list(object({
     device_name = string

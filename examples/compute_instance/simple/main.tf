@@ -37,5 +37,5 @@ module "compute_instance" {
   access_config = [{
     nat_ip       = var.nat_ip
     network_tier = var.network_tier
-  },]
+  }, ]
 }

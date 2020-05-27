@@ -37,7 +37,7 @@ variable "num_instances" {
 
 variable "nat_ip" {
   description = "Public ip address"
-  default     = "null"
+  default     = null
 }
 
 variable "network_tier" {

@@ -53,7 +53,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
     }
   }
   target_pools = var.target_pools
-  target_size  = var.autoscaling_enabled ? null : var.target_size
+  target_size  = (var.autoscaling_enabled || var.stateful_enabled) ? null : var.target_size
 
   dynamic "auto_healing_policies" {
     for_each = local.healthchecks
@@ -67,13 +67,14 @@ resource "google_compute_region_instance_group_manager" "mig" {
   dynamic "update_policy" {
     for_each = var.update_policy
     content {
-      max_surge_fixed         = lookup(update_policy.value, "max_surge_fixed", null)
-      max_surge_percent       = lookup(update_policy.value, "max_surge_percent", null)
-      max_unavailable_fixed   = lookup(update_policy.value, "max_unavailable_fixed", null)
-      max_unavailable_percent = lookup(update_policy.value, "max_unavailable_percent", null)
-      min_ready_sec           = lookup(update_policy.value, "min_ready_sec", null)
-      minimal_action          = update_policy.value.minimal_action
-      type                    = update_policy.value.type
+      max_surge_fixed              = lookup(update_policy.value, "max_surge_fixed", null)
+      max_surge_percent            = lookup(update_policy.value, "max_surge_percent", null)
+      max_unavailable_fixed        = lookup(update_policy.value, "max_unavailable_fixed", null)
+      max_unavailable_percent      = lookup(update_policy.value, "max_unavailable_percent", null)
+      min_ready_sec                = lookup(update_policy.value, "min_ready_sec", null)
+      minimal_action               = update_policy.value.minimal_action
+      instance_redistribution_type = update_policy.value.instance_redistribution_type
+      type                         = update_policy.value.type
     }
   }
 
@@ -152,5 +153,31 @@ resource "google_compute_health_check" "tcp" {
     request      = var.health_check["request"]
     response     = var.health_check["response"]
     proxy_header = var.health_check["proxy_header"]
+  }
+}
+
+resource "google_compute_disk" "default" {
+  count                     = var.stateful_nodes_count
+  project                   = var.project_id
+  name                      = "${var.hostname}-pd-${count.index}"
+  type                      = var.stateful_disk_type
+  zone                      = element(local.distribution_policy_zones, count.index)
+  size                      = var.stateful_disk_size
+  physical_block_size_bytes = 4096
+}
+
+resource "google_compute_region_per_instance_config" "with_disk" {
+  count                         = var.stateful_nodes_count
+  provider                      = google-beta
+  project                       = var.project_id
+  region                        = google_compute_region_instance_group_manager.mig.region
+  region_instance_group_manager = google_compute_region_instance_group_manager.mig.name
+  name                          = "${var.hostname}-${count.index}"
+  preserved_state {
+    disk {
+      device_name = google_compute_disk.default[count.index].name
+      source      = google_compute_disk.default[count.index].id
+      mode        = "READ_WRITE"
+    }
   }
 }

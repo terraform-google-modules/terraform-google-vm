@@ -59,13 +59,14 @@ variable "distribution_policy_zones" {
 variable "update_policy" {
   description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy"
   type = list(object({
-    max_surge_fixed         = number
-    max_surge_percent       = number
-    max_unavailable_fixed   = number
-    max_unavailable_percent = number
-    min_ready_sec           = number
-    minimal_action          = string
-    type                    = string
+    max_surge_fixed              = number
+    max_surge_percent            = number
+    max_unavailable_fixed        = number
+    max_unavailable_percent      = number
+    min_ready_sec                = number
+    minimal_action               = string
+    instance_redistribution_type = string
+    type                         = string
   }))
   default = []
 }
@@ -114,6 +115,11 @@ variable "autoscaling_enabled" {
   default     = "false"
 }
 
+variable "stateful" {
+  description = "Creates an autoscaler for the managed instance group"
+  default     = "false"
+}
+
 variable "max_replicas" {
   description = "The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas."
   default     = 10
@@ -150,6 +156,31 @@ variable "autoscaling_lb" {
   type        = list(map(number))
   default     = []
 }
+
+#############
+# Stateful
+#############
+variable "stateful_enabled" {
+  description = "Creates a stateful managed instance group"
+  default     = "false"
+}
+
+variable "stateful_nodes_count" {
+  description = "Number of stateful nodes"
+  default     = 0
+}
+
+variable "stateful_disk_size" {
+  description = "Size in GB"
+  default     = 25
+}
+
+variable "stateful_disk_type" {
+  description = "Disk type like pd-standard or pd-ssd"
+  type        = string
+  default     = "pd-standard"
+}
+
 
 ##########################
 

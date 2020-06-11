@@ -167,7 +167,7 @@ variable "stateful_enabled" {
 
 variable "stateful_nodes_count" {
   description = "Number of stateful nodes"
-  default     = 0
+  default     = 1
 }
 
 variable "stateful_disk_size" {

@@ -157,7 +157,7 @@ resource "google_compute_health_check" "tcp" {
 }
 
 resource "google_compute_disk" "default" {
-  count                     = var.stateful_nodes_count
+  count                     = var.stateful_enabled ? var.stateful_nodes_count : 0
   project                   = var.project_id
   name                      = "${var.hostname}-pd-${count.index}"
   type                      = var.stateful_disk_type
@@ -167,7 +167,7 @@ resource "google_compute_disk" "default" {
 }
 
 resource "google_compute_region_per_instance_config" "with_disk" {
-  count                         = var.stateful_nodes_count
+  count                         = var.stateful_enabled ? var.stateful_nodes_count : 0
   provider                      = google-beta
   project                       = var.project_id
   region                        = google_compute_region_instance_group_manager.mig.region

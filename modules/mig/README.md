@@ -33,6 +33,11 @@ The current version is 2.X. The following guides are available to assist with up
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
 | project\_id | The GCP project ID | string | `"null"` | no |
 | region | The GCP region where the managed instance group resides. | string | n/a | yes |
+| stateful | Creates an autoscaler for the managed instance group | string | `"false"` | no |
+| stateful\_disk\_size | Size in GB | string | `"25"` | no |
+| stateful\_disk\_type | Disk type like pd-standard or pd-ssd | string | `"pd-standard"` | no |
+| stateful\_enabled | Creates a stateful managed instance group | string | `"false"` | no |
+| stateful\_nodes\_count | Number of stateful nodes | string | `"1"` | no |
 | subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
 | subnetwork\_project | The project that subnetwork belongs to | string | `""` | no |
 | target\_pools | The target load balancing pools to assign this group to. | list(string) | `<list>` | no |

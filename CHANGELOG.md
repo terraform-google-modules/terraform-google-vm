@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [3.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v3.0.0...v3.1.0) (2020-06-17)
+
+
+### Features
+
+* Add stateful disk support ([#90](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/90)) ([645e845](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/645e8453e945fe6f7b1c5cccd7ad557f5355cc10))
+
 ## [3.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v2.1.0...v3.0.0) (2020-05-27)
 
 

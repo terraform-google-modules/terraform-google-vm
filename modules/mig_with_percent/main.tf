@@ -29,7 +29,8 @@ locals {
 }
 
 data "google_compute_zones" "available" {
-  region = var.region
+  project = var.project_id
+  region  = var.region
 }
 
 resource "google_compute_region_instance_group_manager" "mig_with_percent" {
@@ -96,6 +97,8 @@ resource "google_compute_region_autoscaler" "autoscaler" {
   count    = var.autoscaling_enabled ? 1 : 0
   name     = "${var.hostname}-autoscaler"
   project  = var.project_id
+  region   = var.region
+
   target   = google_compute_region_instance_group_manager.mig_with_percent.self_link
 
   autoscaling_policy {

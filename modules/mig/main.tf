@@ -89,6 +89,7 @@ resource "google_compute_region_autoscaler" "autoscaler" {
   name     = "${var.hostname}-autoscaler"
   project  = var.project_id
   region   = var.region
+
   target   = google_compute_region_instance_group_manager.mig.self_link
 
   autoscaling_policy {

@@ -99,7 +99,7 @@ resource "google_compute_region_autoscaler" "autoscaler" {
   project  = var.project_id
   region   = var.region
 
-  target   = google_compute_region_instance_group_manager.mig_with_percent.self_link
+  target = google_compute_region_instance_group_manager.mig_with_percent.self_link
 
   autoscaling_policy {
     max_replicas    = var.max_replicas

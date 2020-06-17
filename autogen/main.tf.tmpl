@@ -33,6 +33,7 @@ data "google_compute_zones" "available" {
   project = var.project_id
   region  = var.region
   {% else %}
+  project = var.project_id
   region = var.region
   {% endif %}
 }
@@ -108,9 +109,8 @@ resource "google_compute_region_autoscaler" "autoscaler" {
   count    = var.autoscaling_enabled ? 1 : 0
   name     = "${var.hostname}-autoscaler"
   project  = var.project_id
-  {% if mig %}
   region   = var.region
-  {% endif %}
+
   target   = google_compute_region_instance_group_manager.{{ module_name }}.self_link
 
   autoscaling_policy {

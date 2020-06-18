@@ -63,6 +63,7 @@ variable "stateful_disks" {
   }))
   default = []
 }
+
 #################
 # Rolling Update
 #################
@@ -187,4 +188,9 @@ variable "named_ports" {
     port = number
   }))
   default = []
+}
+
+variable "wait_for_instances" {
+  description = "Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out."
+  default     = "false"
 }

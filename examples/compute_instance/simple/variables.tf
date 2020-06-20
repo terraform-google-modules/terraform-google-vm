@@ -35,6 +35,15 @@ variable "num_instances" {
   description = "Number of instances to create"
 }
 
+variable "nat_ip" {
+  description = "Public ip address"
+  default     = null
+}
+
+variable "network_tier" {
+  description = "Network network_tier"
+  default     = "PREMIUM"
+}
 
 
 variable "service_account" {

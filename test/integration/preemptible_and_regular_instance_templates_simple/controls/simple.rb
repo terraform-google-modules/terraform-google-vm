@@ -34,8 +34,8 @@ control "Instance Template" do
 
     describe "kind of templates" do
       it "should be #{expected_disks}" do
-        expect(data[0]['properties']['scheduling']['preemptible']).to be_truthy
-        expect(data[0]['properties']['scheduling']['automaticRestart']).to be_falsey
+        expect(data[0]['properties']['scheduling']['preemptible']).to be_falsey
+        expect(data[0]['properties']['scheduling']['automaticRestart']).to be_truthy
       end
     end
 
@@ -90,8 +90,8 @@ control "Instance Template" do
 
     describe "kind of templates" do
       it "should be #{expected_disks}" do
-        expect(data[0]['properties']['scheduling']['preemptible']).to be_falsey
-        expect(data[0]['properties']['scheduling']['automaticRestart']).to be_truthy
+        expect(data[0]['properties']['scheduling']['preemptible']).to be_truthy
+        expect(data[0]['properties']['scheduling']['automaticRestart']).to be_falsey
       end
     end
 

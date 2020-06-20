@@ -20,7 +20,7 @@
 
 module "preemptible" {
   source               = "../../modules/instance_template"
-  name_prefix          = "${var.name_prefix}-regular"
+  name_prefix          = "${var.name_prefix}-preemptible"
   project_id           = var.project_id
   machine_type         = var.machine_type
   labels               = var.labels
@@ -45,7 +45,7 @@ module "preemptible" {
 
 module "regular" {
   source               = "../../modules/instance_template"
-  name_prefix          = "${var.name_prefix}-preemptible"
+  name_prefix          = "${var.name_prefix}-regular"
   project_id           = var.project_id
   machine_type         = var.machine_type
   labels               = var.labels

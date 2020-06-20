@@ -17,7 +17,9 @@ managed instance group.
 
 | Name | Description |
 |------|-------------|
+| preemptible\_self\_link | Self-link of preemptible instance template |
 | region | The GCP region to create and test resources in |
+| regular\_self\_link | Self-link of regular instance template |
 | self\_link | Self-link of the managed instance group |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

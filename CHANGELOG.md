@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [3.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v2.1.0...v3.0.0) (2020-05-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* The preemptible_and_regular_instance_templates modules have had name_prefixes renamed, forcing instances to be recreated.
+
+### Features
+
+* Add support for assigning public IPs directly to instances. ([#83](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/83)) ([dde01ff](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/dde01ff376a8e58b4a365724cb4531a4e24435a5))
+
+
+### Bug Fixes
+
+* Correct names for instances in preemptible and regular instance module ([#81](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/81)) ([5a6ec12](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/5a6ec12c3d26c88e45fe4b1a1d919562b4995f24))
+
+## [2.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v2.0.0...v2.1.0) (2020-03-05)
+
+
+### Features
+
+* Allow the use of Google provider v3.x ([#78](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/78)) ([eea5267](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/eea52678b28c66d44c9cfe94a39b47fc6c496641))
+
+
+### Bug Fixes
+
+* Set target_size to null when autoscaling is enabled in MIG ([#65](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/65)) ([dd71466](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/dd7146642a740e779882e97725e551725ea6a04b)), closes [#64](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/64)
+
 ## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v1.4.1...v2.0.0) (2020-01-31)
 
 

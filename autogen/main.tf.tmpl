@@ -29,9 +29,7 @@ locals {
 }
 
 data "google_compute_zones" "available" {
-  {% if mig %}
   project = var.project_id
-  {% endif %}
   region  = var.region
 }
 
@@ -46,7 +44,7 @@ resource "google_compute_region_instance_group_manager" "{{ module_name }}" {
     instance_template = var.instance_template
   }
   {% else %}
-    version {
+  version {
     name              = "${var.hostname}-mig-version-0"
     instance_template = var.instance_template_initial_version
   }
@@ -81,6 +79,14 @@ resource "google_compute_region_instance_group_manager" "{{ module_name }}" {
     }
   }
 
+  dynamic "stateful_disk" {
+    for_each = var.stateful_disks
+    content {
+      device_name = stateful_disk.value.device_name
+      delete_rule = lookup(stateful_disk.value, "delete_rule", null)
+    }
+  }
+
   distribution_policy_zones = local.distribution_policy_zones
   dynamic "update_policy" {
     for_each = var.update_policy
@@ -106,10 +112,9 @@ resource "google_compute_region_autoscaler" "autoscaler" {
   count    = var.autoscaling_enabled ? 1 : 0
   name     = "${var.hostname}-autoscaler"
   project  = var.project_id
-  {% if mig %}
   region   = var.region
-  {% endif %}
-  target   = google_compute_region_instance_group_manager.{{ module_name }}.self_link
+
+  target = google_compute_region_instance_group_manager.{{ module_name }}.self_link
 
   autoscaling_policy {
     max_replicas    = var.max_replicas

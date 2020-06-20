@@ -17,13 +17,13 @@
 provider "google" {
 
   region  = var.region
-  version = "~> 2.7.0"
+  version = "~> 3.0"
 }
 
 provider "google-beta" {
 
   region  = var.region
-  version = "=> 2.7.0, < 4.0.0"
+  version = "~> 3.0"
 }
 
 module "instance_template" {

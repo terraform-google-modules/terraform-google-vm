@@ -19,20 +19,14 @@ variable "project_id" {
   description = "The GCP project ID"
 }
 
-variable "name_prefix" {
-  type        = string
-  description = "Name prefix for the instances"
+variable "names" {
+  description = "Instance names."
+  type        = list(string)
 }
 
 variable "region" {
   type        = string
   description = "Region where the instances should be created."
-}
-
-variable "num_instances" {
-  type        = number
-  description = "Number of stateful instances."
-  default     = 1
 }
 
 variable "mig_name" {
@@ -41,14 +35,15 @@ variable "mig_name" {
 }
 
 variable "stateful_disks" {
-  description = "List of maps of stateful disks."
-  type = list(object({
-    device_name = string
-    source      = string
-    delete_rule = string
-    mode        = string
-  }))
-  default = []
+  description = "Map of maps of stateful disks."
+  type        = any
+  default     = {}
+}
+
+variable "stateful_metadata" {
+  description = "Map of maps of stateful metadata."
+  type        = any
+  default     = {}
 }
 
 variable "minimal_action" {

@@ -19,7 +19,7 @@
 #####################
 
 resource "google_compute_region_per_instance_config" "this" {
-  count    = var.num_instances
+  count    = length(var.names)
   provider = google-beta
 
   project                        = var.project_id
@@ -28,11 +28,12 @@ resource "google_compute_region_per_instance_config" "this" {
   minimal_action                 = var.minimal_action
   most_disruptive_allowed_action = var.most_disruptive_allowed_action
 
-  name = "${var.name_prefix}-${count.index}"
+  name = element(var.names, count.index)
 
   preserved_state {
+    metadata = lookup(var.stateful_metadata, element(var.names, count.index), {})
     dynamic "disk" {
-      for_each = var.stateful_disks
+      for_each = lookup(var.stateful_disks, element(var.names, count.index), {})
       content {
         device_name = lookup(disk.value, "device_name", null)
         source      = lookup(disk.value, "source", null)

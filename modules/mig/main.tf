@@ -55,6 +55,8 @@ resource "google_compute_region_instance_group_manager" "mig" {
   target_pools = var.target_pools
   target_size  = var.autoscaling_enabled ? null : var.target_size
 
+  wait_for_instances = var.wait_for_instances
+
   dynamic "auto_healing_policies" {
     for_each = local.healthchecks
     content {
@@ -89,6 +91,12 @@ resource "google_compute_region_instance_group_manager" "mig" {
   lifecycle {
     create_before_destroy = true
     ignore_changes        = [distribution_policy_zones]
+  }
+
+  timeouts {
+    create = var.mig_timeouts.create
+    update = var.mig_timeouts.update
+    delete = var.mig_timeouts.delete
   }
 }
 

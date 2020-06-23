@@ -28,17 +28,20 @@ The current version is 2.X. The following guides are available to assist with up
 | instance\_template\_initial\_version | Instance template self_link used to create compute instances for the initial version | string | n/a | yes |
 | instance\_template\_next\_version | Instance template self_link used to create compute instances for the second version | string | n/a | yes |
 | max\_replicas | The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas. | string | `"10"` | no |
+| mig\_timeouts | Times for creation, deleting and updating the MIG resources. Can be helpful when using wait_for_instances to allow a longer VM startup time. | object | `<map>` | no |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | string | `"2"` | no |
 | named\_ports | Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports | object | `<list>` | no |
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
 | next\_version\_percent | Percentage of instances defined in the second version | string | n/a | yes |
 | project\_id | The GCP project ID | string | `"null"` | no |
 | region | The GCP region where the managed instance group resides. | string | n/a | yes |
+| stateful\_disks | Disks created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs | object | `<list>` | no |
 | subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |
 | subnetwork\_project | The project that subnetwork belongs to | string | `""` | no |
 | target\_pools | The target load balancing pools to assign this group to. | list(string) | `<list>` | no |
 | target\_size | The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set. | string | `"1"` | no |
 | update\_policy | The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy | object | `<list>` | no |
+| wait\_for\_instances | Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out. | string | `"false"` | no |
 
 ## Outputs
 

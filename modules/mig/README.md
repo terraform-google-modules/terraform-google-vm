@@ -44,6 +44,7 @@ The current version is 2.X. The following guides are available to assist with up
 | Name | Description |
 |------|-------------|
 | instance\_group | Instance-group url of managed instance group |
+| name | Managed instance group name |
 | self\_link | Self-link of managed instance group |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

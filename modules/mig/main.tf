@@ -92,6 +92,12 @@ resource "google_compute_region_instance_group_manager" "mig" {
     create_before_destroy = true
     ignore_changes        = [distribution_policy_zones]
   }
+
+  timeouts {
+    create = var.mig_timeouts.create
+    update = var.mig_timeouts.update
+    delete = var.mig_timeouts.delete
+  }
 }
 
 resource "google_compute_region_autoscaler" "autoscaler" {

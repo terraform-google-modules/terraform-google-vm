@@ -202,3 +202,17 @@ variable "wait_for_instances" {
   description = "Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out."
   default     = "false"
 }
+
+variable "mig_timeouts" {
+  description = "Times for creation, deleting and updating the MIG resources. Can be helpful when using wait_for_instances to allow a longer VM startup time. "
+  type = object({
+    create = string
+    update = string
+    delete = string
+  })
+  default = {
+    create = "5m"
+    update = "5m"
+    delete = "15m"
+  }
+}

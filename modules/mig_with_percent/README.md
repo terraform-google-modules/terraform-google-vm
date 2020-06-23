@@ -28,6 +28,7 @@ The current version is 2.X. The following guides are available to assist with up
 | instance\_template\_initial\_version | Instance template self_link used to create compute instances for the initial version | string | n/a | yes |
 | instance\_template\_next\_version | Instance template self_link used to create compute instances for the second version | string | n/a | yes |
 | max\_replicas | The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas. | string | `"10"` | no |
+| mig\_timeouts | Times for creation, deleting and updating the MIG resources. Can be helpful when using wait_for_instances to allow a longer VM startup time. | object | `<map>` | no |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | string | `"2"` | no |
 | named\_ports | Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports | object | `<list>` | no |
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | string | `""` | no |

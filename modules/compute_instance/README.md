@@ -31,5 +31,7 @@ See the [simple](examples/compute_instance/simple) for a usage example.
 |------|-------------|
 | available\_zones | List of available zones in region |
 | instances\_self\_links | List of self-links for compute instances |
+| ip\_list\_by\_instance | List of IP addresses for each instance by name |
+| names | List of compute instance names |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

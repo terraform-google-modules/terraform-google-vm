@@ -19,8 +19,17 @@ output "instances_self_links" {
   value       = google_compute_instance_from_template.compute_instance.*.self_link
 }
 
+output "names" {
+  description = "List of compute instance names"
+  value       = google_compute_instance_from_template.compute_instance.*.name
+}
+
+output "ip_list_by_instance" {
+  description = "List of IP addresses for each instance by name"
+  value       = { for instance in google_compute_instance_from_template.compute_instance: instance["name"] => [ for nic in instance["network_interface"]: nic["network_ip"] ] }
+}
+
 output "available_zones" {
   description = "List of available zones in region"
   value       = data.google_compute_zones.available.names
 }
-

@@ -26,7 +26,7 @@ output "names" {
 
 output "ip_list_by_instance" {
   description = "List of IP addresses for each instance by name"
-  value       = { for instance in google_compute_instance_from_template.compute_instance: instance["name"] => [ for nic in instance["network_interface"]: nic["network_ip"] ] }
+  value       = { for instance in google_compute_instance_from_template.compute_instance : instance["name"] => [for nic in instance["network_interface"] : nic["network_ip"]] }
 }
 
 output "available_zones" {

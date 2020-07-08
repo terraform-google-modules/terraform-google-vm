@@ -59,6 +59,12 @@ variable "region" {
   default     = null
 }
 
+variable "min_cpu_platform" {
+  type        = string
+  description = "Specifies a minimum CPU platform. See https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform"
+  default     = ""
+}
+
 #######
 # disk
 #######

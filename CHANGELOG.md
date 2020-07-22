@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [4.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v3.0.0...v4.0.0) (2020-06-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* instance_redistribution_type must now be specified for update policies.
+
+### Features
+
+* Add stateful disk support ([#90](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/90)) ([645e845](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/645e8453e945fe6f7b1c5cccd7ad557f5355cc10))
+* Add wait_for_instances and configurable timeout support for mig ([#96](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/96)) ([10a23b7](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/10a23b70250bd26ed9820184b535e4ce99d24ec7))
+
 ## [3.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v2.1.0...v3.0.0) (2020-05-27)
 
 

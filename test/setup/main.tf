@@ -32,13 +32,14 @@ provider "random" {
 
 module "project_ci_vm" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 7.0"
+  version = "~> 9.0"
 
-  name              = "ci-vm-module"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+  name                 = "ci-vm-module"
+  random_project_id    = true
+  org_id               = var.org_id
+  folder_id            = var.folder_id
+  billing_account      = var.billing_account
+  skip_gcloud_download = true
 
   activate_apis = [
     "cloudresourcemanager.googleapis.com",

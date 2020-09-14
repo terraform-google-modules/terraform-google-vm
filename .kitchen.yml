@@ -15,6 +15,7 @@
 ---
 driver:
   name: terraform
+  verify_version: false
 
 provisioner:
   name: terraform

@@ -5,7 +5,7 @@ This module is used to create compute instances (and only compute instances) usi
 
 ## Usage
 
-See the [simple](examples/compute_instance/simple) for a usage example.
+See the [simple](https://github.com/terraform-google-modules/terraform-google-vm/tree/master/examples/compute_instance/simple) for a usage example.
 
 ## Testing
 

@@ -57,7 +57,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
 
     dynamic "access_config" {
       # convert to map to use lookup function with default value
-      for_each = lookup({ for k, v in var.access_config: k => v }, count.index, [])
+      for_each = lookup({ for k, v in var.access_config : k => v }, count.index, [])
       content {
         nat_ip       = access_config.value.nat_ip
         network_tier = access_config.value.network_tier

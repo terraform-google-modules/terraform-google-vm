@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [5.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v4.0.0...v5.0.0) (2020-09-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **UMIG:** var.access_config has been changed to a 2D array, with a separate element for each VM.
+
+### Bug Fixes
+
+* **UMIG:** access_config should be 2D array ([#111](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/111)) ([69f7520](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/69f752033453ceb2ee50a8d5614112ce96b60650))
+* relax version constraints to enable terraform 0.13.x compatibility ([#108](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/108)) ([6fb2b42](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/6fb2b42bd96f90d3c2baffd511cb58200fbc074c))
+* Terraform version upgrade for compute_instance module from 0.12.6 to 0.12.7 ([#103](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/103)) ([7a21e78](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/7a21e788f6ded801be8d3354bfd31934aca5b7fb))
+
 ## [4.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v3.0.0...v4.0.0) (2020-06-23)
 
 

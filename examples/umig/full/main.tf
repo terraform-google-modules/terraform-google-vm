@@ -73,5 +73,5 @@ module "umig" {
   instance_template  = module.instance_template.self_link
   named_ports        = var.named_ports
   region             = var.region
-  access_config      = [local.access_config]
+  access_config      = [[local.access_config]]
 }

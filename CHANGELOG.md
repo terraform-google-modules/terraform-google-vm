@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [5.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v5.0.0...v5.1.0) (2020-10-07)
+
+
+### Features
+
+* Added instance_group_manager output ([#105](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/105)) ([e8a174a](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/e8a174aa899f9ade792d1576689603eab6ca774e))
+
 ## [5.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v4.0.0...v5.0.0) (2020-09-15)
 
 

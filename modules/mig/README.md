@@ -47,6 +47,7 @@ The current version is 2.X. The following guides are available to assist with up
 | Name | Description |
 |------|-------------|
 | instance\_group | Instance-group url of managed instance group |
+| instance\_group\_manager | An instance of google_compute_region_instance_group_manager of the instance group. |
 | self\_link | Self-link of managed instance group |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

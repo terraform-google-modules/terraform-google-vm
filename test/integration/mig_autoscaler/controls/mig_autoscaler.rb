@@ -59,7 +59,7 @@ control "MIG" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~^mig-autoscaler*'") do
+  describe command("gcloud beta --project=#{project_id} compute instance-groups managed list --format=json --filter='name~^mig-autoscaler*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -92,6 +92,12 @@ control "MIG" do
     describe "autoscaler scaling policy" do
       it "cpuUtilization target should be 0.6" do
         expect(data[0]['autoscaler']['autoscalingPolicy']['cpuUtilization']['utilizationTarget']).to eq(0.6)
+      end
+    end
+
+    describe "autoscaler scaling policy" do
+      it "scaleDownControl should not be enabled" do
+        expect(data[0]['autoscaler']['autoscalingPolicy']).not_to have_key("scaleDownControl")
       end
     end
   end

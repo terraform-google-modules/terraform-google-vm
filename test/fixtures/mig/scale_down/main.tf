@@ -24,9 +24,9 @@ module "mig_scale_down" {
 
   autoscaling_scale_down = [
     {
-      max_replicas_fixed = 1
+      max_replicas_fixed   = 1
       max_replicas_percent = 0
-      time_window_sec = 300
+      time_window_sec      = 300
     }
   ]
 

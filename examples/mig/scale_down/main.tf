@@ -36,15 +36,15 @@ module "instance_template" {
 }
 
 module "mig" {
-  source              = "../../../modules/mig"
-  project_id          = var.project_id
-  region              = var.region
-  hostname            = "mig-scale-down"
-  subnetwork          = var.subnetwork
-  autoscaling_enabled = var.autoscaling_enabled
-  min_replicas        = var.min_replicas
+  source                 = "../../../modules/mig"
+  project_id             = var.project_id
+  region                 = var.region
+  hostname               = "mig-scale-down"
+  subnetwork             = var.subnetwork
+  autoscaling_enabled    = var.autoscaling_enabled
+  min_replicas           = var.min_replicas
   autoscaling_scale_down = var.autoscaling_scale_down
-  autoscaling_cpu     = var.autoscaling_cpu
-  instance_template   = module.instance_template.self_link
+  autoscaling_cpu        = var.autoscaling_cpu
+  instance_template      = module.instance_template.self_link
 }
 

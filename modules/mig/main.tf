@@ -117,7 +117,7 @@ resource "google_compute_region_autoscaler" "autoscaler" {
       for_each = var.autoscaling_scale_down
       content {
         max_scaled_down_replicas {
-          fixed = lookup(scale_down_control.value, "max_replicas_fixed", null)
+          fixed   = lookup(scale_down_control.value, "max_replicas_fixed", null)
           percent = lookup(scale_down_control.value, "max_replicas_percent", null)
         }
         time_window_sec = lookup(scale_down_control.value, "time_window_sec", null)

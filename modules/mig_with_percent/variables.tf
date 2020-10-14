@@ -150,6 +150,16 @@ variable "cooldown_period" {
   default     = 60
 }
 
+variable "autoscaling_scale_down" {
+  description = "Autoscaling, scale down policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#scale_down_control"
+  type = list(object({
+    max_replicas_fixed   = number
+    max_replicas_percent = number
+    time_window_sec      = number
+  }))
+  default = []
+}
+
 variable "autoscaling_cpu" {
   description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization"
   type        = list(map(number))

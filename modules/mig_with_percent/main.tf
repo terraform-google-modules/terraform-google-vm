@@ -110,7 +110,7 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
 }
 
 resource "google_compute_region_autoscaler" "autoscaler" {
-  provider = google
+  provider = google-beta
   count    = var.autoscaling_enabled ? 1 : 0
   name     = "${var.hostname}-autoscaler"
   project  = var.project_id
@@ -122,6 +122,16 @@ resource "google_compute_region_autoscaler" "autoscaler" {
     max_replicas    = var.max_replicas
     min_replicas    = var.min_replicas
     cooldown_period = var.cooldown_period
+    dynamic "scale_down_control" {
+      for_each = var.autoscaling_scale_down
+      content {
+        max_scaled_down_replicas {
+          fixed   = lookup(scale_down_control.value, "max_replicas_fixed", null)
+          percent = lookup(scale_down_control.value, "max_replicas_percent", null)
+        }
+        time_window_sec = lookup(scale_down_control.value, "time_window_sec", null)
+      }
+    }
     dynamic "cpu_utilization" {
       for_each = var.autoscaling_cpu
       content {

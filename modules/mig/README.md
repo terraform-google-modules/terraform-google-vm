@@ -43,4 +43,12 @@ The current version is 2.X. The following guides are available to assist with up
 | update\_policy | The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy | <pre>list(object({<br>    max_surge_fixed              = number<br>    instance_redistribution_type = string<br>    max_surge_percent            = number<br>    max_unavailable_fixed        = number<br>    max_unavailable_percent      = number<br>    min_ready_sec                = number<br>    minimal_action               = string<br>    type                         = string<br>  }))</pre> | `[]` | no |
 | wait\_for\_instances | Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out. | `string` | `"false"` | no |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| instance\_group | Instance-group url of managed instance group |
+| instance\_group\_manager | An instance of google\_compute\_region\_instance\_group\_manager of the instance group. |
+| self\_link | Self-link of managed instance group |
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

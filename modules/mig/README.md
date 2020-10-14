@@ -22,6 +22,7 @@ The current version is 2.X. The following guides are available to assist with up
 | autoscaling\_enabled | Creates an autoscaler for the managed instance group | string | `"false"` | no |
 | autoscaling\_lb | Autoscaling, load balancing utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#load_balancing_utilization | list(map(number)) | `<list>` | no |
 | autoscaling\_metric | Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#metric | object | `<list>` | no |
+| autoscaling\_scale\_down | Autoscaling, scale down policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#scale_down_control | object | `<list>` | no |
 | cooldown\_period | The number of seconds that the autoscaler should wait before it starts collecting information from a new instance. | string | `"60"` | no |
 | distribution\_policy\_zones | The distribution policy, i.e. which zone(s) should instances be create in. Default is all zones in given region. | list(string) | `<list>` | no |
 | health\_check | Health check to determine whether instances are responsive and able to do work | object | `<map>` | no |

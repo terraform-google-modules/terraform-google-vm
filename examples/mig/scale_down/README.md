@@ -10,6 +10,7 @@ group with an autoscaler.
 |------|-------------|:----:|:-----:|:-----:|
 | autoscaling\_cpu | Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization | list(map(number)) | n/a | yes |
 | autoscaling\_enabled | Creates an autoscaler for the managed instance group | string | n/a | yes |
+| autoscaling\_scale\_down | Autoscaling, scale down policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#scale_down_control | list(object) | `[]` | no |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | string | n/a | yes |
 | project\_id | The GCP project to use for integration tests | string | n/a | yes |
 | region | The GCP region to create and test resources in | string | `"us-central1"` | no |

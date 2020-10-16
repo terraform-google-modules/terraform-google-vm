@@ -121,6 +121,11 @@ variable "subnetwork_project" {
   default     = ""
 }
 
+variable "network_ip" {
+  description = "Private IP address to assign to the instance if desired."
+  default     = ""
+}
+
 ###########
 # metadata
 ###########

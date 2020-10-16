@@ -27,6 +27,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | metadata | Metadata, provided as a map | map(string) | `<map>` | no |
 | name\_prefix | Name prefix for the instance template | string | `"default-instance-template"` | no |
 | network | The name or self_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | string | `""` | no |
+| network\_ip | Private IP address to assign to the instance if desired. | string | `""` | no |
 | preemptible | Allow the instance to be preempted | bool | `"false"` | no |
 | project\_id | The GCP project ID | string | `"null"` | no |
 | region | Region where the instance template should be created. | string | `"null"` | no |

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [5.2.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v5.1.0...v5.2.0) (2020-11-10)
+
+
+### Features
+
+* adds an output for the health check self_links to be consumed by load balancer resources outside this module ([#119](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/119)) ([ae4d777](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/ae4d7777958fe4238d96191a3aa7c7deab996fd1))
+
 ## [5.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v5.0.0...v5.1.0) (2020-10-07)
 
 

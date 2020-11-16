@@ -30,18 +30,21 @@ module "instance_template" {
 
   additional_disks = [
     {
+      disk_name    = "disk-0"
       disk_size_gb = 10
       disk_type    = "pd-standard"
       auto_delete  = "true"
       boot         = "false"
     },
     {
+      disk_name    = "disk-1"
       disk_size_gb = 10
       disk_type    = "pd-standard"
       auto_delete  = "true"
       boot         = "false"
     },
     {
+      disk_name    = "disk-2"
       disk_size_gb = 10
       disk_type    = "pd-standard"
       auto_delete  = "true"

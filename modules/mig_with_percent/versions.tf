@@ -15,9 +15,15 @@
  */
 
 terraform {
-  required_version = ">=0.12.6, <0.14"
+  required_version = ">=0.13.0"
   required_providers {
-    google      = ">= 2.7, <4.0"
-    google-beta = ">= 2.7, <4.0"
+    google      = ">= 3.43, <4.0"
+    google-beta = ">= 3.43, <4.0"
+  }
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v6.0.0"
+  }
+  provider_meta "google-beta" {
+    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v6.0.0"
   }
 }

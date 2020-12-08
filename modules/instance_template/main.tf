@@ -44,11 +44,18 @@ locals {
 
   all_disks = concat(local.boot_disk, var.additional_disks)
 
-  # NOTE: Even if all the shielded_instance_config values are false, if the
-  # config block exists and an unsupported image is chosen, the apply will fail
-  # so we use a single-value array with the default value to initialize the block
-  # only if it is enabled.
+  # NOTE: Even if all the shielded_instance_config or confidential_instance_config
+  # values are false, if the config block exists and an unsupported image is chosen,
+  # the apply will fail so we use a single-value array with the default value to 
+  # initialize the block only if it is enabled.
   shielded_vm_configs = var.enable_shielded_vm ? [true] : []
+  confidential_instance_config = var.enable_confidential_vm ? [true] : []
+
+  on_host_maintenance = (
+    var.preemptible || var.enable_confidential_vm
+    ? "TERMINATE"
+    : "MIGRATE"
+  ) 
 }
 
 ####################
@@ -117,6 +124,7 @@ resource "google_compute_instance_template" "tpl" {
   scheduling {
     preemptible       = var.preemptible
     automatic_restart = ! var.preemptible
+    on_host_maintenance = local.on_host_maintenance
   }
 
   dynamic "shielded_instance_config" {
@@ -127,4 +135,11 @@ resource "google_compute_instance_template" "tpl" {
       enable_integrity_monitoring = lookup(var.shielded_instance_config, "enable_integrity_monitoring", shielded_instance_config.value)
     }
   }
+
+  dynamic "confidential_instance_config" {
+    for_each = local.confidential_instance_config
+    content {
+      enable_confidential_compute = lookup(var.confidential_instance_config, "enable_confidential_compute", confidential_instance_config.value)
+    }
+  }  
 }

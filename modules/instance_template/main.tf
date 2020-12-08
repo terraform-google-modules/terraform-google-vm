@@ -46,7 +46,7 @@ locals {
 
   # NOTE: Even if all the shielded_instance_config or confidential_instance_config
   # values are false, if the config block exists and an unsupported image is chosen,
-  # the apply will fail so we use a single-value array with the default value to 
+  # the apply will fail so we use a single-value array with the default value to
   # initialize the block only if it is enabled.
   shielded_vm_configs = var.enable_shielded_vm ? [true] : []
   confidential_instance_config = var.enable_confidential_vm ? [true] : []
@@ -55,7 +55,7 @@ locals {
     var.preemptible || var.enable_confidential_vm
     ? "TERMINATE"
     : "MIGRATE"
-  ) 
+  )
 }
 
 ####################
@@ -141,5 +141,5 @@ resource "google_compute_instance_template" "tpl" {
     content {
       enable_confidential_compute = lookup(var.confidential_instance_config, "enable_confidential_compute", confidential_instance_config.value)
     }
-  }  
+  }
 }

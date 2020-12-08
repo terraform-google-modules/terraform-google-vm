@@ -182,7 +182,7 @@ variable "enable_confidential_vm" {
 variable "confidential_instance_config" {
   description = "Not used unless enable_confidential_vm is true. Confidential VM configuration for the instance."
   type = object({
-    enable_confidential_compute  = bool
+    enable_confidential_compute = bool
   })
 
   default = {

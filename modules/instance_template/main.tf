@@ -54,7 +54,7 @@ locals {
   on_host_maintenance = (
     var.preemptible || var.enable_confidential_vm
     ? "TERMINATE"
-    : "MIGRATE"
+    : var.on_host_maintenance
   )
 }
 
@@ -136,10 +136,7 @@ resource "google_compute_instance_template" "tpl" {
     }
   }
 
-  dynamic "confidential_instance_config" {
-    for_each = local.confidential_instance_config
-    content {
-      enable_confidential_compute = lookup(var.confidential_instance_config, "enable_confidential_compute", confidential_instance_config.value)
-    }
+  confidential_instance_config {
+      enable_confidential_compute = var.enable_confidential_vm
   }
 }

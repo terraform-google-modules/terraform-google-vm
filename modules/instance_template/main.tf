@@ -48,7 +48,7 @@ locals {
   # values are false, if the config block exists and an unsupported image is chosen,
   # the apply will fail so we use a single-value array with the default value to
   # initialize the block only if it is enabled.
-  shielded_vm_configs = var.enable_shielded_vm ? [true] : []
+  shielded_vm_configs          = var.enable_shielded_vm ? [true] : []
   confidential_instance_config = var.enable_confidential_vm ? [true] : []
 
   on_host_maintenance = (
@@ -122,8 +122,8 @@ resource "google_compute_instance_template" "tpl" {
 
   # scheduling must have automatic_restart be false when preemptible is true.
   scheduling {
-    preemptible       = var.preemptible
-    automatic_restart = ! var.preemptible
+    preemptible         = var.preemptible
+    automatic_restart   = ! var.preemptible
     on_host_maintenance = local.on_host_maintenance
   }
 

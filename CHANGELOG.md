@@ -1,6 +1,10 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
+## [2.2.0] - 2021-02-02
+
+### Changed
+
+- Update Terraform version to 0.13. [#16]
 
 ## [2.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v2.0.0...v2.1.0) (2020-03-05)
 

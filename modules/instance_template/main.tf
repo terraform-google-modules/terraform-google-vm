@@ -42,7 +42,19 @@ locals {
     },
   ]
 
-  all_disks = concat(local.boot_disk, var.additional_disks)
+  all_disks = concat(
+    local.boot_disk, tolist(
+      [
+        for d in var.additional_disks : {
+          disk_size_gb = d.disk_size_gb,
+          disk_type    = d.disk_type,
+          auto_delete  = "true",
+          boot         = "false",
+          type         = replace(replace(d.disk_type, "/pd-*/", ""), "/local-.*/", "SCRATCH")
+        }
+      ]
+    )
+  )
 
   # NOTE: Even if all the shielded_instance_config values are false, if the
   # config block exists and an unsupported image is chosen, the apply will fail
@@ -77,7 +89,7 @@ resource "google_compute_instance_template" "tpl" {
       mode         = lookup(disk.value, "mode", null)
       source       = lookup(disk.value, "source", null)
       source_image = lookup(disk.value, "source_image", null)
-      type         = lookup(disk.value, "type", null)
+      type         = lookup(disk.value, "type", "PERSISTENT")
 
       dynamic "disk_encryption_key" {
         for_each = lookup(disk.value, "disk_encryption_key", [])

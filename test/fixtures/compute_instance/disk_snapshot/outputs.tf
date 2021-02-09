@@ -15,17 +15,19 @@
  */
 
 output "instances_self_links" {
-  description = "List of self-links for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*.self_link
+  description = "List of instance self-links"
+  value       = module.disk_snapshot.instances_self_links
 }
 
-output "instances_details" {
-  description = "List of all details for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*
+output "project_id" {
+  description = "The GCP project to use for integration tests"
+  value       = var.project_id
 }
 
-output "available_zones" {
-  description = "List of available zones in region"
-  value       = data.google_compute_zones.available.names
+output "disk_snapshots" {
+  description = "List of disks snapshots and the snapshot policy"
+  value       = module.disk_snapshot.disk_snapshots
 }
+
+
 

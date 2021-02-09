@@ -14,18 +14,13 @@
  * limitations under the License.
  */
 
-output "instances_self_links" {
-  description = "List of self-links for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*.self_link
+terraform {
+  required_version = ">=0.13.0"
+  required_providers {
+    google = ">= 3.43, <4.0"
+    null   = ">= 2.1"
+  }
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-vm:compute_instance/v6.0.0"
+  }
 }
-
-output "instances_details" {
-  description = "List of all details for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*
-}
-
-output "available_zones" {
-  description = "List of available zones in region"
-  value       = data.google_compute_zones.available.names
-}
-

@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-output "instances_self_links" {
-  description = "List of self-links for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*.self_link
+output "policy" {
+  description = "Resource snapshot policy details"
+  value       = google_compute_resource_policy.policy
 }
 
-output "instances_details" {
-  description = "List of all details for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*
+output "attachments" {
+  description = "Disk attachments to the resource policy"
+  value       = google_compute_disk_resource_policy_attachment.attachment.*
 }
-
-output "available_zones" {
-  description = "List of available zones in region"
-  value       = data.google_compute_zones.available.names
-}
-

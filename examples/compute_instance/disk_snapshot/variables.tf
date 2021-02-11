@@ -29,27 +29,4 @@ variable "subnetwork" {
   description = "The subnetwork selflink to host the compute instances in"
 }
 
-variable "additional_disks" {
-  description = "List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name"
-  type = list(object({
-    auto_delete  = bool
-    boot         = bool
-    disk_size_gb = number
-    disk_type    = string
-  }))
-  default = [
-    {
-      auto_delete  = true
-      boot         = false
-      disk_size_gb = 20
-      disk_type    = "pd-standard"
-    },
-    {
-      auto_delete  = true
-      boot         = false
-      disk_size_gb = 30
-      disk_type    = "pd-standard"
-    }
-  ]
-}
 

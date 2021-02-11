@@ -18,8 +18,10 @@ provider "google" {
   version = "~> 3.0"
 }
 
+# Building the list of disk names in the required format.
+# Usually you would build this list from the outputs of the compute_instance module
 locals {
-  instance_disks = [for i in range(length(var.additional_disks)) : "projects/${var.project_id}/disks/instance-simple-001-${i + 1}/zones/${data.google_compute_zones.available.names[0]}"]
+  instance_disks = [for i in range(2) : "projects/${var.project_id}/disks/instance-simple-001-${i + 1}/zones/${data.google_compute_zones.available.names[0]}"]
 }
 
 data "google_compute_zones" "available" {
@@ -28,12 +30,26 @@ data "google_compute_zones" "available" {
 }
 
 module "instance_template" {
-  source           = "../../../modules/instance_template"
-  region           = var.region
-  project_id       = var.project_id
-  subnetwork       = var.subnetwork
-  service_account  = null
-  additional_disks = var.additional_disks
+  source          = "../../../modules/instance_template"
+  region          = var.region
+  project_id      = var.project_id
+  subnetwork      = var.subnetwork
+  service_account = null
+
+  additional_disks = [
+    {
+      auto_delete  = true
+      boot         = false
+      disk_size_gb = 20
+      disk_type    = "pd-standard"
+    },
+    {
+      auto_delete  = true
+      boot         = false
+      disk_size_gb = 30
+      disk_type    = "pd-standard"
+    }
+  ]
 }
 
 module "compute_instance" {

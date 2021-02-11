@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 variable "project_id" {
   description = "The GCP project to use for integration tests"
   type        = string
@@ -29,20 +27,6 @@ variable "region" {
 
 variable "subnetwork" {
   description = "The subnetwork selflink to host the compute instances in"
-}
-
-variable "nat_ip" {
-  description = "Public ip address"
-  default     = null
-}
-
-variable "network_tier" {
-  description = "Network network_tier"
-  default     = "PREMIUM"
-}
-
-variable "num_instances" {
-  description = "Number of instances to create"
 }
 
 variable "additional_disks" {
@@ -69,11 +53,3 @@ variable "additional_disks" {
   ]
 }
 
-variable "service_account" {
-  default = null
-  type = object({
-    email  = string,
-    scopes = set(string)
-  })
-  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
-}

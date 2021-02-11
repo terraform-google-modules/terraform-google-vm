@@ -15,7 +15,6 @@
  */
 
 provider "google" {
-
   version = "~> 3.0"
 }
 
@@ -33,7 +32,7 @@ module "instance_template" {
   region           = var.region
   project_id       = var.project_id
   subnetwork       = var.subnetwork
-  service_account  = var.service_account
+  service_account  = null
   additional_disks = var.additional_disks
 }
 
@@ -41,13 +40,9 @@ module "compute_instance" {
   source            = "../../../modules/compute_instance"
   region            = var.region
   subnetwork        = var.subnetwork
-  num_instances     = var.num_instances
+  num_instances     = 1
   hostname          = "instance-simple"
   instance_template = module.instance_template.self_link
-  access_config = [{
-    nat_ip       = var.nat_ip
-    network_tier = var.network_tier
-  }, ]
 }
 
 module "disk_snapshots" {
@@ -56,34 +51,28 @@ module "disk_snapshots" {
   project = var.project_id
   region  = var.region
 
-  snapshot_schedule_policy = [{
-    retention_policy = [
-      {
-        max_retention_days    = 10
-        on_source_disk_delete = "KEEP_AUTO_SNAPSHOTS"
-      }
-    ]
+  snapshot_schedule_policy = {
+    retention_policy = {
+      max_retention_days    = 10
+      on_source_disk_delete = "KEEP_AUTO_SNAPSHOTS"
+    }
 
-    schedule = [
-      {
-        daily_schedule = [{
-          days_in_cycle = 1
-          start_time    = "08:00"
-        }]
-
-        hourly_schedule = []
-        weekly_schedule = []
+    schedule = {
+      daily_schedule = {
+        days_in_cycle = 1
+        start_time    = "08:00"
       }
-    ]
 
-    snapshot_properties = [
-      {
-        guest_flush       = true
-        storage_locations = ["EU"]
-        labels            = null
-      }
-    ]
-  }]
+      hourly_schedule = null
+      weekly_schedule = null
+    }
+
+    snapshot_properties = {
+      guest_flush       = true
+      storage_locations = ["EU"]
+      labels            = null
+    }
+  }
 
   module_depends_on = [module.compute_instance]
   disks             = local.instance_disks

@@ -31,29 +31,29 @@ variable "region" {
 
 variable "snapshot_schedule_policy" {
   description = "Snapshot policy details. All the values are required, but the optional ones can be set to `null`. Check Terraform documentation to find out which values are optional https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#snapshot_schedule_policy"
-  type = list(object(
+  type = object(
     {
-      retention_policy = list(object(
+      retention_policy = object(
         {
           max_retention_days    = number
           on_source_disk_delete = string
         }
-      ))
-      schedule = list(object(
+      )
+      schedule = object(
         {
-          daily_schedule = list(object(
+          daily_schedule = object(
             {
               days_in_cycle = number
               start_time    = string
             }
-          ))
-          hourly_schedule = list(object(
+          )
+          hourly_schedule = object(
             {
               hours_in_cycle = number
               start_time     = string
             }
-          ))
-          weekly_schedule = list(object(
+          )
+          weekly_schedule = object(
             {
               day_of_weeks = set(object(
                 {
@@ -62,19 +62,19 @@ variable "snapshot_schedule_policy" {
                 }
               ))
             }
-          ))
+          )
         }
-      ))
-      snapshot_properties = list(object(
+      )
+      snapshot_properties = object(
         {
           guest_flush       = bool
           labels            = map(string)
           storage_locations = list(string)
         }
-      ))
+      )
     }
-  ))
-  default = []
+  )
+  default = null
 }
 
 variable "disks" {

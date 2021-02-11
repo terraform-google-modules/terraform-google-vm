@@ -28,6 +28,3 @@ output "disk_snapshots" {
   description = "List of disks snapshots and the snapshot policy"
   value       = module.disk_snapshot.disk_snapshots
 }
-
-
-

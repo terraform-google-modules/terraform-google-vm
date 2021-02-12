@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-output "instances_self_links" {
-  description = "List of self-links for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*.self_link
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
+  type        = string
 }
 
-output "instances_details" {
-  description = "List of all details for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*
+variable "region" {
+  description = "The GCP region to create and test resources in"
+  type        = string
+  default     = "us-central1"
 }
 
-output "available_zones" {
-  description = "List of available zones in region"
-  value       = data.google_compute_zones.available.names
+variable "subnetwork" {
+  description = "The subnetwork selflink to host the compute instances in"
 }
+
 

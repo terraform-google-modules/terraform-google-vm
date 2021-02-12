@@ -14,18 +14,10 @@
  * limitations under the License.
  */
 
-output "instances_self_links" {
-  description = "List of self-links for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*.self_link
-}
 
-output "instances_details" {
-  description = "List of all details for compute instances"
-  value       = google_compute_instance_from_template.compute_instance.*
+module "disk_snapshot" {
+  source     = "../../../../examples/compute_instance/disk_snapshot"
+  project_id = var.project_id
+  region     = "us-central1"
+  subnetwork = google_compute_subnetwork.main.self_link
 }
-
-output "available_zones" {
-  description = "List of available zones in region"
-  value       = data.google_compute_zones.available.names
-}
-

@@ -29,49 +29,53 @@ variable "region" {
   type        = string
 }
 
-variable "snapshot_schedule_policy" {
-  description = "Snapshot policy details. All the values are required, but the optional ones can be set to `null`. Check Terraform documentation to find out which values are optional https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#snapshot_schedule_policy"
+variable "snapshot_retention_policy" {
+  description = "The retention policy to be applied to the schedule policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#retention_policy"
   type = object(
     {
-      retention_policy = object(
+      max_retention_days    = number
+      on_source_disk_delete = string
+    }
+  )
+}
+
+variable "snapshot_schedule" {
+  description = "The scheduled to be used by the snapshot policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#schedule"
+  type = object(
+    {
+      daily_schedule = object(
         {
-          max_retention_days    = number
-          on_source_disk_delete = string
+          days_in_cycle = number
+          start_time    = string
         }
       )
-      schedule = object(
+      hourly_schedule = object(
         {
-          daily_schedule = object(
-            {
-              days_in_cycle = number
-              start_time    = string
-            }
-          )
-          hourly_schedule = object(
-            {
-              hours_in_cycle = number
-              start_time     = string
-            }
-          )
-          weekly_schedule = object(
-            {
-              day_of_weeks = set(object(
-                {
-                  day        = string
-                  start_time = string
-                }
-              ))
-            }
-          )
+          hours_in_cycle = number
+          start_time     = string
         }
       )
-      snapshot_properties = object(
+      weekly_schedule = object(
         {
-          guest_flush       = bool
-          labels            = map(string)
-          storage_locations = list(string)
+          day_of_weeks = set(object(
+            {
+              day        = string
+              start_time = string
+            }
+          ))
         }
       )
+    }
+  )
+}
+
+variable "snapshot_properties" {
+  description = "The properties of the schedule policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#snapshot_properties"
+  type = object(
+    {
+      guest_flush       = bool
+      labels            = map(string)
+      storage_locations = list(string)
     }
   )
   default = null

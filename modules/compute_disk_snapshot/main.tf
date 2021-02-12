@@ -27,13 +27,13 @@ resource "google_compute_resource_policy" "policy" {
 
   snapshot_schedule_policy {
     retention_policy {
-      max_retention_days    = var.snapshot_schedule_policy.retention_policy.max_retention_days
-      on_source_disk_delete = var.snapshot_schedule_policy.retention_policy.on_source_disk_delete
+      max_retention_days    = var.snapshot_retention_policy.max_retention_days
+      on_source_disk_delete = var.snapshot_retention_policy.on_source_disk_delete
     }
 
     schedule {
       dynamic "daily_schedule" {
-        for_each = var.snapshot_schedule_policy.schedule.daily_schedule == null ? [] : [var.snapshot_schedule_policy.schedule.daily_schedule]
+        for_each = var.snapshot_schedule.daily_schedule == null ? [] : [var.snapshot_schedule.daily_schedule]
         content {
           days_in_cycle = daily_schedule.value.days_in_cycle
           start_time    = daily_schedule.value.start_time
@@ -41,7 +41,7 @@ resource "google_compute_resource_policy" "policy" {
       }
 
       dynamic "hourly_schedule" {
-        for_each = var.snapshot_schedule_policy.schedule.hourly_schedule == null ? [] : [var.snapshot_schedule_policy.schedule.hourly_schedule]
+        for_each = var.snapshot_schedule.hourly_schedule == null ? [] : [var.snapshot_schedule.hourly_schedule]
         content {
           hours_in_cycle = hourly_schedule.value["hours_in_cycle"]
           start_time     = hourly_schedule.value["start_time"]
@@ -49,7 +49,7 @@ resource "google_compute_resource_policy" "policy" {
       }
 
       dynamic "weekly_schedule" {
-        for_each = var.snapshot_schedule_policy.schedule.weekly_schedule == null ? [] : [var.snapshot_schedule_policy.schedule.weekly_schedule]
+        for_each = var.snapshot_schedule.weekly_schedule == null ? [] : [var.snapshot_schedule.weekly_schedule]
         content {
           dynamic "day_of_weeks" {
             for_each = weekly_schedule.value.day_of_weeks
@@ -63,7 +63,7 @@ resource "google_compute_resource_policy" "policy" {
     }
 
     dynamic "snapshot_properties" {
-      for_each = var.snapshot_schedule_policy.snapshot_properties == null ? [] : [var.snapshot_schedule_policy.snapshot_properties]
+      for_each = var.snapshot_properties == null ? [] : [var.snapshot_properties]
       content {
         guest_flush       = snapshot_properties.value["guest_flush"]
         labels            = snapshot_properties.value["labels"]

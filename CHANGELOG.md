@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [6.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v5.1.0...v6.0.0) (2020-12-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Minimum Terraform version increased to 0.13.
+* Update default source image and family to latest CentOS 7 (#126)
+
+### Features
+
+* add TF 0.13 constraint and module attribution ([#128](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/128)) ([d042aae](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/d042aae0ab50fbbe763ff551f3daa80aa8f1b551))
+* adds an output for the health check self_links to be consumed by load balancer resources outside this module ([#119](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/119)) ([ae4d777](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/ae4d7777958fe4238d96191a3aa7c7deab996fd1))
+* Update default source image and family to latest CentOS 7 ([#126](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/126)) ([6310016](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/63100169ebecea163f3965f4be3df8b600af047d))
+
 ## [5.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v5.0.0...v5.1.0) (2020-10-07)
 
 

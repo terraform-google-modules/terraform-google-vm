@@ -30,3 +30,8 @@ output "instance_group_manager" {
   description = "An instance of google_compute_region_instance_group_manager of the instance group."
   value       = google_compute_region_instance_group_manager.mig
 }
+
+output "health_check_self_links" {
+  description = "All self_links of healthchecks created for the instance group."
+  value       = local.healthchecks
+}

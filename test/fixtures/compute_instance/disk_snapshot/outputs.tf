@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=0.12.6, <0.14"
-  required_providers {
-    google      = ">= 2.7, <4.0"
-    google-beta = ">= 2.7, <4.0"
-  }
+output "instances_self_links" {
+  description = "List of instance self-links"
+  value       = module.disk_snapshot.instances_self_links
+}
+
+output "project_id" {
+  description = "The GCP project to use for integration tests"
+  value       = var.project_id
+}
+
+output "disk_snapshots" {
+  description = "List of disks snapshots and the snapshot policy"
+  value       = module.disk_snapshot.disk_snapshots
 }

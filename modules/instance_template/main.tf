@@ -19,12 +19,12 @@
 ###############
 data "google_compute_image" "image" {
   project = var.source_image != "" ? var.source_image_project : "centos-cloud"
-  name    = var.source_image != "" ? var.source_image : "centos-6-v20180716"
+  name    = var.source_image != "" ? var.source_image : "centos-7-v20201112"
 }
 
 data "google_compute_image" "image_family" {
   project = var.source_image_family != "" ? var.source_image_project : "centos-cloud"
-  family  = var.source_image_family != "" ? var.source_image_family : "centos-6"
+  family  = var.source_image_family != "" ? var.source_image_family : "centos-7"
 }
 
 #########

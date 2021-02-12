@@ -47,6 +47,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
   provider = google
   count    = local.num_instances
   name     = "${local.hostname}-${format("%03d", count.index + 1)}"
+  project  = var.project_id
   zone     = data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)]
 
   network_interface {

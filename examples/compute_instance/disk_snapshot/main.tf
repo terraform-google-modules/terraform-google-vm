@@ -36,12 +36,16 @@ module "instance_template" {
       boot         = false
       disk_size_gb = 20
       disk_type    = "pd-standard"
+      disk_name    = null
+      device_name  = null
     },
     {
       auto_delete  = true
       boot         = false
       disk_size_gb = 30
       disk_type    = "pd-standard"
+      disk_name    = null
+      device_name  = null
     }
   ]
 }

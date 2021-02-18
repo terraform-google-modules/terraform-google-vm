@@ -28,7 +28,7 @@ The current version is 2.X. The following guides are available to assist with up
 | hostname | Hostname prefix for instances | `string` | `"default"` | no |
 | instance\_template | Instance template self\_link used to create compute instances | `any` | n/a | yes |
 | max\_replicas | The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas. | `number` | `10` | no |
-| mig\_name | Managed instance group name | `string` | `"default"` | no |
+| mig\_name | Managed instance group name. When set to `default`, name will be derived from var.hostname. | `string` | `"default"` | no |
 | mig\_timeouts | Times for creation, deleting and updating the MIG resources. Can be helpful when using wait\_for\_instances to allow a longer VM startup time. | <pre>object({<br>    create = string<br>    update = string<br>    delete = string<br>  })</pre> | <pre>{<br>  "create": "5m",<br>  "delete": "15m",<br>  "update": "5m"<br>}</pre> | no |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | `number` | `2` | no |
 | named\_ports | Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports | <pre>list(object({<br>    name = string<br>    port = number<br>  }))</pre> | `[]` | no |

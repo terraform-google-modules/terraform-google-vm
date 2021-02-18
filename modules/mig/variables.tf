@@ -28,7 +28,7 @@ variable "hostname" {
 }
 
 variable "mig_name" {
-  description = "Managed instance group name"
+  description = "Managed instance group name. When set to `default`, name will be derived from var.hostname."
   default     = "default"
 }
 

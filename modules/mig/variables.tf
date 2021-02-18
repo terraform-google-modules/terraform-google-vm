@@ -27,6 +27,11 @@ variable "hostname" {
   default     = "default"
 }
 
+variable "mig_name" {
+  description = "Managed instance group name"
+  default     = "default"
+}
+
 variable "region" {
   description = "The GCP region where the managed instance group resides."
 }

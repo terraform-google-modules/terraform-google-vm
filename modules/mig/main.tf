@@ -43,7 +43,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
     instance_template = var.instance_template
   }
 
-  name   = "${var.hostname}-mig"
+  name   = var.mig_name == "default" ? "${var.hostname}-mig" : var.mig_name
   region = var.region
   dynamic "named_port" {
     for_each = var.named_ports

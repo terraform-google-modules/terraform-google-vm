@@ -2,18 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
-## [6.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.0.0...v6.1.0) (2021-02-13)
+## [6.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.0.0...v6.1.0) (2021-02-22)
 
 
 ### Features
 
 * Add module for creating scheduled snapshots for persistent disk ([#139](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/139)) ([cedac01](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/cedac012914e01b2664f567250b80d7aaf32c77e))
 * Allow IP assignment in instance templates ([#118](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/118)) ([a53e140](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/a53e14011ce200b6d8b277838ff960dfebcc6db0))
+* Allow overriding MIG name ([#142](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/142)) ([75a8baa](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/75a8baae3cd8a98517e08aaaf2169e29d8856959))
 
 
 ### Bug Fixes
 
 * Add support for disk_name and device_name on additional_disks  ([#132](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/132)) ([a89a025](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/a89a0253591a412dd900499f79086f7b24e7acc6))
+* disk snapshot working example ([#145](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/145)) ([698d865](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/698d8650d6a3acfd3647926f005876e06a9addc6))
 
 ## [6.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v5.1.0...v6.0.0) (2020-12-08)
 

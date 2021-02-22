@@ -18,6 +18,12 @@ provider "google" {
   version = "~> 3.0"
 }
 
+# Building the list of disk names in the required format.
+# Usually you would build this list from the outputs of the compute_instance module
+locals {
+  instance_disks = [for i in range(2) : "projects/${var.project_id}/disks/instance-simple-001-${i + 1}/zones/${data.google_compute_zones.available.names[0]}"]
+}
+
 data "google_compute_zones" "available" {
   project = var.project_id
   region  = var.region
@@ -86,5 +92,5 @@ module "disk_snapshots" {
   }
 
   module_depends_on = [module.compute_instance]
-  disks             = coalesce(concat([for x, z in module.compute_instance.instances_details[0].attached_disk : z.source]))
+  disks             = local.instance_disks
 }

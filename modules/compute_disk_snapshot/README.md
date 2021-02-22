@@ -13,7 +13,7 @@ See the [disk snapshot](https://github.com/terraform-google-modules/terraform-go
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| disks | List of self\_links persistent disks to attach the snapshot policy to (ie. projects/project\_id/disks/diskname/zones/zone\_name) | `list` | `[]` | no |
+| disks | List of self\_links persistent disks to attach the snapshot policy to (ie. projects/project\_id/disks/diskname/zones/zone\_name) | `list(string)` | `[]` | no |
 | module\_depends\_on | List of modules or resources this module depends on | `list(any)` | `[]` | no |
 | name | Name of the resource policy to create | `string` | n/a | yes |
 | project | The project ID where the resources will be created | `string` | n/a | yes |

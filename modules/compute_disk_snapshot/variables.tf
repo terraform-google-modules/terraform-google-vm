@@ -83,6 +83,7 @@ variable "snapshot_properties" {
 
 variable "disks" {
   description = "List of self_links persistent disks to attach the snapshot policy to (ie. projects/project_id/disks/diskname/zones/zone_name)"
+  type        = list(string)
   default     = []
 }
 

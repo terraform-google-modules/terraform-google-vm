@@ -97,6 +97,7 @@ variable "additional_disks" {
   type = list(object({
     auto_delete  = bool
     boot         = bool
+    device_name  = string
     disk_size_gb = number
     disk_type    = string
   }))

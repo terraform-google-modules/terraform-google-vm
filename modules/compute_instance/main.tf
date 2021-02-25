@@ -60,5 +60,15 @@ resource "google_compute_instance_from_template" "compute_instance" {
   }
 
   source_instance_template = var.instance_template
+
+  lifecycle {
+    prevent_destroy = var.prevent_destroy
+    ignore_changes = var.ignore_changes
+    [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      tags,
+    ]
+  }
 }
 

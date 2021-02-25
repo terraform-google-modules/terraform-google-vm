@@ -64,3 +64,14 @@ variable "region" {
   default     = null
 }
 
+variable "prevent_destroy" {
+  type        = bool
+  description = "Set to true if resource should not be destroyed in case of terraform changes. Default is false."
+  default     = false
+}
+
+variable "ignore_changes" {
+  type        = list
+  description = "List of items to be ignored (if any). This is mostly to avoid recreating a VM because of changes that are cheaper to be done manually (e.g: 'labels')."
+  default     = []
+}

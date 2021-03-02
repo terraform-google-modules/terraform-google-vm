@@ -33,7 +33,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | shielded\_instance\_config | Not used unless enable\_shielded\_vm is true. Shielded VM configuration for the instance. | <pre>object({<br>    enable_secure_boot          = bool<br>    enable_vtpm                 = bool<br>    enable_integrity_monitoring = bool<br>  })</pre> | <pre>{<br>  "enable_integrity_monitoring": true,<br>  "enable_secure_boot": true,<br>  "enable_vtpm": true<br>}</pre> | no |
 | source\_image | Source disk image. If neither source\_image nor source\_image\_family is specified, defaults to the latest public CentOS image. | `string` | `""` | no |
 | source\_image\_family | Source image family. If neither source\_image nor source\_image\_family is specified, defaults to the latest public CentOS image. | `string` | `"centos-7"` | no |
-| source\_image\_project | Project where the source image comes from. The default project contains images that support Shielded VMs if desired | `string` | `"gce-uefi-images"` | no |
+| source\_image\_project | Project where the source image comes from. The default project contains CentOS images. | `string` | `"centos-cloud"` | no |
 | startup\_script | User startup script to run when instances spin up | `string` | `""` | no |
 | subnetwork | The name of the subnetwork to attach this interface to. The subnetwork must exist in the same region this instance will be created in. Either network or subnetwork must be provided. | `string` | `""` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used. | `string` | `""` | no |

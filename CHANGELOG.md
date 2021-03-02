@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+### [6.1.1](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.1.0...v6.1.1) (2021-03-02)
+
+
+### Bug Fixes
+
+* Change GCE image project as "gce-uefi-images" is being deprecated. ([#148](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/148)) ([04ac846](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/04ac846d8e29a662ee1467244ac30ecdc1ab6e50))
+
 ## [6.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.0.0...v6.1.0) (2021-02-22)
 
 

@@ -7,11 +7,10 @@ This is a collection of opinionated submodules that can be used as building bloc
 * [Unmanaged instance group](modules/umig)
 
 ## Compatibility
-
- This module is meant for use with Terraform 0.13. If you haven't [upgraded](https://www.terraform.io/upgrade-guides/0-13.html)
-  and need a Terraform 0.12.x-compatible version of this module, the last released version intended for
-  Terraform 0.12.x is [5.1.0](https://registry.terraform.io/modules/terraform-google-modules/vm/google/5.1.0).
-
+This module is meant for use with Terraform 0.13. If you haven't
+[upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
+0.12.x-compatible version of this module, the last released version
+intended for Terraform 0.12.x is [v6.1.0](https://registry.terraform.io/modules/terraform-google-modules/-vm/google/v6.1.0).
 
 ## Examples
 

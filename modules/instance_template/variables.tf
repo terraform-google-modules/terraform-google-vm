@@ -53,6 +53,12 @@ variable "preemptible" {
   default     = false
 }
 
+variable "on_host_maintenance" {
+  type        = string
+  description = "Instance availability Policy"
+  default     = "MIGRATE"
+}
+
 variable "region" {
   type        = string
   description = "Region where the instance template should be created."
@@ -176,6 +182,14 @@ variable "shielded_instance_config" {
     enable_vtpm                 = true
     enable_integrity_monitoring = true
   }
+}
+
+###########################
+# Confidential Compute VMs
+###########################
+variable "enable_confidential_vm" {
+  default     = false
+  description = "Whether to enable the Confidential VM configuration on the instance. Note that the instance image must support Confidential VMs. See https://cloud.google.com/compute/docs/images"
 }
 
 ###########################

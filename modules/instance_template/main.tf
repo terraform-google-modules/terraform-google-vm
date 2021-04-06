@@ -44,11 +44,18 @@ locals {
 
   all_disks = concat(local.boot_disk, var.additional_disks)
 
-  # NOTE: Even if all the shielded_instance_config values are false, if the
-  # config block exists and an unsupported image is chosen, the apply will fail
-  # so we use a single-value array with the default value to initialize the block
-  # only if it is enabled.
-  shielded_vm_configs = var.enable_shielded_vm ? [true] : []
+  # NOTE: Even if all the shielded_instance_config or confidential_instance_config
+  # values are false, if the config block exists and an unsupported image is chosen,
+  # the apply will fail so we use a single-value array with the default value to
+  # initialize the block only if it is enabled.
+  shielded_vm_configs          = var.enable_shielded_vm ? [true] : []
+  confidential_instance_config = var.enable_confidential_vm ? [true] : []
+
+  on_host_maintenance = (
+    var.preemptible || var.enable_confidential_vm
+    ? "TERMINATE"
+    : var.on_host_maintenance
+  )
 }
 
 ####################
@@ -116,8 +123,9 @@ resource "google_compute_instance_template" "tpl" {
 
   # scheduling must have automatic_restart be false when preemptible is true.
   scheduling {
-    preemptible       = var.preemptible
-    automatic_restart = ! var.preemptible
+    preemptible         = var.preemptible
+    automatic_restart   = ! var.preemptible
+    on_host_maintenance = local.on_host_maintenance
   }
 
   dynamic "shielded_instance_config" {
@@ -127,5 +135,9 @@ resource "google_compute_instance_template" "tpl" {
       enable_vtpm                 = lookup(var.shielded_instance_config, "enable_vtpm", shielded_instance_config.value)
       enable_integrity_monitoring = lookup(var.shielded_instance_config, "enable_integrity_monitoring", shielded_instance_config.value)
     }
+  }
+
+  confidential_instance_config {
+    enable_confidential_compute = var.enable_confidential_vm
   }
 }

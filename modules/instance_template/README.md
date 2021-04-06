@@ -19,6 +19,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | `string` | `"false"` | no |
 | disk\_size\_gb | Boot disk size in GB | `string` | `"100"` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | `string` | `"pd-standard"` | no |
+| enable\_confidential\_vm | Whether to enable the Confidential VM configuration on the instance. Note that the instance image must support Confidential VMs. See https://cloud.google.com/compute/docs/images | `bool` | `false` | no |
 | enable\_shielded\_vm | Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images | `bool` | `false` | no |
 | labels | Labels, provided as a map | `map(string)` | `{}` | no |
 | machine\_type | Machine type to create, e.g. n1-standard-1 | `string` | `"n1-standard-1"` | no |
@@ -26,6 +27,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | name\_prefix | Name prefix for the instance template | `string` | `"default-instance-template"` | no |
 | network | The name or self\_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | `string` | `""` | no |
 | network\_ip | Private IP address to assign to the instance if desired. | `string` | `""` | no |
+| on\_host\_maintenance | Instance availability Policy | `string` | `"MIGRATE"` | no |
 | preemptible | Allow the instance to be preempted | `bool` | `false` | no |
 | project\_id | The GCP project ID | `string` | `null` | no |
 | region | Region where the instance template should be created. | `string` | `null` | no |

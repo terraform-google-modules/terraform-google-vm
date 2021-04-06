@@ -52,7 +52,7 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
     }
   }
 
-  name   = "${var.hostname}-mig-with-percent"
+  name   = var.mig_name == "default" ? "${var.hostname}-mig-with-percent" : var.mig_name
   region = var.region
   dynamic "named_port" {
     for_each = var.named_ports

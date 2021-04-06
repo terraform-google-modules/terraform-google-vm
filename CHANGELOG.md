@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [6.2.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.1.0...v6.2.0) (2021-03-15)
+
+
+### Features
+
+* Add support for local-ssd disks ([#150](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/150)) ([d1ca163](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/d1ca163db77c56e0d86f676ea277f61af53beb72))
+
+
+### Bug Fixes
+
+* Change GCE image project as "gce-uefi-images" is being deprecated. ([#148](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/148)) ([04ac846](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/04ac846d8e29a662ee1467244ac30ecdc1ab6e50))
+
+## [6.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.0.0...v6.1.0) (2021-02-22)
+
+
+### Features
+
+* Add module for creating scheduled snapshots for persistent disk ([#139](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/139)) ([cedac01](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/cedac012914e01b2664f567250b80d7aaf32c77e))
+* Allow IP assignment in instance templates ([#118](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/118)) ([a53e140](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/a53e14011ce200b6d8b277838ff960dfebcc6db0))
+* Allow overriding MIG name ([#142](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/142)) ([75a8baa](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/75a8baae3cd8a98517e08aaaf2169e29d8856959))
+
+
+### Bug Fixes
+
+* Add support for disk_name and device_name on additional_disks  ([#132](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/132)) ([a89a025](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/a89a0253591a412dd900499f79086f7b24e7acc6))
+* disk snapshot working example ([#145](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/145)) ([698d865](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/698d8650d6a3acfd3647926f005876e06a9addc6))
+
+## [6.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v5.1.0...v6.0.0) (2020-12-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Minimum Terraform version increased to 0.13.
+* Update default source image and family to latest CentOS 7 (#126)
+
+### Features
+
+* add TF 0.13 constraint and module attribution ([#128](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/128)) ([d042aae](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/d042aae0ab50fbbe763ff551f3daa80aa8f1b551))
+* adds an output for the health check self_links to be consumed by load balancer resources outside this module ([#119](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/119)) ([ae4d777](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/ae4d7777958fe4238d96191a3aa7c7deab996fd1))
+* Update default source image and family to latest CentOS 7 ([#126](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/126)) ([6310016](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/63100169ebecea163f3965f4be3df8b600af047d))
+
 ## [5.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v5.0.0...v5.1.0) (2020-10-07)
 
 

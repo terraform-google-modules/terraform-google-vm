@@ -79,8 +79,8 @@ variable "source_image_family" {
 }
 
 variable "source_image_project" {
-  description = "Project where the source image comes from. The default project contains images that support Shielded VMs if desired"
-  default     = "gce-uefi-images"
+  description = "Project where the source image comes from. The default project contains CentOS images."
+  default     = "centos-cloud"
 }
 
 variable "disk_size_gb" {
@@ -101,6 +101,8 @@ variable "auto_delete" {
 variable "additional_disks" {
   description = "List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name"
   type = list(object({
+    disk_name    = string
+    device_name  = string
     auto_delete  = bool
     boot         = bool
     disk_size_gb = number
@@ -124,6 +126,11 @@ variable "subnetwork" {
 
 variable "subnetwork_project" {
   description = "The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used."
+  default     = ""
+}
+
+variable "network_ip" {
+  description = "Private IP address to assign to the instance if desired."
   default     = ""
 }
 

@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=0.13.0"
-  required_providers {
-    google      = ">= 3.43, <4.0"
-    google-beta = ">= 3.43, <4.0"
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v6.2.0"
-  }
-  provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v6.2.0"
-  }
+output "instances_self_links" {
+  description = "List of instance self-links"
+  value       = module.disk_snapshot.instances_self_links
+}
+
+output "project_id" {
+  description = "The GCP project to use for integration tests"
+  value       = var.project_id
+}
+
+output "disk_snapshots" {
+  description = "List of disks snapshots and the snapshot policy"
+  value       = module.disk_snapshot.disk_snapshots
 }

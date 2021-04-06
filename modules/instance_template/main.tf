@@ -78,13 +78,13 @@ resource "google_compute_instance_template" "tpl" {
       boot         = lookup(disk.value, "boot", null)
       device_name  = lookup(disk.value, "device_name", null)
       disk_name    = lookup(disk.value, "disk_name", null)
-      disk_size_gb = lookup(disk.value, "disk_size_gb", null)
+      disk_size_gb = lookup(disk.value, "disk_size_gb", lookup(disk.value, "disk_type", null) == "local-ssd" ? "375" : null)
       disk_type    = lookup(disk.value, "disk_type", null)
-      interface    = lookup(disk.value, "interface", null)
+      interface    = lookup(disk.value, "interface", lookup(disk.value, "disk_type", null) == "local-ssd" ? "NVME" : null)
       mode         = lookup(disk.value, "mode", null)
       source       = lookup(disk.value, "source", null)
       source_image = lookup(disk.value, "source_image", null)
-      type         = lookup(disk.value, "type", null)
+      type         = lookup(disk.value, "disk_type", null) == "local-ssd" ? "SCRATCH" : "PERSISTENT"
 
       dynamic "disk_encryption_key" {
         for_each = lookup(disk.value, "disk_encryption_key", [])
@@ -107,6 +107,7 @@ resource "google_compute_instance_template" "tpl" {
     network            = var.network
     subnetwork         = var.subnetwork
     subnetwork_project = var.subnetwork_project
+    network_ip         = length(var.network_ip) > 0 ? var.network_ip : null
     dynamic "access_config" {
       for_each = var.access_config
       content {

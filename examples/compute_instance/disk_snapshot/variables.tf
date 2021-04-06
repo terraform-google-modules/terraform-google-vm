@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=0.13.0"
-  required_providers {
-    google      = ">= 3.43, <4.0"
-    google-beta = ">= 3.43, <4.0"
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v6.2.0"
-  }
-  provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v6.2.0"
-  }
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
+  type        = string
 }
+
+variable "region" {
+  description = "The GCP region to create and test resources in"
+  type        = string
+  default     = "us-central1"
+}
+
+variable "subnetwork" {
+  description = "The subnetwork selflink to host the compute instances in"
+}
+
+

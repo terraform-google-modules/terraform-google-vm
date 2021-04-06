@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=0.13.0"
-  required_providers {
-    google      = ">= 3.43, <4.0"
-    google-beta = ">= 3.43, <4.0"
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v6.2.0"
-  }
-  provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v6.2.0"
-  }
+output "policy" {
+  description = "Resource snapshot policy details"
+  value       = google_compute_resource_policy.policy
+}
+
+output "attachments" {
+  description = "Disk attachments to the resource policy"
+  value       = google_compute_disk_resource_policy_attachment.attachment.*
 }

@@ -32,7 +32,9 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | Name | Description |
 |------|-------------|
 | available\_zones | List of available zones in region |
+| instances\_details | List of all details for compute instances |
 | instances\_self\_links | List of self-links for compute instances |
 | self\_links | List of self-links for unmanaged instance groups |
+| umig\_details | List of all details for unmanaged instance groups |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

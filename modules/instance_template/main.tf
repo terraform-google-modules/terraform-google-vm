@@ -51,8 +51,9 @@ locals {
   shielded_vm_configs          = var.enable_shielded_vm ? [true] : []
   confidential_instance_config = var.enable_confidential_vm ? [true] : []
 
+  gpu_enabled = var.gpu != ""
   on_host_maintenance = (
-    var.preemptible || var.enable_confidential_vm
+    var.preemptible || var.enable_confidential_vm || local.gpu_enabled
     ? "TERMINATE"
     : var.on_host_maintenance
   )
@@ -124,7 +125,7 @@ resource "google_compute_instance_template" "tpl" {
   # scheduling must have automatic_restart be false when preemptible is true.
   scheduling {
     preemptible         = var.preemptible
-    automatic_restart   = ! var.preemptible
+    automatic_restart   = !var.preemptible
     on_host_maintenance = local.on_host_maintenance
   }
 
@@ -139,5 +140,10 @@ resource "google_compute_instance_template" "tpl" {
 
   confidential_instance_config {
     enable_confidential_compute = var.enable_confidential_vm
+  }
+
+  guest_accelerator {
+    type  = var.gpu.type
+    count = var.gpu.count
   }
 }

@@ -203,3 +203,14 @@ variable "access_config" {
   }))
   default = []
 }
+
+###########################
+# Guest Accelerator (GPU)
+###########################
+variable "gpu" {
+  description = "GPU "
+  type = object({
+    type  = string
+    count = number
+  })
+}

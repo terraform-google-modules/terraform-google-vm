@@ -30,6 +30,12 @@ variable "machine_type" {
   default     = "n1-standard-1"
 }
 
+variable "min_cpu_platform" {
+  description = "Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform"
+  type        = string
+  default     = null
+}
+
 variable "can_ip_forward" {
   description = "Enable IP forwarding, for NAT instances for example"
   default     = "false"

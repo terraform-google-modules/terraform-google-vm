@@ -24,6 +24,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | labels | Labels, provided as a map | `map(string)` | `{}` | no |
 | machine\_type | Machine type to create, e.g. n1-standard-1 | `string` | `"n1-standard-1"` | no |
 | metadata | Metadata, provided as a map | `map(string)` | `{}` | no |
+| min\_cpu\_platform | Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform | `string` | `null` | no |
 | name\_prefix | Name prefix for the instance template | `string` | `"default-instance-template"` | no |
 | network | The name or self\_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | `string` | `""` | no |
 | network\_ip | Private IP address to assign to the instance if desired. | `string` | `""` | no |

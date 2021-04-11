@@ -208,9 +208,10 @@ variable "access_config" {
 # Guest Accelerator (GPU)
 ###########################
 variable "gpu" {
-  description = "GPU information. Type and count of GPU to attach to the instance template"
+  description = "GPU information. Type and count of GPU to attach to the instance template. See https://cloud.google.com/compute/docs/gpus more details"
   type = object({
     type  = string
     count = number
   })
+  default = null
 }

@@ -71,6 +71,7 @@ resource "google_compute_instance_template" "tpl" {
   can_ip_forward          = var.can_ip_forward
   metadata_startup_script = var.startup_script
   region                  = var.region
+  min_cpu_platform        = var.min_cpu_platform
   dynamic "disk" {
     for_each = local.all_disks
     content {

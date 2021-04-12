@@ -143,7 +143,7 @@ resource "google_compute_instance_template" "tpl" {
   }
 
   dynamic "guest_accelerator" {
-    for_each = local.gpu_enabled ? list(var.gpu) : []
+    for_each = local.gpu_enabled ? [var.gpu] : []
     content {
       type  = guest_accelerator.value.type
       count = guest_accelerator.value.count

@@ -51,8 +51,9 @@ locals {
   shielded_vm_configs          = var.enable_shielded_vm ? [true] : []
   confidential_instance_config = var.enable_confidential_vm ? [true] : []
 
+  gpu_enabled = var.gpu != null
   on_host_maintenance = (
-    var.preemptible || var.enable_confidential_vm
+    var.preemptible || var.enable_confidential_vm || local.gpu_enabled
     ? "TERMINATE"
     : var.on_host_maintenance
   )
@@ -140,5 +141,13 @@ resource "google_compute_instance_template" "tpl" {
 
   confidential_instance_config {
     enable_confidential_compute = var.enable_confidential_vm
+  }
+
+  dynamic "guest_accelerator" {
+    for_each = local.gpu_enabled ? [var.gpu] : []
+    content {
+      type  = guest_accelerator.value.type
+      count = guest_accelerator.value.count
+    }
   }
 }

@@ -28,7 +28,7 @@ variable "region" {
 }
 
 variable "zone" {
-  description = "The GCP zone to create and test resources in"
+  description = "The GCP zone to create resources in"
   type        = string
   default     = null
 }

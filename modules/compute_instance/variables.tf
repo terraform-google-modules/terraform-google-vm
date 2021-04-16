@@ -64,3 +64,8 @@ variable "region" {
   default     = null
 }
 
+variable "zone" {
+  type        = string
+  description = "Zone where the instances should be created. If not specified, will spread instances across available zones in the region."
+  default     = null
+}

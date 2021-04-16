@@ -14,29 +14,13 @@
  * limitations under the License.
  */
 
-provider "google" {
 
-  version = "~> 3.0"
-}
-
-module "instance_template" {
-  source          = "../../../modules/instance_template"
-  region          = var.region
+module "instance_simple" {
+  source          = "../../../../examples/compute_instance/simple"
   project_id      = var.project_id
-  subnetwork      = var.subnetwork
+  region          = "us-central1"
+  zone            = "us-central1-b"
+  subnetwork      = google_compute_subnetwork.main.self_link
+  num_instances   = 2
   service_account = var.service_account
-}
-
-module "compute_instance" {
-  source            = "../../../modules/compute_instance"
-  region            = var.region
-  zone              = var.zone
-  subnetwork        = var.subnetwork
-  num_instances     = var.num_instances
-  hostname          = "instance-simple"
-  instance_template = module.instance_template.self_link
-  access_config = [{
-    nat_ip       = var.nat_ip
-    network_tier = var.network_tier
-  }, ]
 }

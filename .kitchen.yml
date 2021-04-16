@@ -50,6 +50,11 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/compute_instance/simple
+  - name: instance_simple_zone
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/compute_instance/simple_zone
   - name: disk_snapshot
     driver:
       name: terraform

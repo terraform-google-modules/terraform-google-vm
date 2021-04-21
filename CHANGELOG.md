@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+### [6.3.1](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.3.0...v6.3.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* add sensitive setting for instances_details output ([#164](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/164)) ([5837759](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/5837759ae3d721078f575092a509aba25c00136d))
+
 ## [6.3.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.2.0...v6.3.0) (2021-04-16)
 
 

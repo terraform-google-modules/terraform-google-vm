@@ -25,7 +25,8 @@ locals {
     default = data.google_compute_zones.available.names
     user    = var.distribution_policy_zones
   }
-  distribution_policy_zones = local.distribution_policy_zones_base[length(var.distribution_policy_zones) == 0 ? "default" : "user"]
+  distribution_policy_zones    = local.distribution_policy_zones_base[length(var.distribution_policy_zones) == 0 ? "default" : "user"]
+  autoscaling_scale_in_enabled = var.autoscaling_scale_in_control.fixed_replicas > 0 || var.autoscaling_scale_in_control.percent_replicas > 0
 }
 
 data "google_compute_zones" "available" {

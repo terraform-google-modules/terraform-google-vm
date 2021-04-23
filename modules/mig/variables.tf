@@ -170,15 +170,17 @@ variable "autoscaling_lb" {
 }
 
 variable "autoscaling_scale_in_control" {
-  description = "Autoscaling, scale-in control block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#scale_in_control"
-  type = list(object({
-    max_scaled_in_replicas = list(object({
-      fixed   = number
-      percent = number
-    }))
-    time_window_sec = number
-  }))
-  default = []
+  description = "Autoscaling, scale-in control block. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#scale_in_control"
+  type = object({
+    fixed_replicas   = number
+    percent_replicas = number
+    time_window_sec  = number
+  })
+  default = {
+    fixed_replicas   = 0
+    percent_replicas = 0
+    time_window_sec  = null
+  }
 }
 
 ##########################

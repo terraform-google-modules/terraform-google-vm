@@ -113,7 +113,6 @@ resource "google_compute_region_autoscaler" "autoscaler" {
     max_replicas    = var.max_replicas
     min_replicas    = var.min_replicas
     cooldown_period = var.cooldown_period
-
     dynamic "scale_in_control" {
       for_each = var.autoscaling_scale_in_control
       content {
@@ -127,7 +126,6 @@ resource "google_compute_region_autoscaler" "autoscaler" {
         time_window_sec = lookup(scale_in_control.value, "time_window_sec", null)
       }
     }
-
     dynamic "cpu_utilization" {
       for_each = var.autoscaling_cpu
       content {

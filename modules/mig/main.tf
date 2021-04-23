@@ -115,14 +115,11 @@ resource "google_compute_region_autoscaler" "autoscaler" {
     min_replicas    = var.min_replicas
     cooldown_period = var.cooldown_period
     dynamic "scale_in_control" {
-      for_each = var.autoscaling_scale_in_control
+      for_each = local.autoscaling_scale_in_enabled ? [var.autoscaling_scale_in_control] : []
       content {
-        dynamic "max_scaled_in_replicas" {
-          for_each = lookup(scale_in_control.value, "max_scaled_in_replicas", null)
-          content {
-            fixed   = lookup(max_scaled_in_replicas.value, "fixed", null)
-            percent = lookup(max_scaled_in_replicas.value, "percent", null)
-          }
+        max_scaled_in_replicas {
+          fixed   = lookup(scale_in_control.value, "fixed_replicas", null)
+          percent = lookup(scale_in_control.value, "percent_replicas", null)
         }
         time_window_sec = lookup(scale_in_control.value, "time_window_sec", null)
       }

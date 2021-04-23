@@ -266,6 +266,18 @@ variable "autoscaling_lb" {
   default     = []
 }
 
+variable "autoscaling_scale_in_control" {
+  description = "Autoscaling, scale-in control block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#scale_in_control"
+  type = list(object({
+    max_scaled_in_replicas = list(object({
+      fixed   = number
+      percent = number
+    }))
+    time_window_sec = number
+  }))
+  default = []
+}
+
 variable "autoscaling_enabled" {
   description = "Creates an autoscaler for the managed instance group"
   type        = bool

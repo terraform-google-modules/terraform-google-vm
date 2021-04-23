@@ -185,8 +185,8 @@ variable "autoscaling_scale_in_control" {
     time_window_sec  = number
   })
   default = {
-    fixed_replicas   = 0
-    percent_replicas = 0
+    fixed_replicas   = null
+    percent_replicas = null
     time_window_sec  = null
   }
 }

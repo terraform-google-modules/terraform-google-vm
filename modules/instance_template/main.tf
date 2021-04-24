@@ -37,6 +37,7 @@ locals {
       source_image = var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link
       disk_size_gb = var.disk_size_gb
       disk_type    = var.disk_type
+      disk_labels  = var.disk_labels
       auto_delete  = var.auto_delete
       boot         = "true"
     },
@@ -87,6 +88,7 @@ resource "google_compute_instance_template" "tpl" {
       source       = lookup(disk.value, "source", null)
       source_image = lookup(disk.value, "source_image", null)
       type         = lookup(disk.value, "disk_type", null) == "local-ssd" ? "SCRATCH" : "PERSISTENT"
+      labels       = lookup(disk.value, "disk_labels", null)
 
       dynamic "disk_encryption_key" {
         for_each = lookup(disk.value, "disk_encryption_key", [])
@@ -126,7 +128,7 @@ resource "google_compute_instance_template" "tpl" {
   # scheduling must have automatic_restart be false when preemptible is true.
   scheduling {
     preemptible         = var.preemptible
-    automatic_restart   = ! var.preemptible
+    automatic_restart   = !var.preemptible
     on_host_maintenance = local.on_host_maintenance
   }
 

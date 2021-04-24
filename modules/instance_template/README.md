@@ -19,6 +19,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | `string` | `"false"` | no |
 | disk\_size\_gb | Boot disk size in GB | `string` | `"100"` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | `string` | `"pd-standard"` | no |
+| disk\_labels | Boot disk labels, provided as a map | `map(string)` | `{}` | no |
 | enable\_confidential\_vm | Whether to enable the Confidential VM configuration on the instance. Note that the instance image must support Confidential VMs. See https://cloud.google.com/compute/docs/images | `bool` | `false` | no |
 | enable\_shielded\_vm | Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images | `bool` | `false` | no |
 | gpu | GPU information. Type and count of GPU to attach to the instance template. See https://cloud.google.com/compute/docs/gpus more details | <pre>object({<br>    type  = string<br>    count = number<br>  })</pre> | `null` | no |

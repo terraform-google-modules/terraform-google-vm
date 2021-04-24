@@ -130,6 +130,7 @@ variable "additional_disks" {
     boot         = bool
     disk_size_gb = number
     disk_type    = string
+    disk_labels  = map(string)
   }))
   default = []
 }

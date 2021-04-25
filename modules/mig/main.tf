@@ -25,7 +25,8 @@ locals {
     default = data.google_compute_zones.available.names
     user    = var.distribution_policy_zones
   }
-  distribution_policy_zones = local.distribution_policy_zones_base[length(var.distribution_policy_zones) == 0 ? "default" : "user"]
+  distribution_policy_zones    = local.distribution_policy_zones_base[length(var.distribution_policy_zones) == 0 ? "default" : "user"]
+  autoscaling_scale_in_enabled = var.autoscaling_scale_in_control.fixed_replicas != null || var.autoscaling_scale_in_control.percent_replicas != null
 }
 
 data "google_compute_zones" "available" {
@@ -113,6 +114,16 @@ resource "google_compute_region_autoscaler" "autoscaler" {
     max_replicas    = var.max_replicas
     min_replicas    = var.min_replicas
     cooldown_period = var.cooldown_period
+    dynamic "scale_in_control" {
+      for_each = local.autoscaling_scale_in_enabled ? [var.autoscaling_scale_in_control] : []
+      content {
+        max_scaled_in_replicas {
+          fixed   = lookup(scale_in_control.value, "fixed_replicas", null)
+          percent = lookup(scale_in_control.value, "percent_replicas", null)
+        }
+        time_window_sec = lookup(scale_in_control.value, "time_window_sec", null)
+      }
+    }
     dynamic "cpu_utilization" {
       for_each = var.autoscaling_cpu
       content {

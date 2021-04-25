@@ -177,6 +177,20 @@ variable "autoscaling_lb" {
   default     = []
 }
 
+variable "autoscaling_scale_in_control" {
+  description = "Autoscaling, scale-in control block. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#scale_in_control"
+  type = object({
+    fixed_replicas   = number
+    percent_replicas = number
+    time_window_sec  = number
+  })
+  default = {
+    fixed_replicas   = null
+    percent_replicas = null
+    time_window_sec  = null
+  }
+}
+
 ##########################
 
 variable "network" {

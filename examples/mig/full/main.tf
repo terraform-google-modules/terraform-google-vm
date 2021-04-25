@@ -76,12 +76,13 @@ module "mig" {
   health_check = var.health_check
 
   /* autoscaler */
-  autoscaling_enabled = var.autoscaling_enabled
-  max_replicas        = var.max_replicas
-  min_replicas        = var.min_replicas
-  cooldown_period     = var.cooldown_period
-  autoscaling_cpu     = var.autoscaling_cpu
-  autoscaling_metric  = var.autoscaling_metric
-  autoscaling_lb      = var.autoscaling_lb
+  autoscaling_enabled          = var.autoscaling_enabled
+  max_replicas                 = var.max_replicas
+  min_replicas                 = var.min_replicas
+  cooldown_period              = var.cooldown_period
+  autoscaling_cpu              = var.autoscaling_cpu
+  autoscaling_metric           = var.autoscaling_metric
+  autoscaling_lb               = var.autoscaling_lb
+  autoscaling_scale_in_control = var.autoscaling_scale_in_control
 }
 

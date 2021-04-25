@@ -44,6 +44,7 @@ module "instance_template" {
       disk_type    = "pd-standard"
       disk_name    = null
       device_name  = null
+      disk_labels  = { "foo" : "bar" }
     },
     {
       auto_delete  = true
@@ -52,6 +53,7 @@ module "instance_template" {
       disk_type    = "pd-standard"
       disk_name    = null
       device_name  = null
+      disk_labels  = {}
     }
   ]
 }

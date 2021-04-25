@@ -99,6 +99,12 @@ variable "disk_type" {
   default     = "pd-standard"
 }
 
+variable "disk_labels" {
+  description = "Labels to be assigned to boot disk, provided as a map"
+  type        = map(string)
+  default     = {}
+}
+
 variable "auto_delete" {
   description = "Whether or not the boot disk should be auto-deleted"
   default     = "true"
@@ -113,6 +119,7 @@ variable "additional_disks" {
     boot         = bool
     disk_size_gb = number
     disk_type    = string
+    disk_labels  = map(string)
   }))
   default = []
 }

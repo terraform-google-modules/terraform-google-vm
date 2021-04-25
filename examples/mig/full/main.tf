@@ -53,6 +53,7 @@ module "instance_template" {
   /* disks */
   disk_size_gb     = var.disk_size_gb
   disk_type        = var.disk_type
+  disk_labels      = var.disk_labels
   auto_delete      = var.auto_delete
   additional_disks = var.additional_disks
 }

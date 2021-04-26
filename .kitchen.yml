@@ -74,6 +74,15 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/mig/autoscaler
+  - name: mig_healthcheck
+    lifecycle:
+      pre_verify:
+        # Wait for instances to be created
+        - local: sleep 300
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/mig/healthcheck
   - name: umig_simple
     driver:
       name: terraform

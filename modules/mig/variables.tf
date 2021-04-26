@@ -92,6 +92,11 @@ variable "update_policy" {
 # Healthcheck
 ##############
 
+variable "health_check_name" {
+  description = "Health check name. When set to `default`, name will be derived from var.hostname."
+  default     = "default"
+}
+
 variable "health_check" {
   description = "Health check to determine whether instances are responsive and able to do work"
   type = object({
@@ -127,6 +132,11 @@ variable "health_check" {
 #############
 # Autoscaler
 #############
+variable "autoscaler_name" {
+  description = "Autoscaler name. When set to `default`, name will be derived from var.hostname."
+  default     = "default"
+}
+
 variable "autoscaling_enabled" {
   description = "Creates an autoscaler for the managed instance group"
   default     = "false"

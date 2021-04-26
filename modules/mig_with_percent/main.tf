@@ -18,6 +18,7 @@
 
 locals {
   healthchecks = concat(
+    google_compute_health_check.https.*.self_link,
     google_compute_health_check.http.*.self_link,
     google_compute_health_check.tcp.*.self_link,
   )
@@ -113,7 +114,7 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
 resource "google_compute_region_autoscaler" "autoscaler" {
   provider = google
   count    = var.autoscaling_enabled ? 1 : 0
-  name     = "${var.hostname}-autoscaler"
+  name     = var.autoscaler_name == "default" ? "${var.hostname}-autoscaler" : var.autoscaler_name
   project  = var.project_id
   region   = var.region
 
@@ -158,10 +159,29 @@ resource "google_compute_region_autoscaler" "autoscaler" {
   depends_on = [google_compute_region_instance_group_manager.mig_with_percent]
 }
 
+resource "google_compute_health_check" "https" {
+  count   = var.health_check["type"] == "https" ? 1 : 0
+  project = var.project_id
+  name    = var.health_check_name == "default" ? "${var.hostname}-https-healthcheck" : var.health_check_name
+
+  check_interval_sec  = var.health_check["check_interval_sec"]
+  healthy_threshold   = var.health_check["healthy_threshold"]
+  timeout_sec         = var.health_check["timeout_sec"]
+  unhealthy_threshold = var.health_check["unhealthy_threshold"]
+
+  https_health_check {
+    port         = var.health_check["port"]
+    request_path = var.health_check["request_path"]
+    host         = var.health_check["host"]
+    response     = var.health_check["response"]
+    proxy_header = var.health_check["proxy_header"]
+  }
+}
+
 resource "google_compute_health_check" "http" {
   count   = var.health_check["type"] == "http" ? 1 : 0
   project = var.project_id
-  name    = "${var.hostname}-http-healthcheck"
+  name    = var.health_check_name == "default" ? "${var.hostname}-http-healthcheck" : var.health_check_name
 
   check_interval_sec  = var.health_check["check_interval_sec"]
   healthy_threshold   = var.health_check["healthy_threshold"]
@@ -180,7 +200,7 @@ resource "google_compute_health_check" "http" {
 resource "google_compute_health_check" "tcp" {
   count   = var.health_check["type"] == "tcp" ? 1 : 0
   project = var.project_id
-  name    = "${var.hostname}-tcp-healthcheck"
+  name    = var.health_check_name == "default" ? "${var.hostname}-tcp-healthcheck" : var.health_check_name
 
   timeout_sec         = var.health_check["timeout_sec"]
   check_interval_sec  = var.health_check["check_interval_sec"]

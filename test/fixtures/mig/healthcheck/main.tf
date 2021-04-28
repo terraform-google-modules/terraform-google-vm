@@ -17,31 +17,4 @@
 module "mig_healthcheck" {
   source              = "../../../../examples/mig/healthcheck"
   project_id          = var.project_id
-  subnetwork          = google_compute_subnetwork.main.name
-  service_account     = var.service_account
-  autoscaling_enabled = "true"
-  min_replicas        = 2
-  autoscaler_name     = "mig-as"
-
-  autoscaling_cpu = [
-    {
-      target = 0.4
-    },
-  ]
-
-  health_check_name = "mig-https-hc"
-  health_check = {
-    type                = "https"
-    initial_delay_sec   = 120
-    check_interval_sec  = 5
-    healthy_threshold   = 2
-    timeout_sec         = 5
-    unhealthy_threshold = 2
-    response            = ""
-    proxy_header        = "NONE"
-    port                = 443
-    request             = ""
-    request_path        = "/"
-    host                = "localhost"
-  }
 }

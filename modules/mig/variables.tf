@@ -28,8 +28,9 @@ variable "hostname" {
 }
 
 variable "mig_name" {
-  description = "Managed instance group name. When set to `default`, name will be derived from var.hostname."
-  default     = "default"
+  type        = string
+  description = "Managed instance group name. When variable is empty, name will be derived from var.hostname."
+  default     = ""
 }
 
 variable "region" {
@@ -93,8 +94,9 @@ variable "update_policy" {
 ##############
 
 variable "health_check_name" {
-  description = "Health check name. When set to `default`, name will be derived from var.hostname."
-  default     = "default"
+  type        = string
+  description = "Health check name. When variable is empty, name will be derived from var.hostname."
+  default     = ""
 }
 
 variable "health_check" {
@@ -133,8 +135,9 @@ variable "health_check" {
 # Autoscaler
 #############
 variable "autoscaler_name" {
-  description = "Autoscaler name. When set to `default`, name will be derived from var.hostname."
-  default     = "default"
+  type        = string
+  description = "Autoscaler name. When variable is empty, name will be derived from var.hostname."
+  default     = ""
 }
 
 variable "autoscaling_enabled" {

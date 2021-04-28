@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [6.4.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.3.0...v6.4.0) (2021-04-28)
+
+
+### Features
+
+* Add HTTPS health check support and use empty variables to indicate default names ([#170](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/170)) ([5ca905b](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/5ca905b54e22fedcf366627e5b90e3e4928fc25b))
+* Add support for configuring autoscaler scale_in on MIGs ([#166](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/166)) ([5c0f061](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/5c0f061483f74031ce82a7c07d73ad9dd4a319f0))
+* Adds labels to boot and additional disks ([#168](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/168)) ([9e930ce](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/9e930cee939e8573a9114bcd379dc16f72a21e72))
+
+
+### Bug Fixes
+
+* add sensitive setting for instances_details output ([#164](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/164)) ([5837759](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/5837759ae3d721078f575092a509aba25c00136d))
+
 ## [6.3.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.2.0...v6.3.0) (2021-04-16)
 
 

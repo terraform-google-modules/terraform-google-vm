@@ -59,9 +59,10 @@ resource "google_compute_subnetwork" "main" {
 /** Instance Template **/
 
 module "instance_template" {
-  source     = "../../../modules/instance_template"
-  project_id = var.project_id
-  subnetwork = google_compute_subnetwork.main.name
+  source          = "../../../modules/instance_template"
+  project_id      = var.project_id
+  subnetwork      = google_compute_subnetwork.main.name
+  service_account = google_service_account.ci_vm_account.self_link
 }
 
 /** Instance Group within autoscale and health check **/

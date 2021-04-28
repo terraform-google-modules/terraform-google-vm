@@ -62,7 +62,7 @@ module "instance_template" {
   source          = "../../../modules/instance_template"
   project_id      = var.project_id
   subnetwork      = google_compute_subnetwork.main.name
-  service_account = google_service_account.ci_vm_account.self_link
+  service_account = null
 }
 
 /** Instance Group within autoscale and health check **/

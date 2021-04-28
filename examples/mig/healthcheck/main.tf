@@ -59,16 +59,16 @@ resource "google_compute_subnetwork" "main" {
 /** Instance Template **/
 
 module "instance_template" {
-  source          = "../../../modules/instance_template"
-  project_id      = var.project_id
-  subnetwork      = google_compute_subnetwork.main.name
+  source     = "../../../modules/instance_template"
+  project_id = var.project_id
+  subnetwork = google_compute_subnetwork.main.name
 }
 
 /** Instance Group within autoscale and health check **/
 
 module "mig" {
   source              = "../../../modules/mig"
-  project_id          = var.project_id  
+  project_id          = var.project_id
   subnetwork          = google_compute_subnetwork.main.name
   instance_template   = module.instance_template.self_link
   region              = var.region

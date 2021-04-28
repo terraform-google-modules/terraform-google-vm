@@ -15,6 +15,6 @@
  */
 
 module "mig_healthcheck" {
-  source              = "../../../../examples/mig/healthcheck"
-  project_id          = var.project_id
+  source     = "../../../../examples/mig/healthcheck"
+  project_id = var.project_id
 }

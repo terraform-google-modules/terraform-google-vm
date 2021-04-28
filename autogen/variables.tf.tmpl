@@ -28,8 +28,9 @@ variable "hostname" {
 }
 
 variable "mig_name" {
-  description = "Managed instance group name. When set to `default`, name will be derived from var.hostname."
-  default     = "default"
+  type        = string
+  description = "Managed instance group name. When variable is empty, name will be derived from var.hostname."
+  default     = ""
 }
 
 variable "region" {
@@ -107,6 +108,12 @@ variable "update_policy" {
 # Healthcheck
 ##############
 
+variable "health_check_name" {
+  type        = string
+  description = "Health check name. When variable is empty, name will be derived from var.hostname."
+  default     = ""
+}
+
 variable "health_check" {
   description = "Health check to determine whether instances are responsive and able to do work"
   type = object({
@@ -142,6 +149,12 @@ variable "health_check" {
 #############
 # Autoscaler
 #############
+variable "autoscaler_name" {
+  type        = string
+  description = "Autoscaler name. When variable is empty, name will be derived from var.hostname."
+  default     = ""
+}
+
 variable "autoscaling_enabled" {
   description = "Creates an autoscaler for the managed instance group"
   default     = "false"

@@ -14,37 +14,87 @@
  * limitations under the License.
  */
 
-provider "google" {
+/** Providers **/
 
+provider "google" {
   project = var.project_id
   region  = var.region
   version = "~>3.0"
 }
 
 provider "google-beta" {
-
   project = var.project_id
   region  = var.region
   version = "~> 3.0"
 }
 
+/** Random String (optional) **/
+
+provider "random" {
+  version = "~> 2.2"
+}
+
+resource "random_string" "suffix" {
+  length  = 4
+  special = "false"
+  upper   = "false"
+}
+
+/** Network **/
+
+resource "google_compute_network" "main" {
+  project                 = var.project_id
+  name                    = "cft-vm-test-${random_string.suffix.result}"
+  auto_create_subnetworks = "false"
+}
+
+resource "google_compute_subnetwork" "main" {
+  project       = var.project_id
+  region        = var.region
+  name          = "cft-vm-test-${random_string.suffix.result}"
+  ip_cidr_range = "10.128.0.0/20"
+  network       = google_compute_network.main.self_link
+}
+
+/** Instance Template **/
+
 module "instance_template" {
   source          = "../../../modules/instance_template"
   project_id      = var.project_id
-  subnetwork      = var.subnetwork
-  service_account = var.service_account
+  subnetwork      = google_compute_subnetwork.main.name
 }
+
+/** Instance Group within autoscale and health check **/
 
 module "mig" {
   source              = "../../../modules/mig"
-  project_id          = var.project_id
-  region              = var.region
-  subnetwork          = var.subnetwork
-  autoscaling_enabled = var.autoscaling_enabled
-  min_replicas        = var.min_replicas
-  autoscaling_cpu     = var.autoscaling_cpu
+  project_id          = var.project_id  
+  subnetwork          = google_compute_subnetwork.main.name
   instance_template   = module.instance_template.self_link
-  health_check_name   = var.health_check_name
-  health_check        = var.health_check
-  autoscaler_name     = var.autoscaler_name
+  region              = var.region
+  autoscaling_enabled = "true"
+  min_replicas        = 2
+  autoscaler_name     = "mig-as"
+
+  autoscaling_cpu = [
+    {
+      target = 0.4
+    },
+  ]
+
+  health_check_name = "mig-https-hc"
+  health_check = {
+    type                = "https"
+    initial_delay_sec   = 120
+    check_interval_sec  = 5
+    healthy_threshold   = 2
+    timeout_sec         = 5
+    unhealthy_threshold = 2
+    response            = ""
+    proxy_header        = "NONE"
+    port                = 443
+    request             = ""
+    request_path        = "/"
+    host                = "localhost"
+  }
 }

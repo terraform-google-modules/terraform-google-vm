@@ -25,7 +25,7 @@ terraform {
   }
 }
 
-# [START compute_vm_with_multi-if_create]
+# [START compute_vm_with_multiple_interface]
 resource "google_compute_instance" "default" {
   project      = var.project_id # Replace with your project ID in quotes
   zone         = "us-central1-b"
@@ -45,4 +45,4 @@ resource "google_compute_instance" "default" {
     network_ip = "10.10.20.14"
   }
 }
-# [END compute_vm_with_multi-if_create]
+# [END compute_vm_with_multiple_interface]

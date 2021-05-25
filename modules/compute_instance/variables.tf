@@ -34,6 +34,12 @@ variable "hostname" {
   default     = ""
 }
 
+variable "override_hostname" {
+  type        = string
+  description = "Override the generated hostname"
+  default     = ""
+}
+
 variable "static_ips" {
   type        = list(string)
   description = "List of static IPs for VM instances"

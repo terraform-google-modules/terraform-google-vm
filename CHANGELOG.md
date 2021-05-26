@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [6.5.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.4.0...v6.5.0) (2021-05-26)
+
+
+### Features
+
+* **compute_instance:** added a variable to add/remove the hostname suffix for compute instance submodule ([#177](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/177)) ([07970f9](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/07970f915e6f068cc6ed8d7ab90cd4cd9bcaf74f))
+
 ## [6.4.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.3.0...v6.4.0) (2021-04-28)
 
 

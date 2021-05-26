@@ -16,11 +16,11 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | <pre>list(object({<br>    nat_ip       = string<br>    network_tier = string<br>  }))</pre> | `[]` | no |
+| add\_hostname\_suffix | Adds a suffix to the hostname | `bool` | `true` | no |
 | hostname | Hostname of instances | `string` | `""` | no |
 | instance\_template | Instance template self\_link used to create compute instances | `any` | n/a | yes |
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
 | num\_instances | Number of instances to create. This value is ignored if static\_ips is provided. | `string` | `"1"` | no |
-| override\_hostname | Override the generated hostname | `string` | `""` | no |
 | region | Region where the instances should be created. | `string` | `null` | no |
 | static\_ips | List of static IPs for VM instances | `list(string)` | `[]` | no |
 | subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |

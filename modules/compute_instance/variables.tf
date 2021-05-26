@@ -34,10 +34,9 @@ variable "hostname" {
   default     = ""
 }
 
-variable "override_hostname" {
-  type        = string
-  description = "Override the generated hostname"
-  default     = ""
+variable "add_hostname_suffix" {
+  description = "Adds a suffix to the hostname"
+  default     = true
 }
 
 variable "static_ips" {

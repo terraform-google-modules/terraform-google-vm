@@ -34,6 +34,11 @@ variable "hostname" {
   default     = ""
 }
 
+variable "add_hostname_suffix" {
+  description = "Adds a suffix to the hostname"
+  default     = true
+}
+
 variable "static_ips" {
   type        = list(string)
   description = "List of static IPs for VM instances"

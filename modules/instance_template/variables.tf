@@ -147,6 +147,12 @@ variable "network_ip" {
   default     = ""
 }
 
+# Additional NICs
+variable "additional_networks" {
+  description = "If more than a one NIC is required for the instance, use this variable in addition to network-related variables. The format should be an array of objects with the same structure: network, subnetwork, subnetwork_project, network_ip and access_config."
+  default     = []
+}
+
 ###########
 # metadata
 ###########

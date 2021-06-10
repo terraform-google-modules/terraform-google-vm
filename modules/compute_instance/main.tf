@@ -59,6 +59,23 @@ resource "google_compute_instance_from_template" "compute_instance" {
     }
   }
 
+  dynamic "network_interface" {
+    for_each = var.additional_networks
+    content {
+      network            = lookup(network_interface.value, "network", null)
+      subnetwork         = lookup(network_interface.value, "subnetwork", null)
+      subnetwork_project = lookup(network_interface.value, "subnetwork_project", null)
+      network_ip         = lookup(network_interface.value, "network_ip", null)
+      dynamic "access_config" {
+        for_each = lookup(network_interface.value, "access_config", [])
+        content {
+          nat_ip       = lookup(access_config.value, "nat_ip", [])
+          network_tier = lookup(access_config.value, "network_tier", [])
+        }
+      }
+    }
+  }
+
   source_instance_template = var.instance_template
 }
 

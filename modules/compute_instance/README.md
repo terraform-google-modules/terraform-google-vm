@@ -25,6 +25,7 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | static\_ips | List of static IPs for VM instances | `list(string)` | `[]` | no |
 | subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
 | subnetwork\_project | The project that subnetwork belongs to | `string` | `""` | no |
+| additional\_networks | If more than a one NIC is required for the instance, use this variable in addition to network-related variables. The format should be an array of objects with the same structure: `network`, `subnetwork`, `subnetwork_project`, `network_ip` and `access_config`. | `array(map(string))` | `[]` | no |
 | zone | Zone where the instances should be created. If not specified, instances will be spread across available zones in the region. | `string` | `null` | no |
 
 ## Outputs

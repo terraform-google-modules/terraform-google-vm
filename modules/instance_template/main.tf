@@ -127,7 +127,7 @@ resource "google_compute_instance_template" "tpl" {
       network            = lookup(network_interface.value, "network", null)
       subnetwork         = lookup(network_interface.value, "subnetwork", null)
       subnetwork_project = lookup(network_interface.value, "subnetwork_project", null)
-      network_ip         = length(lookup(network_interface.value, "network_ip", null)) > 0 ? lookup(network_interface.value, "network_ip", null) : null
+      network_ip         = lookup(network_interface.value, "network_ip", null)
       dynamic "access_config" {
         for_each = lookup(network_interface.value, "access_config", [])
         content {

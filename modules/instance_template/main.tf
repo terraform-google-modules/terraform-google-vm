@@ -124,15 +124,15 @@ resource "google_compute_instance_template" "tpl" {
   dynamic "network_interface" {
     for_each = var.additional_networks
     content {
-      network            = network_interface.value["network"]
-      subnetwork         = network_interface.value["subnetwork"]
-      subnetwork_project = network_interface.value["subnetwork_project"]
-      network_ip         = length(network_interface.value["network_ip"]) > 0 ? network_interface.value["network_ip"] : null
+      network            = lookup(network_interface.value, "network", null)
+      subnetwork         = lookup(network_interface.value, "subnetwork", null)
+      subnetwork_project = lookup(network_interface.value, "subnetwork_project", null)
+      network_ip         = length(lookup(network_interface.value, "network_ip", null)) > 0 ? network_interface.value["network_ip"] : null
       dynamic "access_config" {
-        for_each = network_interface.value["access_config"]
+        for_each = lookup(network_interface.value, "access_config", [])
         content {
-          nat_ip       = access_config.value.nat_ip
-          network_tier = access_config.value.network_tier
+          nat_ip       = lookup(access_config.value, "nat_ip", [])
+          network_tier = lookup(access_config.value, "network_tier", [])
         }
       }
     }

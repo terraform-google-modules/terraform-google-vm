@@ -34,12 +34,13 @@ data "google_compute_image" "image_family" {
 locals {
   boot_disk = [
     {
-      source_image = var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link
-      disk_size_gb = var.disk_size_gb
-      disk_type    = var.disk_type
-      disk_labels  = var.disk_labels
-      auto_delete  = var.auto_delete
-      boot         = "true"
+      source_image        = var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link
+      disk_size_gb        = var.disk_size_gb
+      disk_type           = var.disk_type
+      disk_labels         = var.disk_labels
+      disk_encryption_key = var.disk_encryption_key
+      auto_delete         = var.auto_delete
+      boot                = "true"
     },
   ]
 
@@ -91,21 +92,15 @@ resource "google_compute_instance_template" "tpl" {
       labels       = lookup(disk.value, "disk_labels", null)
 
       dynamic "disk_encryption_key" {
-        for_each = lookup(disk.value, "disk_encryption_key", [])
+        for_each = compact([lookup(disk.value, "disk_encryption_key", null)])
         content {
-          kms_key_self_link = lookup(disk_encryption_key.value, "kms_key_self_link", null)
+          kms_key_self_link = lookup(disk.value, "disk_encryption_key", null)
         }
       }
     }
   }
 
-  dynamic "service_account" {
-    for_each = [var.service_account]
-    content {
-      email  = lookup(service_account.value, "email", null)
-      scopes = lookup(service_account.value, "scopes", null)
-    }
-  }
+
 
   network_interface {
     network            = var.network

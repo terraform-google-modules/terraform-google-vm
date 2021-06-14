@@ -9,7 +9,6 @@ instance templates with encrypted persistent disks.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| disk\_encryption\_key | The self link of the encryption key that is stored in Google Cloud KMS to use to encrypt the boot disk | `string` | `null` | no |
 | project\_id | The GCP project to use for integration tests | `string` | n/a | yes |
 | region | The GCP region to create and test resources in | `string` | `"us-central1"` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account. | <pre>object({<br>    email  = string<br>    scopes = set(string)<br>  })</pre> | `null` | no |

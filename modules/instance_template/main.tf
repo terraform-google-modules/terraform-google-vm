@@ -91,7 +91,7 @@ resource "google_compute_instance_template" "tpl" {
       labels       = lookup(disk.value, "disk_labels", null)
 
       dynamic "disk_encryption_key" {
-        for_each = compact([var.disk_encryption_key ? 1 : null])
+        for_each = compact([var.disk_encryption_key == null ? null : 1])
         content {
           kms_key_self_link = var.disk_encryption_key
         }

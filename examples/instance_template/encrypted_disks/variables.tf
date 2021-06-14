@@ -40,8 +40,3 @@ variable "service_account" {
   description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }
 
-variable "disk_encryption_key" {
-  description = "The self link of the encryption key that is stored in Google Cloud KMS to use to encrypt the boot disk"
-  type        = string
-  default     = null
-}

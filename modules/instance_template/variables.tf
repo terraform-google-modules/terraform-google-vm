@@ -106,7 +106,7 @@ variable "disk_labels" {
 }
 
 variable "disk_encryption_key" {
-  description = "The self link of the encryption key that is stored in Google Cloud KMS to use to encrypt the boot disk"
+  description = "The self link of the encryption key that is stored in Google Cloud KMS to use to encrypt the all disks"
   type        = string
   default     = null
 }
@@ -118,19 +118,15 @@ variable "auto_delete" {
 
 variable "additional_disks" {
   description = "List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name"
-  type        = list(any)
-  # Since disk_encryption_key is optional, and optional arguments in a object variable type definition are not yet supported, remove the object type definition.
-  # Commented below for documentation.
-  # type = list(object({
-  #   disk_name           = string
-  #   device_name         = string
-  #   auto_delete         = bool
-  #   boot                = bool
-  #   disk_size_gb        = number
-  #   disk_type           = string
-  #   disk_labels         = map(string)
-  #   disk_encryption_key = string
-  # }))
+  type = list(object({
+    disk_name    = string
+    device_name  = string
+    auto_delete  = bool
+    boot         = bool
+    disk_size_gb = number
+    disk_type    = string
+    disk_labels  = map(string)
+  }))
   default = []
 }
 

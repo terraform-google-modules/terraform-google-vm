@@ -99,7 +99,13 @@ resource "google_compute_instance_template" "tpl" {
     }
   }
 
-
+  dynamic "service_account" {
+    for_each = [var.service_account]
+    content {
+      email  = lookup(service_account.value, "email", null)
+      scopes = lookup(service_account.value, "scopes", null)
+    }
+  }
 
   network_interface {
     network            = var.network

@@ -105,6 +105,12 @@ variable "disk_labels" {
   default     = {}
 }
 
+variable "disk_encryption_key" {
+  description = "The self link of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance"
+  type        = string
+  default     = null
+}
+
 variable "auto_delete" {
   description = "Whether or not the boot disk should be auto-deleted"
   default     = "true"

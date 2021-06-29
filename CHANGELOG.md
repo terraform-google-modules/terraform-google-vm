@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [6.6.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.5.0...v6.6.0) (2021-06-14)
+
+
+### Features
+
+* Support setting var.disk_encryption_key for instance templates to enable encryption on all disks ([#181](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/181)) ([227ae1a](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/227ae1a2bdf43795c21f39fdcacc6298f9f04b74))
+
 ## [6.5.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.4.0...v6.5.0) (2021-05-26)
 
 

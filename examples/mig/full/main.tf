@@ -61,9 +61,6 @@ module "instance_template" {
 module "mig" {
   source                    = "../../../modules/mig"
   project_id                = var.project_id
-  network                   = var.network
-  subnetwork                = var.subnetwork
-  subnetwork_project        = var.subnetwork_project
   hostname                  = var.hostname
   region                    = var.region
   instance_template         = module.instance_template.self_link

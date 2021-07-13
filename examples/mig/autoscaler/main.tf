@@ -40,7 +40,6 @@ module "mig" {
   project_id          = var.project_id
   region              = var.region
   hostname            = "mig-autoscaler"
-  subnetwork          = var.subnetwork
   autoscaling_enabled = var.autoscaling_enabled
   min_replicas        = var.min_replicas
   autoscaling_cpu     = var.autoscaling_cpu

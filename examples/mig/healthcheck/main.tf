@@ -70,7 +70,6 @@ module "instance_template" {
 module "mig" {
   source              = "../../../modules/mig"
   project_id          = var.project_id
-  subnetwork          = google_compute_subnetwork.main.name
   instance_template   = module.instance_template.self_link
   region              = var.region
   autoscaling_enabled = "true"

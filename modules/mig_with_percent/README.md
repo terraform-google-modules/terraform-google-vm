@@ -35,10 +35,13 @@ The current version is 2.X. The following guides are available to assist with up
 | mig\_timeouts | Times for creation, deleting and updating the MIG resources. Can be helpful when using wait\_for\_instances to allow a longer VM startup time. | <pre>object({<br>    create = string<br>    update = string<br>    delete = string<br>  })</pre> | <pre>{<br>  "create": "5m",<br>  "delete": "15m",<br>  "update": "5m"<br>}</pre> | no |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | `number` | `2` | no |
 | named\_ports | Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports | <pre>list(object({<br>    name = string<br>    port = number<br>  }))</pre> | `[]` | no |
+| network | Network to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
 | next\_version\_percent | Percentage of instances defined in the second version | `any` | n/a | yes |
 | project\_id | The GCP project ID | `string` | `null` | no |
 | region | The GCP region where the managed instance group resides. | `any` | n/a | yes |
 | stateful\_disks | Disks created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs | <pre>list(object({<br>    device_name = string<br>    delete_rule = string<br>  }))</pre> | `[]` | no |
+| subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
+| subnetwork\_project | The project that subnetwork belongs to | `string` | `""` | no |
 | target\_pools | The target load balancing pools to assign this group to. | `list(string)` | `[]` | no |
 | target\_size | The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set. | `number` | `1` | no |
 | update\_policy | The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy | <pre>list(object({<br>    max_surge_fixed              = number<br>    instance_redistribution_type = string<br>    max_surge_percent            = number<br>    max_unavailable_fixed        = number<br>    max_unavailable_percent      = number<br>    min_ready_sec                = number<br>    minimal_action               = string<br>    type                         = string<br>  }))</pre> | `[]` | no |
@@ -53,3 +56,4 @@ The current version is 2.X. The following guides are available to assist with up
 | instance\_group\_manager | An instance of google\_compute\_region\_instance\_group\_manager of the instance group. |
 | self\_link | Self-link of managed instance group |
 
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

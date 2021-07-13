@@ -198,21 +198,6 @@ variable "autoscaling_scale_in_control" {
 
 ##########################
 
-variable "network" {
-  description = "Network to deploy to. Only one of network or subnetwork should be specified."
-  default     = ""
-}
-
-variable "subnetwork" {
-  description = "Subnet to deploy to. Only one of network or subnetwork should be specified."
-  default     = ""
-}
-
-variable "subnetwork_project" {
-  description = "The project that subnetwork belongs to"
-  default     = ""
-}
-
 variable "named_ports" {
   description = "Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports"
   type = list(object({

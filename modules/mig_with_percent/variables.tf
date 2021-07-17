@@ -91,6 +91,7 @@ variable "update_policy" {
     max_unavailable_fixed        = number
     max_unavailable_percent      = number
     min_ready_sec                = number
+    replacement_method           = string
     minimal_action               = string
     type                         = string
   }))

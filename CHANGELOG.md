@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+### [6.6.1](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.6.0...v6.6.1) (2021-07-19)
+
+
+### Bug Fixes
+
+* Remove data sources for instance source_image ([#190](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/190)) ([87c753f](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/87c753f58b09b2144a6a86546d58792de0d61196))
+
 ## [6.6.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.5.0...v6.6.0) (2021-06-14)
 
 

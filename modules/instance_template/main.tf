@@ -14,27 +14,18 @@
  * limitations under the License.
  */
 
-###############
-# Data Sources
-###############
-data "google_compute_image" "image" {
-  project = var.source_image != "" ? var.source_image_project : "centos-cloud"
-  name    = var.source_image != "" ? var.source_image : "centos-7-v20201112"
-}
-
-data "google_compute_image" "image_family" {
-  project = var.source_image_family != "" ? var.source_image_project : "centos-cloud"
-  family  = var.source_image_family != "" ? var.source_image_family : "centos-7"
-}
-
 #########
 # Locals
 #########
 
 locals {
+  source_image         = var.source_image != "" ? var.source_image : "centos-7-v20201112"
+  source_image_family  = var.source_image_family != "" ? var.source_image_family : "centos-7"
+  source_image_project = var.source_image_project != "" ? var.source_image_project : "centos-cloud"
+
   boot_disk = [
     {
-      source_image = var.source_image != "" ? data.google_compute_image.image.self_link : data.google_compute_image.image_family.self_link
+      source_image = var.source_image != "" ? format("${local.source_image_project}/${local.source_image}") : format("${local.source_image_project}/${local.source_image_family}")
       disk_size_gb = var.disk_size_gb
       disk_type    = var.disk_type
       disk_labels  = var.disk_labels

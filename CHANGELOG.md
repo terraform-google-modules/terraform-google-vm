@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.6.0...v7.0.0) (2021-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* `update_policy` must now include `replacement_method`.
+
+### Features
+
+* Adds replacement_method key to update_policy input to support Stateful MIG ([#189](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/189)) ([22843de](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/22843deb3bd1ecabb3cf6d368cb6382581e75dbc))
+
+
+### Bug Fixes
+
+* Remove data sources for instance source_image ([#190](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/190)) ([87c753f](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/87c753f58b09b2144a6a86546d58792de0d61196))
+* revert change related to sensitive field bug in TF 0.15.0 ([#193](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/193)) ([f2d4921](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/f2d49212b18ffd9adfb2fa09063c486ee9c46093))
+
 ## [6.6.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.5.0...v6.6.0) (2021-06-14)
 
 

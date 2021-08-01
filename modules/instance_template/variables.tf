@@ -154,7 +154,7 @@ variable "network_ip" {
 }
 
 variable "additional_networks" {
-  description = "Additional Network details"
+  description = "Additional network interface details for GCE, if any."
   default = []
   type        = list(object({
     network            = string

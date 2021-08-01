@@ -42,13 +42,13 @@ variable "subnetwork_project" {
 
 variable "additional_networks" {
   description = "Additional network interface details for GCE, if any."
-  default = []
-  type        = list(object({
+  default     = []
+  type = list(object({
     network            = string
     subnetwork         = string
     subnetwork_project = string
     network_ip         = string
-    access_config      = list(object({
+    access_config = list(object({
       nat_ip       = string
       network_tier = string
     }))

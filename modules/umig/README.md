@@ -16,6 +16,7 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | <pre>list(list(object({<br>    nat_ip       = string<br>    network_tier = string<br>  })))</pre> | `[]` | no |
+| additional\_networks | Additional network interface details for GCE, if any. | <pre>list(object({<br>    network            = string<br>    subnetwork         = string<br>    subnetwork_project = string<br>    network_ip         = string<br>    access_config = list(object({<br>      nat_ip       = string<br>      network_tier = string<br>    }))<br>  }))</pre> | `[]` | no |
 | hostname | Hostname of instances | `string` | `""` | no |
 | instance\_template | Instance template self\_link used to create compute instances | `any` | n/a | yes |
 | named\_ports | Named name and named port | <pre>list(object({<br>    name = string<br>    port = number<br>  }))</pre> | `[]` | no |

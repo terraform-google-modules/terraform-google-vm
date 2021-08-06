@@ -15,6 +15,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 |------|-------------|------|---------|:--------:|
 | access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | <pre>list(object({<br>    nat_ip       = string<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | additional\_disks | List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name | <pre>list(object({<br>    disk_name    = string<br>    device_name  = string<br>    auto_delete  = bool<br>    boot         = bool<br>    disk_size_gb = number<br>    disk_type    = string<br>    disk_labels  = map(string)<br>  }))</pre> | `[]` | no |
+| additional\_networks | If more than a one NIC is required for the instance, use this variable in addition to network-related variables. The format should be an array of objects with the same structure: network, subnetwork, subnetwork\_project, network\_ip and access\_config. | `list` | `[]` | no |
 | auto\_delete | Whether or not the boot disk should be auto-deleted | `string` | `"true"` | no |
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | `string` | `"false"` | no |
 | disk\_labels | Labels to be assigned to boot disk, provided as a map | `map(string)` | `{}` | no |
@@ -42,7 +43,6 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | startup\_script | User startup script to run when instances spin up | `string` | `""` | no |
 | subnetwork | The name of the subnetwork to attach this interface to. The subnetwork must exist in the same region this instance will be created in. Either network or subnetwork must be provided. | `string` | `""` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used. | `string` | `""` | no |
-| additional\_networks | If more than a one NIC is required for the instance, use this variable in addition to network-related variables. The format should be an array of objects with the same structure: `network`, `subnetwork`, `subnetwork_project`, `network_ip` and `access_config`. | `array(map(string))` | `[]` | no |
 | tags | Network tags, provided as a list | `list(string)` | `[]` | no |
 
 ## Outputs

@@ -16,6 +16,7 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | <pre>list(list(object({<br>    nat_ip       = string<br>    network_tier = string<br>  })))</pre> | `[]` | no |
+| additional\_networks | If more than a one NIC is required for the instance, use this variable in addition to network-related variables. The format should be an array of objects with the same structure: network, subnetwork, subnetwork\_project, network\_ip and access\_config. | `list` | `[]` | no |
 | hostname | Hostname of instances | `string` | `""` | no |
 | instance\_template | Instance template self\_link used to create compute instances | `any` | n/a | yes |
 | named\_ports | Named name and named port | <pre>list(object({<br>    name = string<br>    port = number<br>  }))</pre> | `[]` | no |

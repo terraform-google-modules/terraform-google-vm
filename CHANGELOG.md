@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v7.0.0...v7.1.0) (2021-08-02)
+
+
+### Features
+
+* add support for adding additional network interfaces ([#199](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/199)) ([ea44b89](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/ea44b89097d904746e15e1c2df0f52afa6a1f8a0))
+
 ## [7.0.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v6.6.0...v7.0.0) (2021-07-26)
 
 

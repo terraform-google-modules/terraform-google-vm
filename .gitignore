@@ -19,3 +19,6 @@ __pycache__/
 **/.kitchen
 **/kitchen.local.yml
 **/Gemfile.lock
+
+# tf lock file
+.terraform.lock.hcl

@@ -22,6 +22,7 @@ variable "project_id" {
 variable "names" {
   description = "Instance names."
   type        = list(string)
+  default     = ["name1","name2","name3"]
 }
 
 variable "region" {

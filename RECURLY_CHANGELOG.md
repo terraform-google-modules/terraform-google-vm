@@ -2,5 +2,5 @@
 - Add stateful instance submodule
 
  ## [v2.0.2_recurly] 2021-09-10
-- Removed Google Providers for stateful_configs
+- Removed Google Providers for stateful_config module
 - Updated required verions to >= 0.12.6

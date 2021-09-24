@@ -8,11 +8,13 @@ terraform.tfvars
 .terraform
 .terraform.tfstate.d
 *.pyc
+credentials*.json
 
 # JetBrains - PyCharm, IntelliJ, etc.
 .idea/
 __pycache__/
 *.iml
+.project
 
 # Kitchen files
 **/inspec.lock

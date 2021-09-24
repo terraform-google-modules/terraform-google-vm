@@ -20,7 +20,7 @@ expected_total_disks = 3
 control "Compute Instances" do
   title "VM Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~instance-simple*'") do
+  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~instance-disk-snapshot*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -40,7 +40,7 @@ control "Compute Instances" do
 
     describe "instance 001" do
       let(:instance) do
-        data.find { |i| i['name'] == "instance-simple-001" }
+        data.find { |i| i['name'] == "instance-disk-snapshot-001" }
       end
 
       it "should be in zone us-central1-a}" do
@@ -53,7 +53,7 @@ end
 control "Compute Disks" do
   title "Snapshot Configuration"
 
-  describe command("gcloud --project=#{project_id} compute disks list --format=json --filter='name~instance-simple*'") do
+  describe command("gcloud --project=#{project_id} compute disks list --format=json --filter='name~instance-disk-snapshot*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -73,7 +73,7 @@ control "Compute Disks" do
 
     describe "boot disk" do
       let(:disk) do
-        data.find { |d| d['name'] == 'instance-simple-001' }
+        data.find { |d| d['name'] == 'instance-disk-snapshot-001' }
       end
 
       it "should not have any backup resource policy" do
@@ -83,7 +83,7 @@ control "Compute Disks" do
 
     describe "additional disk 1" do
       let(:disk) do
-        data.find { |d| d['name'] == 'instance-simple-001-1' }
+        data.find { |d| d['name'] == 'instance-disk-snapshot-001-1' }
       end
 
       it "should have a backup resource policy" do
@@ -97,7 +97,7 @@ control "Compute Disks" do
 
     describe "additional disk 2" do
       let(:disk) do
-        data.find { |d| d['name'] == 'instance-simple-001-2' }
+        data.find { |d| d['name'] == 'instance-disk-snapshot-001-2' }
       end
 
       it "should have a backup resource policy" do

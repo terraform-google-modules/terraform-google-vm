@@ -43,7 +43,8 @@ locals {
   shielded_vm_configs          = var.enable_shielded_vm ? [true] : []
   confidential_instance_config = var.enable_confidential_vm ? [true] : []
 
-  gpu_enabled = var.gpu != null
+  gpu_enabled            = var.gpu != null
+  alias_ip_range_enabled = var.alias_ip_range != null
   on_host_maintenance = (
     var.preemptible || var.enable_confidential_vm || local.gpu_enabled
     ? "TERMINATE"
@@ -108,6 +109,13 @@ resource "google_compute_instance_template" "tpl" {
       content {
         nat_ip       = access_config.value.nat_ip
         network_tier = access_config.value.network_tier
+      }
+    }
+    dynamic "alias_ip_range" {
+      for_each = local.alias_ip_range_enabled ? [var.alias_ip_range] : []
+      content {
+        ip_cidr_range         = alias_ip_range.value.ip_cidr_range
+        subnetwork_range_name = alias_ip_range.value.subnetwork_range_name
       }
     }
   }

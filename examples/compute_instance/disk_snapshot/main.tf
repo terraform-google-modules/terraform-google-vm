@@ -21,7 +21,7 @@ provider "google" {
 # Building the list of disk names in the required format.
 # Usually you would build this list from the outputs of the compute_instance module
 locals {
-  instance_disks = [for i in range(2) : "projects/${var.project_id}/disks/instance-simple-001-${i + 1}/zones/${data.google_compute_zones.available.names[0]}"]
+  instance_disks = [for i in range(2) : "projects/${var.project_id}/disks/instance-disk-snapshot-001-${i + 1}/zones/${data.google_compute_zones.available.names[0]}"]
 }
 
 data "google_compute_zones" "available" {
@@ -34,6 +34,7 @@ module "instance_template" {
   region          = var.region
   project_id      = var.project_id
   subnetwork      = var.subnetwork
+  name_prefix     = "instance-disk-snapshot"
   service_account = null
 
   additional_disks = [
@@ -63,7 +64,7 @@ module "compute_instance" {
   region            = var.region
   subnetwork        = var.subnetwork
   num_instances     = 1
-  hostname          = "instance-simple"
+  hostname          = "instance-disk-snapshot"
   instance_template = module.instance_template.self_link
 }
 

@@ -81,26 +81,28 @@ steps:
     - verify-preemptible-and-regular-instance-templates-simple-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy preemptible-and-regular-instance-templates-simple-local']
-- id: create-instance-simple-local
-  wait_for:
+- id: go-init-instance-simple
+  waitFor:
     - prepare
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create instance-simple-local']
-- id: converge-instance-simple-local
-  wait_for:
-    - create-instance-simple-local
+  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=init go test -v -run TestInstanceSimpleModule ./... -p 1']
+- id: go-apply-instance-simple
+  waitFor:
+    - go-init-instance-simple
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge instance-simple-local']
-- id: verify-instance-simple-local
-  wait_for:
-    - converge-instance-simple-local
+  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=apply go test -v -run TestInstanceSimpleModule ./... -p 1']
+  timeout: 3600s
+- id: go-verify-instance-simple
+  waitFor:
+    - go-apply-instance-simple
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify instance-simple-local']
-- id: destroy-instance-simple-local
-  wait_for:
-    - verify-instance-simple-local
+  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=verify go test -v -run TestInstanceSimpleModule ./... -p 1']
+- id: go-destroy-instance-simple
+  waitFor:
+    - go-verify-instance-simple
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy instance-simple-local']
+  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=teardown go test -v -run TestInstanceSimpleModule ./... -p 1']
+  timeout: 1800s
 - id: create-mig-simple-local
   wait_for:
     - prepare
@@ -126,7 +128,7 @@ steps:
     - destroy-it-simple-local
     - destroy-it-additional-disks-local
     - destroy-preemptible-and-regular-instance-templates-simple-local
-    - destroy-instance-simple-local
+    - go-destroy-instance-simple
     - destroy-mig-simple-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create mig-autoscaler-local']
@@ -150,7 +152,7 @@ steps:
     - destroy-it-simple-local
     - destroy-it-additional-disks-local
     - destroy-preemptible-and-regular-instance-templates-simple-local
-    - destroy-instance-simple-local
+    - go-destroy-instance-simple
     - destroy-mig-simple-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create umig-simple-local']
@@ -174,7 +176,7 @@ steps:
     - destroy-it-simple-local
     - destroy-it-additional-disks-local
     - destroy-preemptible-and-regular-instance-templates-simple-local
-    - destroy-instance-simple-local
+    - go-destroy-instance-simple
     - destroy-mig-simple-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create umig-named-ports-local']
@@ -198,7 +200,7 @@ steps:
     - destroy-it-simple-local
     - destroy-it-additional-disks-local
     - destroy-preemptible-and-regular-instance-templates-simple-local
-    - destroy-instance-simple-local
+    - go-destroy-instance-simple
     - destroy-mig-simple-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create umig-static-ips-local']
@@ -222,7 +224,7 @@ steps:
     - destroy-it-simple-local
     - destroy-it-additional-disks-local
     - destroy-preemptible-and-regular-instance-templates-simple-local
-    - destroy-instance-simple-local
+    - go-destroy-instance-simple
     - destroy-mig-simple-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create mig-with-percent-simple-local']
@@ -241,33 +243,6 @@ steps:
     - verify-mig-with-percent-simple-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-with-percent-simple-local']
-
-- id: go-init-instance-simple
-  waitFor:
-    - destroy-it-simple-local
-    - destroy-it-additional-disks-local
-    - destroy-preemptible-and-regular-instance-templates-simple-local
-    - destroy-instance-simple-local
-    - destroy-mig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=init go test -v -run TestInstanceSimpleModule ./... -p 1']
-- id: go-apply-instance-simple
-  waitFor:
-    - go-init-instance-simple
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=apply go test -v -run TestInstanceSimpleModule ./... -p 1']
-  timeout: 3600s
-- id: go-verify-instance-simple
-  waitFor:
-    - go-apply-instance-simple
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=verify go test -v -run TestInstanceSimpleModule ./... -p 1']
-- id: go-destroy-instance-simple
-  waitFor:
-    - go-verify-instance-simple
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=teardown go test -v -run TestInstanceSimpleModule ./... -p 1']
-  timeout: 1800s
 
 tags:
 - 'ci'

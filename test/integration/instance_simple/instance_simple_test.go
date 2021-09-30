@@ -27,10 +27,7 @@ func TestInstanceSimpleModule(t *testing.T) {
 
 	const instanceNameApprox = `instance-simple`
 	const expected_instances = 4
-	const zone_ins_1 = "us-central1-a"
-	const zone_ins_2 = "us-central1-b"
-	const zone_ins_3 = "us-central1-c"
-	const zone_ins_4 = "us-central1-f"
+	zone_ins := []string{"us-central1-a", "us-central1-b", "us-central1-c", "us-central1-f"}
 
 	insSimpleT := tft.NewTFBlueprintTest(t)
 	insSimpleT.DefineVerify(func(assert *assert.Assertions) {
@@ -40,10 +37,10 @@ func TestInstanceSimpleModule(t *testing.T) {
 
 		instances := op.Array()
 		assert.Equal(expected_instances, len(instances), "found 4 gce instances")
-		assert.Contains(instances[0].Get("zone").String(), zone_ins_1, "instance 001 is in the right zone")
-		assert.Contains(instances[1].Get("zone").String(), zone_ins_2, "instance 002 is in the right zone")
-		assert.Contains(instances[2].Get("zone").String(), zone_ins_3, "instance 003 is in the right zone")
-		assert.Contains(instances[3].Get("zone").String(), zone_ins_4, "instance 004 is in the right zone")
+
+		for i, instance := range instances {
+			assert.Contains(instance.Get("zone").String(), zone_ins[i], fmt.Sprintf("instance 00%d is in the right zone", i+1))
+		}
 	})
 	insSimpleT.Test()
 }

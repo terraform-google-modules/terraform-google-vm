@@ -25,8 +25,7 @@ import (
 
 func TestInstanceSimpleModule(t *testing.T) {
 
-	const instanceNamePrefix = `instance-simple`
-	const expectedInstances = 4
+	const instanceNamePrefix = "instance-simple"
 	zoneIns := map[string]string{
 		"instance-simple-001": "us-central1-a",
 		"instance-simple-002": "us-central1-b",
@@ -39,7 +38,7 @@ func TestInstanceSimpleModule(t *testing.T) {
 		insSimpleT.DefaultVerify(assert)
 
 		instances := gcloud.Run(t, fmt.Sprintf("compute instances list --project %s --filter name~%s", insSimpleT.GetStringOutput("project_id"), instanceNamePrefix))
-		assert.Equal(expectedInstances, len(instances.Array()), "found 4 gce instances")
+		assert.Equal(len(zoneIns), len(instances.Array()), "found 4 gce instances")
 
 		for _, instance := range instances.Array() {
 			instanceName := instance.Get("name").String()

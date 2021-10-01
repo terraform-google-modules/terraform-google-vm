@@ -16,7 +16,7 @@
 
 
 module "instance_simple" {
-  source          = "../../../../examples/compute_instance/simple"
+  source          = "../../../examples/compute_instance/simple"
   project_id      = var.project_id
   region          = "us-central1"
   subnetwork      = google_compute_subnetwork.main.self_link

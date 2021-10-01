@@ -28,6 +28,3 @@ output "service_account" {
   description = "Service account to attach to the instance"
   value       = var.service_account
 }
-
-
-

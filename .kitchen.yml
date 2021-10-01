@@ -45,11 +45,6 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/preemptible_and_regular_instance_templates/simple
-  - name: instance_simple
-    driver:
-      name: terraform
-      command_timeout: 1800
-      root_module_directory: test/fixtures/compute_instance/simple
   - name: instance_simple_zone
     driver:
       name: terraform

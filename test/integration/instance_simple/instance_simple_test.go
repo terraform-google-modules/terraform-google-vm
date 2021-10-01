@@ -25,21 +25,25 @@ import (
 
 func TestInstanceSimpleModule(t *testing.T) {
 
-	const instanceNameApprox = `instance-simple`
-	const expected_instances = 4
-	zone_ins := []string{"us-central1-a", "us-central1-b", "us-central1-c", "us-central1-f"}
+	const instanceNamePrefix = `instance-simple`
+	const expectedInstances = 4
+	zoneIns := map[string]string{
+		"instance-simple-001": "us-central1-a",
+		"instance-simple-002": "us-central1-b",
+		"instance-simple-003": "us-central1-c",
+		"instance-simple-004": "us-central1-f",
+	}
 
 	insSimpleT := tft.NewTFBlueprintTest(t)
 	insSimpleT.DefineVerify(func(assert *assert.Assertions) {
 		insSimpleT.DefaultVerify(assert)
 
-		op := gcloud.Run(t, fmt.Sprintf("compute instances list --project %s --filter name~%s", insSimpleT.GetStringOutput("project_id"), instanceNameApprox))
+		instances := gcloud.Run(t, fmt.Sprintf("compute instances list --project %s --filter name~%s", insSimpleT.GetStringOutput("project_id"), instanceNamePrefix))
+		assert.Equal(expectedInstances, len(instances.Array()), "found 4 gce instances")
 
-		instances := op.Array()
-		assert.Equal(expected_instances, len(instances), "found 4 gce instances")
-
-		for i, instance := range instances {
-			assert.Contains(instance.Get("zone").String(), zone_ins[i], fmt.Sprintf("instance 00%d is in the right zone", i+1))
+		for _, instance := range instances.Array() {
+			instanceName := instance.Get("name").String()
+			assert.Contains(instance.Get("zone").String(), zoneIns[instanceName], fmt.Sprintf("%s is in the right zone", instanceName))
 		}
 	})
 	insSimpleT.Test()

@@ -124,13 +124,14 @@ variable "auto_delete" {
 variable "additional_disks" {
   description = "List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#disk_name"
   type = list(object({
-    disk_name    = string
-    device_name  = string
-    auto_delete  = bool
-    boot         = bool
-    disk_size_gb = number
-    disk_type    = string
-    disk_labels  = map(string)
+    disk_name         = string
+    device_name       = string
+    auto_delete       = bool
+    boot              = bool
+    disk_size_gb      = number
+    disk_type         = string
+    disk_labels       = map(string)
+    resource_policies = list(string)
   }))
   default = []
 }
@@ -171,4 +172,3 @@ variable "static_ips" {
   description = "List of static IPs for VM instances."
   default     = []
 }
-

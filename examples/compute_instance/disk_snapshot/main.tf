@@ -38,22 +38,24 @@ module "instance_template" {
 
   additional_disks = [
     {
-      auto_delete  = true
-      boot         = false
-      disk_size_gb = 20
-      disk_type    = "pd-standard"
-      disk_name    = null
-      device_name  = null
-      disk_labels  = { "foo" : "bar" }
+      auto_delete       = true
+      boot              = false
+      disk_size_gb      = 20
+      disk_type         = "pd-standard"
+      disk_name         = null
+      device_name       = null
+      disk_labels       = { "foo" : "bar" }
+      resource_policies = []
     },
     {
-      auto_delete  = true
-      boot         = false
-      disk_size_gb = 30
-      disk_type    = "pd-standard"
-      disk_name    = null
-      device_name  = null
-      disk_labels  = {}
+      auto_delete       = true
+      boot              = false
+      disk_size_gb      = 30
+      disk_type         = "pd-standard"
+      disk_name         = null
+      device_name       = null
+      disk_labels       = {}
+      resource_policies = []
     }
   ]
 }

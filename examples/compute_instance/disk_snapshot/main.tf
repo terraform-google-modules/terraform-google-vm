@@ -45,7 +45,7 @@ module "instance_template" {
       disk_name         = null
       device_name       = null
       disk_labels       = { "foo" : "bar" }
-      resource_policies = []
+      resource_policies = null
     },
     {
       auto_delete       = true
@@ -55,7 +55,7 @@ module "instance_template" {
       disk_name         = null
       device_name       = null
       disk_labels       = {}
-      resource_policies = []
+      resource_policies = null
     }
   ]
 }

@@ -54,7 +54,7 @@ module "instance_template" {
       auto_delete       = "true"
       boot              = "false"
       disk_labels       = {}
-      resource_policies = []
+      resource_policies = null
     },
     {
       disk_name         = "disk-1"
@@ -64,7 +64,7 @@ module "instance_template" {
       auto_delete       = "true"
       boot              = "false"
       disk_labels       = { "foo" : "bar" }
-      resource_policies = []
+      resource_policies = null
     },
     {
       disk_name         = "disk-2"
@@ -74,7 +74,7 @@ module "instance_template" {
       auto_delete       = "true"
       boot              = "false"
       disk_labels       = { "foo" : "bar" }
-      resource_policies = []
+      resource_policies = null
     },
   ]
 }

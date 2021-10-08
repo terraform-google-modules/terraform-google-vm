@@ -76,7 +76,7 @@ resource "google_compute_instance_template" "tpl" {
       disk_type         = lookup(disk.value, "disk_type", null)
       interface         = lookup(disk.value, "interface", lookup(disk.value, "disk_type", null) == "local-ssd" ? "NVME" : null)
       mode              = lookup(disk.value, "mode", null)
-      resource_policies = lookup(disk.value, "resource_policies", [])
+      resource_policies = lookup(disk.value, "resource_policies", null)
       source            = lookup(disk.value, "source", null)
       source_image      = lookup(disk.value, "source_image", null)
       type              = lookup(disk.value, "disk_type", null) == "local-ssd" ? "SCRATCH" : "PERSISTENT"

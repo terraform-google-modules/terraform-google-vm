@@ -19,9 +19,4 @@ module "instance_template_alias_ip_range" {
   project_id      = var.project_id
   subnetwork      = google_compute_subnetwork.main.name
   service_account = var.service_account
-  tags            = ["foo", "bar"]
-
-  labels = {
-    environment = "dev"
-  }
 }

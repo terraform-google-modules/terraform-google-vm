@@ -249,3 +249,19 @@ variable "gpu" {
   })
   default = null
 }
+
+##################
+# alias IP range
+##################
+variable "alias_ip_range" {
+  description = <<EOF
+An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
+ip_cidr_range: The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. At the time of writing only a netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API error.
+subnetwork_range_name: The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used.
+EOF
+  type = object({
+    ip_cidr_range         = string
+    subnetwork_range_name = string
+  })
+  default = null
+}

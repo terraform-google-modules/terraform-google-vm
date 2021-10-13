@@ -40,6 +40,11 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/instance_template/additional_disks
+  - name: it_alias_ip_range
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/instance_template/alias_ip_range
   - name: preemptible_and_regular_instance_templates_simple
     driver:
       name: terraform

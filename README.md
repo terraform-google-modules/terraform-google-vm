@@ -30,49 +30,9 @@ See also the [project_services](modules/project_services) module (optional).
 `distribution_policy_zones` cannot be changed during use.
 If you have changed them yourself or used to have a default value, then you'll have to force recreate a MIG group yourself.
 
-## Test Configuration
+## Tests
 
-1. Create a `terraform.tfvars` file, using `terraform.tfvars.example` as an example
-
-```shell
-cp test/fixtures/shared/terraform.tfvars.example test/fixtures/shared/terraform.tfvars
-```
-
-The `terraform.tfvars` in each fixture directory is already symlinked to this one shared file.
-
-2. Populate the variables with values appropriate for your test environment (i.e. `project_id`, `service_account.email`)
-3. Download a Service Account key with the necessary [permissions](#permissions) and put it in the module's root directory with the name credentials.json.
-
-## Running Tests
-
-From the root of the module, run
-
-```
-make test_integration_docker
-```
-
-to build the container and run through all the test suites. Note that this will take some time (> 20 minutes).
-
-You can also run each test case individually and interactively in the Docker container:
-
-```
-make docker_run
-```
-
-The root directory of the module will be mounted to `/cft/workdir` in the container. For example, to run the `mig-autoscaler` test suite:
-
-```
-bundle exec kitchen test mig-autosaler
-```
-
-or
-
-```
-bundle exec kitchen create mig-autoscaler
-bundle exec kitchen converge mig-autoscaler
-bundle exec kitchen verify mig-autoscaler
-bundle exec kitchen destroy mig-autoscaler
-```
+For running the integration test cases, please refer to the [CONTRIBUTING](CONTRIBUTING.md) documentation.
 
 ## Permissions
 

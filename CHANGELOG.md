@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.2.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v7.1.0...v7.2.0) (2021-10-13)
+
+
+### Features
+
+* Alias IP Ranges ([#207](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/207)) ([0463fc9](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/0463fc935e2af8f97da25d2ce0bf18481e0035ad))
+
 ## [7.1.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v7.0.0...v7.1.0) (2021-08-02)
 
 

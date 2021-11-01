@@ -5,7 +5,7 @@ This module is used to create compute instances using
 
 ## Usage
 
-See the [simple](https://github.com/terraform-google-modules/terraform-google-vm/tree/master/examples/umig/simple) for a usage example.
+See the [simple](../../examples/umig/simple) for a usage example.
 
 ## Testing
 

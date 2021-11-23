@@ -19,19 +19,11 @@
 provider "google" {
   project = var.project_id
   region  = var.region
-  version = "~>3.0"
 }
 
 provider "google-beta" {
   project = var.project_id
   region  = var.region
-  version = "~> 3.0"
-}
-
-/** Random String (optional) **/
-
-provider "random" {
-  version = "~> 2.2"
 }
 
 resource "random_string" "suffix" {

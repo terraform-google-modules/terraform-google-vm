@@ -14,11 +14,6 @@
  * limitations under the License.
  */
 
-provider "google" {
-
-  version = "~> 3.0"
-}
-
 # [START compute_vm_with_tags_create]
 resource "google_compute_instance" "default" {
   project      = var.project_id # Replace this with your project ID in quotes

@@ -18,7 +18,6 @@ provider "google" {
 
   project = var.project_id
   region  = var.region
-  version = "~> 3.0"
 }
 
 resource "google_kms_key_ring" "keyring" {

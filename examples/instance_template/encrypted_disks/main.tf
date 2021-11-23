@@ -42,7 +42,7 @@ module "instance_template" {
   service_account = var.service_account
   name_prefix     = "additional-disks"
 
-  disk_encryption_key = google_kms_crypto_key.example-key.self_link
+  disk_encryption_key = google_kms_crypto_key.example-key.id
 
   additional_disks = [
     {

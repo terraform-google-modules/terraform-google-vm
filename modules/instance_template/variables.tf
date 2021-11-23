@@ -106,7 +106,7 @@ variable "disk_labels" {
 }
 
 variable "disk_encryption_key" {
-  description = "The self link of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance"
+  description = "The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance"
   type        = string
   default     = null
 }

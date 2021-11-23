@@ -19,7 +19,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | alias\_ip\_range | An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.<br>ip\_cidr\_range: The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. At the time of writing only a netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API error.<br>subnetwork\_range\_name: The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used. | <pre>object({<br>    ip_cidr_range         = string<br>    subnetwork_range_name = string<br>  })</pre> | `null` | no |
 | auto\_delete | Whether or not the boot disk should be auto-deleted | `string` | `"true"` | no |
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | `string` | `"false"` | no |
-| disk\_encryption\_key | The self link of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance | `string` | `null` | no |
+| disk\_encryption\_key | The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance | `string` | `null` | no |
 | disk\_labels | Labels to be assigned to boot disk, provided as a map | `map(string)` | `{}` | no |
 | disk\_size\_gb | Boot disk size in GB | `string` | `"100"` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | `string` | `"pd-standard"` | no |

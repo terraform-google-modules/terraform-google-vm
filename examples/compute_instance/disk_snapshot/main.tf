@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~> 3.0"
-}
-
 # Building the list of disk names in the required format.
 # Usually you would build this list from the outputs of the compute_instance module
 locals {

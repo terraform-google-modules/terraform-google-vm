@@ -14,17 +14,6 @@
  * limitations under the License.
  */
 
-terraform {
-  required_providers {
-    google = {
-      version = ">= 3.45.0"
-    }
-    null = {
-      version = ">= 2.1.0"
-    }
-  }
-}
-
 # [START compute_vm_with_multiple_interface]
 resource "google_compute_instance" "default" {
   project      = var.project_id # Replace with your project ID in quotes

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.3.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v7.2.0...v7.3.0) (2021-11-24)
+
+
+### Features
+
+* update TPG version constraints to allow 4.0 ([#215](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/215)) ([af7347b](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/af7347bab9de2e2ba2a8269cedde5e0ec5cc6d24))
+
 ## [7.2.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v7.1.0...v7.2.0) (2021-10-13)
 
 

@@ -74,3 +74,9 @@ variable "zone" {
   description = "Zone where the instances should be created. If not specified, instances will be spread across available zones in the region."
   default     = null
 }
+
+variable "hostname_suffix_separator" {
+  type        = string
+  description = "Separator charactere to compose hostname when add_hostname_suffix is set to true."
+  default     = "-"
+}

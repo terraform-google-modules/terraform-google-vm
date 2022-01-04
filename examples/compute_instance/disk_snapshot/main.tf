@@ -31,7 +31,7 @@ module "instance_template" {
   project_id      = var.project_id
   subnetwork      = var.subnetwork
   name_prefix     = "instance-disk-snapshot"
-  service_account = null
+  service_account = { email = "", scopes = ["cloud-platform"] }
 
   additional_disks = [
     {

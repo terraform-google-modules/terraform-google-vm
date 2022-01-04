@@ -54,7 +54,7 @@ module "instance_template" {
   source          = "../../../modules/instance_template"
   project_id      = var.project_id
   subnetwork      = google_compute_subnetwork.main.name
-  service_account = { email = "", scopes = ["cloud-platform"] }
+  service_account = null
 }
 
 /** Instance Group within autoscale and health check **/

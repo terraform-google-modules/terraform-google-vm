@@ -95,6 +95,6 @@ variable "access_config" {
 
 variable "hostname_suffix_separator" {
   type        = string
-  description = "Separator charactere to compose hostname when add_hostname_suffix is set to true."
+  description = "Separator character to compose hostname when add_hostname_suffix is set to true."
   default     = "-"
 }

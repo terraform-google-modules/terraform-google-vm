@@ -64,9 +64,10 @@ module "mig" {
   project_id          = var.project_id
   instance_template   = module.instance_template.self_link
   region              = var.region
-  autoscaling_enabled = "true"
+  autoscaling_enabled = true
   min_replicas        = 2
   autoscaler_name     = "mig-as"
+  hostname            = "mig-as"
 
   autoscaling_cpu = [
     {

@@ -134,7 +134,7 @@ control "MIG" do
 
     describe "https health check settings" do
       it "checkIntervalSec should be 5" do
-        expect(data[0]['healthyThreshold']).to eq(5)
+        expect(data[0]['checkIntervalSec']).to eq(5)
       end
     end
 

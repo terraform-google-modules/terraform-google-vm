@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.4.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v7.3.0...v7.4.0) (2022-01-05)
+
+
+### Features
+
+* add suffix separator variable ([#218](https://www.github.com/terraform-google-modules/terraform-google-vm/issues/218)) ([d4e0e87](https://www.github.com/terraform-google-modules/terraform-google-vm/commit/d4e0e87129804b6d1d9eb43ef7c14728be659ad2))
+
 ## [7.3.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v7.2.0...v7.3.0) (2021-11-24)
 
 

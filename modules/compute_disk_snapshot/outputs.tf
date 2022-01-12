@@ -19,7 +19,13 @@ output "policy" {
   value       = google_compute_resource_policy.policy
 }
 
+// not using this zonal policy attachment
+// output "attachments" {
+//   description = "Disk attachments to the resource policy"
+//   value       = google_compute_disk_resource_policy_attachment.attachment.*
+// }
+
 output "attachments" {
   description = "Disk attachments to the resource policy"
-  value       = google_compute_disk_resource_policy_attachment.attachment.*
+  value       = google_compute_region_disk_resource_policy_attachment.attachment.*
 }

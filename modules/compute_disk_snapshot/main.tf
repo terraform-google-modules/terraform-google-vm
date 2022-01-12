@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-resource "null_resource" "module_depends_on" {
-  triggers = {
-    value = length(var.module_depends_on)
-  }
-}
-
 resource "google_compute_resource_policy" "policy" {
   name    = var.name
   project = var.project
@@ -71,16 +65,22 @@ resource "google_compute_resource_policy" "policy" {
       }
     }
   }
-
-  depends_on = [null_resource.module_depends_on]
 }
 
-resource "google_compute_disk_resource_policy_attachment" "attachment" {
+// not using this zonal policy attachment
+// resource "google_compute_disk_resource_policy_attachment" "attachment" {
+//   for_each = toset(var.disks)
+//   name     = google_compute_resource_policy.policy.name
+//   project  = element(split("/", each.key), index(split("/", each.key), "projects", ) + 1, )
+//   disk     = element(split("/", each.key), index(split("/", each.key), "disks", ) + 1, )
+//   zone     = element(split("/", each.key), index(split("/", each.key), "zones", ) + 1, )
+// }
+
+// support regional disks, instead of zonal
+resource "google_compute_region_disk_resource_policy_attachment" "attachment" {
   for_each = toset(var.disks)
   name     = google_compute_resource_policy.policy.name
   project  = element(split("/", each.key), index(split("/", each.key), "projects", ) + 1, )
   disk     = element(split("/", each.key), index(split("/", each.key), "disks", ) + 1, )
-  zone     = element(split("/", each.key), index(split("/", each.key), "zones", ) + 1, )
-
-  depends_on = [null_resource.module_depends_on]
+  region    = element(split("/", each.key), index(split("/", each.key), "regions", ) + 1, )
 }

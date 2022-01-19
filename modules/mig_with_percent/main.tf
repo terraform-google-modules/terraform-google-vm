@@ -125,6 +125,7 @@ resource "google_compute_region_autoscaler" "autoscaler" {
     max_replicas    = var.max_replicas
     min_replicas    = var.min_replicas
     cooldown_period = var.cooldown_period
+    mode            = var.autoscaling_mode
     dynamic "scale_in_control" {
       for_each = local.autoscaling_scale_in_enabled ? [var.autoscaling_scale_in_control] : []
       content {

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.4.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.3.0...v7.4.0) (2022-01-19)
+
+
+### Features
+
+* [mig] Add "autoscaling_mode" variable ([#224](https://github.com/terraform-google-modules/terraform-google-vm/issues/224)) ([019e3a4](https://github.com/terraform-google-modules/terraform-google-vm/commit/019e3a41e1828abd6478fe1022c576573e3d6bc9))
+* add suffix separator variable ([#218](https://github.com/terraform-google-modules/terraform-google-vm/issues/218)) ([d4e0e87](https://github.com/terraform-google-modules/terraform-google-vm/commit/d4e0e87129804b6d1d9eb43ef7c14728be659ad2))
+
 ## [7.3.0](https://www.github.com/terraform-google-modules/terraform-google-vm/compare/v7.2.0...v7.3.0) (2021-11-24)
 
 

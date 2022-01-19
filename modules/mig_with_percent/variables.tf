@@ -169,6 +169,12 @@ variable "cooldown_period" {
   default     = 60
 }
 
+variable "autoscaling_mode" {
+  description = "Operating mode of the autoscaling policy. If omitted, the default value is ON. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#mode"
+  type        = string
+  default     = null
+}
+
 variable "autoscaling_cpu" {
   description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization"
   type        = list(map(number))

@@ -66,6 +66,7 @@ resource "google_compute_instance_template" "tpl" {
   metadata_startup_script = var.startup_script
   region                  = var.region
   min_cpu_platform        = var.min_cpu_platform
+  deletion_protection     = var.deletion_protection
   dynamic "disk" {
     for_each = local.all_disks
     content {

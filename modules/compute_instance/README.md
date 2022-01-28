@@ -17,6 +17,7 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 |------|-------------|------|---------|:--------:|
 | access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | <pre>list(object({<br>    nat_ip       = string<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | add\_hostname\_suffix | Adds a suffix to the hostname | `bool` | `true` | no |
+| deletion\_protection | Enable deletion protection on this instance. Defaults to false. | `string` | `false` | no |
 | hostname | Hostname of instances | `string` | `""` | no |
 | hostname\_suffix\_separator | Separator character to compose hostname when add\_hostname\_suffix is set to true. | `string` | `"-"` | no |
 | instance\_template | Instance template self\_link used to create compute instances | `any` | n/a | yes |

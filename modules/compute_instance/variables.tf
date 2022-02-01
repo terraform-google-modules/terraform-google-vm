@@ -80,3 +80,9 @@ variable "hostname_suffix_separator" {
   description = "Separator character to compose hostname when add_hostname_suffix is set to true."
   default     = "-"
 }
+
+variable "deletion_protection" {
+  type        = bool
+  description = "Enable deletion protection on this instance. Note: you must disable deletion protection before removing the resource, or the instance cannot be deleted and the Terraform run will not complete successfully."
+  default     = false
+}

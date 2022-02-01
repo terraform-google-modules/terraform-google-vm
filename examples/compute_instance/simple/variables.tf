@@ -51,6 +51,11 @@ variable "network_tier" {
   default     = "PREMIUM"
 }
 
+variable "deletion_protection" {
+  type        = bool
+  description = "Enable deletion protection on this instance. Note: you must disable deletion protection before removing the resource, or the instance cannot be deleted and the Terraform run will not complete successfully."
+  default     = false
+}
 
 variable "service_account" {
   default = null

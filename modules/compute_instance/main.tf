@@ -39,11 +39,13 @@ data "google_compute_zones" "available" {
 #############
 
 resource "google_compute_instance_from_template" "compute_instance" {
-  provider = google
-  count    = local.num_instances
-  name     = var.add_hostname_suffix ? format("%s%s%s", local.hostname, var.hostname_suffix_separator, format("%03d", count.index + 1)) : local.hostname
-  project  = local.project_id
-  zone     = var.zone == null ? data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)] : var.zone
+  provider            = google
+  count               = local.num_instances
+  name                = var.add_hostname_suffix ? format("%s%s%s", local.hostname, var.hostname_suffix_separator, format("%03d", count.index + 1)) : local.hostname
+  project             = local.project_id
+  zone                = var.zone == null ? data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)] : var.zone
+  deletion_protection = var.deletion_protection
+
 
   network_interface {
     network            = var.network

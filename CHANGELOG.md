@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.5.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.4.0...v7.5.0) (2022-02-01)
+
+
+### Features
+
+* [compute_instance] Add deletion_protection variable ([#231](https://github.com/terraform-google-modules/terraform-google-vm/issues/231)) ([de34522](https://github.com/terraform-google-modules/terraform-google-vm/commit/de345228ce379b6066bb27ba438dd09313dc2627))
+
 ## [7.4.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.3.0...v7.4.0) (2022-01-19)
 
 

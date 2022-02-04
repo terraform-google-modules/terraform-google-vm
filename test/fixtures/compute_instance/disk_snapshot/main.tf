@@ -16,9 +16,9 @@
 
 
 module "disk_snapshot" {
-  source     = "../../../../examples/compute_instance/disk_snapshot"
-  project_id = var.project_id
-  region     = "us-central1"
-  subnetwork = google_compute_subnetwork.main.self_link
+  source          = "../../../../examples/compute_instance/disk_snapshot"
+  project_id      = var.project_id
+  region          = "us-central1"
+  subnetwork      = google_compute_subnetwork.main.self_link
   service_account = var.service_account
 }

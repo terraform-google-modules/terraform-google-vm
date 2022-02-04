@@ -17,4 +17,5 @@
 module "mig_healthcheck" {
   source     = "../../../../examples/mig/healthcheck"
   project_id = var.project_id
+  service_account = var.service_account
 }

@@ -32,12 +32,14 @@ locals {
 }
 
 module "instance_template" {
-  source          = "../../../modules/instance_template"
-  project_id      = var.project_id
-  subnetwork      = var.subnetwork
-  service_account = var.service_account
-  name_prefix     = "simple"
-  tags            = var.tags
-  labels          = var.labels
-  access_config   = [local.access_config]
+  source                       = "../../../modules/instance_template"
+  project_id                   = var.project_id
+  subnetwork                   = var.subnetwork
+  service_account              = var.service_account
+  name_prefix                  = "simple"
+  tags                         = var.tags
+  labels                       = var.labels
+  access_config                = [local.access_config]
+  enable_nested_virtualization = var.enable_nested_virtualization
+  threads_per_core             = var.threads_per_core
 }

@@ -71,6 +71,17 @@ variable "region" {
   default     = null
 }
 
+variable "enable_nested_virtualization" {
+  type        = bool
+  description = "Defines whether the instance should have nested virtualization enabled."
+  default     = false
+}
+
+variable "threads_per_core" {
+  description = "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1."
+  default     = null
+}
+
 #######
 # disk
 #######

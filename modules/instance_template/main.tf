@@ -148,6 +148,11 @@ resource "google_compute_instance_template" "tpl" {
     on_host_maintenance = local.on_host_maintenance
   }
 
+  advanced_machine_features {
+    enable_nested_virtualization = var.enable_nested_virtualization
+    threads_per_core             = var.threads_per_core
+  }
+
   dynamic "shielded_instance_config" {
     for_each = local.shielded_vm_configs
     content {

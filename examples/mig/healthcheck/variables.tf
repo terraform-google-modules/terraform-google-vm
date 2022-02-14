@@ -24,3 +24,12 @@ variable "region" {
   type        = string
   default     = "us-central1"
 }
+
+variable "service_account" {
+  default = null
+  type = object({
+    email  = string,
+    scopes = set(string)
+  })
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
+}

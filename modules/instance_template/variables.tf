@@ -82,6 +82,7 @@ variable "threads_per_core" {
   default     = null
 }
 
+
 #######
 # disk
 #######
@@ -120,6 +121,12 @@ variable "disk_encryption_key" {
   description = "The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance"
   type        = string
   default     = null
+}
+
+variable "resource_policies" {
+  description = "A list (short name or id) of resource policies to attach to this disk for automatic snapshot creations."
+  type        = list(string)
+  default     = []
 }
 
 variable "auto_delete" {

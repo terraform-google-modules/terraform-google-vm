@@ -23,6 +23,10 @@ locals {
   # determine type" error when var.static_ips is empty
   static_ips = concat(var.static_ips, ["NOT_AN_IP"])
   project_id = length(regexall("/projects/([^/]*)", var.instance_template)) > 0 ? flatten(regexall("/projects/([^/]*)", var.instance_template))[0] : null
+
+  # When no network or subnetwork has been defined, we want to use the settings from
+  # the template instead.
+  network_interface = length(format("%s%s", var.network, var.subnetwork)) == 0 ? [] : [1]
 }
 
 ###############
@@ -47,16 +51,20 @@ resource "google_compute_instance_from_template" "compute_instance" {
   deletion_protection = var.deletion_protection
 
 
-  network_interface {
-    network            = var.network
-    subnetwork         = var.subnetwork
-    subnetwork_project = var.subnetwork_project
-    network_ip         = length(var.static_ips) == 0 ? "" : element(local.static_ips, count.index)
-    dynamic "access_config" {
-      for_each = var.access_config
-      content {
-        nat_ip       = access_config.value.nat_ip
-        network_tier = access_config.value.network_tier
+  dynamic "network_interface" {
+    for_each = local.network_interface
+
+    content {
+      network            = var.network
+      subnetwork         = var.subnetwork
+      subnetwork_project = var.subnetwork_project
+      network_ip         = length(var.static_ips) == 0 ? "" : element(local.static_ips, count.index)
+      dynamic "access_config" {
+        for_each = var.access_config
+        content {
+          nat_ip       = access_config.value.nat_ip
+          network_tier = access_config.value.network_tier
+        }
       }
     }
   }

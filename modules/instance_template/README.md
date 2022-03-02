@@ -38,6 +38,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | preemptible | Allow the instance to be preempted | `bool` | `false` | no |
 | project\_id | The GCP project ID | `string` | `null` | no |
 | region | Region where the instance template should be created. | `string` | `null` | no |
+| resource\_policies | A list (short name or id) of resource policies to attach to this disk for automatic snapshot creations. | `list(string)` | `[]` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account. | <pre>object({<br>    email  = string<br>    scopes = set(string)<br>  })</pre> | n/a | yes |
 | shielded\_instance\_config | Not used unless enable\_shielded\_vm is true. Shielded VM configuration for the instance. | <pre>object({<br>    enable_secure_boot          = bool<br>    enable_vtpm                 = bool<br>    enable_integrity_monitoring = bool<br>  })</pre> | <pre>{<br>  "enable_integrity_monitoring": true,<br>  "enable_secure_boot": true,<br>  "enable_vtpm": true<br>}</pre> | no |
 | source\_image | Source disk image. If neither source\_image nor source\_image\_family is specified, defaults to the latest public CentOS image. | `string` | `""` | no |

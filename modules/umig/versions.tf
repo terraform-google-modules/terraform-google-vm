@@ -20,6 +20,6 @@ terraform {
     google = ">= 3.43, < 5.0"
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:umig/v7.5.0"
+    module_name = "blueprints/terraform/terraform-google-vm:umig/v7.6.0"
   }
 }

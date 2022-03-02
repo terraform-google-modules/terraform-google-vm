@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.6.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.5.0...v7.6.0) (2022-03-02)
+
+
+### Features
+
+* Add advanced machine feature options for enabling virtualization and setting threads per core ([#236](https://github.com/terraform-google-modules/terraform-google-vm/issues/236)) ([4f21330](https://github.com/terraform-google-modules/terraform-google-vm/commit/4f21330db1c5949a2e203376a1ed5a57256699f2))
+
+
+### Bug Fixes
+
+* Use network settings from template when no specific override is in place ([#239](https://github.com/terraform-google-modules/terraform-google-vm/issues/239)) ([b48928a](https://github.com/terraform-google-modules/terraform-google-vm/commit/b48928abdca289f927fa0e5ab0fc6d8401694f18))
+
 ## [7.5.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.4.0...v7.5.0) (2022-02-01)
 
 

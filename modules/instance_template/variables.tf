@@ -253,7 +253,7 @@ variable "gpu" {
 ##################
 # alias IP range
 ##################
-variable "alias_ip_range" {
+variable "alias_ip_ranges" {
   description = <<EOF
 An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
 ip_cidr_range: The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. At the time of writing only a netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API error.

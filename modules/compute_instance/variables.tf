@@ -87,7 +87,7 @@ variable "deletion_protection" {
   default     = false
 }
 
-variable "alias_ip_range" {
+variable "alias_ip_ranges" {
   description = "(Optional) An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks."
   type = list(object({
     ip_cidr_range         = string

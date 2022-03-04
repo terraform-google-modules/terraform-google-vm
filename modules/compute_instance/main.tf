@@ -60,7 +60,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
       }
     }
     dynamic "alias_ip_range" {
-      for_each = var.alias_ip_range
+      for_each = var.alias_ip_ranges
       content {
         ip_cidr_range         = alias_ip_range.value.ip_cidr_range
         subnetwork_range_name = alias_ip_range.value.subnetwork_range_name

@@ -31,7 +31,7 @@ module "instance_template" {
   service_account = var.service_account
   name_prefix     = "alias-ip-range"
 
-  alias_ip_ranges = {
+  alias_ip_range = {
     ip_cidr_range         = "/24"
     subnetwork_range_name = var.subnetwork
   }

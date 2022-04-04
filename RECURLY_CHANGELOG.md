@@ -8,3 +8,7 @@
 ## [v2.0.3_recurly] 2022-01-12
 - Add compute_disk_snapshot from upstream
 - Modify module to work with regional disks
+
+## [v2.0.4_recurly] 2022-04-04
+- Updated TF version requirement for mig for TF 1
+- Update TF version requirement for stateful_config for TF 1

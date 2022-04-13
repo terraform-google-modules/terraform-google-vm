@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.7.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.6.0...v7.7.0) (2022-04-12)
+
+
+### Features
+
+* Add IP Alias Range feature on compute instance module ([#233](https://github.com/terraform-google-modules/terraform-google-vm/issues/233)) ([3601c5b](https://github.com/terraform-google-modules/terraform-google-vm/commit/3601c5b8d91e6497efcc97789f98fbee17c9f2a3))
+
+
+### Bug Fixes
+
+* alias-ip dynamic block ([#242](https://github.com/terraform-google-modules/terraform-google-vm/issues/242)) ([a5b6a81](https://github.com/terraform-google-modules/terraform-google-vm/commit/a5b6a814fd051dd8c10853ab5427091ab6fc4d67))
+
 ## [7.6.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.5.0...v7.6.0) (2022-03-02)
 
 

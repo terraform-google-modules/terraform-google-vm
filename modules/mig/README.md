@@ -39,6 +39,7 @@ The current version is 2.X. The following guides are available to assist with up
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
 | project\_id | The GCP project ID | `string` | `null` | no |
 | region | The GCP region where the managed instance group resides. | `any` | n/a | yes |
+| scaling\_schedules | Autoscaling, scaling schedule block. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#scaling_schedules | <pre>list(object({<br>    disabled              = bool<br>    duration_sec          = number<br>    min_required_replicas = number<br>    name                  = string<br>    schedule              = string<br>    time_zone             = string<br>  }))</pre> | `[]` | no |
 | stateful\_disks | Disks created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs | <pre>list(object({<br>    device_name = string<br>    delete_rule = string<br>  }))</pre> | `[]` | no |
 | subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
 | subnetwork\_project | The project that subnetwork belongs to | `string` | `""` | no |

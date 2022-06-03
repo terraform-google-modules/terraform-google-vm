@@ -204,6 +204,19 @@ variable "autoscaling_lb" {
   default     = []
 }
 
+variable "scaling_schedules" {
+  description = "Autoscaling, scaling schedule block. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#scaling_schedules"
+  type = list(object({
+    disabled              = bool
+    duration_sec          = number
+    min_required_replicas = number
+    name                  = string
+    schedule              = string
+    time_zone             = string
+  }))
+  default = []
+}
+
 variable "autoscaling_scale_in_control" {
   description = "Autoscaling, scale-in control block. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#scale_in_control"
   type = object({

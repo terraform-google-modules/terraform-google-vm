@@ -163,6 +163,17 @@ resource "google_compute_region_autoscaler" "autoscaler" {
         target = lookup(load_balancing_utilization.value, "target", null)
       }
     }
+    dynamic "scaling_schedules" {
+      for_each = var.scaling_schedules
+      content {
+        disabled              = lookup(scaling_schedules.value, "disabled", null)
+        duration_sec          = lookup(scaling_schedules.value, "duration_sec", null)
+        min_required_replicas = lookup(scaling_schedules.value, "min_required_replicas", null)
+        name                  = lookup(scaling_schedules.value, "name", null)
+        schedule              = lookup(scaling_schedules.value, "schedule", null)
+        time_zone             = lookup(scaling_schedules.value, "time_zone", null)
+      }
+    }
   }
   {% if mig_with_percent %}
 

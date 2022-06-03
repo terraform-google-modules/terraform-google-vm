@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.8.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.7.0...v7.8.0) (2022-06-03)
+
+
+### Features
+
+* **mig:** Add option to configure autoscaling schedules ([#247](https://github.com/terraform-google-modules/terraform-google-vm/issues/247)) ([0269e71](https://github.com/terraform-google-modules/terraform-google-vm/commit/0269e71eeaff5dbfdaaf2e83c74c8a3273122a4e))
+
 ## [7.7.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.6.0...v7.7.0) (2022-04-12)
 
 

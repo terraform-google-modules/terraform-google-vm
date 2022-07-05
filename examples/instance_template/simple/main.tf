@@ -35,6 +35,7 @@ module "instance_template" {
   source                       = "../../../modules/instance_template"
   project_id                   = var.project_id
   subnetwork                   = var.subnetwork
+  stack_type                   = var.stack_type
   service_account              = var.service_account
   name_prefix                  = "simple"
   tags                         = var.tags

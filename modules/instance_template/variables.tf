@@ -164,6 +164,11 @@ variable "network_ip" {
   default     = ""
 }
 
+variable "stack_type" {
+  description = "The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are IPV4_IPV6 or IPV4_ONLY. If not specified, IPV4_ONLY will be used."
+  default     = "IPV4_ONLY"
+}
+
 variable "additional_networks" {
   description = "Additional network interface details for GCE, if any."
   default     = []

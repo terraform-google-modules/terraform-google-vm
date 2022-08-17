@@ -177,8 +177,11 @@ variable "autoscaling_mode" {
 
 variable "autoscaling_cpu" {
   description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization"
-  type        = list(map(number))
-  default     = []
+  type = list(object({
+    target            = number
+    predictive_method = string
+  }))
+  default = []
 }
 
 variable "autoscaling_metric" {

@@ -50,6 +50,11 @@ locals {
     ? "TERMINATE"
     : var.on_host_maintenance
   )
+  provisioning_model = (
+    var.preemptible
+    ? "SPOT" : "STANDARD"
+  )
+
 }
 
 ####################
@@ -146,6 +151,7 @@ resource "google_compute_instance_template" "tpl" {
     preemptible         = var.preemptible
     automatic_restart   = !var.preemptible
     on_host_maintenance = local.on_host_maintenance
+    provisioning_model  = local.provisioning_model
   }
 
   advanced_machine_features {

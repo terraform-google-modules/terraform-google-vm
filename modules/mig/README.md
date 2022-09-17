@@ -5,7 +5,7 @@ and optionally, an autoscaler and healthchecks.
 
 ## Usage
 
-See the [simple example](../../examples/mig/simple) for a usage example.
+See the [simple example](https://github.com/terraform-google-modules/terraform-google-vm/tree/master/examples/mig/simple) for a usage example.
 
 ## Upgrading
 

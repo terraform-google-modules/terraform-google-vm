@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [7.9.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.8.0...v7.9.0) (2022-09-20)
+
+
+### Features
+
+* Add support for resource_policies ([#260](https://github.com/terraform-google-modules/terraform-google-vm/issues/260)) ([c382631](https://github.com/terraform-google-modules/terraform-google-vm/commit/c382631f0870204b6db1b6b30f6484fe2bb0fcac))
+
+
+### Bug Fixes
+
+* allow null service_account ([#262](https://github.com/terraform-google-modules/terraform-google-vm/issues/262)) ([c95056c](https://github.com/terraform-google-modules/terraform-google-vm/commit/c95056c5236d7faba1497e1eb54e3938a0c35ba1))
+
 ## [7.8.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.7.0...v7.8.0) (2022-06-03)
 
 

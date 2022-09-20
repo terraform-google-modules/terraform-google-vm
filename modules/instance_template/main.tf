@@ -50,6 +50,10 @@ locals {
     ? "TERMINATE"
     : var.on_host_maintenance
   )
+  automatic_restart = (
+    # must be false when preemptible is true
+    var.preemptible ? false : var.automatic_restart
+  )
 }
 
 ####################
@@ -141,10 +145,9 @@ resource "google_compute_instance_template" "tpl" {
     create_before_destroy = "true"
   }
 
-  # scheduling must have automatic_restart be false when preemptible is true.
   scheduling {
     preemptible         = var.preemptible
-    automatic_restart   = !var.preemptible
+    automatic_restart   = local.automatic_restart
     on_host_maintenance = local.on_host_maintenance
   }
 

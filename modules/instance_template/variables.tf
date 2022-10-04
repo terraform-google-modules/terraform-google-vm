@@ -71,16 +71,6 @@ variable "on_host_maintenance" {
   default     = "MIGRATE"
 }
 
-variable "provisioning_model" {
-  type        = string
-  description = "Describe the type of preemptible VM"
-  default     = "STANDARD"
-  validation {
-    condition     = contains(["SPOT", "STANDARD"], var.provisioning_model)
-    error_message = "Valid values for provisioning_model are [SPOT, STANDARD]."
-  }
-}
-
 variable "region" {
   type        = string
   description = "Region where the instance template should be created."

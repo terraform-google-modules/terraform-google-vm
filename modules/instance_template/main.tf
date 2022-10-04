@@ -150,10 +150,11 @@ resource "google_compute_instance_template" "tpl" {
   }
 
   scheduling {
-    preemptible         = var.preemptible
-    automatic_restart   = local.automatic_restart
-    on_host_maintenance = local.on_host_maintenance
-    provisioning_model  = local.provisioning_model
+    preemptible                 = var.preemptible
+    automatic_restart           = local.automatic_restart
+    on_host_maintenance         = local.on_host_maintenance
+    provisioning_model          = local.provisioning_model
+    instance_termination_action = "STOP"
   }
 
   advanced_machine_features {

@@ -85,7 +85,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
 
   source_instance_template  = var.instance_template
   allow_stopping_for_update = var.allow_stopping_for_update
-  desired_status            = var.desired_status 
+  desired_status            = var.desired_status
 }
 
 resource "google_compute_instance_group" "instance_group" {

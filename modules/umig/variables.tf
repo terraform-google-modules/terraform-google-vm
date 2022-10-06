@@ -104,3 +104,9 @@ variable "allow_stopping_for_update" {
   description = "Toggle to allow compute instances to stop for updates"
   default     = false
 }
+
+variables "desired_status" {
+  type        = string
+  description = "Allows the user to update the status of the compute engine instance"
+  default     = "RUNNING"
+}

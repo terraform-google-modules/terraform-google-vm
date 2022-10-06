@@ -98,3 +98,15 @@ variable "hostname_suffix_separator" {
   description = "Separator character to compose hostname when add_hostname_suffix is set to true."
   default     = "-"
 }
+
+variable "allow_stopping_for_update" {
+  type        = bool
+  description = "Toggle to allow compute instances to stop for updates"
+  default     = false
+}
+
+variable "desired_status" {
+  type        = string
+  description = "Allows the user to update the status of the compute engine instance"
+  default     = "RUNNING"
+}

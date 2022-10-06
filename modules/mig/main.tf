@@ -179,7 +179,7 @@ resource "google_compute_health_check" "https" {
     proxy_header = var.health_check["proxy_header"]
   }
   log_config {
-    enabled = var.health_check["enable_logging"]
+    enable = var.health_check["enable_logging"]
   }
 }
 
@@ -201,7 +201,7 @@ resource "google_compute_health_check" "http" {
     proxy_header = var.health_check["proxy_header"]
   }
   log_config {
-    enabled = var.health_check["enable_logging"]
+    enable = var.health_check["enable_logging"]
   }
 }
 
@@ -222,6 +222,6 @@ resource "google_compute_health_check" "tcp" {
     proxy_header = var.health_check["proxy_header"]
   }
   log_config {
-    enabled = var.health_check["enable_logging"]
+    enable = var.health_check["enable_logging"]
   }
 }

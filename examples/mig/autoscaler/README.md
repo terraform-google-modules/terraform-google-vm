@@ -8,7 +8,7 @@ group with an autoscaler.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| autoscaling\_cpu | Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization | `list(map(number))` | n/a | yes |
+| autoscaling\_cpu | Autoscaling, cpu utilization policy block as single element array. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#cpu_utilization | <pre>list(object({<br>    target            = number<br>    predictive_method = string<br>  }))</pre> | n/a | yes |
 | autoscaling\_enabled | Creates an autoscaler for the managed instance group | `any` | n/a | yes |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | `any` | n/a | yes |
 | project\_id | The GCP project to use for integration tests | `string` | n/a | yes |

@@ -19,7 +19,7 @@ The current version is 2.X. The following guides are available to assist with up
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | autoscaler\_name | Autoscaler name. When variable is empty, name will be derived from var.hostname. | `string` | `""` | no |
-| autoscaling\_cpu | Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization | `list(map(number))` | `[]` | no |
+| autoscaling\_cpu | Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization | <pre>list(object({<br>    target            = number<br>    predictive_method = string<br>  }))</pre> | `[]` | no |
 | autoscaling\_enabled | Creates an autoscaler for the managed instance group | `string` | `"false"` | no |
 | autoscaling\_lb | Autoscaling, load balancing utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#load_balancing_utilization | `list(map(number))` | `[]` | no |
 | autoscaling\_metric | Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#metric | <pre>list(object({<br>    name   = string<br>    target = number<br>    type   = string<br>  }))</pre> | `[]` | no |

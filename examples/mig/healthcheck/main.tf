@@ -71,7 +71,8 @@ module "mig" {
 
   autoscaling_cpu = [
     {
-      target = 0.4
+      target            = 0.4
+      predictive_method = null # use default of NONE
     },
   ]
 

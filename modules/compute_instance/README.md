@@ -1,7 +1,7 @@
 # Compute Instance
 
 This module is used to create compute instances (and only compute instances) using
-[google_compute_instance_from_template](https://www.terraform.io/docs/providers/google/r/compute_instance_from_template.html), with no instance groups.
+[google_compute_instance_from_template](https://www.terraform.io/docs/providers/google/r/compute_instance_from_template), with no instance groups.
 
 ## Usage
 

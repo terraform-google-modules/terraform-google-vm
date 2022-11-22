@@ -90,5 +90,6 @@ module "mig" {
     request             = ""
     request_path        = "/"
     host                = "localhost"
+    enable_logging      = false
   }
 }

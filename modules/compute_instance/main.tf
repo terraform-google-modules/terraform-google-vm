@@ -68,6 +68,13 @@ resource "google_compute_instance_from_template" "compute_instance" {
         }
       }
 
+      dynamic "ipv6_access_config" {
+        for_each = var.ipv6_access_config
+        content {
+          network_tier = ipv6_access_config.value.network_tier
+        }
+      }
+
       dynamic "alias_ip_range" {
         for_each = var.alias_ip_ranges
         content {

@@ -182,6 +182,9 @@ variable "additional_networks" {
       nat_ip       = string
       network_tier = string
     }))
+    ipv6_access_config = list(object({
+      network_tier = string
+    }))
   }))
 }
 
@@ -250,6 +253,14 @@ variable "access_config" {
   description = "Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet."
   type = list(object({
     nat_ip       = string
+    network_tier = string
+  }))
+  default = []
+}
+
+variable "ipv6_access_config" {
+  description = "IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access."
+  type = list(object({
     network_tier = string
   }))
   default = []

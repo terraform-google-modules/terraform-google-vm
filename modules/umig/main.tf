@@ -64,6 +64,14 @@ resource "google_compute_instance_from_template" "compute_instance" {
         network_tier = access_config.value.network_tier
       }
     }
+
+    dynamic "ipv6_access_config" {
+      # convert to map to use lookup function with default value
+      for_each = lookup({ for k, v in var.ipv6_access_config : k => v }, count.index, [])
+      content {
+        network_tier = ipv6_access_config.value.network_tier
+      }
+    }
   }
 
   dynamic "network_interface" {
@@ -78,6 +86,12 @@ resource "google_compute_instance_from_template" "compute_instance" {
         content {
           nat_ip       = access_config.value.nat_ip
           network_tier = access_config.value.network_tier
+        }
+      }
+      dynamic "ipv6_access_config" {
+        for_each = network_interface.value.ipv6_access_config
+        content {
+          network_tier = ipv6_access_config.value.network_tier
         }
       }
     }

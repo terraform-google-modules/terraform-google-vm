@@ -22,6 +22,7 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | hostname | Hostname of instances | `string` | `""` | no |
 | hostname\_suffix\_separator | Separator character to compose hostname when add\_hostname\_suffix is set to true. | `string` | `"-"` | no |
 | instance\_template | Instance template self\_link used to create compute instances | `any` | n/a | yes |
+| ipv6\_access\_config | IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access. | <pre>list(object({<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
 | num\_instances | Number of instances to create. This value is ignored if static\_ips is provided. | `string` | `"1"` | no |
 | region | Region where the instances should be created. | `string` | `null` | no |

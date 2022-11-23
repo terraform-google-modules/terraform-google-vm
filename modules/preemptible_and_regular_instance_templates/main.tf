@@ -40,6 +40,7 @@ module "preemptible" {
   subnetwork           = var.subnetwork
   subnetwork_project   = var.subnetwork_project
   access_config        = var.access_config
+  ipv6_access_config   = var.ipv6_access_config
   preemptible          = true
 }
 
@@ -65,5 +66,6 @@ module "regular" {
   subnetwork           = var.subnetwork
   subnetwork_project   = var.subnetwork_project
   access_config        = var.access_config
+  ipv6_access_config   = var.ipv6_access_config
   preemptible          = false
 }

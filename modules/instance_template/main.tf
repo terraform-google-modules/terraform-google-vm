@@ -115,6 +115,12 @@ resource "google_compute_instance_template" "tpl" {
         network_tier = access_config.value.network_tier
       }
     }
+    dynamic "ipv6_access_config" {
+      for_each = var.ipv6_access_config
+      content {
+        network_tier = ipv6_access_config.value.network_tier
+      }
+    }
     dynamic "alias_ip_range" {
       for_each = local.alias_ip_range_enabled ? [var.alias_ip_range] : []
       content {
@@ -136,6 +142,12 @@ resource "google_compute_instance_template" "tpl" {
         content {
           nat_ip       = access_config.value.nat_ip
           network_tier = access_config.value.network_tier
+        }
+      }
+      dynamic "ipv6_access_config" {
+        for_each = network_interface.value.ipv6_access_config
+        content {
+          network_tier = ipv6_access_config.value.network_tier
         }
       }
     }

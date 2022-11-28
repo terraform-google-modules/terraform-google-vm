@@ -37,7 +37,7 @@ variable "service_account" {
     email  = string
     scopes = set(string)
   })
-  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account."
 }
 
 variable "autoscaling_enabled" {
@@ -51,7 +51,10 @@ variable "min_replicas" {
 
 
 variable "autoscaling_cpu" {
-  description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization"
-  type        = list(map(number))
+  description = "Autoscaling, cpu utilization policy block as single element array. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#cpu_utilization"
+  type = list(object({
+    target            = number
+    predictive_method = string
+  }))
 }
 

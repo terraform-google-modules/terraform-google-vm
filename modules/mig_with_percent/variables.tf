@@ -83,7 +83,7 @@ variable "stateful_disks" {
 #################
 
 variable "update_policy" {
-  description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html#rolling_update_policy"
+  description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager#rolling_update_policy"
   type = list(object({
     max_surge_fixed              = number
     instance_redistribution_type = string
@@ -176,13 +176,16 @@ variable "autoscaling_mode" {
 }
 
 variable "autoscaling_cpu" {
-  description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#cpu_utilization"
-  type        = list(map(number))
-  default     = []
+  description = "Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#cpu_utilization"
+  type = list(object({
+    target            = number
+    predictive_method = string
+  }))
+  default = []
 }
 
 variable "autoscaling_metric" {
-  description = "Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#metric"
+  description = "Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#metric"
   type = list(object({
     name   = string
     target = number
@@ -192,7 +195,7 @@ variable "autoscaling_metric" {
 }
 
 variable "autoscaling_lb" {
-  description = "Autoscaling, load balancing utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#load_balancing_utilization"
+  description = "Autoscaling, load balancing utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#load_balancing_utilization"
   type        = list(map(number))
   default     = []
 }
@@ -211,7 +214,7 @@ variable "scaling_schedules" {
 }
 
 variable "autoscaling_scale_in_control" {
-  description = "Autoscaling, scale-in control block. https://www.terraform.io/docs/providers/google/r/compute_autoscaler.html#scale_in_control"
+  description = "Autoscaling, scale-in control block. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#scale_in_control"
   type = object({
     fixed_replicas   = number
     percent_replicas = number

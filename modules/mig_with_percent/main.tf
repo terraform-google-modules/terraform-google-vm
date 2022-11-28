@@ -139,7 +139,8 @@ resource "google_compute_region_autoscaler" "autoscaler" {
     dynamic "cpu_utilization" {
       for_each = var.autoscaling_cpu
       content {
-        target = lookup(cpu_utilization.value, "target", null)
+        target            = lookup(cpu_utilization.value, "target", null)
+        predictive_method = lookup(cpu_utilization.value, "predictive_method", null)
       }
     }
     dynamic "metric" {

@@ -123,6 +123,7 @@ variable "health_check" {
     request             = string
     request_path        = string
     host                = string
+    enable_logging      = bool
   })
   default = {
     type                = ""
@@ -137,6 +138,7 @@ variable "health_check" {
     request             = ""
     request_path        = "/"
     host                = ""
+    enable_logging      = false
   }
 }
 

@@ -54,6 +54,14 @@ variable "access_config" {
   default = []
 }
 
+variable "ipv6_access_config" {
+  description = "IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access."
+  type = list(object({
+    network_tier = string
+  }))
+  default = []
+}
+
 variable "num_instances" {
   description = "Number of instances to create. This value is ignored if static_ips is provided."
   default     = "1"

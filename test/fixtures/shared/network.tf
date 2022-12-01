@@ -15,7 +15,7 @@
  */
 
 provider "random" {
-  version = "~> 2.2"
+  version = "~> 3.0"
 }
 
 resource "random_string" "suffix" {

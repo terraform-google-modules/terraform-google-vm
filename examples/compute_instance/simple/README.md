@@ -7,7 +7,6 @@ This is a simple, minimal example of how to use the compute_instance module
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| deletion\_protection | Enable deletion protection on this instance. Note: you must disable deletion protection before removing the resource, or the instance cannot be deleted and the Terraform run will not complete successfully. | `bool` | `false` | no |
 | nat\_ip | Public ip address | `any` | `null` | no |
 | network\_tier | Network network\_tier | `string` | `"PREMIUM"` | no |
 | num\_instances | Number of instances to create | `any` | n/a | yes |

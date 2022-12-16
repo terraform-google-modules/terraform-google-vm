@@ -43,10 +43,8 @@ module "instance_template" {
   service_account = var.service_account
 
   /* network */
-  network            = var.network
-  subnetwork         = var.subnetwork
-  subnetwork_project = var.subnetwork_project
-  can_ip_forward     = var.can_ip_forward
+  subnetwork     = var.subnetwork
+  can_ip_forward = var.can_ip_forward
 
   /* image */
   source_image         = var.source_image
@@ -61,16 +59,14 @@ module "instance_template" {
 }
 
 module "umig" {
-  source             = "../../../modules/umig"
-  project_id         = var.project_id
-  network            = var.network
-  subnetwork         = var.subnetwork
-  subnetwork_project = var.subnetwork_project
-  hostname           = var.hostname
-  static_ips         = var.static_ips
-  num_instances      = var.target_size
-  instance_template  = module.instance_template.self_link
-  named_ports        = var.named_ports
-  region             = var.region
-  access_config      = [[local.access_config]]
+  source            = "../../../modules/umig"
+  project_id        = var.project_id
+  subnetwork        = var.subnetwork
+  hostname          = var.hostname
+  static_ips        = var.static_ips
+  num_instances     = var.target_size
+  instance_template = module.instance_template.self_link
+  named_ports       = var.named_ports
+  region            = var.region
+  access_config     = [[local.access_config]]
 }

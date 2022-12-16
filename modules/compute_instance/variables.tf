@@ -16,26 +16,31 @@
 
 variable "network" {
   description = "Network to deploy to. Only one of network or subnetwork should be specified."
+  type        = string
   default     = ""
 }
 
 variable "subnetwork" {
   description = "Subnet to deploy to. Only one of network or subnetwork should be specified."
+  type        = string
   default     = ""
 }
 
 variable "subnetwork_project" {
   description = "The project that subnetwork belongs to"
+  type        = string
   default     = ""
 }
 
 variable "hostname" {
   description = "Hostname of instances"
+  type        = string
   default     = ""
 }
 
 variable "add_hostname_suffix" {
   description = "Adds a suffix to the hostname"
+  type        = bool
   default     = true
 }
 
@@ -64,11 +69,13 @@ variable "ipv6_access_config" {
 
 variable "num_instances" {
   description = "Number of instances to create. This value is ignored if static_ips is provided."
+  type        = number
   default     = "1"
 }
 
 variable "instance_template" {
   description = "Instance template self_link used to create compute instances"
+  type        = string
 }
 
 variable "region" {

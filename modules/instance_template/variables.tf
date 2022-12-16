@@ -22,11 +22,13 @@ variable "project_id" {
 
 variable "name_prefix" {
   description = "Name prefix for the instance template"
+  type        = string
   default     = "default-instance-template"
 }
 
 variable "machine_type" {
   description = "Machine type to create, e.g. n1-standard-1"
+  type        = string
   default     = "n1-standard-1"
 }
 
@@ -38,6 +40,7 @@ variable "min_cpu_platform" {
 
 variable "can_ip_forward" {
   description = "Enable IP forwarding, for NAT instances for example"
+  type        = string
   default     = "false"
 }
 
@@ -85,6 +88,7 @@ variable "enable_nested_virtualization" {
 
 variable "threads_per_core" {
   description = "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1."
+  type        = number
   default     = null
 }
 
@@ -93,26 +97,31 @@ variable "threads_per_core" {
 #######
 variable "source_image" {
   description = "Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image."
+  type        = string
   default     = ""
 }
 
 variable "source_image_family" {
   description = "Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image."
+  type        = string
   default     = "centos-7"
 }
 
 variable "source_image_project" {
   description = "Project where the source image comes from. The default project contains CentOS images."
+  type        = string
   default     = "centos-cloud"
 }
 
 variable "disk_size_gb" {
   description = "Boot disk size in GB"
+  type        = string
   default     = "100"
 }
 
 variable "disk_type" {
   description = "Boot disk type, can be either pd-ssd, local-ssd, or pd-standard"
+  type        = string
   default     = "pd-standard"
 }
 
@@ -130,6 +139,7 @@ variable "disk_encryption_key" {
 
 variable "auto_delete" {
   description = "Whether or not the boot disk should be auto-deleted"
+  type        = string
   default     = "true"
 }
 
@@ -152,26 +162,31 @@ variable "additional_disks" {
 ####################
 variable "network" {
   description = "The name or self_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks."
+  type        = string
   default     = ""
 }
 
 variable "subnetwork" {
   description = "The name of the subnetwork to attach this interface to. The subnetwork must exist in the same region this instance will be created in. Either network or subnetwork must be provided."
+  type        = string
   default     = ""
 }
 
 variable "subnetwork_project" {
   description = "The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used."
+  type        = string
   default     = ""
 }
 
 variable "network_ip" {
   description = "Private IP address to assign to the instance if desired."
+  type        = string
   default     = ""
 }
 
 variable "stack_type" {
   description = "The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are IPV4_IPV6 or IPV4_ONLY. If not specified, IPV4_ONLY will be used."
+  type        = string
   default     = "IPV4_ONLY"
 }
 
@@ -199,6 +214,7 @@ variable "additional_networks" {
 
 variable "startup_script" {
   description = "User startup script to run when instances spin up"
+  type        = string
   default     = ""
 }
 
@@ -224,6 +240,7 @@ variable "service_account" {
 # Shielded VMs
 ###########################
 variable "enable_shielded_vm" {
+  type        = bool
   default     = false
   description = "Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images"
 }
@@ -247,6 +264,7 @@ variable "shielded_instance_config" {
 # Confidential Compute VMs
 ###########################
 variable "enable_confidential_vm" {
+  type        = bool
   default     = false
   description = "Whether to enable the Confidential VM configuration on the instance. Note that the instance image must support Confidential VMs. See https://cloud.google.com/compute/docs/images"
 }

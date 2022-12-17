@@ -25,10 +25,11 @@ provider "google-beta" {
 }
 
 module "instance_template" {
-  source          = "../../../modules/instance_template"
-  project_id      = var.project_id
-  subnetwork      = var.subnetwork
-  service_account = var.service_account
+  source             = "../../../modules/instance_template"
+  project_id         = var.project_id
+  subnetwork         = var.subnetwork
+  service_account    = var.service_account
+  subnetwork_project = var.project_id
 }
 
 module "mig" {

@@ -38,10 +38,8 @@ module "instance_template" {
   service_account = var.service_account
 
   /* network */
-  network            = var.network
-  subnetwork         = var.subnetwork
-  subnetwork_project = var.subnetwork_project
-  can_ip_forward     = var.can_ip_forward
+  subnetwork     = var.subnetwork
+  can_ip_forward = var.can_ip_forward
 
   /* image */
   source_image         = var.source_image

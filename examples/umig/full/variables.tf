@@ -36,18 +36,8 @@ variable "region" {
   default     = "us-central1"
 }
 
-variable "network" {
-  description = "Network to deploy to. Only one of network or subnetwork should be specified."
-  default     = ""
-}
-
 variable "subnetwork" {
   description = "Subnet to deploy to. Only one of network or subnetwork should be specified."
-  default     = ""
-}
-
-variable "subnetwork_project" {
-  description = "The project that subnetwork belongs to"
   default     = ""
 }
 
@@ -63,11 +53,6 @@ variable "named_ports" {
 ####################
 # Instance Template
 ####################
-variable "name_prefix" {
-  description = "Name prefix for the instance template"
-  default     = "default-instance-template"
-}
-
 variable "machine_type" {
   description = "Machine type to create, e.g. n1-standard-1"
   default     = "n1-standard-1"

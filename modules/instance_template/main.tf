@@ -40,8 +40,7 @@ locals {
   # values are false, if the config block exists and an unsupported image is chosen,
   # the apply will fail so we use a single-value array with the default value to
   # initialize the block only if it is enabled.
-  shielded_vm_configs          = var.enable_shielded_vm ? [true] : []
-  confidential_instance_config = var.enable_confidential_vm ? [true] : []
+  shielded_vm_configs = var.enable_shielded_vm ? [true] : []
 
   gpu_enabled            = var.gpu != null
   alias_ip_range_enabled = var.alias_ip_range != null

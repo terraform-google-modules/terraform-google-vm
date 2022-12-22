@@ -50,7 +50,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | subnetwork | The name of the subnetwork to attach this interface to. The subnetwork must exist in the same region this instance will be created in. Either network or subnetwork must be provided. | `string` | `""` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used. | `string` | `""` | no |
 | tags | Network tags, provided as a list | `list(string)` | `[]` | no |
-| threads\_per\_core | The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. | `any` | `null` | no |
+| threads\_per\_core | The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. | `number` | `null` | no |
 
 ## Outputs
 

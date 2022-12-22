@@ -1,0 +1,324 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-vm
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  title: instance_template
+  source:
+    repo: https://github.com/terraform-google-modules/terraform-google-vm
+    sourceType: git
+  version: 7.9.0
+  actuationTool:
+    type: Terraform
+    version: '>=0.13.0'
+  examples:
+  - name: additional_disks
+    location: examples/instance_template/additional_disks
+  - name: alias_ip_range
+    location: examples/instance_template/alias_ip_range
+  - name: autoscaler
+    location: examples/mig/autoscaler
+  - name: disk_snapshot
+    location: examples/compute_instance/disk_snapshot
+  - name: encrypted_disks
+    location: examples/instance_template/encrypted_disks
+  - name: full
+    location: examples/mig/full
+  - name: full
+    location: examples/umig/full
+  - name: healthcheck
+    location: examples/mig/healthcheck
+  - name: multiple_interfaces
+    location: examples/compute_instance/multiple_interfaces
+  - name: named_ports
+    location: examples/umig/named_ports
+  - name: next_hop
+    location: examples/compute_instance/next_hop
+  - name: simple
+    location: examples/compute_instance/simple
+  - name: simple
+    location: examples/instance_template/simple
+  - name: simple
+    location: examples/mig/simple
+  - name: simple
+    location: examples/mig_with_percent/simple
+  - name: simple
+    location: examples/preemptible_and_regular_instance_templates/simple
+  - name: simple
+    location: examples/umig/simple
+  - name: static_ips
+    location: examples/umig/static_ips
+  - name: tags
+    location: examples/compute_instance/tags
+  variables:
+  - name: access_config
+    description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
+    type: |-
+      list(object({
+          nat_ip       = string
+          network_tier = string
+        }))
+    default: []
+    required: false
+  - name: additional_disks
+    description: List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#disk_name
+    type: |-
+      list(object({
+          disk_name    = string
+          device_name  = string
+          auto_delete  = bool
+          boot         = bool
+          disk_size_gb = number
+          disk_type    = string
+          disk_labels  = map(string)
+        }))
+    default: []
+    required: false
+  - name: additional_networks
+    description: Additional network interface details for GCE, if any.
+    type: |-
+      list(object({
+          network            = string
+          subnetwork         = string
+          subnetwork_project = string
+          network_ip         = string
+          access_config = list(object({
+            nat_ip       = string
+            network_tier = string
+          }))
+          ipv6_access_config = list(object({
+            network_tier = string
+          }))
+        }))
+    default: []
+    required: false
+  - name: alias_ip_range
+    description: |
+      An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
+      ip_cidr_range: The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. At the time of writing only a netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API error.
+      subnetwork_range_name: The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used.
+    type: |-
+      object({
+          ip_cidr_range         = string
+          subnetwork_range_name = string
+        })
+    required: false
+  - name: auto_delete
+    description: Whether or not the boot disk should be auto-deleted
+    type: string
+    default: "true"
+    required: false
+  - name: automatic_restart
+    description: (Optional) Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user).
+    type: bool
+    default: true
+    required: false
+  - name: can_ip_forward
+    description: Enable IP forwarding, for NAT instances for example
+    type: string
+    default: "false"
+    required: false
+  - name: disk_encryption_key
+    description: The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance
+    type: string
+    required: false
+  - name: disk_labels
+    description: Labels to be assigned to boot disk, provided as a map
+    type: map(string)
+    default: {}
+    required: false
+  - name: disk_size_gb
+    description: Boot disk size in GB
+    type: string
+    default: "100"
+    required: false
+  - name: disk_type
+    description: Boot disk type, can be either pd-ssd, local-ssd, or pd-standard
+    type: string
+    default: pd-standard
+    required: false
+  - name: enable_confidential_vm
+    description: Whether to enable the Confidential VM configuration on the instance. Note that the instance image must support Confidential VMs. See https://cloud.google.com/compute/docs/images
+    type: bool
+    default: false
+    required: false
+  - name: enable_nested_virtualization
+    description: Defines whether the instance should have nested virtualization enabled.
+    type: bool
+    default: false
+    required: false
+  - name: enable_shielded_vm
+    description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
+    type: bool
+    default: false
+    required: false
+  - name: gpu
+    description: GPU information. Type and count of GPU to attach to the instance template. See https://cloud.google.com/compute/docs/gpus more details
+    type: |-
+      object({
+          type  = string
+          count = number
+        })
+    required: false
+  - name: ipv6_access_config
+    description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
+    type: |-
+      list(object({
+          network_tier = string
+        }))
+    default: []
+    required: false
+  - name: labels
+    description: Labels, provided as a map
+    type: map(string)
+    default: {}
+    required: false
+  - name: machine_type
+    description: Machine type to create, e.g. n1-standard-1
+    type: string
+    default: n1-standard-1
+    required: false
+  - name: metadata
+    description: Metadata, provided as a map
+    type: map(string)
+    default: {}
+    required: false
+  - name: min_cpu_platform
+    description: 'Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform'
+    type: string
+    required: false
+  - name: name_prefix
+    description: Name prefix for the instance template
+    type: string
+    default: default-instance-template
+    required: false
+  - name: network
+    description: The name or self_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks.
+    type: string
+    default: ""
+    required: false
+  - name: network_ip
+    description: Private IP address to assign to the instance if desired.
+    type: string
+    default: ""
+    required: false
+  - name: on_host_maintenance
+    description: Instance availability Policy
+    type: string
+    default: MIGRATE
+    required: false
+  - name: preemptible
+    description: Allow the instance to be preempted
+    type: bool
+    default: false
+    required: false
+  - name: project_id
+    description: The GCP project ID
+    type: string
+    required: false
+  - name: region
+    description: Region where the instance template should be created.
+    type: string
+    required: false
+  - name: service_account
+    description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
+    type: |-
+      object({
+          email  = string
+          scopes = set(string)
+        })
+    required: true
+  - name: shielded_instance_config
+    description: Not used unless enable_shielded_vm is true. Shielded VM configuration for the instance.
+    type: |-
+      object({
+          enable_secure_boot          = bool
+          enable_vtpm                 = bool
+          enable_integrity_monitoring = bool
+        })
+    default:
+      enable_integrity_monitoring: true
+      enable_secure_boot: true
+      enable_vtpm: true
+    required: false
+  - name: source_image
+    description: Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image.
+    type: string
+    default: ""
+    required: false
+  - name: source_image_family
+    description: Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image.
+    type: string
+    default: centos-7
+    required: false
+  - name: source_image_project
+    description: Project where the source image comes from. The default project contains CentOS images.
+    type: string
+    default: centos-cloud
+    required: false
+  - name: stack_type
+    description: The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are IPV4_IPV6 or IPV4_ONLY. If not specified, IPV4_ONLY will be used.
+    type: string
+    default: IPV4_ONLY
+    required: false
+  - name: startup_script
+    description: User startup script to run when instances spin up
+    type: string
+    default: ""
+    required: false
+  - name: subnetwork
+    description: The name of the subnetwork to attach this interface to. The subnetwork must exist in the same region this instance will be created in. Either network or subnetwork must be provided.
+    type: string
+    default: ""
+    required: false
+  - name: subnetwork_project
+    description: The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used.
+    type: string
+    default: ""
+    required: false
+  - name: tags
+    description: Network tags, provided as a list
+    type: list(string)
+    default: []
+    required: false
+  - name: threads_per_core
+    description: The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1.
+    type: number
+    required: false
+  outputs:
+  - name: name
+    description: Name of instance template
+  - name: self_link
+    description: Self-link of instance template
+  - name: tags
+    description: Tags that will be associated with instance(s)
+  roles:
+  - level: Project
+    roles:
+    - roles/owner
+    - roles/compute.admin
+    - roles/compute.networkAdmin
+    - roles/iam.serviceAccountUser
+    - roles/compute.instanceAdmin
+  services:
+  - cloudresourcemanager.googleapis.com
+  - storage-api.googleapis.com
+  - serviceusage.googleapis.com
+  - compute.googleapis.com
+  - iam.googleapis.com

@@ -24,6 +24,7 @@ variable "project_id" {
 
 variable "hostname" {
   description = "Hostname prefix for instances"
+  type        = string
   default     = "default"
 }
 
@@ -35,22 +36,27 @@ variable "mig_name" {
 
 variable "region" {
   description = "The GCP region where the managed instance group resides."
+  type        = string
 }
 
 variable "instance_template_initial_version" {
   description = "Instance template self_link used to create compute instances for the initial version"
+  type        = string
 }
 
 variable "instance_template_next_version" {
   description = "Instance template self_link used to create compute instances for the second version"
+  type        = string
 }
 
 variable "next_version_percent" {
   description = "Percentage of instances defined in the second version"
+  type        = number
 }
 
 variable "target_size" {
   description = "The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set."
+  type        = number
   default     = 1
 }
 
@@ -154,21 +160,25 @@ variable "autoscaler_name" {
 variable "autoscaling_enabled" {
   description = "Creates an autoscaler for the managed instance group"
   default     = "false"
+  type        = string
 }
 
 variable "max_replicas" {
   description = "The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas."
   default     = 10
+  type        = number
 }
 
 variable "min_replicas" {
   description = "The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0."
   default     = 2
+  type        = number
 }
 
 variable "cooldown_period" {
   description = "The number of seconds that the autoscaler should wait before it starts collecting information from a new instance."
   default     = 60
+  type        = number
 }
 
 variable "autoscaling_mode" {
@@ -231,21 +241,6 @@ variable "autoscaling_scale_in_control" {
 
 ##########################
 
-variable "network" {
-  description = "Network to deploy to. Only one of network or subnetwork should be specified."
-  default     = ""
-}
-
-variable "subnetwork" {
-  description = "Subnet to deploy to. Only one of network or subnetwork should be specified."
-  default     = ""
-}
-
-variable "subnetwork_project" {
-  description = "The project that subnetwork belongs to"
-  default     = ""
-}
-
 variable "named_ports" {
   description = "Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports"
   type = list(object({
@@ -257,6 +252,7 @@ variable "named_ports" {
 
 variable "wait_for_instances" {
   description = "Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out."
+  type        = string
   default     = "false"
 }
 

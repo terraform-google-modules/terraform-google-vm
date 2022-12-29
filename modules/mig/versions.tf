@@ -21,9 +21,9 @@ terraform {
     google-beta = ">= 3.71, < 5.0"
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:mig/v7.9.0"
+    module_name = "blueprints/terraform/terraform-google-vm:mig/v8.0.0"
   }
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:mig/v7.9.0"
+    module_name = "blueprints/terraform/terraform-google-vm:mig/v8.0.0"
   }
 }

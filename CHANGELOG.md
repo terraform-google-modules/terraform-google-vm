@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [8.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.9.0...v8.0.0) (2022-12-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add support of "ipv6_access_config" param for compute instance and instance template ([#284](https://github.com/terraform-google-modules/terraform-google-vm/issues/284))
+* support health check logging ([#283](https://github.com/terraform-google-modules/terraform-google-vm/issues/283))
+* Allow setting predictive method for CPU utilization scaling ([#255](https://github.com/terraform-google-modules/terraform-google-vm/issues/255))
+
+### Features
+
+* Add support of "ipv6_access_config" param for compute instance and instance template ([#284](https://github.com/terraform-google-modules/terraform-google-vm/issues/284)) ([fc40db1](https://github.com/terraform-google-modules/terraform-google-vm/commit/fc40db15806d7882a7d67577cca2ebebb2185aa3))
+* Allow setting predictive method for CPU utilization scaling ([#255](https://github.com/terraform-google-modules/terraform-google-vm/issues/255)) ([28c77b5](https://github.com/terraform-google-modules/terraform-google-vm/commit/28c77b553d1f4462ef21fe55f4e4bfb26eb6d892))
+* support health check logging ([#283](https://github.com/terraform-google-modules/terraform-google-vm/issues/283)) ([2b31071](https://github.com/terraform-google-modules/terraform-google-vm/commit/2b31071cb3dacf2e5b68e2a71b0499ce87880423))
+
+
+### Bug Fixes
+
+* fixes lint issues and generates metadata ([#288](https://github.com/terraform-google-modules/terraform-google-vm/issues/288)) ([b071db1](https://github.com/terraform-google-modules/terraform-google-vm/commit/b071db16c8de00f43c144cd9f85703de2a228f40))
+
 ## [7.9.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.8.0...v7.9.0) (2022-09-20)
 
 

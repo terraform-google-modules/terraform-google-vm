@@ -45,7 +45,7 @@ locals {
   gpu_enabled            = var.gpu != null
   alias_ip_range_enabled = var.alias_ip_range != null
   on_host_maintenance = (
-    var.preemptible || var.enable_confidential_vm || local.gpu_enabled
+    var.preemptible || var.enable_confidential_vm || local.gpu_enabled || var.spot
     ? "TERMINATE"
     : var.on_host_maintenance
   )
@@ -165,7 +165,7 @@ resource "google_compute_instance_template" "tpl" {
     preemptible         = local.preemptible
     automatic_restart   = local.automatic_restart
     on_host_maintenance = local.on_host_maintenance
-    provisioning_model  = var.spot ? "SPOT" : "STANDARD"
+    provisioning_model  = var.spot ? "SPOT" : null
   }
 
   advanced_machine_features {

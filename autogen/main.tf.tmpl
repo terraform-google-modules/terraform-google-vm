@@ -91,6 +91,22 @@ resource "google_compute_region_instance_group_manager" "{{ module_name }}" {
     }
   }
 
+  dynamic "stateful_internal_ip" {
+    for_each = var.stateful_internal_ip
+    content {
+      device_name = stateful_internal_ip.value.network_interface_name
+      delete_rule = lookup(stateful_internal_ip.value, "delete_rule", null)
+    }
+  }
+
+  dynamic "stateful_external_ip" {
+    for_each = var.stateful_external_ip
+    content {
+      device_name = stateful_external_ip.value.network_interface_name
+      delete_rule = lookup(stateful_external_ip.value, "delete_rule", null)
+    }
+  }
+
   distribution_policy_zones = local.distribution_policy_zones
   dynamic "update_policy" {
     for_each = var.update_policy

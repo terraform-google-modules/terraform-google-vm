@@ -228,6 +228,30 @@ steps:
     - verify-mig-with-percent-simple-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-with-percent-simple-local']
+- id: create-mig-stateful-local
+  wait_for:
+    - destroy-it-simple-local
+    - destroy-it-additional-disks-local
+    - destroy-preemptible-and-regular-instance-templates-simple-local
+    - go-destroy-instance-simple
+    - destroy-mig-simple-local
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create mig-stateful-local']
+- id: converge-mig-stateful-local
+  wait_for:
+    - create-mig-stateful-local
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge mig-stateful-local']
+- id: verify-mig-stateful-local
+  wait_for:
+    - converge-mig-stateful-local
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify mig-stateful-local']
+- id: destroy-mig-stateful-local
+  wait_for:
+    - verify-mig-stateful-local
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-stateful-local']
 
 tags:
 - 'ci'

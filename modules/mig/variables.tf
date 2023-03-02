@@ -75,6 +75,27 @@ variable "stateful_disks" {
 }
 
 #################
+# Stateful IPs
+#################
+variable "stateful_internal_ips" {
+  description = "Internal IPs created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-ip-addresses-in-migs"
+  type = list(object({
+    interface_name = string
+    delete_rule    = string
+  }))
+  default = []
+}
+
+variable "stateful_external_ips" {
+  description = "External IPs created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-ip-addresses-in-migs"
+  type = list(object({
+    interface_name = string
+    delete_rule    = string
+  }))
+  default = []
+}
+
+#################
 # Rolling Update
 #################
 

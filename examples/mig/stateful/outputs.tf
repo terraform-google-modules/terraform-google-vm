@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=0.13.0"
-  required_providers {
-    google      = ">= 4.48, < 5.0"
-    google-beta = ">= 4.48, < 5.0"
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:{% if mig %}mig{% else %}mig_with_percent{% endif %}/v8.0.0"
-  }
-  provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:{% if mig %}mig{% else %}mig_with_percent{% endif %}/v8.0.0"
-  }
+output "self_link" {
+  description = "Self-link of the managed instance group"
+  value       = module.mig.self_link
+}
+
+output "region" {
+  description = "The GCP region to create and test resources in"
+  value       = var.region
 }

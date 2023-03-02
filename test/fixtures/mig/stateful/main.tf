@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,10 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=0.13.0"
-  required_providers {
-    google      = ">= 4.48, < 5.0"
-    google-beta = ">= 4.48, < 5.0"
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:{% if mig %}mig{% else %}mig_with_percent{% endif %}/v8.0.0"
-  }
-  provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:{% if mig %}mig{% else %}mig_with_percent{% endif %}/v8.0.0"
-  }
+module "mig_stateful" {
+  source          = "../../../../examples/mig/stateful"
+  project_id      = var.project_id
+  subnetwork      = google_compute_subnetwork.main.name
+  target_size     = 3
+  service_account = var.service_account
 }

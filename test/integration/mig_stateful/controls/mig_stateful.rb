@@ -17,11 +17,12 @@ region     = attribute('region')
 
 expected_instances = 3
 expected_instance_groups = 1
+expected_stateful_config = true
 
 control "MIG" do
-  title "Simple Configuration"
+  title "Stateful Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~^mig-simple*'") do
+  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~^mig-stateful*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -74,6 +75,12 @@ control "MIG" do
     describe "number of instance groups" do
       it "should be #{expected_instance_groups}" do
         expect(data.length).to eq(expected_instance_groups)
+      end
+    end
+
+    describe "stateful configuration" do
+      it "should be #{expected_stateful_config}" do
+        expect(data[0]['status']['stateful']['hasStatefulConfig']).to eq(expected_stateful_config)
       end
     end
   end

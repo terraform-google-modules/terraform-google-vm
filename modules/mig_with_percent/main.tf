@@ -85,7 +85,7 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
   }
 
   dynamic "stateful_internal_ip" {
-    for_each = var.stateful_internal_ips
+    for_each = [for static_ip in var.stateful_ips : static_ip if static_ip["is_external"] == false]
     content {
       interface_name = stateful_internal_ip.value.interface_name
       delete_rule    = lookup(stateful_internal_ip.value, "delete_rule", null)
@@ -93,7 +93,7 @@ resource "google_compute_region_instance_group_manager" "mig_with_percent" {
   }
 
   dynamic "stateful_external_ip" {
-    for_each = var.stateful_external_ips
+    for_each = [for static_ip in var.stateful_ips : static_ip if static_ip["is_external"] == true]
     content {
       interface_name = stateful_external_ip.value.interface_name
       delete_rule    = lookup(stateful_external_ip.value, "delete_rule", null)

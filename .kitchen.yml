@@ -107,4 +107,4 @@ suites:
     driver:
       name: terraform
       command_timeout: 1800
-      root_module_directory: test/fixtures/mig/stateful
+      root_module_directory: test/fixtures/mig_stateful

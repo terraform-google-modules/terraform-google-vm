@@ -47,7 +47,7 @@ resource "google_compute_subnetwork" "main" {
 }
 
 module "instance_template" {
-  source             = "../../../modules/instance_template"
+  source             = "../../modules/instance_template"
   project_id         = var.project_id
   subnetwork         = var.subnetwork
   service_account    = var.service_account
@@ -55,15 +55,16 @@ module "instance_template" {
 }
 
 module "mig" {
-  source            = "../../../modules/mig"
+  source            = "../../modules/mig"
   project_id        = var.project_id
   region            = var.region
   target_size       = var.target_size
   hostname          = "mig-stateful"
   instance_template = module.instance_template.self_link
-  stateful_internal_ips = [{
+  stateful_ips = [{
     interface_name = "nic0"
     delete_rule    = "ON_PERMANENT_INSTANCE_DELETION"
+    is_external    = true
   }]
 
   update_policy = [{

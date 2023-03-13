@@ -15,7 +15,7 @@
  */
 
 module "mig_stateful" {
-  source          = "../../../../examples/mig/stateful"
+  source          = "../../../examples/mig_stateful"
   project_id      = var.project_id
   subnetwork      = google_compute_subnetwork.main.name
   target_size     = 3

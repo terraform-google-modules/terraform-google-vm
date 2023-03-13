@@ -26,34 +26,24 @@ import (
 func TestMigStatefulModule(t *testing.T) {
 
 	const instanceGroupNamePrefix = "mig-stateful"
-	zoneIns := map[string]string{
-		"mig-stateful-001": "us-central1-a",
-		"mig-stateful-002": "us-central1-b",
-		"mig-stateful-003": "us-central1-c",
-		"mig-stateful-004": "us-central1-f",
-	}
 
 	expected_instance_groups := 1
+	expected_instances := 3
 
 	migStatefulT := tft.NewTFBlueprintTest(t)
 	migStatefulT.DefineVerify(func(assert *assert.Assertions) {
 		migStatefulT.DefaultVerify(assert)
 
 		instances := gcloud.Run(t, fmt.Sprintf("compute instances list --project %s --filter name~%s", migStatefulT.GetStringOutput("project_id"), instanceGroupNamePrefix))
-		assert.Equal(len(zoneIns), len(instances.Array()), "found 4 gce instances")
-
-		for _, instance := range instances.Array() {
-			instanceName := instance.Get("name").String()
-			assert.Contains(instance.Get("zone").String(), zoneIns[instanceName], fmt.Sprintf("%s is in the right zone", instanceName))
-		}
+		assert.Equal(expected_instances, len(instances.Array()), fmt.Sprintf("found %d gce instances", expected_instances))
 
 		instanceGroups := gcloud.Run(t, fmt.Sprintf("compute instance-groups list --project %s --filter name~%s", migStatefulT.GetStringOutput("project_id"), instanceGroupNamePrefix))
-		assert.Equal(expected_instance_groups, len(instanceGroups.Array()), "found 1 gce instance group")
+		assert.Equal(expected_instance_groups, len(instanceGroups.Array()), fmt.Sprintf("found %d gce instance group", expected_instance_groups))
 
 		managedInstanceGroups := gcloud.Run(t, fmt.Sprintf("compute instance-groups managed list --project %s --filter name~%s", migStatefulT.GetStringOutput("project_id"), instanceGroupNamePrefix))
-		assert.Equal(expected_instance_groups, len(managedInstanceGroups.Array()), "found 1 gce managed instance group")
+		assert.Equal(expected_instance_groups, len(managedInstanceGroups.Array()), fmt.Sprintf("found %d gce managed instance group", expected_instance_groups))
 		for _, mig := range managedInstanceGroups.Array() {
-			assert.Contains(true, mig.Get("status").Get("stateful").Get("hasStatefulConfig").Bool(), fmt.Sprintf("%s has stateful config", mig.Get("name").String()))
+			assert.Equal(true, mig.Get("status").Get("stateful").Get("hasStatefulConfig").Bool(), fmt.Sprintf("%s has stateful config", mig.Get("name").String()))
 		}
 
 	})

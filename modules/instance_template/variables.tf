@@ -191,9 +191,9 @@ variable "network_ip" {
 }
 
 variable "stack_type" {
-  description = "The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are IPV4_IPV6 or IPV4_ONLY. If not specified, IPV4_ONLY will be used."
+  description = "The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4_ONLY."
   type        = string
-  default     = "IPV4_ONLY"
+  default     = null
 }
 
 variable "additional_networks" {

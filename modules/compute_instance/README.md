@@ -31,6 +31,7 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
 | subnetwork\_project | The project that subnetwork belongs to | `string` | `""` | no |
 | zone | Zone where the instances should be created. If not specified, instances will be spread across available zones in the region. | `string` | `null` | no |
+| desired\_status | Instance status | `string` | `"RUNNING"` | no |
 
 ## Outputs
 

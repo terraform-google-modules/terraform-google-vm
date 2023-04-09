@@ -116,3 +116,14 @@ variable "resource_policies" {
   type        = list(string)
   default     = []
 }
+
+variable "desired_status" {
+  description = "Instance status. Used to start/stop instance. Possible values RUNNING / TERMINATED"
+  type        = string
+  default     = "RUNNING"
+
+  validation {
+    condition     = contains(["NRUNNING", "TERMINATED"], var.desired_status)
+    error_message = "Accepted values are RUNNIGNI, TERMINATED."
+  }
+}

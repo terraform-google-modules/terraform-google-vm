@@ -123,7 +123,7 @@ variable "desired_status" {
   default     = "RUNNING"
 
   validation {
-    condition     = contains(["NRUNNING", "TERMINATED"], var.desired_status)
-    error_message = "Accepted values are RUNNIGNI, TERMINATED."
+    condition     = contains(["RUNNING", "TERMINATED"], var.desired_status)
+    error_message = "Accepted values are RUNNING, TERMINATED."
   }
 }

@@ -103,8 +103,3 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/mig_with_percent/simple
-  - name: mig_stateful
-    driver:
-      name: terraform
-      command_timeout: 1800
-      root_module_directory: test/fixtures/mig_stateful

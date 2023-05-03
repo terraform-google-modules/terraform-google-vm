@@ -228,7 +228,28 @@ steps:
     - verify-mig-with-percent-simple-local
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-with-percent-simple-local']
-
+- id: go-init-statful-mig
+  waitFor:
+    - create-all
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage create --verbose']
+- id: go-apply-statful-mig
+  waitFor:
+    - go-init-statful-mig
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage apply --verbose']
+  timeout: 3600s
+- id: go-verify-statful-mig
+  waitFor:
+    - go-apply-statful-mig
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage verify --verbose']
+- id: go-destroy-statful-mig
+  waitFor:
+    - go-verify-statful-mig
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage destroy --verbose']
+  timeout: 1800s
 tags:
 - 'ci'
 - 'integration'

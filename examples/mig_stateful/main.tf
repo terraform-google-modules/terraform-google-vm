@@ -45,6 +45,7 @@ resource "google_compute_subnetwork" "main" {
 module "instance_template" {
   source             = "../../modules/instance_template"
   project_id         = var.project_id
+  region             = var.region
   subnetwork         = var.subnetwork
   service_account    = var.service_account
   subnetwork_project = var.project_id

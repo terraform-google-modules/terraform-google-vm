@@ -17,6 +17,7 @@
 module "mig_stateful" {
   source          = "../../../examples/mig_stateful"
   project_id      = var.project_id
+  region          = "us-central1"
   subnetwork      = google_compute_subnetwork.main.name
   target_size     = 3
   service_account = var.service_account

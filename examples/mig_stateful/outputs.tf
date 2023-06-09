@@ -23,3 +23,8 @@ output "region" {
   description = "The GCP region to create and test resources in"
   value       = var.region
 }
+
+output "foo" {
+  description = "This is just a test output"
+  value       = "test output foo"
+}

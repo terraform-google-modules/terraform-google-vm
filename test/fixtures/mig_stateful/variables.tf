@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=0.13.0"
-  required_providers {
-    google = ">= 3.88, < 5.0"
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:instance_template/v8.0.1"
-  }
+
+
+variable "project_id" {
+  description = "The GCP project to use for integration tests"
 }
+
+variable "service_account" {
+  default = null
+  type = object({
+    email  = string
+    scopes = list(string)
+  })
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account."
+}
+

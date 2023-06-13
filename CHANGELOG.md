@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [8.0.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v8.0.0...v8.0.1) (2023-04-06)
+
+
+### Bug Fixes
+
+* change stack_type for better upgrade compat ([#293](https://github.com/terraform-google-modules/terraform-google-vm/issues/293)) ([d15a307](https://github.com/terraform-google-modules/terraform-google-vm/commit/d15a3077715146a49b9624a817234fd9d06b103d))
+
 ## [8.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v7.9.0...v8.0.0) (2022-12-29)
 
 

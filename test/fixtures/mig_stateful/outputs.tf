@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=0.13.0"
-  required_providers {
-    google = ">= 3.88, < 5.0"
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:instance_template/v8.0.1"
-  }
+output "mig_self_link" {
+  description = "Self-link to managed instance group"
+  value       = module.mig_stateful.self_link
 }
+
+output "project_id" {
+  description = "The GCP project to use for integration tests"
+  value       = var.project_id
+}
+
+output "region" {
+  description = "The GCP region to create and test resources in"
+  value       = module.mig_stateful.region
+}
+
+
+

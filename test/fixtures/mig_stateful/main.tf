@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=0.13.0"
-  required_providers {
-    google = ">= 3.88, < 5.0"
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:instance_template/v8.0.1"
-  }
+module "mig_stateful" {
+  source          = "../../../examples/mig_stateful"
+  project_id      = var.project_id
+  region          = "us-central1"
+  subnetwork      = google_compute_subnetwork.main.name
+  target_size     = 3
+  service_account = var.service_account
 }

@@ -23,3 +23,8 @@ output "region" {
   description = "The GCP region to create and test resources in"
   value       = var.region
 }
+
+output "mig" {
+  value = module.mig
+
+}

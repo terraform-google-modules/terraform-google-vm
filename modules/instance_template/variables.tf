@@ -92,6 +92,12 @@ variable "threads_per_core" {
   default     = null
 }
 
+variable "resource_policies" {
+  type        = list(string)
+  description = "List of resource policy self links to attach to the instance template"
+  default     = []
+}
+
 #######
 # disk
 #######

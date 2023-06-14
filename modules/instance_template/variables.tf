@@ -92,6 +92,12 @@ variable "threads_per_core" {
   default     = null
 }
 
+variable "resource_policies" {
+  type        = list(string)
+  description = "A list of self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported."
+  default     = []
+}
+
 #######
 # disk
 #######

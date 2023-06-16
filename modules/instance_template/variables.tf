@@ -143,6 +143,12 @@ variable "auto_delete" {
   default     = "true"
 }
 
+variable "disk_snapshot_policy" {
+  description = "disk snapshot policy"
+  type        = string
+  default     = null
+}
+
 variable "additional_disks" {
   description = "List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#disk_name"
   type = list(object({

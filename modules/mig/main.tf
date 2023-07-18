@@ -22,11 +22,7 @@ locals {
     google_compute_health_check.http.*.self_link,
     google_compute_health_check.tcp.*.self_link,
   )
-  distribution_policy_zones_base = {
-    default = data.google_compute_zones.available.names
-    user    = var.distribution_policy_zones
-  }
-  distribution_policy_zones    = local.distribution_policy_zones_base[length(var.distribution_policy_zones) == 0 ? "default" : "user"]
+  distribution_policy_zones    = coalescelist(var.distribution_policy_zones, data.google_compute_zones.available.names)
   autoscaling_scale_in_enabled = var.autoscaling_scale_in_control.fixed_replicas != null || var.autoscaling_scale_in_control.percent_replicas != null
 }
 

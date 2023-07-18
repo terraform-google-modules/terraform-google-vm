@@ -87,7 +87,8 @@ resource "google_compute_region_instance_group_manager" "mig" {
     }
   }
 
-  distribution_policy_zones = local.distribution_policy_zones
+  distribution_policy_target_shape = var.distribution_policy_target_shape
+  distribution_policy_zones        = local.distribution_policy_zones
   dynamic "update_policy" {
     for_each = var.update_policy
     content {

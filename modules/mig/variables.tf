@@ -56,6 +56,12 @@ variable "target_pools" {
   default     = []
 }
 
+variable "distribution_policy_target_shape" {
+  description = "MIG target distribution shape (EVEN, BALANCED, ANY, ANY_SINGLE_ZONE)"
+  type        = string
+  default     = null
+}
+
 variable "distribution_policy_zones" {
   description = "The distribution policy, i.e. which zone(s) should instances be create in. Default is all zones in given region."
   type        = list(string)

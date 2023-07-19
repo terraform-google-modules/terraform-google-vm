@@ -116,3 +116,9 @@ variable "resource_policies" {
   type        = list(string)
   default     = []
 }
+
+variable "labels" {
+  type        = map(string)
+  description = "(Optional) Labels to override those from the template, provided as a map"
+  default     = null
+}

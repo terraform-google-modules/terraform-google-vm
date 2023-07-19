@@ -50,7 +50,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
   zone                = var.zone == null ? data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)] : var.zone
   deletion_protection = var.deletion_protection
   resource_policies   = var.resource_policies
-
+  labels              = var.labels
 
   dynamic "network_interface" {
     for_each = local.network_interface

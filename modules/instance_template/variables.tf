@@ -62,6 +62,12 @@ variable "preemptible" {
   default     = false
 }
 
+variable "spot" {
+  type        = bool
+  description = "Provision a SPOT instance"
+  default     = false
+}
+
 variable "automatic_restart" {
   type        = bool
   description = "(Optional) Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user)."

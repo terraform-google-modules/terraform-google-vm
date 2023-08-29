@@ -187,6 +187,10 @@ resource "google_compute_instance_template" "tpl" {
     enable_confidential_compute = var.enable_confidential_vm
   }
 
+  network_performance_config {
+    total_egress_bandwidth_tier = var.total_egress_bandwidth_tier
+  }
+
   dynamic "guest_accelerator" {
     for_each = local.gpu_enabled ? [var.gpu] : []
     content {

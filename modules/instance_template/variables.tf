@@ -214,6 +214,16 @@ variable "additional_networks" {
   }))
 }
 
+variable "total_egress_bandwidth_tier" {
+  description = "Egress bandwidth tier setting for supported VM families"
+  type        = string
+  default     = "DEFAULT"
+  validation {
+    condition     = contains(["DEFAULT", "TIER_1"], var.total_egress_bandwidth_tier)
+    error_message = "Allowed values for bandwidth_tier are 'DEFAULT' or 'TIER_1'."
+  }
+}
+
 ###########
 # metadata
 ###########

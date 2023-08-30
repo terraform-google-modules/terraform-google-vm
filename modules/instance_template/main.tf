@@ -141,6 +141,9 @@ resource "google_compute_instance_template" "tpl" {
       subnetwork         = network_interface.value.subnetwork
       subnetwork_project = network_interface.value.subnetwork_project
       network_ip         = length(network_interface.value.network_ip) > 0 ? network_interface.value.network_ip : null
+      nic_type           = network_interface.value.nic_type
+      stack_type         = network_interface.value.stack_type
+      queue_count        = network_interface.value.queue_count
       dynamic "access_config" {
         for_each = network_interface.value.access_config
         content {
@@ -152,6 +155,13 @@ resource "google_compute_instance_template" "tpl" {
         for_each = network_interface.value.ipv6_access_config
         content {
           network_tier = ipv6_access_config.value.network_tier
+        }
+      }
+      dynamic "alias_ip_range" {
+        for_each = network_interface.value.alias_ip_range
+        content {
+          ip_cidr_range         = alias_ip_range.value.ip_cidr_range
+          subnetwork_range_name = alias_ip_range.value.subnetwork_range_name
         }
       }
     }
@@ -185,6 +195,10 @@ resource "google_compute_instance_template" "tpl" {
 
   confidential_instance_config {
     enable_confidential_compute = var.enable_confidential_vm
+  }
+
+  network_performance_config {
+    total_egress_bandwidth_tier = var.total_egress_bandwidth_tier
   }
 
   dynamic "guest_accelerator" {

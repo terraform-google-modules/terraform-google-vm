@@ -115,3 +115,9 @@ variable "hostname_suffix_separator" {
   description = "Separator character to compose hostname when add_hostname_suffix is set to true."
   default     = "-"
 }
+
+variable "zones" {
+  type        = list(string)
+  description = "(Optional) List of availability zones to create VM instances in"
+  default     = []
+}

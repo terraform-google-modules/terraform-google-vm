@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [9.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v8.0.1...v9.0.0) (2023-08-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* allow to override compute instance labels ([#311](https://github.com/terraform-google-modules/terraform-google-vm/issues/311))
+* autoscaler supporting stateful ips ([#297](https://github.com/terraform-google-modules/terraform-google-vm/issues/297))
+
+### Features
+
+* add spot instances ([#294](https://github.com/terraform-google-modules/terraform-google-vm/issues/294)) ([99efc45](https://github.com/terraform-google-modules/terraform-google-vm/commit/99efc456097df4f28b8a78ab72ba325d0617d20c))
+* allow to override compute instance labels ([#311](https://github.com/terraform-google-modules/terraform-google-vm/issues/311)) ([aea74d1](https://github.com/terraform-google-modules/terraform-google-vm/commit/aea74d101b7219769bbb0d1559d190f3b7f08182))
+* autoscaler supporting stateful ips ([#297](https://github.com/terraform-google-modules/terraform-google-vm/issues/297)) ([5d13e8b](https://github.com/terraform-google-modules/terraform-google-vm/commit/5d13e8b876fb73691dedfe80e32ee8280f2a98b4))
+* expose distribution_policy_target_shape setting for MIGs  ([#327](https://github.com/terraform-google-modules/terraform-google-vm/issues/327)) ([1c8f775](https://github.com/terraform-google-modules/terraform-google-vm/commit/1c8f7759262c0a24f83268fcb7561bb7e01e7d8b))
+
 ## [8.0.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v8.0.0...v8.0.1) (2023-04-06)
 
 

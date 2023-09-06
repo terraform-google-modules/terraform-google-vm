@@ -23,9 +23,11 @@ locals {
   # determine type" error when var.static_ips is empty
   static_ips = concat(var.static_ips, ["NOT_AN_IP"])
 
+  zones = length(var.zones) == 0 ? data.google_compute_zones.available.names : var.zones
+
   instance_group_count = min(
     local.num_instances,
-    length(data.google_compute_zones.available.names),
+    length(local.zones),
   )
 }
 
@@ -48,7 +50,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
   count    = local.num_instances
   name     = format("%s%s%s", local.hostname, var.hostname_suffix_separator, format("%03d", count.index + 1))
   project  = var.project_id
-  zone     = data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)]
+  zone     = local.zones[count.index % length(local.zones)]
 
   network_interface {
     network            = var.network
@@ -105,11 +107,11 @@ resource "google_compute_instance_group" "instance_group" {
   count    = local.instance_group_count
   name     = "${local.hostname}-instance-group-${format("%03d", count.index + 1)}"
   project  = var.project_id
-  zone     = element(data.google_compute_zones.available.names, count.index)
+  zone     = element(local.zones, count.index)
   instances = matchkeys(
     google_compute_instance_from_template.compute_instance.*.self_link,
     google_compute_instance_from_template.compute_instance.*.zone,
-    [data.google_compute_zones.available.names[count.index]],
+    [local.zones[count.index]],
   )
 
   dynamic "named_port" {

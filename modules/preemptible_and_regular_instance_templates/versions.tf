@@ -21,9 +21,9 @@ terraform {
     google-beta = ">= 3.88, < 5.0"
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v8.0.1"
+    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v9.0.0"
   }
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v8.0.1"
+    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v9.0.0"
   }
 }

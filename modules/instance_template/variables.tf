@@ -62,6 +62,12 @@ variable "preemptible" {
   default     = false
 }
 
+variable "spot" {
+  type        = bool
+  description = "Provision a SPOT instance"
+  default     = false
+}
+
 variable "automatic_restart" {
   type        = bool
   description = "(Optional) Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user)."
@@ -204,6 +210,9 @@ variable "additional_networks" {
     subnetwork         = string
     subnetwork_project = string
     network_ip         = string
+    nic_type           = string
+    stack_type         = string
+    queue_count        = number
     access_config = list(object({
       nat_ip       = string
       network_tier = string
@@ -211,7 +220,39 @@ variable "additional_networks" {
     ipv6_access_config = list(object({
       network_tier = string
     }))
+    alias_ip_range = list(object({
+      ip_cidr_range         = string
+      subnetwork_range_name = string
+    }))
   }))
+  validation {
+    condition = alltrue([
+      for ni in var.additional_networks : (ni.network == null) != (ni.subnetwork == null)
+    ])
+    error_message = "All additional network interfaces must define exactly one of \"network\" or \"subnetwork\"."
+  }
+  validation {
+    condition = alltrue([
+      for ni in var.additional_networks : ni.nic_type == "GVNIC" || ni.nic_type == "VIRTIO_NET" || ni.nic_type == null
+    ])
+    error_message = "In the variable additional_networks, field \"nic_type\" must be either \"GVNIC\", \"VIRTIO_NET\" or null."
+  }
+  validation {
+    condition = alltrue([
+      for ni in var.additional_networks : ni.stack_type == "IPV4_ONLY" || ni.stack_type == "IPV4_IPV6" || ni.stack_type == null
+    ])
+    error_message = "In the variable additional_networks, field \"stack_type\" must be either \"IPV4_ONLY\", \"IPV4_IPV6\" or null."
+  }
+}
+
+variable "total_egress_bandwidth_tier" {
+  description = "Egress bandwidth tier setting for supported VM families"
+  type        = string
+  default     = "DEFAULT"
+  validation {
+    condition     = contains(["DEFAULT", "TIER_1"], var.total_egress_bandwidth_tier)
+    error_message = "Allowed values for bandwidth_tier are 'DEFAULT' or 'TIER_1'."
+  }
 }
 
 ###########

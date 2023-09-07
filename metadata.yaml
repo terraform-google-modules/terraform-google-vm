@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,75 +19,82 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 spec:
-  title: terraform-google-vm
-  source:
-    repo: https://github.com/terraform-google-modules/terraform-google-vm
-    sourceType: git
-  subBlueprints:
-  - name: compute_disk_snapshot
-    location: modules/compute_disk_snapshot
-  - name: compute_instance
-    location: modules/compute_instance
-  - name: instance_template
-    location: modules/instance_template
-  - name: mig
-    location: modules/mig
-  - name: mig_with_percent
-    location: modules/mig_with_percent
-  - name: preemptible_and_regular_instance_templates
-    location: modules/preemptible_and_regular_instance_templates
-  - name: umig
-    location: modules/umig
-  examples:
-  - name: additional_disks
-    location: examples/instance_template/additional_disks
-  - name: alias_ip_range
-    location: examples/instance_template/alias_ip_range
-  - name: autoscaler
-    location: examples/mig/autoscaler
-  - name: disk_snapshot
-    location: examples/compute_instance/disk_snapshot
-  - name: encrypted_disks
-    location: examples/instance_template/encrypted_disks
-  - name: full
-    location: examples/mig/full
-  - name: full
-    location: examples/umig/full
-  - name: healthcheck
-    location: examples/mig/healthcheck
-  - name: multiple_interfaces
-    location: examples/compute_instance/multiple_interfaces
-  - name: named_ports
-    location: examples/umig/named_ports
-  - name: next_hop
-    location: examples/compute_instance/next_hop
-  - name: simple
-    location: examples/compute_instance/simple
-  - name: simple
-    location: examples/instance_template/simple
-  - name: simple
-    location: examples/mig/simple
-  - name: simple
-    location: examples/mig_with_percent/simple
-  - name: simple
-    location: examples/preemptible_and_regular_instance_templates/simple
-  - name: simple
-    location: examples/umig/simple
-  - name: static_ips
-    location: examples/umig/static_ips
-  - name: tags
-    location: examples/compute_instance/tags
-  roles:
-  - level: Project
+  info:
+    title: terraform-google-vm
+    source:
+      repo: https://github.com/terraform-google-modules/terraform-google-vm
+      sourceType: git
+    description: {}
+  content:
+    subBlueprints:
+    - name: compute_disk_snapshot
+      location: modules/compute_disk_snapshot
+    - name: compute_instance
+      location: modules/compute_instance
+    - name: instance_template
+      location: modules/instance_template
+    - name: mig
+      location: modules/mig
+    - name: mig_with_percent
+      location: modules/mig_with_percent
+    - name: preemptible_and_regular_instance_templates
+      location: modules/preemptible_and_regular_instance_templates
+    - name: umig
+      location: modules/umig
+    examples:
+    - name: additional_disks
+      location: examples/instance_template/additional_disks
+    - name: alias_ip_range
+      location: examples/instance_template/alias_ip_range
+    - name: autoscaler
+      location: examples/mig/autoscaler
+    - name: disk_snapshot
+      location: examples/compute_instance/disk_snapshot
+    - name: encrypted_disks
+      location: examples/instance_template/encrypted_disks
+    - name: full
+      location: examples/mig/full
+    - name: full
+      location: examples/umig/full
+    - name: healthcheck
+      location: examples/mig/healthcheck
+    - name: mig_stateful
+      location: examples/mig_stateful
+    - name: multiple_interfaces
+      location: examples/compute_instance/multiple_interfaces
+    - name: named_ports
+      location: examples/umig/named_ports
+    - name: next_hop
+      location: examples/compute_instance/next_hop
+    - name: simple
+      location: examples/compute_instance/simple
+    - name: simple
+      location: examples/instance_template/simple
+    - name: simple
+      location: examples/mig/simple
+    - name: simple
+      location: examples/mig_with_percent/simple
+    - name: simple
+      location: examples/preemptible_and_regular_instance_templates/simple
+    - name: simple
+      location: examples/umig/simple
+    - name: static_ips
+      location: examples/umig/static_ips
+    - name: tags
+      location: examples/compute_instance/tags
+  interfaces: {}
+  requirements:
     roles:
-    - roles/owner
-    - roles/compute.admin
-    - roles/compute.networkAdmin
-    - roles/iam.serviceAccountUser
-    - roles/compute.instanceAdmin
-  services:
-  - cloudresourcemanager.googleapis.com
-  - storage-api.googleapis.com
-  - serviceusage.googleapis.com
-  - compute.googleapis.com
-  - iam.googleapis.com
+    - level: Project
+      roles:
+      - roles/owner
+      - roles/compute.admin
+      - roles/compute.networkAdmin
+      - roles/iam.serviceAccountUser
+      - roles/compute.instanceAdmin
+    services:
+    - cloudresourcemanager.googleapis.com
+    - storage-api.googleapis.com
+    - serviceusage.googleapis.com
+    - compute.googleapis.com
+    - iam.googleapis.com

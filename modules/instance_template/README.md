@@ -36,6 +36,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | name\_prefix | Name prefix for the instance template | `string` | `"default-instance-template"` | no |
 | network | The name or self\_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | `string` | `""` | no |
 | network\_ip | Private IP address to assign to the instance if desired. | `string` | `""` | no |
+| nic\_type | Valid values are "VIRTIO\_NET", "GVNIC" or set to null to accept API default behavior. | `string` | `null` | no |
 | on\_host\_maintenance | Instance availability Policy | `string` | `"MIGRATE"` | no |
 | preemptible | Allow the instance to be preempted | `bool` | `false` | no |
 | project\_id | The GCP project ID | `string` | `null` | no |

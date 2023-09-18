@@ -52,6 +52,10 @@ resource "google_compute_instance_from_template" "compute_instance" {
   resource_policies   = var.resource_policies
   labels              = var.labels
 
+  params {
+    resource_manager_tags = var.resource_manager_tags
+  }
+
   dynamic "network_interface" {
     for_each = local.network_interface
 

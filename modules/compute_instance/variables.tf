@@ -126,5 +126,5 @@ variable "labels" {
 variable "resource_manager_tags" {
   description = "(Optional) A tag is a key-value pair that can be attached to a Google Cloud resource. You can use tags to conditionally allow or deny policies based on whether a resource has a specific tag. This value is not returned by the API. In Terraform, this value cannot be updated and changing it will recreate the resource."
   type        = map(string)
-  default     = {}
+  default     = null
 }

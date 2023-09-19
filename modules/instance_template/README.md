@@ -61,6 +61,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 |------|-------------|
 | name | Name of instance template |
 | self\_link | Self-link of instance template |
+| self\_link\_unique | Unique self-link of instance template (recommended output to use instead of self\_link) |
 | tags | Tags that will be associated with instance(s) |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

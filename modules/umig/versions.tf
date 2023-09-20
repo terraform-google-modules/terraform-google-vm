@@ -17,7 +17,10 @@
 terraform {
   required_version = ">=0.13.0"
   required_providers {
-    google = ">= 3.88, < 5.0"
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 3.88, < 5.0"
+    }
   }
   provider_meta "google" {
     module_name = "blueprints/terraform/terraform-google-vm:umig/v9.0.0"

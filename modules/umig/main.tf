@@ -109,8 +109,8 @@ resource "google_compute_instance_group" "instance_group" {
   project  = var.project_id
   zone     = element(local.zones, count.index)
   instances = matchkeys(
-    google_compute_instance_from_template.compute_instance.*.self_link,
-    google_compute_instance_from_template.compute_instance.*.zone,
+    google_compute_instance_from_template.compute_instance[*].self_link,
+    google_compute_instance_from_template.compute_instance[*].zone,
     [local.zones[count.index]],
   )
 

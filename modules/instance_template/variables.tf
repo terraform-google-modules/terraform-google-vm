@@ -232,12 +232,6 @@ variable "additional_networks" {
   }))
   validation {
     condition = alltrue([
-      for ni in var.additional_networks : (ni.network == null) != (ni.subnetwork == null)
-    ])
-    error_message = "All additional network interfaces must define exactly one of \"network\" or \"subnetwork\"."
-  }
-  validation {
-    condition = alltrue([
       for ni in var.additional_networks : ni.nic_type == "GVNIC" || ni.nic_type == "VIRTIO_NET" || ni.nic_type == null
     ])
     error_message = "In the variable additional_networks, field \"nic_type\" must be either \"GVNIC\", \"VIRTIO_NET\" or null."

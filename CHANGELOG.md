@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [10.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v9.0.0...v10.0.0) (2023-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* add instances_details sensitive output ([#308](https://github.com/terraform-google-modules/terraform-google-vm/issues/308))
+* allow to override umig availability zones ([#329](https://github.com/terraform-google-modules/terraform-google-vm/issues/329))
+* enable fuller networking features in instance_template module ([#330](https://github.com/terraform-google-modules/terraform-google-vm/issues/330))
+
+### Features
+
+* Add resource_manager_tags to module and use it on google_compute_instance_from_template. ([#344](https://github.com/terraform-google-modules/terraform-google-vm/issues/344)) ([652a98e](https://github.com/terraform-google-modules/terraform-google-vm/commit/652a98e7561fdd20ce2e676cc6668572078aac5b))
+* allow to override umig availability zones ([#329](https://github.com/terraform-google-modules/terraform-google-vm/issues/329)) ([4dc9d57](https://github.com/terraform-google-modules/terraform-google-vm/commit/4dc9d57cb81128b9f487d7f203831a8d4c6ecfd0))
+* enable fuller networking features in instance_template module ([#330](https://github.com/terraform-google-modules/terraform-google-vm/issues/330)) ([7917ba6](https://github.com/terraform-google-modules/terraform-google-vm/commit/7917ba6924e2bd8a04b8e25236ec451e5ea1923c))
+* support self_link_unique output of instance template resource ([#347](https://github.com/terraform-google-modules/terraform-google-vm/issues/347)) ([fab60cd](https://github.com/terraform-google-modules/terraform-google-vm/commit/fab60cd66f1abed795acf4bfdf0098641bb510c1))
+* support setting instance_termination_action for Spot VMs ([#346](https://github.com/terraform-google-modules/terraform-google-vm/issues/346)) ([6f74715](https://github.com/terraform-google-modules/terraform-google-vm/commit/6f7471557f2beea94b91f81168aba50878737aa5))
+* support setting nic_type of primary network interface ([#334](https://github.com/terraform-google-modules/terraform-google-vm/issues/334)) ([f067e54](https://github.com/terraform-google-modules/terraform-google-vm/commit/f067e54fd1006e0623677d60686fd95d8d625fd0))
+
+
+### Bug Fixes
+
+* add instances_details sensitive output ([#308](https://github.com/terraform-google-modules/terraform-google-vm/issues/308)) ([85fd51e](https://github.com/terraform-google-modules/terraform-google-vm/commit/85fd51e618211a2333e3fb3b6a8d2addf74e2ad0))
+* minor lint fixes ([#333](https://github.com/terraform-google-modules/terraform-google-vm/issues/333)) ([6750fec](https://github.com/terraform-google-modules/terraform-google-vm/commit/6750fec417e1a3db92312e1bb833039df6328a19))
+* remove unnecessary validation block ([#335](https://github.com/terraform-google-modules/terraform-google-vm/issues/335)) ([84fbd1f](https://github.com/terraform-google-modules/terraform-google-vm/commit/84fbd1fa0df737accffd61d7fbbe8febee18b56e))
+
 ## [9.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v8.0.1...v9.0.0) (2023-08-22)
 
 

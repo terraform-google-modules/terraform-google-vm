@@ -80,6 +80,17 @@ variable "on_host_maintenance" {
   default     = "MIGRATE"
 }
 
+variable "spot_instance_termination_action" {
+  description = "Action to take when Compute Engine preempts a Spot VM."
+  type        = string
+  default     = "STOP"
+
+  validation {
+    condition     = contains(["STOP", "DELETE"], var.spot_instance_termination_action)
+    error_message = "Allowed values for spot_instance_termination_action are: \"STOP\" or \"DELETE\"."
+  }
+}
+
 variable "region" {
   type        = string
   description = "Region where the instance template should be created."

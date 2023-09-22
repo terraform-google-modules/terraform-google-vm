@@ -18,9 +18,9 @@
 
 locals {
   healthchecks = concat(
-    google_compute_health_check.https.*.self_link,
-    google_compute_health_check.http.*.self_link,
-    google_compute_health_check.tcp.*.self_link,
+    google_compute_health_check.https[*].self_link,
+    google_compute_health_check.http[*].self_link,
+    google_compute_health_check.tcp[*].self_link,
   )
   distribution_policy_zones    = coalescelist(var.distribution_policy_zones, data.google_compute_zones.available.names)
   autoscaling_scale_in_enabled = var.autoscaling_scale_in_control.fixed_replicas != null || var.autoscaling_scale_in_control.percent_replicas != null

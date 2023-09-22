@@ -47,6 +47,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | source\_image\_family | Source image family. If neither source\_image nor source\_image\_family is specified, defaults to the latest public CentOS image. | `string` | `"centos-7"` | no |
 | source\_image\_project | Project where the source image comes from. The default project contains CentOS images. | `string` | `"centos-cloud"` | no |
 | spot | Provision a SPOT instance | `bool` | `false` | no |
+| spot\_instance\_termination\_action | Action to take when Compute Engine preempts a Spot VM. | `string` | `"STOP"` | no |
 | stack\_type | The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4\_ONLY. | `string` | `null` | no |
 | startup\_script | User startup script to run when instances spin up | `string` | `""` | no |
 | subnetwork | The name of the subnetwork to attach this interface to. The subnetwork must exist in the same region this instance will be created in. Either network or subnetwork must be provided. | `string` | `""` | no |
@@ -61,6 +62,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 |------|-------------|
 | name | Name of instance template |
 | self\_link | Self-link of instance template |
+| self\_link\_unique | Unique self-link of instance template (recommended output to use instead of self\_link) |
 | tags | Tags that will be associated with instance(s) |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

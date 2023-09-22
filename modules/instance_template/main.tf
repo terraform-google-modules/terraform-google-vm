@@ -178,7 +178,7 @@ resource "google_compute_instance_template" "tpl" {
     automatic_restart           = local.automatic_restart
     on_host_maintenance         = local.on_host_maintenance
     provisioning_model          = var.spot ? "SPOT" : null
-    instance_termination_action = var.spot ? "STOP" : null
+    instance_termination_action = var.spot ? var.spot_instance_termination_action : null
   }
 
   advanced_machine_features {

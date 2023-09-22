@@ -112,6 +112,7 @@ resource "google_compute_instance_template" "tpl" {
     subnetwork         = var.subnetwork
     subnetwork_project = var.subnetwork_project
     network_ip         = length(var.network_ip) > 0 ? var.network_ip : null
+    nic_type           = var.nic_type
     stack_type         = var.stack_type
     dynamic "access_config" {
       for_each = var.access_config
@@ -177,7 +178,7 @@ resource "google_compute_instance_template" "tpl" {
     automatic_restart           = local.automatic_restart
     on_host_maintenance         = local.on_host_maintenance
     provisioning_model          = var.spot ? "SPOT" : null
-    instance_termination_action = var.spot ? "STOP" : null
+    instance_termination_action = var.spot ? var.spot_instance_termination_action : null
   }
 
   advanced_machine_features {

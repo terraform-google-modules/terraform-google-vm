@@ -80,6 +80,17 @@ variable "on_host_maintenance" {
   default     = "MIGRATE"
 }
 
+variable "spot_instance_termination_action" {
+  description = "Action to take when Compute Engine preempts a Spot VM."
+  type        = string
+  default     = "STOP"
+
+  validation {
+    condition     = contains(["STOP", "DELETE"], var.spot_instance_termination_action)
+    error_message = "Allowed values for spot_instance_termination_action are: \"STOP\" or \"DELETE\"."
+  }
+}
+
 variable "region" {
   type        = string
   description = "Region where the instance template should be created."
@@ -196,6 +207,17 @@ variable "network_ip" {
   default     = ""
 }
 
+variable "nic_type" {
+  description = "Valid values are \"VIRTIO_NET\", \"GVNIC\" or set to null to accept API default behavior."
+  type        = string
+  default     = null
+
+  validation {
+    condition     = var.nic_type == null || var.nic_type == "GVNIC" || var.nic_type == "VIRTIO_NET"
+    error_message = "The \"nic_type\" variable must be set to \"VIRTIO_NET\", \"GVNIC\", or null to allow API default selection."
+  }
+}
+
 variable "stack_type" {
   description = "The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4_ONLY."
   type        = string
@@ -225,12 +247,6 @@ variable "additional_networks" {
       subnetwork_range_name = string
     }))
   }))
-  validation {
-    condition = alltrue([
-      for ni in var.additional_networks : (ni.network == null) != (ni.subnetwork == null)
-    ])
-    error_message = "All additional network interfaces must define exactly one of \"network\" or \"subnetwork\"."
-  }
   validation {
     condition = alltrue([
       for ni in var.additional_networks : ni.nic_type == "GVNIC" || ni.nic_type == "VIRTIO_NET" || ni.nic_type == null

@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-vm
       sourceType: git
       dir: /modules/compute_instance
-    version: 9.0.0
+    version: 10.0.0
     actuationTool:
       flavor: Terraform
       version: ">=0.13.0"
@@ -133,6 +133,10 @@ spec:
       - name: region
         description: Region where the instances should be created.
         varType: string
+        defaultValue: null
+      - name: resource_manager_tags
+        description: (Optional) A tag is a key-value pair that can be attached to a Google Cloud resource. You can use tags to conditionally allow or deny policies based on whether a resource has a specific tag. This value is not returned by the API. In Terraform, this value cannot be updated and changing it will recreate the resource.
+        varType: map(string)
         defaultValue: null
       - name: resource_policies
         description: (Optional) A list of short names or self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported.

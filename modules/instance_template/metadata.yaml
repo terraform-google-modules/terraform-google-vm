@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-vm
       sourceType: git
       dir: /modules/instance_template
-    version: 9.0.0
+    version: 10.0.0
     actuationTool:
       flavor: Terraform
       version: ">=0.13.0"
@@ -86,13 +86,14 @@ spec:
         description: List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#disk_name
         varType: |-
           list(object({
-              disk_name    = string
-              device_name  = string
-              auto_delete  = bool
-              boot         = bool
-              disk_size_gb = number
-              disk_type    = string
-              disk_labels  = map(string)
+              disk_name       = string
+              device_name     = string
+              auto_delete     = bool
+              boot            = bool
+              disk_size_gb    = number
+              disk_type       = string
+              disk_labels     = map(string)
+              source_snapshot = optional(string)
             }))
         defaultValue: []
       - name: additional_networks
@@ -233,6 +234,10 @@ spec:
         description: Region where the instance template should be created.
         varType: string
         defaultValue: null
+      - name: resource_policies
+        description: A list of self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported.
+        varType: list(string)
+        defaultValue: []
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
         varType: |-
@@ -270,6 +275,10 @@ spec:
         description: Provision a SPOT instance
         varType: bool
         defaultValue: false
+      - name: spot_instance_termination_action
+        description: Action to take when Compute Engine preempts a Spot VM.
+        varType: string
+        defaultValue: STOP
       - name: stack_type
         description: The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4_ONLY.
         varType: string
@@ -303,6 +312,8 @@ spec:
         description: Name of instance template
       - name: self_link
         description: Self-link of instance template
+      - name: self_link_unique
+        description: Unique self-link of instance template (recommended output to use instead of self_link)
       - name: tags
         description: Tags that will be associated with instance(s)
   requirements:

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [10.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v10.0.0...v10.1.0) (2023-09-29)
+
+
+### Features
+
+* add var.resource_policies to instance_template ([#317](https://github.com/terraform-google-modules/terraform-google-vm/issues/317)) ([d959936](https://github.com/terraform-google-modules/terraform-google-vm/commit/d959936f446b2e8dee9f0c2f05a349755bc37373))
+* support source_snapshot for additional_disks ([#341](https://github.com/terraform-google-modules/terraform-google-vm/issues/341)) ([76e9c19](https://github.com/terraform-google-modules/terraform-google-vm/commit/76e9c192869c444b84a9e6468e711e948a9219be))
+
+
+### Bug Fixes
+
+* enables metadata autogen ([#337](https://github.com/terraform-google-modules/terraform-google-vm/issues/337)) ([16cd050](https://github.com/terraform-google-modules/terraform-google-vm/commit/16cd050ba188cc66f65fd987ddc4178c8721fc91))
+
 ## [10.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v9.0.0...v10.0.0) (2023-09-21)
 
 

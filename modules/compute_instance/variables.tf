@@ -128,3 +128,15 @@ variable "resource_manager_tags" {
   type        = map(string)
   default     = null
 }
+
+variable "enable_display" {
+  description = "(Optional) Enable virtual displays on this instance. Note: allow_stopping_for_update must be set to true or your instance must have a desired_status of TERMINATED in order to update this variable."
+  type        = bool
+  default     = false
+}
+
+variable "allow_stopping_for_update" {
+  description = "(Optional) If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail."
+  type        = bool
+  default     = false
+}

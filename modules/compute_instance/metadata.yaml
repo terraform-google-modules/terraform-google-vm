@@ -94,8 +94,16 @@ spec:
               subnetwork_range_name = string
             }))
         defaultValue: []
+      - name: allow_stopping_for_update
+        description: (Optional) If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail.
+        varType: bool
+        defaultValue: false
       - name: deletion_protection
         description: "Enable deletion protection on this instance. Note: you must disable deletion protection before removing the resource, or the instance cannot be deleted and the Terraform run will not complete successfully."
+        varType: bool
+        defaultValue: false
+      - name: enable_display
+        description: "(Optional) Enable virtual displays on this instance. Note: allow_stopping_for_update must be set to true or your instance must have a desired_status of TERMINATED in order to update this variable."
         varType: bool
         defaultValue: false
       - name: hostname

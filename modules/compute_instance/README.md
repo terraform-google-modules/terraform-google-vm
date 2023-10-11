@@ -18,7 +18,9 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | <pre>list(object({<br>    nat_ip       = string<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | add\_hostname\_suffix | Adds a suffix to the hostname | `bool` | `true` | no |
 | alias\_ip\_ranges | (Optional) An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks. | <pre>list(object({<br>    ip_cidr_range         = string<br>    subnetwork_range_name = string<br>  }))</pre> | `[]` | no |
+| allow\_stopping\_for\_update | (Optional) If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail. | `bool` | `false` | no |
 | deletion\_protection | Enable deletion protection on this instance. Note: you must disable deletion protection before removing the resource, or the instance cannot be deleted and the Terraform run will not complete successfully. | `bool` | `false` | no |
+| enable\_display | (Optional) Enable virtual displays on this instance. Note: allow\_stopping\_for\_update must be set to true or your instance must have a desired\_status of TERMINATED in order to update this variable. | `bool` | `false` | no |
 | hostname | Hostname of instances | `string` | `""` | no |
 | hostname\_suffix\_separator | Separator character to compose hostname when add\_hostname\_suffix is set to true. | `string` | `"-"` | no |
 | instance\_template | Instance template self\_link used to create compute instances | `string` | n/a | yes |

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [10.1.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v10.1.0...v10.1.1) (2023-10-27)
+
+
+### Bug Fixes
+
+* upgraded versions.tf to include minor bumps from tpg v5 ([#350](https://github.com/terraform-google-modules/terraform-google-vm/issues/350)) ([677b27b](https://github.com/terraform-google-modules/terraform-google-vm/commit/677b27b912d4ee4fcc59a4510f35c5f917c29fe1))
+
 ## [10.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v10.0.0...v10.1.0) (2023-09-29)
 
 

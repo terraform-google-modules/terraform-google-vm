@@ -248,6 +248,7 @@ variable "autoscaling_metric" {
     name   = string
     target = number
     type   = string
+    filter = string
   }))
   default = []
 }

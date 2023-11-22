@@ -101,6 +101,7 @@ spec:
               name   = string
               target = number
               type   = string
+              filter = string
             }))
         defaultValue: []
       - name: autoscaling_mode

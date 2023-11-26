@@ -265,6 +265,12 @@ variable "wait_for_instances" {
   default     = "false"
 }
 
+variable "wait_for_instances_status" {
+  description = "Used with wait_for_instances, mig will wait wait until the instance are in the expected status before returning."
+  type        = string
+  default     = "STABLE"
+}
+
 variable "mig_timeouts" {
   description = "Times for creation, deleting and updating the MIG resources. Can be helpful when using wait_for_instances to allow a longer VM startup time. "
   type = object({

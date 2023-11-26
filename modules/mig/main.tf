@@ -53,7 +53,8 @@ resource "google_compute_region_instance_group_manager" "mig" {
   target_pools = var.target_pools
   target_size  = var.autoscaling_enabled ? null : var.target_size
 
-  wait_for_instances = var.wait_for_instances
+  wait_for_instances        = var.wait_for_instances
+  wait_for_instances_status = var.wait_for_instances_status
 
   dynamic "auto_healing_policies" {
     for_each = local.healthchecks

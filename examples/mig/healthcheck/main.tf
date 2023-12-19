@@ -51,7 +51,9 @@ resource "google_compute_subnetwork" "main" {
 /** Instance Template **/
 
 module "instance_template" {
-  source          = "../../../modules/instance_template"
+  source  = "terraform-google-modules/vm/google//modules/instance_template"
+  version = "~> 10.0"
+
   project_id      = var.project_id
   subnetwork      = google_compute_subnetwork.main.name
   service_account = var.service_account
@@ -60,7 +62,9 @@ module "instance_template" {
 /** Instance Group within autoscale and health check **/
 
 module "mig" {
-  source              = "../../../modules/mig"
+  source  = "terraform-google-modules/vm/google//modules/mig"
+  version = "~> 10.0"
+
   project_id          = var.project_id
   instance_template   = module.instance_template.self_link
   region              = var.region

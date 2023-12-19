@@ -32,7 +32,9 @@ locals {
 }
 
 module "instance_template" {
-  source          = "../../../modules/instance_template"
+  source  = "terraform-google-modules/vm/google//modules/instance_template"
+  version = "~> 10.0"
+
   name_prefix     = "${var.hostname}-instance-template"
   machine_type    = var.machine_type
   project_id      = var.project_id
@@ -59,7 +61,9 @@ module "instance_template" {
 }
 
 module "umig" {
-  source            = "../../../modules/umig"
+  source  = "terraform-google-modules/vm/google//modules/umig"
+  version = "~> 10.0"
+
   project_id        = var.project_id
   subnetwork        = var.subnetwork
   hostname          = var.hostname

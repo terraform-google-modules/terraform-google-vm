@@ -15,7 +15,9 @@
  */
 
 module "instance_template" {
-  source          = "../../../modules/instance_template"
+  source  = "terraform-google-modules/vm/google//modules/instance_template"
+  version = "~> 10.0"
+
   region          = var.region
   project_id      = var.project_id
   subnetwork      = var.subnetwork
@@ -23,7 +25,9 @@ module "instance_template" {
 }
 
 module "compute_instance" {
-  source              = "../../../modules/compute_instance"
+  source  = "terraform-google-modules/vm/google//modules/compute_instance"
+  version = "~> 10.0"
+
   region              = var.region
   zone                = var.zone
   subnetwork          = var.subnetwork

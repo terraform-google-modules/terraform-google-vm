@@ -26,7 +26,9 @@ data "google_compute_zones" "available" {
 }
 
 module "instance_template" {
-  source          = "../../../modules/instance_template"
+  source  = "terraform-google-modules/vm/google//modules/instance_template"
+  version = "~> 10.0"
+
   region          = var.region
   project_id      = var.project_id
   subnetwork      = var.subnetwork
@@ -56,7 +58,9 @@ module "instance_template" {
 }
 
 module "compute_instance" {
-  source            = "../../../modules/compute_instance"
+  source  = "terraform-google-modules/vm/google//modules/compute_instance"
+  version = "~> 10.0"
+
   region            = var.region
   subnetwork        = var.subnetwork
   num_instances     = 1
@@ -65,7 +69,9 @@ module "compute_instance" {
 }
 
 module "disk_snapshots" {
-  source  = "../../../modules/compute_disk_snapshot"
+  source  = "terraform-google-modules/vm/google//modules/compute_disk_snapshot"
+  version = "~> 10.0"
+
   name    = "backup-policy-test"
   project = var.project_id
   region  = var.region

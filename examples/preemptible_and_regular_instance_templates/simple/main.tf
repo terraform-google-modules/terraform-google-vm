@@ -21,7 +21,9 @@ provider "google" {
 }
 
 module "preemptible_and_regular_instance_templates" {
-  source          = "../../../modules/preemptible_and_regular_instance_templates"
+  source  = "terraform-google-modules/vm/google//modules/preemptible_and_regular_instance_templates"
+  version = "~> 10.0"
+
   subnetwork      = var.subnetwork
   project_id      = var.project_id
   service_account = var.service_account

@@ -119,21 +119,21 @@ variable "resource_policies" {
 # disk
 #######
 variable "source_image" {
-  description = "Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image."
+  description = "Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image."
   type        = string
   default     = ""
 }
 
 variable "source_image_family" {
-  description = "Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image."
+  description = "Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image."
   type        = string
-  default     = "centos-7"
+  default     = "rocky-linux-9-optimized-gcp"
 }
 
 variable "source_image_project" {
-  description = "Project where the source image comes from. The default project contains CentOS images."
+  description = "Project where the source image comes from. The default project contains Rocky Linux images."
   type        = string
-  default     = "centos-cloud"
+  default     = "rocky-linux-cloud"
 }
 
 variable "disk_size_gb" {

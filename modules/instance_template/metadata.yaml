@@ -260,17 +260,17 @@ spec:
           enable_secure_boot: true
           enable_vtpm: true
       - name: source_image
-        description: Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image.
+        description: Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image.
         varType: string
         defaultValue: ""
       - name: source_image_family
-        description: Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image.
+        description: Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image.
         varType: string
-        defaultValue: centos-7
+        defaultValue: rocky-linux-9-optimized-gcp
       - name: source_image_project
-        description: Project where the source image comes from. The default project contains CentOS images.
+        description: Project where the source image comes from. The default project contains Rocky Linux images.
         varType: string
-        defaultValue: centos-cloud
+        defaultValue: rocky-linux-cloud
       - name: spot
         description: Provision a SPOT instance
         varType: bool

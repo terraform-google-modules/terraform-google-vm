@@ -17,7 +17,7 @@
 module "instance_template_additional_disks" {
   source          = "../../../../examples/instance_template/additional_disks"
   project_id      = var.project_id
-  subnetwork      = google_compute_subnetwork.main.name
+  subnetwork      = google_compute_subnetwork.main.self_link
   service_account = var.service_account
 }
 

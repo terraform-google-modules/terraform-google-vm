@@ -17,6 +17,6 @@
 module "instance_template_alias_ip_range" {
   source          = "../../../../examples/instance_template/alias_ip_range"
   project_id      = var.project_id
-  subnetwork      = google_compute_subnetwork.main.name
+  subnetwork      = google_compute_subnetwork.main.self_link
   service_account = var.service_account
 }

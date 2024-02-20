@@ -69,14 +69,15 @@ module "mig" {
   }]
 
   update_policy = [{
-    max_surge_fixed              = 0
-    instance_redistribution_type = "NONE"
-    max_surge_percent            = null
-    max_unavailable_fixed        = 4
-    max_unavailable_percent      = null
-    min_ready_sec                = 180
-    replacement_method           = "RECREATE"
-    minimal_action               = "REFRESH"
-    type                         = "OPPORTUNISTIC"
+    max_surge_fixed                = 0
+    instance_redistribution_type   = "NONE"
+    max_surge_percent              = null
+    max_unavailable_fixed          = 4
+    max_unavailable_percent        = null
+    min_ready_sec                  = 180
+    replacement_method             = "RECREATE"
+    minimal_action                 = "REFRESH"
+    type                           = "OPPORTUNISTIC"
+    most_disruptive_allowed_action = "REFRESH"
   }]
 }

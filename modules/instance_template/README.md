@@ -31,6 +31,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | ipv6\_access\_config | IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access. | <pre>list(object({<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | labels | Labels, provided as a map | `map(string)` | `{}` | no |
 | machine\_type | Machine type to create, e.g. n1-standard-1 | `string` | `"n1-standard-1"` | no |
+| maintenance\_interval | Specifies the frequency of planned maintenance events | `string` | `null` | no |
 | metadata | Metadata, provided as a map | `map(string)` | `{}` | no |
 | min\_cpu\_platform | Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform | `string` | `null` | no |
 | name\_prefix | Name prefix for the instance template | `string` | `"default-instance-template"` | no |

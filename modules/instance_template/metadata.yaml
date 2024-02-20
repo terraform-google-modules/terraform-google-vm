@@ -191,6 +191,10 @@ spec:
         description: Machine type to create, e.g. n1-standard-1
         varType: string
         defaultValue: n1-standard-1
+      - name: maintenance_interval
+        description: Specifies the frequency of planned maintenance events
+        varType: string
+        defaultValue: null
       - name: metadata
         description: Metadata, provided as a map
         varType: map(string)

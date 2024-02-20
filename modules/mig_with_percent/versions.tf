@@ -27,9 +27,9 @@ terraform {
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v10.1.1"
+    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v11.0.0"
   }
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v10.1.1"
+    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v11.0.0"
   }
 }

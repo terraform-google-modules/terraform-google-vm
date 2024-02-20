@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [11.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v10.1.1...v11.0.0) (2024-02-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=5.5:** support setting maintenance_interval in instance_template ([#357](https://github.com/terraform-google-modules/terraform-google-vm/issues/357))
+
+### Features
+
+* change default distro image from CentOS 7 to Rocky Linux 9 ([#375](https://github.com/terraform-google-modules/terraform-google-vm/issues/375)) ([94c9c48](https://github.com/terraform-google-modules/terraform-google-vm/commit/94c9c4823343712416375c0c5614f8f17a9708e2))
+* **TPG>=5.5:** support setting maintenance_interval in instance_template ([#357](https://github.com/terraform-google-modules/terraform-google-vm/issues/357)) ([c7b47bc](https://github.com/terraform-google-modules/terraform-google-vm/commit/c7b47bc23fe86100acfd59e53af02fd211140580))
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test to v0.12.0 ([#380](https://github.com/terraform-google-modules/terraform-google-vm/issues/380)) ([74c9d43](https://github.com/terraform-google-modules/terraform-google-vm/commit/74c9d43cc2948053e5dd3bd025ae1b0c4a698429))
+
 ## [10.1.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v10.1.0...v10.1.1) (2023-10-27)
 
 

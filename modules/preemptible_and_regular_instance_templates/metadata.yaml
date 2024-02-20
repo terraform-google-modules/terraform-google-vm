@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -141,7 +141,6 @@ spec:
       - name: project_id
         description: The GCP project ID
         varType: string
-        defaultValue: null
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
         varType: |-
@@ -149,7 +148,6 @@ spec:
               email  = string
               scopes = set(string)
             })
-        defaultValue: null
         required: true
       - name: source_image
         description: Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image.

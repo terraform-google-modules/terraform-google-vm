@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -85,17 +85,14 @@ spec:
       - name: name
         description: Name of the resource policy to create
         varType: string
-        defaultValue: null
         required: true
       - name: project
         description: The project ID where the resources will be created
         varType: string
-        defaultValue: null
         required: true
       - name: region
         description: Region where resource policy resides
         varType: string
-        defaultValue: null
         required: true
       - name: snapshot_properties
         description: The properties of the schedule policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#snapshot_properties
@@ -107,7 +104,6 @@ spec:
                 storage_locations = list(string)
               }
             )
-        defaultValue: null
       - name: snapshot_retention_policy
         description: The retention policy to be applied to the schedule policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#retention_policy
         varType: |-
@@ -117,7 +113,6 @@ spec:
                 on_source_disk_delete = string
               }
             )
-        defaultValue: null
         required: true
       - name: snapshot_schedule
         description: The scheduled to be used by the snapshot policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#schedule
@@ -148,7 +143,6 @@ spec:
                 )
               }
             )
-        defaultValue: null
         required: true
     outputs:
       - name: attachments

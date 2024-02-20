@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -130,7 +130,6 @@ spec:
               ip_cidr_range         = string
               subnetwork_range_name = string
             })
-        defaultValue: null
       - name: auto_delete
         description: Whether or not the boot disk should be auto-deleted
         varType: string
@@ -146,7 +145,6 @@ spec:
       - name: disk_encryption_key
         description: The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance
         varType: string
-        defaultValue: null
       - name: disk_labels
         description: Labels to be assigned to boot disk, provided as a map
         varType: map(string)
@@ -178,7 +176,6 @@ spec:
               type  = string
               count = number
             })
-        defaultValue: null
       - name: ipv6_access_config
         description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
         varType: |-
@@ -201,7 +198,6 @@ spec:
       - name: min_cpu_platform
         description: "Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform"
         varType: string
-        defaultValue: null
       - name: name_prefix
         description: Name prefix for the instance template
         varType: string
@@ -217,7 +213,6 @@ spec:
       - name: nic_type
         description: Valid values are "VIRTIO_NET", "GVNIC" or set to null to accept API default behavior.
         varType: string
-        defaultValue: null
       - name: on_host_maintenance
         description: Instance availability Policy
         varType: string
@@ -229,11 +224,9 @@ spec:
       - name: project_id
         description: The GCP project ID
         varType: string
-        defaultValue: null
       - name: region
         description: Region where the instance template should be created.
         varType: string
-        defaultValue: null
       - name: resource_policies
         description: A list of self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported.
         varType: list(string)
@@ -245,7 +238,6 @@ spec:
               email  = string
               scopes = set(string)
             })
-        defaultValue: null
         required: true
       - name: shielded_instance_config
         description: Not used unless enable_shielded_vm is true. Shielded VM configuration for the instance.
@@ -282,7 +274,6 @@ spec:
       - name: stack_type
         description: The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4_ONLY.
         varType: string
-        defaultValue: null
       - name: startup_script
         description: User startup script to run when instances spin up
         varType: string
@@ -302,7 +293,6 @@ spec:
       - name: threads_per_core
         description: The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1.
         varType: number
-        defaultValue: null
       - name: total_egress_bandwidth_tier
         description: Egress bandwidth tier setting for supported VM families
         varType: string

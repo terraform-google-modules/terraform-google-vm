@@ -23,6 +23,6 @@ terraform {
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:instance_template/v10.1.1"
+    module_name = "blueprints/terraform/terraform-google-vm:instance_template/v11.0.0"
   }
 }

@@ -63,6 +63,7 @@ locals {
 # Instance Template
 ####################
 resource "google_compute_instance_template" "tpl" {
+  provider                = google-beta
   name_prefix             = "${var.name_prefix}-"
   project                 = var.project_id
   machine_type            = var.machine_type
@@ -175,11 +176,12 @@ resource "google_compute_instance_template" "tpl" {
   }
 
   scheduling {
-    preemptible                 = local.preemptible
     automatic_restart           = local.automatic_restart
-    on_host_maintenance         = local.on_host_maintenance
-    provisioning_model          = var.spot ? "SPOT" : null
     instance_termination_action = var.spot ? var.spot_instance_termination_action : null
+    maintenance_interval        = var.maintenance_interval
+    on_host_maintenance         = local.on_host_maintenance
+    preemptible                 = local.preemptible
+    provisioning_model          = var.spot ? "SPOT" : null
   }
 
   advanced_machine_features {

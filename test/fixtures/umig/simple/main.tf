@@ -18,7 +18,7 @@ module "umig_simple" {
   source          = "../../../../examples/umig/simple"
   project_id      = var.project_id
   region          = "us-central1"
-  subnetwork      = google_compute_subnetwork.main.name
+  subnetwork      = google_compute_subnetwork.main.self_link
   num_instances   = 4
   service_account = var.service_account
 }

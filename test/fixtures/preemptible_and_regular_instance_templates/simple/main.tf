@@ -17,7 +17,7 @@
 module "preemptible_and_regular_instance_templates" {
   source          = "../../../../examples/preemptible_and_regular_instance_templates/simple"
   project_id      = var.project_id
-  subnetwork      = google_compute_subnetwork.main.name
+  subnetwork      = google_compute_subnetwork.main.self_link
   service_account = var.service_account
   tags            = ["foo", "bar"]
 

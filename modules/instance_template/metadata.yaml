@@ -194,7 +194,6 @@ spec:
       - name: maintenance_interval
         description: Specifies the frequency of planned maintenance events
         varType: string
-        defaultValue: null
       - name: metadata
         description: Metadata, provided as a map
         varType: map(string)

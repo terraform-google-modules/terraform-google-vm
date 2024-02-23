@@ -52,7 +52,7 @@ resource "google_compute_subnetwork" "main" {
 
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 10.0"
+  version = "~> 11.0"
 
   project_id      = var.project_id
   subnetwork      = google_compute_subnetwork.main.name
@@ -63,7 +63,7 @@ module "instance_template" {
 
 module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "~> 10.0"
+  version = "~> 11.0"
 
   project_id          = var.project_id
   instance_template   = module.instance_template.self_link
@@ -95,5 +95,29 @@ module "mig" {
     request_path        = "/"
     host                = "localhost"
     enable_logging      = false
+  }
+}
+
+module "mig_health_check_optional_fields" {
+  source = "../../../modules/mig"
+
+  project_id          = var.project_id
+  instance_template   = module.instance_template.self_link
+  region              = var.region
+  autoscaling_enabled = true
+  min_replicas        = 1
+  autoscaler_name     = "mig-as-optional-fields"
+  hostname            = "mig-as-optional-fields"
+
+  autoscaling_cpu = [
+    {
+      target            = 0.4
+      predictive_method = null # use default of NONE
+    },
+  ]
+
+  health_check_name = "mig-http-hc"
+  health_check = {
+    type = "http" # use default port 80 and path /
   }
 }

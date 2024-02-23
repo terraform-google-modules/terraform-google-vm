@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -106,7 +106,6 @@ spec:
       - name: autoscaling_mode
         description: Operating mode of the autoscaling policy. If omitted, the default value is ON. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#mode
         varType: string
-        defaultValue: null
       - name: autoscaling_scale_in_control
         description: Autoscaling, scale-in control block. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#scale_in_control
         varType: |-
@@ -126,7 +125,6 @@ spec:
       - name: distribution_policy_target_shape
         description: MIG target distribution shape (EVEN, BALANCED, ANY, ANY_SINGLE_ZONE)
         varType: string
-        defaultValue: null
       - name: distribution_policy_zones
         description: The distribution policy, i.e. which zone(s) should instances be create in. Default is all zones in given region.
         varType: list(string)
@@ -174,8 +172,11 @@ spec:
       - name: instance_template
         description: Instance template self_link used to create compute instances
         varType: string
-        defaultValue: null
         required: true
+      - name: labels
+        description: Labels, provided as a map
+        varType: map(string)
+        defaultValue: {}
       - name: max_replicas
         description: The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas.
         varType: number
@@ -211,11 +212,9 @@ spec:
       - name: project_id
         description: The GCP project ID
         varType: string
-        defaultValue: null
       - name: region
         description: The GCP region where the managed instance group resides.
         varType: string
-        defaultValue: null
         required: true
       - name: scaling_schedules
         description: Autoscaling, scaling schedule block. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#scaling_schedules
@@ -258,15 +257,16 @@ spec:
         description: The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager#rolling_update_policy
         varType: |-
           list(object({
-              max_surge_fixed              = number
-              instance_redistribution_type = string
-              max_surge_percent            = number
-              max_unavailable_fixed        = number
-              max_unavailable_percent      = number
-              min_ready_sec                = number
-              replacement_method           = string
-              minimal_action               = string
-              type                         = string
+              max_surge_fixed                = number
+              instance_redistribution_type   = string
+              max_surge_percent              = number
+              max_unavailable_fixed          = number
+              max_unavailable_percent        = number
+              min_ready_sec                  = number
+              replacement_method             = string
+              minimal_action                 = string
+              type                           = string
+              most_disruptive_allowed_action = string
             }))
         defaultValue: []
       - name: wait_for_instances

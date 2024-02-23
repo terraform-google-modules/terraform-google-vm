@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -110,7 +110,6 @@ spec:
       - name: instance_template
         description: Instance template self_link used to create compute instances
         varType: string
-        defaultValue: null
         required: true
       - name: ipv6_access_config
         description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
@@ -138,11 +137,9 @@ spec:
       - name: project_id
         description: The GCP project ID
         varType: string
-        defaultValue: null
       - name: region
         description: The GCP region where the unmanaged instance group resides.
         varType: string
-        defaultValue: null
         required: true
       - name: static_ips
         description: List of static IPs for VM instances

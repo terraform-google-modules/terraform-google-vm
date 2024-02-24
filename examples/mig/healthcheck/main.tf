@@ -99,7 +99,8 @@ module "mig" {
 }
 
 module "mig_health_check_optional_fields" {
-  source = "../../../modules/mig"
+  source  = "terraform-google-modules/vm/google//modules/mig"
+  version = "~> 11.0"
 
   project_id          = var.project_id
   instance_template   = module.instance_template.self_link

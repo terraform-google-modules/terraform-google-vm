@@ -257,13 +257,13 @@ control "MIG" do
     end
 
     describe "http health check settings" do
-      it "checkIntervalSec should be 5" do
+      it "checkIntervalSec should be 30" do
         expect(data[0]['checkIntervalSec']).to eq(30)
       end
     end
 
     describe "http health check settings" do
-      it "unhealthyThreshold should be 2" do
+      it "unhealthyThreshold should be 5" do
         expect(data[0]['unhealthyThreshold']).to eq(5)
       end
     end

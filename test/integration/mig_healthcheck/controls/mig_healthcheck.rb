@@ -40,6 +40,25 @@ control "MIG" do
     end
   end
 
+  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~^mig-as-optional-fields*'") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq '' }
+
+    let!(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout)
+      else
+        []
+      end
+    end
+
+    describe "number of instances" do
+      it "should be #{expected_instances}" do
+        expect(data.length).to eq(expected_instances)
+      end
+    end
+  end
+
   describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^mig-as*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
@@ -59,7 +78,63 @@ control "MIG" do
     end
   end
 
+  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^mig-as-optional-fields*'") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq '' }
+
+    let!(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout)
+      else
+        []
+      end
+    end
+
+    describe "number of instance groups" do
+      it "should be #{expected_instance_groups}" do
+        expect(data.length).to eq(expected_instance_groups)
+      end
+    end
+  end
+
   describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~^mig-as*'") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq '' }
+
+    let!(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout)
+      else
+        []
+      end
+    end
+
+    describe "number of instance groups" do
+      it "should be #{expected_instance_groups}" do
+        expect(data.length).to eq(expected_instance_groups)
+      end
+    end
+
+    describe "autoscaling" do
+      it "should be enabled" do
+        expect(data[0]['autoscaled']).to eq("yes")
+      end
+    end
+
+    describe "autoscaler scaling policy" do
+      it "minNumReplicas should be 4" do
+        expect(data[0]['autoscaler']['autoscalingPolicy']['minNumReplicas']).to eq(2)
+      end
+    end
+
+    describe "autoscaler scaling policy" do
+      it "cpuUtilization target should be 0.4" do
+        expect(data[0]['autoscaler']['autoscalingPolicy']['cpuUtilization']['utilizationTarget']).to eq(0.4)
+      end
+    end
+  end
+
+  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~^mig-as-optional-fields*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -140,7 +215,56 @@ control "MIG" do
 
     describe "https health check settings" do
       it "unhealthyThreshold should be 2" do
-        expect(data[0]['healthyThreshold']).to eq(2)
+        expect(data[0]['unhealthyThreshold']).to eq(2)
+      end
+    end
+  end
+
+  describe command("gcloud --project=#{project_id} compute health-checks list --format=json --filter='name~^mig-http-hc*'") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq '' }
+
+    let!(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout)
+      else
+        []
+      end
+    end
+
+    describe "http health check settings" do
+      it "port should be 80" do
+        expect(data[0]['httpHealthCheck']['port']).to eq(80)
+      end
+    end
+
+    describe "http health check settings" do
+      it "requestPath should be /" do
+        expect(data[0]['httpHealthCheck']['requestPath']).to eq('/')
+      end
+    end
+
+    describe "http health check settings" do
+      it "proxyHeader should be NONE" do
+        expect(data[0]['httpHealthCheck']['proxyHeader']).to eq('NONE')
+      end
+    end
+
+    describe "http health check settings" do
+      it "healthyThreshold should be 1" do
+        expect(data[0]['healthyThreshold']).to eq(1)
+      end
+    end
+
+    describe "http health check settings" do
+      it "checkIntervalSec should be 5" do
+        expect(data[0]['checkIntervalSec']).to eq(30)
+      end
+    end
+
+    describe "http health check settings" do
+      it "unhealthyThreshold should be 2" do
+        expect(data[0]['unhealthyThreshold']).to eq(5)
       end
     end
   end

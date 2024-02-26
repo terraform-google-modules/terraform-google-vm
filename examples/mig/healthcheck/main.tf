@@ -106,7 +106,7 @@ module "mig_health_check_optional_fields" {
   instance_template   = module.instance_template.self_link
   region              = var.region
   autoscaling_enabled = true
-  min_replicas        = 1
+  min_replicas        = 2
   autoscaler_name     = "mig-as-optional-fields"
   hostname            = "mig-as-optional-fields"
 

@@ -122,7 +122,7 @@ control "MIG" do
     end
 
     describe "autoscaler scaling policy" do
-      it "minNumReplicas should be 4" do
+      it "minNumReplicas should be 2" do
         expect(data[0]['autoscaler']['autoscalingPolicy']['minNumReplicas']).to eq(2)
       end
     end
@@ -159,7 +159,7 @@ control "MIG" do
     end
 
     describe "autoscaler scaling policy" do
-      it "minNumReplicas should be 4" do
+      it "minNumReplicas should be 2" do
         expect(data[0]['autoscaler']['autoscalingPolicy']['minNumReplicas']).to eq(2)
       end
     end

@@ -28,7 +28,7 @@ provider "google-beta" {
 
 module "preemptible_and_regular_instance_templates" {
   source  = "terraform-google-modules/vm/google//modules/preemptible_and_regular_instance_templates"
-  version = "~> 10.0"
+  version = "~> 11.0"
 
   subnetwork      = var.subnetwork
   service_account = var.service_account
@@ -36,7 +36,7 @@ module "preemptible_and_regular_instance_templates" {
 
 module "mig_with_percent" {
   source  = "terraform-google-modules/vm/google//modules/mig_with_percent"
-  version = "~> 10.0"
+  version = "~> 11.0"
 
   region                            = var.region
   target_size                       = 4

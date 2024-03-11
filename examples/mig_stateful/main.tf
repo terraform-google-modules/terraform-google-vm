@@ -44,7 +44,7 @@ resource "google_compute_subnetwork" "main" {
 
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 10.0"
+  version = "~> 11.0"
 
   project_id         = var.project_id
   region             = var.region
@@ -55,7 +55,7 @@ module "instance_template" {
 
 module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "~> 10.0"
+  version = "~> 11.0"
 
   project_id        = var.project_id
   region            = var.region

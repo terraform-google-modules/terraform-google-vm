@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [11.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v11.0.0...v11.1.0) (2024-03-11)
+
+
+### Features
+
+* mig labels & most disruptive update policy action update ([#381](https://github.com/terraform-google-modules/terraform-google-vm/issues/381)) ([61ba9bf](https://github.com/terraform-google-modules/terraform-google-vm/commit/61ba9bf6e18c71560e657a19b2bd256361844049))
+
 ## [11.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v10.1.1...v11.0.0) (2024-02-20)
 
 

@@ -186,6 +186,7 @@ variable "additional_disks" {
     disk_size_gb    = number
     disk_type       = string
     disk_labels     = map(string)
+    source_image    = optional(string)
     source_snapshot = optional(string)
   }))
   default = []

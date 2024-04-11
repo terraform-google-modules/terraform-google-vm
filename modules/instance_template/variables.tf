@@ -119,6 +119,12 @@ variable "threads_per_core" {
   default     = null
 }
 
+variable "resource_manager_tags" {
+  type        = map(string)
+  description = "(Optional) A tag is a key-value pair that can be attached to a Google Cloud resource. You can use tags to conditionally allow or deny policies based on whether a resource has a specific tag. This value is not returned by the API. In Terraform, this value cannot be updated and changing it will recreate the resource."
+  default     = null
+}
+
 variable "resource_policies" {
   type        = list(string)
   description = "A list of self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported."

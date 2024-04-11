@@ -122,7 +122,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
 }
 
 resource "google_compute_region_autoscaler" "autoscaler" {
-  provider = google
+  provider = google-beta
   count    = var.autoscaling_enabled ? 1 : 0
   name     = var.autoscaler_name == "" ? "${var.hostname}-autoscaler" : var.autoscaler_name
   project  = var.project_id
@@ -158,6 +158,7 @@ resource "google_compute_region_autoscaler" "autoscaler" {
         name   = lookup(metric.value, "name", null)
         target = lookup(metric.value, "target", null)
         type   = lookup(metric.value, "type", null)
+        filter = lookup(metric.value, "filter", null)
       }
     }
     dynamic "load_balancing_utilization" {

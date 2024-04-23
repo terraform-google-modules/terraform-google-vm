@@ -31,6 +31,7 @@ output "instances_self_links" {
 
 output "instances_details" {
   description = "List of all details for compute instances"
+  sensitive   = true
   value       = google_compute_instance_from_template.compute_instance[*]
 }
 

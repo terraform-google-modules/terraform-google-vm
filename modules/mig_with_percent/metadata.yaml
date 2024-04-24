@@ -28,7 +28,7 @@ spec:
     version: 11.1.0
     actuationTool:
       flavor: Terraform
-      version: ">=0.13.0"
+      version: ">=1.3.0"
     description: {}
   content:
     examples:
@@ -133,19 +133,19 @@ spec:
         description: Health check to determine whether instances are responsive and able to do work
         varType: |-
           object({
-              type                = string
-              initial_delay_sec   = number
-              check_interval_sec  = number
-              healthy_threshold   = number
-              timeout_sec         = number
-              unhealthy_threshold = number
-              response            = string
-              proxy_header        = string
-              port                = number
-              request             = string
-              request_path        = string
-              host                = string
-              enable_logging      = bool
+              type                = optional(string, "")
+              initial_delay_sec   = optional(number, 30)
+              check_interval_sec  = optional(number, 30)
+              healthy_threshold   = optional(number, 1)
+              timeout_sec         = optional(number, 10)
+              unhealthy_threshold = optional(number, 5)
+              response            = optional(string, "")
+              proxy_header        = optional(string, "NONE")
+              port                = optional(number, 80)
+              request             = optional(string, "")
+              request_path        = optional(string, "/")
+              host                = optional(string, "")
+              enable_logging      = optional(bool, false)
             })
         defaultValue:
           check_interval_sec: 30

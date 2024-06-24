@@ -153,6 +153,10 @@ spec:
         description: Labels to be assigned to boot disk, provided as a map
         varType: map(string)
         defaultValue: {}
+      - name: disk_resource_policies
+        description: A list (short name or id) of resource policies to attach to this disk for automatic snapshot creations
+        varType: list(string)
+        defaultValue: []
       - name: disk_size_gb
         description: Boot disk size in GB
         varType: string

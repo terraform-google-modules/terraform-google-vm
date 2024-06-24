@@ -195,6 +195,12 @@ variable "additional_disks" {
   default = []
 }
 
+variable "disk_resource_policies" {
+  description = "A list (short name or id) of resource policies to attach to this disk for automatic snapshot creations"
+  type        = list(string)
+  default     = []
+}
+
 ####################
 # network_interface
 ####################

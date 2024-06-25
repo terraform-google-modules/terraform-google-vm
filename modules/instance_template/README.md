@@ -22,6 +22,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | `string` | `"false"` | no |
 | disk\_encryption\_key | The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance | `string` | `null` | no |
 | disk\_labels | Labels to be assigned to boot disk, provided as a map | `map(string)` | `{}` | no |
+| disk\_resource\_policies | A list (short name or id) of resource policies to attach to this disk for automatic snapshot creations | `list(string)` | `[]` | no |
 | disk\_size\_gb | Boot disk size in GB | `string` | `"100"` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | `string` | `"pd-standard"` | no |
 | enable\_confidential\_vm | Whether to enable the Confidential VM configuration on the instance. Note that the instance image must support Confidential VMs. See https://cloud.google.com/compute/docs/images | `bool` | `false` | no |

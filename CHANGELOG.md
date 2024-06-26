@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [12.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v11.1.0...v12.0.0) (2024-06-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **variables:** allow optional attributes for update_policy object ([#407](https://github.com/terraform-google-modules/terraform-google-vm/issues/407))
+
+### Features
+
+* add disk resource policies ([#412](https://github.com/terraform-google-modules/terraform-google-vm/issues/412)) ([c5409d2](https://github.com/terraform-google-modules/terraform-google-vm/commit/c5409d2a4c261cb10a11042b47bd6602411d85d7))
+* Update instance template var.additional_disks to include all fields being passed to API ([#399](https://github.com/terraform-google-modules/terraform-google-vm/issues/399)) ([73dc845](https://github.com/terraform-google-modules/terraform-google-vm/commit/73dc8459301886207e242fb755b7e31ba46c28e0))
+
+
+### Bug Fixes
+
+* mark instances_details as sensitive ([#389](https://github.com/terraform-google-modules/terraform-google-vm/issues/389)) ([c923bfe](https://github.com/terraform-google-modules/terraform-google-vm/commit/c923bfe05d93f9e63465458b6cbca8b2c33d0a0f))
+* **variables:** allow optional attributes for update_policy object ([#407](https://github.com/terraform-google-modules/terraform-google-vm/issues/407)) ([6769c24](https://github.com/terraform-google-modules/terraform-google-vm/commit/6769c24bc4b7b070bab8dee2c9a33fff1e0b9eb4))
+
 ## [11.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v11.0.0...v11.1.0) (2024-03-11)
 
 

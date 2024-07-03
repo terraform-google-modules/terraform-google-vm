@@ -110,16 +110,16 @@ variable "stateful_ips" {
 variable "update_policy" {
   description = "The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager#rolling_update_policy"
   type = list(object({
-    max_surge_fixed                = number
-    instance_redistribution_type   = string
-    max_surge_percent              = number
-    max_unavailable_fixed          = number
-    max_unavailable_percent        = number
-    min_ready_sec                  = number
-    replacement_method             = string
+    max_surge_fixed                = optional(number)
+    instance_redistribution_type   = optional(string)
+    max_surge_percent              = optional(number)
+    max_unavailable_fixed          = optional(number)
+    max_unavailable_percent        = optional(number)
+    min_ready_sec                  = optional(number)
+    replacement_method             = optional(string)
     minimal_action                 = string
     type                           = string
-    most_disruptive_allowed_action = string
+    most_disruptive_allowed_action = optional(string)
   }))
   default = []
 }

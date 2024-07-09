@@ -146,6 +146,10 @@ spec:
         description: Enable IP forwarding, for NAT instances for example
         varType: string
         defaultValue: "false"
+      - name: description
+        description: The template's description
+        varType: string
+        defaultValue: ""
       - name: disk_encryption_key
         description: The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance
         varType: string
@@ -184,6 +188,10 @@ spec:
               type  = string
               count = number
             })
+      - name: instance_description
+        description: Description of the generated instances
+        varType: string
+        defaultValue: ""
       - name: ipv6_access_config
         description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
         varType: |-

@@ -20,6 +20,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | auto\_delete | Whether or not the boot disk should be auto-deleted | `string` | `"true"` | no |
 | automatic\_restart | (Optional) Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). | `bool` | `true` | no |
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | `string` | `"false"` | no |
+| description | The template's description | `string` | `""` | no |
 | disk\_encryption\_key | The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance | `string` | `null` | no |
 | disk\_labels | Labels to be assigned to boot disk, provided as a map | `map(string)` | `{}` | no |
 | disk\_resource\_policies | A list (short name or id) of resource policies to attach to this disk for automatic snapshot creations | `list(string)` | `[]` | no |
@@ -29,6 +30,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | enable\_nested\_virtualization | Defines whether the instance should have nested virtualization enabled. | `bool` | `false` | no |
 | enable\_shielded\_vm | Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images | `bool` | `false` | no |
 | gpu | GPU information. Type and count of GPU to attach to the instance template. See https://cloud.google.com/compute/docs/gpus more details | <pre>object({<br>    type  = string<br>    count = number<br>  })</pre> | `null` | no |
+| instance\_description | Description of the generated instances | `string` | `""` | no |
 | ipv6\_access\_config | IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access. | <pre>list(object({<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | labels | Labels, provided as a map | `map(string)` | `{}` | no |
 | machine\_type | Machine type to create, e.g. n1-standard-1 | `string` | `"n1-standard-1"` | no |

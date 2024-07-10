@@ -66,6 +66,8 @@ locals {
 resource "google_compute_instance_template" "tpl" {
   provider                = google-beta
   name_prefix             = "${var.name_prefix}-"
+  description             = var.description
+  instance_description    = var.instance_description
   project                 = var.project_id
   machine_type            = var.machine_type
   labels                  = var.labels

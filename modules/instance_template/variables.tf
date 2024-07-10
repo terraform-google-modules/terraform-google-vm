@@ -26,6 +26,18 @@ variable "name_prefix" {
   default     = "default-instance-template"
 }
 
+variable "description" {
+  description = "The template's description"
+  type        = string
+  default     = ""
+}
+
+variable "instance_description" {
+  description = "Description of the generated instances"
+  type        = string
+  default     = ""
+}
+
 variable "machine_type" {
   description = "Machine type to create, e.g. n1-standard-1"
   type        = string

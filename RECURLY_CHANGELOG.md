@@ -1,3 +1,6 @@
+## [v2.0.6_recurly] 2024-07-11
+- Migrating MySQL VM IAM
+
 ## [v2.0.5_recurly] 2023-07-12
 - Removing required providers block
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,18 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13.0"
+output "policy" {
+  description = "Resource snapshot policy details"
+  value       = google_compute_resource_policy.policy
+}
+
+// not using this zonal policy attachment
+// output "attachments" {
+//   description = "Disk attachments to the resource policy"
+//   value       = google_compute_disk_resource_policy_attachment.attachment.*
+// }
+
+output "attachments" {
+  description = "Disk attachments to the resource policy"
+  value       = google_compute_region_disk_resource_policy_attachment.attachment.*
 }

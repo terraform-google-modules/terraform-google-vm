@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,5 +15,12 @@
  */
 
 terraform {
-  required_version = ">= 0.13.0"
+  required_version = ">=0.13.0"
+  required_providers {
+    google = ">= 3.43, < 5.0"
+    null   = ">= 2.1"
+  }
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-vm:compute_instance/v7.3.0"
+  }
 }

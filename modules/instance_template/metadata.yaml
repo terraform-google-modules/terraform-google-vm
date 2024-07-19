@@ -38,6 +38,8 @@ spec:
         location: examples/instance_template/alias_ip_range
       - name: autoscaler
         location: examples/mig/autoscaler
+      - name: confidential_computing
+        location: examples/confidential_computing
       - name: disk_snapshot
         location: examples/compute_instance/disk_snapshot
       - name: encrypted_disks
@@ -146,6 +148,10 @@ spec:
         description: Enable IP forwarding, for NAT instances for example
         varType: string
         defaultValue: "false"
+      - name: confidential_instance_type
+        description: Defines the confidential computing technology the instance uses.
+        varType: string
+        defaultValue: ""
       - name: description
         description: The template's description
         varType: string

@@ -365,6 +365,12 @@ variable "enable_confidential_vm" {
   description = "Whether to enable the Confidential VM configuration on the instance. Note that the instance image must support Confidential VMs. See https://cloud.google.com/compute/docs/images"
 }
 
+variable "confidential_instance_type" {
+  type        = string
+  default     = ""
+  description = "Defines the confidential computing technology the instance uses. If this is set to \"SEV_SNP\", var.min_cpu_platform will be automatically set to \"AMD Milan\"."
+}
+
 ###########################
 # Public IP
 ###########################

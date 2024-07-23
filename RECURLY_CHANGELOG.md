@@ -1,3 +1,6 @@
+## [v2.0.7_recurly] 2024-07-23
+- Remove requirement for instance_ips
+
 ## [v2.0.6_recurly] 2024-07-11
 - Migrating MySQL VM IAM
 

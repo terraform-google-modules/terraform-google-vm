@@ -26,6 +26,7 @@ variable "instance_hostnames" {
 variable "instance_ips" {
   type        = list(string)
   description = "List of IP addresses"
+  default     = []
 }
 
 variable "secrets" {

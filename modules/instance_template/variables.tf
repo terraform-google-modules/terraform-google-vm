@@ -295,9 +295,9 @@ variable "additional_networks" {
 }
 
 variable "total_egress_bandwidth_tier" {
-  description = "Egress bandwidth tier setting for supported VM families"
+  description = "Egress bandwidth tier setting for supported VM families. Valid values are 'DEFAULT' or 'TIER_1'."
   type        = string
-  default     = "DEFAULT"
+  default     = null
   validation {
     condition     = contains(["DEFAULT", "TIER_1"], var.total_egress_bandwidth_tier)
     error_message = "Allowed values for bandwidth_tier are 'DEFAULT' or 'TIER_1'."

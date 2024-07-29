@@ -208,7 +208,7 @@ resource "google_compute_instance_template" "tpl" {
     enable_confidential_compute = var.enable_confidential_vm
   }
 
-  dynamic network_performance_config {
+  dynamic "network_performance_config" {
     for_each = local.create_network_performance_config ? [var.total_egress_bandwidth_tier] : []
     content {
       total_egress_bandwidth_tier = network_performance_config.value

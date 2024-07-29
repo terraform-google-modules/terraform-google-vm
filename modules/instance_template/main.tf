@@ -43,6 +43,8 @@ locals {
   # initialize the block only if it is enabled.
   shielded_vm_configs = var.enable_shielded_vm ? [true] : []
 
+  create_network_performance_config = var.total_egress_bandwidth_tier != null
+
   gpu_enabled            = var.gpu != null
   alias_ip_range_enabled = var.alias_ip_range != null
   on_host_maintenance = (
@@ -206,8 +208,11 @@ resource "google_compute_instance_template" "tpl" {
     enable_confidential_compute = var.enable_confidential_vm
   }
 
-  network_performance_config {
-    total_egress_bandwidth_tier = var.total_egress_bandwidth_tier
+  dynamic network_performance_config {
+    for_each = local.create_network_performance_config ? [var.total_egress_bandwidth_tier] : []
+    content {
+      total_egress_bandwidth_tier = network_performance_config.value
+    }
   }
 
   dynamic "guest_accelerator" {

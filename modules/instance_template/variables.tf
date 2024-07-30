@@ -299,7 +299,7 @@ variable "total_egress_bandwidth_tier" {
   type        = string
   default     = null
   validation {
-    condition     = contains(["DEFAULT", "TIER_1"], var.total_egress_bandwidth_tier)
+    condition     = var.total_egress_bandwidth_tier != null ? contains(["DEFAULT", "TIER_1"], var.total_egress_bandwidth_tier) : true
     error_message = "Allowed values for bandwidth_tier are 'DEFAULT' or 'TIER_1'."
   }
 }

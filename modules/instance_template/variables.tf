@@ -367,7 +367,7 @@ variable "enable_confidential_vm" {
 
 variable "confidential_instance_type" {
   type        = string
-  default     = ""
+  default     = null
   description = "Defines the confidential computing technology the instance uses. If this is set to \"SEV_SNP\", var.min_cpu_platform will be automatically set to \"AMD Milan\"."
 }
 

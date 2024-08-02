@@ -33,9 +33,11 @@ func TestConfidentialInstanceTemplate(t *testing.T) {
 		instance_template := gcloud.Run(t, fmt.Sprintf("compute instance-templates list --format=json --project %s --filter name~%s", confInsTempl.GetStringOutput("project_id"), instanceNamePrefix))
 
 		assert.Len(instance_template.Array(), 1)
-		confidentialInstanceConfig := instance_template.Array()[0].Get("properties").Get("confidentialInstanceConfig")
+		instanceConfigProperties := instance_template.Array()[0].Get("properties")
+		confidentialInstanceConfig := instanceConfigProperties.Get("confidentialInstanceConfig")
 		assert.True(confidentialInstanceConfig.Get("enableConfidentialCompute").Bool())
-		assert.Equal("SEV_SNP", confidentialInstanceConfig.Get("confidentialInstanceType").String())
+		assert.Equal("SEV", confidentialInstanceConfig.Get("confidentialInstanceType").String())
+		assert.Equal("MIGRATE", instanceConfigProperties.Get("scheduling").Get("onHostMaintenance").String())
 	})
 	confInsTempl.Test()
 }

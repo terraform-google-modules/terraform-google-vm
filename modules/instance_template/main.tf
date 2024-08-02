@@ -43,17 +43,17 @@ locals {
   # initialize the block only if it is enabled.
   shielded_vm_configs = var.enable_shielded_vm ? [true] : []
 
-  gpu_enabled                    = var.gpu != null
-  alias_ip_range_enabled         = var.alias_ip_range != null
-  snp_confidential_instance_type = var.confidential_instance_type == "SEV_SNP"
+  gpu_enabled                      = var.gpu != null
+  alias_ip_range_enabled           = var.alias_ip_range != null
+  confidential_terminate_condition = var.enable_confidential_vm && (var.confidential_instance_type != "SEV" || var.min_cpu_platform != "AMD Milan")
   on_host_maintenance = (
-    var.preemptible || var.enable_confidential_vm || local.gpu_enabled || var.spot || local.snp_confidential_instance_type
+    var.preemptible || local.gpu_enabled || var.spot || local.confidential_terminate_condition
     ? "TERMINATE"
     : var.on_host_maintenance
   )
 
   # must be set to "AMD Milan" if confidential_instance_type is set to "SEV_SNP", or this will fail to create the VM.
-  min_cpu_platform = local.snp_confidential_instance_type ? "AMD Milan" : var.min_cpu_platform
+  min_cpu_platform = var.confidential_instance_type == "SEV_SNP" ? "AMD Milan" : var.min_cpu_platform
 
   automatic_restart = (
     # must be false when preemptible or spot is true

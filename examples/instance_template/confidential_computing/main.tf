@@ -28,5 +28,5 @@ module "instance_template" {
   machine_type               = "n2d-standard-2"
   min_cpu_platform           = "AMD Milan"
   enable_confidential_vm     = true
-  confidential_instance_type = "SEV_SNP"
+  confidential_instance_type = "SEV"
 }

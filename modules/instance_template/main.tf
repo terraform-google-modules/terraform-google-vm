@@ -17,7 +17,6 @@
 #########
 # Locals
 #########
-
 locals {
   source_image         = var.source_image != "" ? var.source_image : "rocky-linux-9-optimized-gcp-v20240111"
   source_image_family  = var.source_image_family != "" ? var.source_image_family : "rocky-linux-9-optimized-gcp"

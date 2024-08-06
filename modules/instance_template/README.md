@@ -34,7 +34,6 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | ipv6\_access\_config | IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access. | <pre>list(object({<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | labels | Labels, provided as a map | `map(string)` | `{}` | no |
 | machine\_type | Machine type to create, e.g. n1-standard-1 | `string` | `"n1-standard-1"` | no |
-| maintenance\_interval | Specifies the frequency of planned maintenance events | `string` | `null` | no |
 | metadata | Metadata, provided as a map | `map(string)` | `{}` | no |
 | min\_cpu\_platform | Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform | `string` | `null` | no |
 | name\_prefix | Name prefix for the instance template | `string` | `"default-instance-template"` | no |
@@ -59,7 +58,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used. | `string` | `""` | no |
 | tags | Network tags, provided as a list | `list(string)` | `[]` | no |
 | threads\_per\_core | The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. | `number` | `null` | no |
-| total\_egress\_bandwidth\_tier | Egress bandwidth tier setting for supported VM families | `string` | `"DEFAULT"` | no |
+| total\_egress\_bandwidth\_tier | Egress bandwidth tier setting for supported VM families. Valid values are 'DEFAULT' or 'TIER\_1'. | `string` | `null` | no |
 
 ## Outputs
 

@@ -86,16 +86,6 @@ variable "automatic_restart" {
   default     = true
 }
 
-variable "maintenance_interval" {
-  type        = string
-  description = "Specifies the frequency of planned maintenance events"
-  default     = null
-  validation {
-    condition     = var.maintenance_interval == null || var.maintenance_interval == "PERIODIC"
-    error_message = "var.maintenance_interval must be set to null or \"PERIODIC\"."
-  }
-}
-
 variable "on_host_maintenance" {
   type        = string
   description = "Instance availability Policy"
@@ -295,11 +285,11 @@ variable "additional_networks" {
 }
 
 variable "total_egress_bandwidth_tier" {
-  description = "Egress bandwidth tier setting for supported VM families"
+  description = "Egress bandwidth tier setting for supported VM families. Valid values are 'DEFAULT' or 'TIER_1'."
   type        = string
-  default     = "DEFAULT"
+  default     = null
   validation {
-    condition     = contains(["DEFAULT", "TIER_1"], var.total_egress_bandwidth_tier)
+    condition     = var.total_egress_bandwidth_tier != null ? contains(["DEFAULT", "TIER_1"], var.total_egress_bandwidth_tier) : true
     error_message = "Allowed values for bandwidth_tier are 'DEFAULT' or 'TIER_1'."
   }
 }

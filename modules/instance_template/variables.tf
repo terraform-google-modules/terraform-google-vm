@@ -86,16 +86,6 @@ variable "automatic_restart" {
   default     = true
 }
 
-variable "maintenance_interval" {
-  type        = string
-  description = "Specifies the frequency of planned maintenance events"
-  default     = null
-  validation {
-    condition     = var.maintenance_interval == null || var.maintenance_interval == "PERIODIC"
-    error_message = "var.maintenance_interval must be set to null or \"PERIODIC\"."
-  }
-}
-
 variable "on_host_maintenance" {
   type        = string
   description = "Instance availability Policy"

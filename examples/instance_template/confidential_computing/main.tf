@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=1.3"
-  required_providers {
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = ">= 5.36, < 6"
-    }
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:instance_template/v11.1.0"
-  }
+module "instance_template" {
+  source = "../../../modules/instance_template"
+
+  region          = var.region
+  project_id      = var.project_id
+  service_account = var.service_account
+  subnetwork      = var.subnetwork
+
+  name_prefix                = "confidential-template"
+  source_image_project       = "ubuntu-os-cloud"
+  source_image               = "ubuntu-2004-lts"
+  machine_type               = "n2d-standard-2"
+  min_cpu_platform           = "AMD Milan"
+  enable_confidential_vm     = true
+  confidential_instance_type = "SEV"
 }

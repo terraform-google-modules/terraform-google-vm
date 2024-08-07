@@ -43,13 +43,18 @@ locals {
   # initialize the block only if it is enabled.
   shielded_vm_configs = var.enable_shielded_vm ? [true] : []
 
-  gpu_enabled            = var.gpu != null
-  alias_ip_range_enabled = var.alias_ip_range != null
+  gpu_enabled                      = var.gpu != null
+  alias_ip_range_enabled           = var.alias_ip_range != null
+  confidential_terminate_condition = var.enable_confidential_vm && (var.confidential_instance_type != "SEV" || var.min_cpu_platform != "AMD Milan")
   on_host_maintenance = (
-    var.preemptible || var.enable_confidential_vm || local.gpu_enabled || var.spot
+    var.preemptible || local.gpu_enabled || var.spot || local.confidential_terminate_condition
     ? "TERMINATE"
     : var.on_host_maintenance
   )
+
+  # must be set to "AMD Milan" if confidential_instance_type is set to "SEV_SNP", or this will fail to create the VM.
+  min_cpu_platform = var.confidential_instance_type == "SEV_SNP" ? "AMD Milan" : var.min_cpu_platform
+
   automatic_restart = (
     # must be false when preemptible or spot is true
     var.preemptible || var.spot ? false : var.automatic_restart
@@ -76,7 +81,7 @@ resource "google_compute_instance_template" "tpl" {
   can_ip_forward          = var.can_ip_forward
   metadata_startup_script = var.startup_script
   region                  = var.region
-  min_cpu_platform        = var.min_cpu_platform
+  min_cpu_platform        = local.min_cpu_platform
   resource_policies       = var.resource_policies
   dynamic "disk" {
     for_each = local.all_disks
@@ -204,6 +209,7 @@ resource "google_compute_instance_template" "tpl" {
 
   confidential_instance_config {
     enable_confidential_compute = var.enable_confidential_vm
+    confidential_instance_type  = var.confidential_instance_type
   }
 
   network_performance_config {

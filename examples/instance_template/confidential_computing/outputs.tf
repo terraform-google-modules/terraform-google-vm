@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=1.3"
-  required_providers {
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = ">= 5.36, < 6"
-    }
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:instance_template/v11.1.0"
-  }
+
+output "self_link" {
+  description = "Self-link to the instance template."
+  value       = module.instance_template.self_link
+}
+
+output "name" {
+  description = "Name of the instance templates."
+  value       = module.instance_template.name
 }

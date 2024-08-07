@@ -368,7 +368,7 @@ variable "enable_confidential_vm" {
 variable "confidential_instance_type" {
   type        = string
   default     = null
-  description = "Defines the confidential computing technology the instance uses. If this is set to \"SEV_SNP\", var.min_cpu_platform will be automatically set to \"AMD Milan\"."
+  description = "Defines the confidential computing technology the instance uses. If this is set to \"SEV_SNP\", var.min_cpu_platform will be automatically set to \"AMD Milan\". See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#confidential_instance_type."
 }
 
 ###########################

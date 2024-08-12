@@ -49,6 +49,8 @@ spec:
       - name: autoscaler
         location: examples/mig/autoscaler
       - name: confidential_computing
+        location: examples/confidential_computing
+      - name: confidential_computing
         location: examples/instance_template/confidential_computing
       - name: disk_snapshot
         location: examples/compute_instance/disk_snapshot

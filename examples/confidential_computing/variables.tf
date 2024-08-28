@@ -33,11 +33,11 @@ variable "subnetwork" {
 variable "location" {
   description = "Location for the resources (keyring, key, network, etc.)."
   type        = string
-  default     = "global"
+  default     = "us"
 }
 
 variable "suffix" {
-  description = "A suffix to be used as an identifier for resources. (e.g., suffix for KMS Key, Keyring, SAs, etc.)."
+  description = "A suffix to be used as an identifier for resources. (e.g., suffix for KMS Key, Keyring)."
   type        = string
   default     = ""
 }

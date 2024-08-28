@@ -15,7 +15,7 @@
  */
 
 locals {
-  default_suffix = var.suffix == "" ? random_string.suffix.result : var.suffix
+  default_suffix = var.suffix == "" ? random_string.suffix.result : "${random_string.suffix.result}-${var.suffix}"
   key_name       = "${var.key}-${local.default_suffix}"
 }
 
@@ -40,7 +40,7 @@ module "kms" {
 
 resource "google_service_account" "default" {
   project      = var.project_id
-  account_id   = "confidential-compute-sa-${local.default_suffix}"
+  account_id   = "confidential-compute-sa"
   display_name = "Custom SA for confidential VM Instance"
 }
 

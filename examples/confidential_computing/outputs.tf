@@ -26,7 +26,7 @@ output "name" {
 }
 
 output "instance_self_link" {
-  description = "Self-link for compute instance"
+  description = "Self-link for compute instance."
   value       = module.compute_instance.instances_self_links[0]
 }
 

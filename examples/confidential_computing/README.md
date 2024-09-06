@@ -1,7 +1,8 @@
 # confidential computing vm
 
-This is an example of a vm creation with confidential computing, encrypted disk
-using a Cloud HSM key and a custom service account with cloud-platform scope.
+This is an example of a vm creation with confidential computing,
+encrypted disk using a multiregion (US by default) Cloud HSM key
+and a custom service account with cloud-platform scope.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
@@ -13,6 +14,7 @@ using a Cloud HSM key and a custom service account with cloud-platform scope.
 | location | Location for the resources (keyring, key, network, etc.). | `string` | `"us"` | no |
 | project\_id | The Google Cloud project ID. | `string` | n/a | yes |
 | region | The GCP region to create and test resources in. | `string` | `"us-central1"` | no |
+| service\_account\_roles | Predefined roles for the Service account that will be created for the VM. Remember to follow principles of least privileges with Cloud IAM. | `list(string)` | `[]` | no |
 | subnetwork | The subnetwork selflink to host the compute instances in. | `string` | n/a | yes |
 | suffix | A suffix to be used as an identifier for resources. (e.g., suffix for KMS Key, Keyring). | `string` | `""` | no |
 

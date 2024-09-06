@@ -44,6 +44,14 @@ resource "google_service_account" "default" {
   display_name = "Custom SA for confidential VM Instance"
 }
 
+resource "google_project_iam_member" "service_account_roles" {
+  for_each = toset(var.service_account_roles)
+
+  project = var.project_id
+  role    = each.key
+  member  = "serviceAccount:${google_service_account.default.email}"
+}
+
 data "google_project" "project" {
   project_id = var.project_id
 }

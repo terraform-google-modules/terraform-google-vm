@@ -150,9 +150,9 @@ spec:
         required: true
     outputs:
       - name: attachments
-        description: Disk attachments to the resource policy
+        description: Disk attachments to the resource policy.
       - name: policy
-        description: Resource snapshot policy details
+        description: Resource snapshot policy details.
   requirements:
     roles:
       - level: Project

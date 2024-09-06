@@ -26,7 +26,7 @@ See the [disk snapshot](https://github.com/terraform-google-modules/terraform-go
 
 | Name | Description |
 |------|-------------|
-| attachments | Disk attachments to the resource policy |
-| policy | Resource snapshot policy details |
+| attachments | Disk attachments to the resource policy. |
+| policy | Resource snapshot policy details. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

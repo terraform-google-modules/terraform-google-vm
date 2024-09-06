@@ -51,3 +51,9 @@ variable "key" {
   description = "Key name."
   type        = string
 }
+
+variable "service_account_roles" {
+  description = "Predefined roles for the Service account that will be created for the VM. Remember to follow principles of least privileges with Cloud IAM."
+  type        = list(string)
+  default     = []
+}

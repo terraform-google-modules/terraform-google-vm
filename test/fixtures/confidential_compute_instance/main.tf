@@ -15,10 +15,11 @@
  */
 
 module "confidential_computing" {
-  source     = "../../../examples/confidential_computing"
-  project_id = var.project_id
-  region     = "us-central1"
-  subnetwork = google_compute_subnetwork.main.self_link
-  keyring    = "key-ring-test"
-  key        = "key-test"
+  source                = "../../../examples/confidential_computing"
+  project_id            = var.project_id
+  region                = "us-central1"
+  subnetwork            = google_compute_subnetwork.main.self_link
+  keyring               = "key-ring-test"
+  key                   = "key-test"
+  service_account_roles = ["roles/compute.imageUser", "roles/compute.networkUser"]
 }

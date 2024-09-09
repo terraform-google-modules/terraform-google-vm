@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-provider "google" {
-}
-
-provider "google-beta" {
-}
-
 resource "random_string" "suffix" {
   length  = 4
   special = "false"

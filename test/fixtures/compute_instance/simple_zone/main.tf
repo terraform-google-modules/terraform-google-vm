@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 module "instance_simple" {
   source          = "../../../../examples/compute_instance/simple"
   project_id      = var.project_id

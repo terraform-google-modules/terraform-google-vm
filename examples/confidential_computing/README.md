@@ -2,7 +2,9 @@
 
 This is an example of a vm creation with confidential computing,
 encrypted disk using a multiregion (US by default) Cloud HSM key
-and a custom service account with cloud-platform scope.
+and a custom service account with cloud-platform scope. It also
+creates org policies enforcing the use of CMEK encrypted instances
+and confidential computing to all newly created VMs within the project.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs

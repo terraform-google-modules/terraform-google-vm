@@ -49,6 +49,17 @@ func TestConfidentialInstanceTemplate(t *testing.T) {
 		assert.Len(disks, 1)
 		defaultSuffix := confCompInst.GetStringOutput("suffix")
 		assert.Equal(fmt.Sprintf("projects/%s/locations/us/keyRings/key-ring-test-%s/cryptoKeys/key-test-%s/cryptoKeyVersions/1", projectId, defaultSuffix, defaultSuffix), disks[0].Get("diskEncryptionKey").Get("kmsKeyName").String())
+
+		org_policy_cmek_constraint := gcloud.Runf(t, "resource-manager org-policies list --project=%s --format=json --filter constraint='constraints/gcp.restrictNonCmekServices'", projectId).Array()
+		assert.Len(org_policy_cmek_constraint, 1)
+		cmek_denied_values_list := org_policy_cmek_constraint[0].Get("listPolicy.deniedValues").Array()
+		assert.Len(cmek_denied_values_list, 1)
+		assert.Equal("compute.googleapis.com", cmek_denied_values_list[0].String())
+		org_policy_confidential_constraint := gcloud.Runf(t, "resource-manager org-policies list --project=%s --format=json --filter constraint='constraints/compute.restrictNonConfidentialComputing'", projectId).Array()
+		assert.Len(org_policy_confidential_constraint, 1)
+		cc_denied_values_list := org_policy_confidential_constraint[0].Get("listPolicy.deniedValues").Array()
+		assert.Len(cc_denied_values_list, 1)
+		assert.Equal("compute.googleapis.com", cc_denied_values_list[0].String())
 	})
 	confCompInst.Test()
 }

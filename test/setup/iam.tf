@@ -38,6 +38,12 @@ resource "google_project_iam_member" "ci_vm_account" {
   member  = "serviceAccount:${google_service_account.ci_vm_account.email}"
 }
 
+resource "google_organization_iam_member" "ci_vm_account_organization" {
+  org_id = var.org_id
+  role   = "roles/orgpolicy.policyAdmin"
+  member = "serviceAccount:${google_service_account.ci_vm_account.email}"
+}
+
 resource "google_service_account_key" "ci_vm_account" {
   service_account_id = google_service_account.ci_vm_account.id
 }

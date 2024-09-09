@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-output "policy" {
-  description = "Resource snapshot policy details."
-  value       = google_compute_resource_policy.policy
-}
-
-output "attachments" {
-  description = "Disk attachments to the resource policy."
-  value       = google_compute_disk_resource_policy_attachment.attachment[*]
+terraform {
+  required_version = ">=0.13"
 }

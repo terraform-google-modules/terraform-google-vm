@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-output "policy" {
-  description = "Resource snapshot policy details."
-  value       = google_compute_resource_policy.policy
-}
-
-output "attachments" {
-  description = "Disk attachments to the resource policy."
-  value       = google_compute_disk_resource_policy_attachment.attachment[*]
+module "confidential_computing" {
+  source                = "../../../examples/confidential_computing"
+  project_id            = var.project_id
+  region                = "us-central1"
+  subnetwork            = google_compute_subnetwork.main.self_link
+  keyring               = "key-ring-test"
+  key                   = "key-test"
+  service_account_roles = ["roles/compute.imageUser", "roles/compute.networkUser"]
 }

@@ -28,7 +28,7 @@ module "confidential-computing-org-policy" {
 
 module "enforce-cmek-org-policy" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 5.3"
 
   project_id       = var.project_id
   policy_for       = "project"

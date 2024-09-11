@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [12.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v11.1.0...v12.0.0) (2024-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=5.36:** add confidential_instance_type to instance_template module ([#416](https://github.com/terraform-google-modules/terraform-google-vm/issues/416))
+* **variables:** allow optional attributes for update_policy object ([#407](https://github.com/terraform-google-modules/terraform-google-vm/issues/407))
+
+### Features
+
+* add confidential computing example ([#421](https://github.com/terraform-google-modules/terraform-google-vm/issues/421)) ([ddb6985](https://github.com/terraform-google-modules/terraform-google-vm/commit/ddb698562ebd983dc2fa5b05124aeeced5b3d5c5))
+* add disk resource policies ([#412](https://github.com/terraform-google-modules/terraform-google-vm/issues/412)) ([c5409d2](https://github.com/terraform-google-modules/terraform-google-vm/commit/c5409d2a4c261cb10a11042b47bd6602411d85d7))
+* **deps:** Update Terraform Google Provider to v6 (major) ([#425](https://github.com/terraform-google-modules/terraform-google-vm/issues/425)) ([b9b818e](https://github.com/terraform-google-modules/terraform-google-vm/commit/b9b818ec5b9e62fc93640bd9aa1dc918a67e862e))
+* **instance_template:** supporting template and generated instance description ([#388](https://github.com/terraform-google-modules/terraform-google-vm/issues/388)) ([7ed3780](https://github.com/terraform-google-modules/terraform-google-vm/commit/7ed37800056e7c53313803fb1d926c37eee232bf))
+* **TPG>=5.36:** add confidential_instance_type to instance_template module ([#416](https://github.com/terraform-google-modules/terraform-google-vm/issues/416)) ([1073c39](https://github.com/terraform-google-modules/terraform-google-vm/commit/1073c3905dec53b33c6b01f79f664ad0dedccfd4))
+* Update instance template var.additional_disks to include all fields being passed to API ([#399](https://github.com/terraform-google-modules/terraform-google-vm/issues/399)) ([73dc845](https://github.com/terraform-google-modules/terraform-google-vm/commit/73dc8459301886207e242fb755b7e31ba46c28e0))
+
+
+### Bug Fixes
+
+* For error_message of variable - maintenance_interval ([#411](https://github.com/terraform-google-modules/terraform-google-vm/issues/411)) ([40502fd](https://github.com/terraform-google-modules/terraform-google-vm/commit/40502fd7623b069331b0f55aa72d512f2dcf063e))
+* mark instances_details as sensitive ([#389](https://github.com/terraform-google-modules/terraform-google-vm/issues/389)) ([c923bfe](https://github.com/terraform-google-modules/terraform-google-vm/commit/c923bfe05d93f9e63465458b6cbca8b2c33d0a0f))
+* **variables:** allow optional attributes for update_policy object ([#407](https://github.com/terraform-google-modules/terraform-google-vm/issues/407)) ([6769c24](https://github.com/terraform-google-modules/terraform-google-vm/commit/6769c24bc4b7b070bab8dee2c9a33fff1e0b9eb4))
+
 ## [11.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v11.0.0...v11.1.0) (2024-03-11)
 
 

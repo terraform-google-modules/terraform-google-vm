@@ -5,6 +5,8 @@ encrypted disk using a multiregion (US by default) Cloud HSM key
 and a custom service account with cloud-platform scope. It also
 creates org policies enforcing the use of CMEK encrypted instances
 and confidential computing to all newly created VMs within the project.
+Also, an additional org policy constraint is created, which only allows
+Cloud KMS keys (used for CMEK protection) that come from the provided input project.
 Note: existing VM instances won't be affected by the new org policy.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

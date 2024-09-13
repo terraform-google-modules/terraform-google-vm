@@ -23,7 +23,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestConfidentialInstanceTemplate(t *testing.T) {
+func TestConfidentialComputeInstance(t *testing.T) {
 	const instanceNamePrefix = "confidential-encrypted-instance"
 
 	confCompInst := tft.NewTFBlueprintTest(t)
@@ -55,6 +55,11 @@ func TestConfidentialInstanceTemplate(t *testing.T) {
 		cmek_denied_values_list := org_policy_cmek_constraint[0].Get("listPolicy.deniedValues").Array()
 		assert.Len(cmek_denied_values_list, 1)
 		assert.Equal("compute.googleapis.com", cmek_denied_values_list[0].String())
+		org_policy_cmek_projects := gcloud.Runf(t, "resource-manager org-policies list --project=%s --format=json --filter constraint='constraints/gcp.restrictCmekCryptoKeyProjects'", projectId).Array()
+		assert.Len(org_policy_cmek_projects, 1)
+		cmek_allowed_projects := org_policy_cmek_projects[0].Get("listPolicy.allowedValues").Array()
+		assert.Len(cmek_allowed_projects, 1)
+		assert.Equal(fmt.Sprintf("projects/%s", projectId), cmek_allowed_projects[0].String())
 		org_policy_confidential_constraint := gcloud.Runf(t, "resource-manager org-policies list --project=%s --format=json --filter constraint='constraints/compute.restrictNonConfidentialComputing'", projectId).Array()
 		assert.Len(org_policy_confidential_constraint, 1)
 		cc_denied_values_list := org_policy_confidential_constraint[0].Get("listPolicy.deniedValues").Array()

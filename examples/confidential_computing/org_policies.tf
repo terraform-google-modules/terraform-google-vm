@@ -42,10 +42,10 @@ module "restrict-cmek-cryptokey-projects-policy" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.3"
 
-  project_id         = var.project_id
-  policy_for         = "project"
-  constraint         = "constraints/gcp.restrictCmekCryptoKeyProjects"
-  policy_type        = "list"
-  allow              = ["projects/${var.project_id}"]
+  project_id        = var.project_id
+  policy_for        = "project"
+  constraint        = "constraints/gcp.restrictCmekCryptoKeyProjects"
+  policy_type       = "list"
+  allow             = ["projects/${var.project_id}"]
   allow_list_length = 1
 }

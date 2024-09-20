@@ -18,10 +18,11 @@ module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
   version = "~> 11.0"
 
-  region          = var.region
-  project_id      = var.project_id
-  subnetwork      = var.subnetwork
-  service_account = var.service_account
+  region             = var.region
+  project_id         = var.project_id
+  subnetwork         = var.subnetwork
+  subnetwork_project = var.project_id
+  service_account    = var.service_account
 }
 
 module "compute_instance" {
@@ -31,6 +32,7 @@ module "compute_instance" {
   region              = var.region
   zone                = var.zone
   subnetwork          = var.subnetwork
+  subnetwork_project  = var.project_id
   num_instances       = var.num_instances
   hostname            = "instance-simple"
   instance_template   = module.instance_template.self_link

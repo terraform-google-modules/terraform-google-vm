@@ -35,6 +35,7 @@ module "umig" {
 
   project_id        = var.project_id
   subnetwork        = var.subnetwork
+  subnetwork_project = var.project_id
   num_instances     = var.num_instances
   hostname          = "umig-named-ports"
   instance_template = module.instance_template.self_link

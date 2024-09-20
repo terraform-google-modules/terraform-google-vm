@@ -24,9 +24,10 @@ module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
   version = "~> 11.0"
 
-  project_id      = var.project_id
-  subnetwork      = var.subnetwork
-  service_account = var.service_account
+  project_id         = var.project_id
+  subnetwork         = var.subnetwork
+  subnetwork_project = var.project_id
+  service_account    = var.service_account
 }
 
 module "umig" {
@@ -35,6 +36,7 @@ module "umig" {
 
   project_id        = var.project_id
   subnetwork        = var.subnetwork
+  subnetwork_project = var.project_id
   num_instances     = var.num_instances
   hostname          = "umig-simple"
   instance_template = module.instance_template.self_link

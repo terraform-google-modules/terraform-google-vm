@@ -52,7 +52,7 @@ resource "google_compute_subnetwork" "main" {
 
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 11.0"
+  version = "~> 12.0"
 
   project_id      = var.project_id
   subnetwork      = google_compute_subnetwork.main.name
@@ -63,7 +63,7 @@ module "instance_template" {
 
 module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "~> 11.0"
+  version = "~> 12.0"
 
   project_id          = var.project_id
   instance_template   = module.instance_template.self_link

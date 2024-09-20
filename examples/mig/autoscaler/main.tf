@@ -28,7 +28,7 @@ provider "google-beta" {
 
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 11.0"
+  version = "~> 12.0"
 
   project_id      = var.project_id
   subnetwork      = var.subnetwork
@@ -37,7 +37,7 @@ module "instance_template" {
 
 module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "~> 11.0"
+  version = "~> 12.0"
 
   project_id          = var.project_id
   region              = var.region

@@ -33,7 +33,7 @@ resource "google_iap_tunnel_iam_member" "iap_tunnel" {
   condition {
     title       = "iap_access_to_${var.instance_hostnames[count.index]}"
     description = "IAP access to MySQL"
-    expression  = "destination.ip == '${var.instance_ips[count.index]}' && destination.port == 3306 && request.time < timestamp('${timeadd(timestamp(), "24h")}')"
+    expression  = "destination.ip == '${var.instance_ips[count.index]}' && destination.port == 3306"
   }
 }
 

@@ -1,3 +1,6 @@
+## [v2.0.8_recurly] 2024-09-26
+- Remove time limit in JIT MySQL access
+
 ## [v2.0.7_recurly] 2024-07-23
 - Remove requirement for instance_ips
 

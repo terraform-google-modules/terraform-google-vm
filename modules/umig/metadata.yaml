@@ -94,6 +94,8 @@ spec:
               subnetwork         = string
               subnetwork_project = string
               network_ip         = string
+              nic_type           = optional(string, null)
+              stack_type         = optional(string, null)
               access_config = list(object({
                 nat_ip       = string
                 network_tier = string
@@ -134,6 +136,9 @@ spec:
         description: Network to deploy to. Only one of network or subnetwork should be specified.
         varType: string
         defaultValue: ""
+      - name: nic_type
+        description: Valid values are "VIRTIO_NET", "GVNIC" or set to null to accept API default behavior.
+        varType: string
       - name: num_instances
         description: Number of instances to create. This value is ignored if static_ips is provided.
         varType: string
@@ -145,6 +150,9 @@ spec:
         description: The GCP region where the unmanaged instance group resides.
         varType: string
         required: true
+      - name: stack_type
+        description: The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4_ONLY.
+        varType: string
       - name: static_ips
         description: List of static IPs for VM instances
         varType: list(string)

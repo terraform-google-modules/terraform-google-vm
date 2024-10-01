@@ -16,16 +16,18 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | <pre>list(list(object({<br>    nat_ip       = string<br>    network_tier = string<br>  })))</pre> | `[]` | no |
-| additional\_networks | Additional network interface details for GCE, if any. | <pre>list(object({<br>    network            = string<br>    subnetwork         = string<br>    subnetwork_project = string<br>    network_ip         = string<br>    access_config = list(object({<br>      nat_ip       = string<br>      network_tier = string<br>    }))<br>    ipv6_access_config = list(object({<br>      network_tier = string<br>    }))<br>  }))</pre> | `[]` | no |
+| additional\_networks | Additional network interface details for GCE, if any. | <pre>list(object({<br>    network            = string<br>    subnetwork         = string<br>    subnetwork_project = string<br>    network_ip         = string<br>    nic_type           = optional(string, null)<br>    stack_type         = optional(string, null)<br>    access_config = list(object({<br>      nat_ip       = string<br>      network_tier = string<br>    }))<br>    ipv6_access_config = list(object({<br>      network_tier = string<br>    }))<br>  }))</pre> | `[]` | no |
 | hostname | Hostname of instances | `string` | `""` | no |
 | hostname\_suffix\_separator | Separator character to compose hostname when add\_hostname\_suffix is set to true. | `string` | `"-"` | no |
 | instance\_template | Instance template self\_link used to create compute instances | `string` | n/a | yes |
 | ipv6\_access\_config | IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access. | <pre>list(list(object({<br>    network_tier = string<br>  })))</pre> | `[]` | no |
 | named\_ports | Named name and named port | <pre>list(object({<br>    name = string<br>    port = number<br>  }))</pre> | `[]` | no |
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
+| nic\_type | Valid values are "VIRTIO\_NET", "GVNIC" or set to null to accept API default behavior. | `string` | `null` | no |
 | num\_instances | Number of instances to create. This value is ignored if static\_ips is provided. | `string` | `"1"` | no |
 | project\_id | The GCP project ID | `string` | `null` | no |
 | region | The GCP region where the unmanaged instance group resides. | `string` | n/a | yes |
+| stack\_type | The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4\_ONLY. | `string` | `null` | no |
 | static\_ips | List of static IPs for VM instances | `list(string)` | `[]` | no |
 | subnetwork | Subnet to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
 | subnetwork\_project | The project that subnetwork belongs to | `string` | `""` | no |

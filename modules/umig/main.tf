@@ -57,7 +57,8 @@ resource "google_compute_instance_from_template" "compute_instance" {
     subnetwork         = var.subnetwork
     subnetwork_project = var.subnetwork_project
     network_ip         = length(var.static_ips) == 0 ? "" : element(local.static_ips, count.index)
-
+    nic_type           = var.nic_type
+    stack_type         = var.stack_type
     dynamic "access_config" {
       # convert to map to use lookup function with default value
       for_each = lookup({ for k, v in var.access_config : k => v }, count.index, [])
@@ -83,6 +84,8 @@ resource "google_compute_instance_from_template" "compute_instance" {
       subnetwork         = network_interface.value.subnetwork
       subnetwork_project = network_interface.value.subnetwork_project
       network_ip         = length(network_interface.value.network_ip) > 0 ? network_interface.value.network_ip : null
+      nic_type           = lookup(network_interface.value, "nic_type", null)
+      stack_type         = lookup(network_interface.value, "stack_type", null)
       dynamic "access_config" {
         for_each = network_interface.value.access_config
         content {

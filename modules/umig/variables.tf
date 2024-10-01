@@ -43,6 +43,23 @@ variable "subnetwork_project" {
   default     = ""
 }
 
+variable "nic_type" {
+  description = "Valid values are \"VIRTIO_NET\", \"GVNIC\" or set to null to accept API default behavior."
+  type        = string
+  default     = null
+
+  validation {
+    condition     = var.nic_type == null || var.nic_type == "GVNIC" || var.nic_type == "VIRTIO_NET"
+    error_message = "The \"nic_type\" variable must be set to \"VIRTIO_NET\", \"GVNIC\", or null to allow API default selection."
+  }
+}
+
+variable "stack_type" {
+  description = "The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4_ONLY."
+  type        = string
+  default     = null
+}
+
 variable "additional_networks" {
   description = "Additional network interface details for GCE, if any."
   default     = []
@@ -51,6 +68,8 @@ variable "additional_networks" {
     subnetwork         = string
     subnetwork_project = string
     network_ip         = string
+    nic_type           = optional(string, null)
+    stack_type         = optional(string, null)
     access_config = list(object({
       nat_ip       = string
       network_tier = string

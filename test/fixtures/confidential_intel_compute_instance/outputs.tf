@@ -25,7 +25,7 @@ output "name" {
 }
 
 output "instance_self_link" {
-  description = "Self-link for compute instance"
+  description = "Self-link for compute instance."
   value       = module.confidential_computing_intel.instance_self_link
 }
 

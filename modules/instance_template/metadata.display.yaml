@@ -1,0 +1,180 @@
+# Copyright 2024 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-vm-instance-template-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: instance_template
+    source:
+      repo: https://github.com/terraform-google-modules/terraform-google-vm
+      sourceType: git
+      dir: /modules/instance_template
+  ui:
+    input:
+      variables:
+        access_config:
+          name: access_config
+          title: Access Config
+          alt_defaults:
+            - type: ALTERNATE_TYPE_DC
+              value:
+                nat_ip: null
+                network_tier: PREMIUM
+        additional_disks:
+          name: additional_disks
+          title: Additional Disks
+        additional_networks:
+          name: additional_networks
+          title: Additional Networks
+        alias_ip_range:
+          name: alias_ip_range
+          title: Alias Ip Range
+        auto_delete:
+          name: auto_delete
+          title: Auto Delete
+        automatic_restart:
+          name: automatic_restart
+          title: Automatic Restart
+        can_ip_forward:
+          name: can_ip_forward
+          title: Can Ip Forward
+        confidential_instance_type:
+          name: confidential_instance_type
+          title: Confidential Instance Type
+        description:
+          name: description
+          title: Description
+        disk_encryption_key:
+          name: disk_encryption_key
+          title: Disk Encryption Key
+        disk_labels:
+          name: disk_labels
+          title: Disk Labels
+        disk_resource_policies:
+          name: disk_resource_policies
+          title: Disk Resource Policies
+        disk_size_gb:
+          name: disk_size_gb
+          title: Disk Size Gb
+        disk_type:
+          name: disk_type
+          title: Disk Type
+        enable_confidential_vm:
+          name: enable_confidential_vm
+          title: Enable Confidential Vm
+        enable_nested_virtualization:
+          name: enable_nested_virtualization
+          title: Enable Nested Virtualization
+        enable_shielded_vm:
+          name: enable_shielded_vm
+          title: Enable Shielded Vm
+        gpu:
+          name: gpu
+          title: Gpu
+        instance_description:
+          name: instance_description
+          title: Instance Description
+        ipv6_access_config:
+          name: ipv6_access_config
+          title: Ipv6 Access Config
+        labels:
+          name: labels
+          title: Labels
+        machine_type:
+          name: machine_type
+          title: Machine Type
+        maintenance_interval:
+          name: maintenance_interval
+          title: Maintenance Interval
+        metadata:
+          name: metadata
+          title: Metadata
+        min_cpu_platform:
+          name: min_cpu_platform
+          title: Min Cpu Platform
+        name_prefix:
+          name: name_prefix
+          title: Name Prefix
+        network:
+          name: network
+          title: Network
+        network_ip:
+          name: network_ip
+          title: Network Ip
+        nic_type:
+          name: nic_type
+          title: Nic Type
+        on_host_maintenance:
+          name: on_host_maintenance
+          title: On Host Maintenance
+        preemptible:
+          name: preemptible
+          title: Preemptible
+        project_id:
+          name: project_id
+          title: Project Id
+        region:
+          name: region
+          title: Region
+        resource_policies:
+          name: resource_policies
+          title: Resource Policies
+        service_account:
+          name: service_account
+          title: Service Account
+        shielded_instance_config:
+          name: shielded_instance_config
+          title: Shielded Instance Config
+        source_image:
+          name: source_image
+          title: Source Image
+        source_image_family:
+          name: source_image_family
+          title: Source Image Family
+        source_image_project:
+          name: source_image_project
+          title: Source Image Project
+        spot:
+          name: spot
+          title: Spot
+        spot_instance_termination_action:
+          name: spot_instance_termination_action
+          title: Spot Instance Termination Action
+        stack_type:
+          name: stack_type
+          title: Stack Type
+        startup_script:
+          name: startup_script
+          title: Startup Script
+        subnetwork:
+          name: subnetwork
+          title: Subnetwork
+        subnetwork_project:
+          name: subnetwork_project
+          title: Subnetwork Project
+        tags:
+          name: tags
+          title: Tags
+        threads_per_core:
+          name: threads_per_core
+          title: Threads Per Core
+        total_egress_bandwidth_tier:
+          name: total_egress_bandwidth_tier
+          title: Total Egress Bandwidth Tier
+

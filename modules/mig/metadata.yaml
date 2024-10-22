@@ -179,6 +179,12 @@ spec:
         description: Instance template self_link used to create compute instances
         varType: string
         required: true
+        connections:
+        - source:
+            source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
+            version: ~> 12.0
+          spec:
+            outputExpr: self_link
       - name: labels
         description: Labels, provided as a map
         varType: map(string)
@@ -282,12 +288,17 @@ spec:
     outputs:
       - name: health_check_self_links
         description: All self_links of healthchecks created for the instance group.
+        type:
+          - list
+          - string
       - name: instance_group
         description: Instance-group url of managed instance group
+        type: string
       - name: instance_group_manager
         description: An instance of google_compute_region_instance_group_manager of the instance group.
       - name: self_link
         description: Self-link of managed instance group
+        type: string
   requirements:
     roles:
       - level: Project

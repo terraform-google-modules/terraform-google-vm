@@ -223,6 +223,27 @@ spec:
         description: Metadata, provided as a map
         varType: map(string)
         defaultValue: {}
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-memorystore
+              version: ~> 10.0
+            spec:
+              outputExpr: env_vars
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
+              version: ~> 21.0
+            spec:
+              outputExpr: env_vars
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-sql-db//modules/mysql
+              version: ~> 22.0
+            spec:
+              outputExpr: env_vars
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
+              version: ~> 4.3
+            spec:
+              outputExpr: env_vars
       - name: min_cpu_platform
         description: "Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform"
         varType: string
@@ -264,9 +285,16 @@ spec:
         varType: |-
           object({
               email  = string
-              scopes = set(string)
+              scopes = optional(set(string), ["cloud-platform"])
             })
         required: true
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
+              version: ~> 4.3
+            spec:
+              outputExpr: email
+              inputPath: email
       - name: shielded_instance_config
         description: Not used unless enable_shielded_vm is true. Shielded VM configuration for the instance.
         varType: |-
@@ -328,12 +356,18 @@ spec:
     outputs:
       - name: name
         description: Name of instance template
+        type: string
       - name: self_link
         description: Self-link of instance template
+        type: string
       - name: self_link_unique
         description: Unique self-link of instance template (recommended output to use instead of self_link)
+        type: string
       - name: tags
         description: Tags that will be associated with instance(s)
+        type:
+          - list
+          - string
   requirements:
     roles:
       - level: Project

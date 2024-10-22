@@ -31,7 +31,7 @@ spec:
         access_config:
           name: access_config
           title: Access Config
-          alt_defaults:
+          altDefaults:
             - type: ALTERNATE_TYPE_DC
               value:
                 nat_ip: null

@@ -226,22 +226,22 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-memorystore
-              version: "~> 10.0.0"
+              version: ~> 10.0
             spec:
               outputExpr: env_vars
           - source:
               source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
-              version: "~> 21.0.0"
+              version: ~> 21.0
             spec:
               outputExpr: env_vars
           - source:
               source: github.com/terraform-google-modules/terraform-google-sql-db//modules/mysql
-              version: "~> 22.0.0"
+              version: ~> 22.0
             spec:
               outputExpr: env_vars
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
-              version: "~> 4.3.0"
+              version: ~> 4.3
             spec:
               outputExpr: env_vars
       - name: min_cpu_platform
@@ -291,7 +291,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
-              version: "~> 4.3.0"
+              version: ~> 4.3
             spec:
               outputExpr: email
               inputPath: email

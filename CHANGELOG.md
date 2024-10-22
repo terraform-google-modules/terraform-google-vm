@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [12.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v12.0.0...v12.1.0) (2024-10-22)
+
+
+### Features
+
+* add confidential computing example for intel arch ([#435](https://github.com/terraform-google-modules/terraform-google-vm/issues/435)) ([cf84229](https://github.com/terraform-google-modules/terraform-google-vm/commit/cf84229c7e1fb5e4233d0d24d34c17732bae0e4f))
+* add org policies to confidential computing example ([#427](https://github.com/terraform-google-modules/terraform-google-vm/issues/427)) ([c5788d0](https://github.com/terraform-google-modules/terraform-google-vm/commit/c5788d034414e4e3821db1918e40201066194017))
+
 ## [12.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v11.1.0...v12.0.0) (2024-09-09)
 
 

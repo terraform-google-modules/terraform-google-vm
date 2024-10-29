@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,12 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">=1.3.0"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 4.48, < 7"
-    }
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = ">= 4.48, < 7"
-    }
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:mig/v12.1.0"
-  }
-  provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:mig/v12.1.0"
-  }
+module "confidential_computing_intel" {
+  source                = "../../../examples/confidential_computing_intel"
+  project_id            = var.project_id
+  region                = "us-central1"
+  subnetwork            = google_compute_subnetwork.main.self_link
+  keyring               = "key-ring-test"
+  key                   = "key-test"
+  service_account_roles = ["roles/compute.imageUser", "roles/compute.networkUser"]
 }

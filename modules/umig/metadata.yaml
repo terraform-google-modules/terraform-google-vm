@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-vm
       sourceType: git
       dir: /modules/umig
-    version: 12.0.0
+    version: 12.1.0
     actuationTool:
       flavor: Terraform
       version: ">=0.13.0"
@@ -42,6 +42,8 @@ spec:
         location: examples/confidential_computing
       - name: confidential_computing
         location: examples/instance_template/confidential_computing
+      - name: confidential_computing_intel
+        location: examples/confidential_computing_intel
       - name: disk_snapshot
         location: examples/compute_instance/disk_snapshot
       - name: encrypted_disks

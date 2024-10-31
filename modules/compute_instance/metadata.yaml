@@ -80,74 +80,10 @@ spec:
         location: examples/compute_instance/tags
   interfaces:
     variables:
-      - name: access_config
-        description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
-        varType: |-
-          list(object({
-              nat_ip       = string
-              network_tier = string
-            }))
-        defaultValue: []
-      - name: add_hostname_suffix
-        description: Adds a suffix to the hostname
-        varType: bool
-        defaultValue: true
-      - name: alias_ip_ranges
-        description: (Optional) An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
-        varType: |-
-          list(object({
-              ip_cidr_range         = string
-              subnetwork_range_name = string
-            }))
-        defaultValue: []
-      - name: deletion_protection
-        description: "Enable deletion protection on this instance. Note: you must disable deletion protection before removing the resource, or the instance cannot be deleted and the Terraform run will not complete successfully."
-        varType: bool
-        defaultValue: false
-      - name: hostname
-        description: Hostname of instances
-        varType: string
-        defaultValue: ""
-      - name: hostname_suffix_separator
-        description: Separator character to compose hostname when add_hostname_suffix is set to true.
-        varType: string
-        defaultValue: "-"
-      - name: instance_template
-        description: Instance template self_link used to create compute instances
-        varType: string
-        required: true
-      - name: ipv6_access_config
-        description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
-        varType: |-
-          list(object({
-              network_tier = string
-            }))
-        defaultValue: []
-      - name: labels
-        description: (Optional) Labels to override those from the template, provided as a map
-        varType: map(string)
       - name: network
         description: Network to deploy to. Only one of network or subnetwork should be specified.
         varType: string
         defaultValue: ""
-      - name: num_instances
-        description: Number of instances to create. This value is ignored if static_ips is provided.
-        varType: number
-        defaultValue: "1"
-      - name: region
-        description: Region where the instances should be created.
-        varType: string
-      - name: resource_manager_tags
-        description: (Optional) A tag is a key-value pair that can be attached to a Google Cloud resource. You can use tags to conditionally allow or deny policies based on whether a resource has a specific tag. This value is not returned by the API. In Terraform, this value cannot be updated and changing it will recreate the resource.
-        varType: map(string)
-      - name: resource_policies
-        description: (Optional) A list of short names or self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported.
-        varType: list(string)
-        defaultValue: []
-      - name: static_ips
-        description: List of static IPs for VM instances
-        varType: list(string)
-        defaultValue: []
       - name: subnetwork
         description: Subnet to deploy to. Only one of network or subnetwork should be specified.
         varType: string
@@ -156,9 +92,73 @@ spec:
         description: The project that subnetwork belongs to
         varType: string
         defaultValue: ""
+      - name: hostname
+        description: Hostname of instances
+        varType: string
+        defaultValue: ""
+      - name: add_hostname_suffix
+        description: Adds a suffix to the hostname
+        varType: bool
+        defaultValue: true
+      - name: static_ips
+        description: List of static IPs for VM instances
+        varType: list(string)
+        defaultValue: []
+      - name: access_config
+        description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
+        varType: |-
+          list(object({
+              nat_ip       = string
+              network_tier = string
+            }))
+        defaultValue: []
+      - name: ipv6_access_config
+        description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
+        varType: |-
+          list(object({
+              network_tier = string
+            }))
+        defaultValue: []
+      - name: num_instances
+        description: Number of instances to create. This value is ignored if static_ips is provided.
+        varType: number
+        defaultValue: "1"
+      - name: instance_template
+        description: Instance template self_link used to create compute instances
+        varType: string
+        required: true
+      - name: region
+        description: Region where the instances should be created.
+        varType: string
       - name: zone
         description: Zone where the instances should be created. If not specified, instances will be spread across available zones in the region.
         varType: string
+      - name: hostname_suffix_separator
+        description: Separator character to compose hostname when add_hostname_suffix is set to true.
+        varType: string
+        defaultValue: "-"
+      - name: deletion_protection
+        description: "Enable deletion protection on this instance. Note: you must disable deletion protection before removing the resource, or the instance cannot be deleted and the Terraform run will not complete successfully."
+        varType: bool
+        defaultValue: false
+      - name: alias_ip_ranges
+        description: (Optional) An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
+        varType: |-
+          list(object({
+              ip_cidr_range         = string
+              subnetwork_range_name = string
+            }))
+        defaultValue: []
+      - name: resource_policies
+        description: (Optional) A list of short names or self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported.
+        varType: list(string)
+        defaultValue: []
+      - name: labels
+        description: (Optional) Labels to override those from the template, provided as a map
+        varType: map(string)
+      - name: resource_manager_tags
+        description: (Optional) A tag is a key-value pair that can be attached to a Google Cloud resource. You can use tags to conditionally allow or deny policies based on whether a resource has a specific tag. This value is not returned by the API. In Terraform, this value cannot be updated and changing it will recreate the resource.
+        varType: map(string)
     outputs:
       - name: available_zones
         description: List of available zones in region
@@ -181,3 +181,6 @@ spec:
       - serviceusage.googleapis.com
       - compute.googleapis.com
       - iam.googleapis.com
+    providerVersions:
+      - source: hashicorp/google
+        version: ">= 3.88, < 7"

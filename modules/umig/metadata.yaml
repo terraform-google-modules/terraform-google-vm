@@ -80,14 +80,25 @@ spec:
         location: examples/compute_instance/tags
   interfaces:
     variables:
-      - name: access_config
-        description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
-        varType: |-
-          list(list(object({
-              nat_ip       = string
-              network_tier = string
-            })))
-        defaultValue: []
+      - name: project_id
+        description: The GCP project ID
+        varType: string
+      - name: network
+        description: Network to deploy to. Only one of network or subnetwork should be specified.
+        varType: string
+        defaultValue: ""
+      - name: region
+        description: The GCP region where the unmanaged instance group resides.
+        varType: string
+        required: true
+      - name: subnetwork
+        description: Subnet to deploy to. Only one of network or subnetwork should be specified.
+        varType: string
+        defaultValue: ""
+      - name: subnetwork_project
+        description: The project that subnetwork belongs to
+        varType: string
+        defaultValue: ""
       - name: additional_networks
         description: Additional network interface details for GCE, if any.
         varType: |-
@@ -109,21 +120,14 @@ spec:
         description: Hostname of instances
         varType: string
         defaultValue: ""
-      - name: hostname_suffix_separator
-        description: Separator character to compose hostname when add_hostname_suffix is set to true.
-        varType: string
-        defaultValue: "-"
-      - name: instance_template
-        description: Instance template self_link used to create compute instances
-        varType: string
-        required: true
-      - name: ipv6_access_config
-        description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
-        varType: |-
-          list(list(object({
-              network_tier = string
-            })))
+      - name: static_ips
+        description: List of static IPs for VM instances
+        varType: list(string)
         defaultValue: []
+      - name: num_instances
+        description: Number of instances to create. This value is ignored if static_ips is provided.
+        varType: string
+        defaultValue: "1"
       - name: named_ports
         description: Named name and named port
         varType: |-
@@ -132,33 +136,29 @@ spec:
               port = number
             }))
         defaultValue: []
-      - name: network
-        description: Network to deploy to. Only one of network or subnetwork should be specified.
-        varType: string
-        defaultValue: ""
-      - name: num_instances
-        description: Number of instances to create. This value is ignored if static_ips is provided.
-        varType: string
-        defaultValue: "1"
-      - name: project_id
-        description: The GCP project ID
-        varType: string
-      - name: region
-        description: The GCP region where the unmanaged instance group resides.
+      - name: instance_template
+        description: Instance template self_link used to create compute instances
         varType: string
         required: true
-      - name: static_ips
-        description: List of static IPs for VM instances
-        varType: list(string)
+      - name: access_config
+        description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
+        varType: |-
+          list(list(object({
+              nat_ip       = string
+              network_tier = string
+            })))
         defaultValue: []
-      - name: subnetwork
-        description: Subnet to deploy to. Only one of network or subnetwork should be specified.
+      - name: ipv6_access_config
+        description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
+        varType: |-
+          list(list(object({
+              network_tier = string
+            })))
+        defaultValue: []
+      - name: hostname_suffix_separator
+        description: Separator character to compose hostname when add_hostname_suffix is set to true.
         varType: string
-        defaultValue: ""
-      - name: subnetwork_project
-        description: The project that subnetwork belongs to
-        varType: string
-        defaultValue: ""
+        defaultValue: "-"
       - name: zones
         description: (Optional) List of availability zones to create VM instances in
         varType: list(string)
@@ -189,3 +189,6 @@ spec:
       - serviceusage.googleapis.com
       - compute.googleapis.com
       - iam.googleapis.com
+    providerVersions:
+      - source: hashicorp/google
+        version: ">= 3.88, < 7"

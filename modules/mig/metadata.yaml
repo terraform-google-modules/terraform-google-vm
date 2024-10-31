@@ -80,54 +80,39 @@ spec:
         location: examples/compute_instance/tags
   interfaces:
     variables:
-      - name: autoscaler_name
-        description: Autoscaler name. When variable is empty, name will be derived from var.hostname.
+      - name: project_id
+        description: The GCP project ID
+        varType: string
+      - name: hostname
+        description: Hostname prefix for instances
+        varType: string
+        defaultValue: default
+      - name: mig_name
+        description: Managed instance group name. When variable is empty, name will be derived from var.hostname.
         varType: string
         defaultValue: ""
-      - name: autoscaling_cpu
-        description: Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#cpu_utilization
-        varType: |-
-          list(object({
-              target            = number
-              predictive_method = string
-            }))
-        defaultValue: []
-      - name: autoscaling_enabled
-        description: Creates an autoscaler for the managed instance group
+      - name: region
+        description: The GCP region where the managed instance group resides.
         varType: string
-        defaultValue: "false"
-      - name: autoscaling_lb
-        description: Autoscaling, load balancing utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#load_balancing_utilization
-        varType: list(map(number))
-        defaultValue: []
-      - name: autoscaling_metric
-        description: Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#metric
-        varType: |-
-          list(object({
-              name   = string
-              target = number
-              type   = string
-            }))
-        defaultValue: []
-      - name: autoscaling_mode
-        description: Operating mode of the autoscaling policy. If omitted, the default value is ON. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#mode
+        required: true
+      - name: instance_template
+        description: Instance template self_link used to create compute instances
         varType: string
-      - name: autoscaling_scale_in_control
-        description: Autoscaling, scale-in control block. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#scale_in_control
-        varType: |-
-          object({
-              fixed_replicas   = number
-              percent_replicas = number
-              time_window_sec  = number
-            })
-        defaultValue:
-          fixed_replicas: null
-          percent_replicas: null
-          time_window_sec: null
-      - name: cooldown_period
-        description: The number of seconds that the autoscaler should wait before it starts collecting information from a new instance.
+        required: true
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
+              version: ~> 12.0
+            spec:
+              outputExpr: self_link
+      - name: target_size
+        description: The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set.
         varType: number
-        defaultValue: 60
+        defaultValue: 1
+      - name: target_pools
+        description: The target load balancing pools to assign this group to.
+        varType: list(string)
+        defaultValue: []
       - name: distribution_policy_target_shape
         description: MIG target distribution shape (EVEN, BALANCED, ANY, ANY_SINGLE_ZONE)
         varType: string
@@ -135,6 +120,43 @@ spec:
         description: The distribution policy, i.e. which zone(s) should instances be create in. Default is all zones in given region.
         varType: list(string)
         defaultValue: []
+      - name: stateful_disks
+        description: Disks created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs
+        varType: |-
+          list(object({
+              device_name = string
+              delete_rule = string
+            }))
+        defaultValue: []
+      - name: stateful_ips
+        description: Statful IPs created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-ip-addresses-in-migs
+        varType: |-
+          list(object({
+              interface_name = string
+              delete_rule    = string
+              is_external    = bool
+            }))
+        defaultValue: []
+      - name: update_policy
+        description: The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager#rolling_update_policy
+        varType: |-
+          list(object({
+              max_surge_fixed                = optional(number)
+              instance_redistribution_type   = optional(string)
+              max_surge_percent              = optional(number)
+              max_unavailable_fixed          = optional(number)
+              max_unavailable_percent        = optional(number)
+              min_ready_sec                  = optional(number)
+              replacement_method             = optional(string)
+              minimal_action                 = string
+              type                           = string
+              most_disruptive_allowed_action = optional(string)
+            }))
+        defaultValue: []
+      - name: health_check_name
+        description: Health check name. When variable is empty, name will be derived from var.hostname.
+        varType: string
+        defaultValue: ""
       - name: health_check
         description: Health check to determine whether instances are responsive and able to do work
         varType: |-
@@ -167,67 +189,50 @@ spec:
           timeout_sec: 10
           type: ""
           unhealthy_threshold: 5
-      - name: health_check_name
-        description: Health check name. When variable is empty, name will be derived from var.hostname.
+      - name: autoscaler_name
+        description: Autoscaler name. When variable is empty, name will be derived from var.hostname.
         varType: string
         defaultValue: ""
-      - name: hostname
-        description: Hostname prefix for instances
+      - name: autoscaling_enabled
+        description: Creates an autoscaler for the managed instance group
         varType: string
-        defaultValue: default
-      - name: instance_template
-        description: Instance template self_link used to create compute instances
-        varType: string
-        required: true
-        connections:
-        - source:
-            source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
-            version: ~> 12.0
-          spec:
-            outputExpr: self_link
-      - name: labels
-        description: Labels, provided as a map
-        varType: map(string)
-        defaultValue: {}
+        defaultValue: "false"
       - name: max_replicas
         description: The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas.
         varType: number
         defaultValue: 10
-      - name: mig_name
-        description: Managed instance group name. When variable is empty, name will be derived from var.hostname.
-        varType: string
-        defaultValue: ""
-      - name: mig_timeouts
-        description: "Times for creation, deleting and updating the MIG resources. Can be helpful when using wait_for_instances to allow a longer VM startup time. "
-        varType: |-
-          object({
-              create = string
-              update = string
-              delete = string
-            })
-        defaultValue:
-          create: 5m
-          delete: 15m
-          update: 5m
       - name: min_replicas
         description: The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0.
         varType: number
         defaultValue: 2
-      - name: named_ports
-        description: Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports
+      - name: cooldown_period
+        description: The number of seconds that the autoscaler should wait before it starts collecting information from a new instance.
+        varType: number
+        defaultValue: 60
+      - name: autoscaling_mode
+        description: Operating mode of the autoscaling policy. If omitted, the default value is ON. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#mode
+        varType: string
+      - name: autoscaling_cpu
+        description: Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#cpu_utilization
         varType: |-
           list(object({
-              name = string
-              port = number
+              target            = number
+              predictive_method = string
             }))
         defaultValue: []
-      - name: project_id
-        description: The GCP project ID
-        varType: string
-      - name: region
-        description: The GCP region where the managed instance group resides.
-        varType: string
-        required: true
+      - name: autoscaling_metric
+        description: Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#metric
+        varType: |-
+          list(object({
+              name   = string
+              target = number
+              type   = string
+            }))
+        defaultValue: []
+      - name: autoscaling_lb
+        description: Autoscaling, load balancing utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#load_balancing_utilization
+        varType: list(map(number))
+        defaultValue: []
       - name: scaling_schedules
         description: Autoscaling, scaling schedule block. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#scaling_schedules
         varType: |-
@@ -240,51 +245,46 @@ spec:
               time_zone             = string
             }))
         defaultValue: []
-      - name: stateful_disks
-        description: Disks created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs
+      - name: autoscaling_scale_in_control
+        description: Autoscaling, scale-in control block. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#scale_in_control
+        varType: |-
+          object({
+              fixed_replicas   = number
+              percent_replicas = number
+              time_window_sec  = number
+            })
+        defaultValue:
+          fixed_replicas: null
+          percent_replicas: null
+          time_window_sec: null
+      - name: named_ports
+        description: Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports
         varType: |-
           list(object({
-              device_name = string
-              delete_rule = string
-            }))
-        defaultValue: []
-      - name: stateful_ips
-        description: Statful IPs created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-ip-addresses-in-migs
-        varType: |-
-          list(object({
-              interface_name = string
-              delete_rule    = string
-              is_external    = bool
-            }))
-        defaultValue: []
-      - name: target_pools
-        description: The target load balancing pools to assign this group to.
-        varType: list(string)
-        defaultValue: []
-      - name: target_size
-        description: The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set.
-        varType: number
-        defaultValue: 1
-      - name: update_policy
-        description: The rolling update policy. https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager#rolling_update_policy
-        varType: |-
-          list(object({
-              max_surge_fixed                = optional(number)
-              instance_redistribution_type   = optional(string)
-              max_surge_percent              = optional(number)
-              max_unavailable_fixed          = optional(number)
-              max_unavailable_percent        = optional(number)
-              min_ready_sec                  = optional(number)
-              replacement_method             = optional(string)
-              minimal_action                 = string
-              type                           = string
-              most_disruptive_allowed_action = optional(string)
+              name = string
+              port = number
             }))
         defaultValue: []
       - name: wait_for_instances
         description: Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out.
         varType: string
         defaultValue: "false"
+      - name: mig_timeouts
+        description: "Times for creation, deleting and updating the MIG resources. Can be helpful when using wait_for_instances to allow a longer VM startup time. "
+        varType: |-
+          object({
+              create = string
+              update = string
+              delete = string
+            })
+        defaultValue:
+          create: 5m
+          delete: 15m
+          update: 5m
+      - name: labels
+        description: Labels, provided as a map
+        varType: map(string)
+        defaultValue: {}
     outputs:
       - name: health_check_self_links
         description: All self_links of healthchecks created for the instance group.
@@ -314,3 +314,8 @@ spec:
       - serviceusage.googleapis.com
       - compute.googleapis.com
       - iam.googleapis.com
+    providerVersions:
+      - source: hashicorp/google
+        version: ">= 4.48, < 7"
+      - source: hashicorp/google-beta
+        version: ">= 4.48, < 7"

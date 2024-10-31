@@ -81,7 +81,7 @@ spec:
   interfaces:
     variables:
       - name: project_id
-        description: The GCP project ID
+        description: The Google Cloud project ID
         varType: string
       - name: hostname
         description: Hostname prefix for instances
@@ -92,7 +92,7 @@ spec:
         varType: string
         defaultValue: ""
       - name: region
-        description: The GCP region where the managed instance group resides.
+        description: The Google Cloud region where the managed instance group resides.
         varType: string
         required: true
       - name: instance_template_initial_version

@@ -18,7 +18,7 @@
 
 variable "project_id" {
   type        = string
-  description = "The GCP project ID"
+  description = "The Google Cloud project ID"
   default     = null
 }
 
@@ -35,7 +35,7 @@ variable "mig_name" {
 }
 
 variable "region" {
-  description = "The GCP region where the managed instance group resides."
+  description = "The Google Cloud region where the managed instance group resides."
   type        = string
 }
 

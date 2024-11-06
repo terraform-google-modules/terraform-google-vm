@@ -80,14 +80,53 @@ spec:
         location: examples/compute_instance/tags
   interfaces:
     variables:
-      - name: access_config
-        description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
-        varType: |-
-          list(object({
-              nat_ip       = string
-              network_tier = string
-            }))
+      - name: project_id
+        description: The GCP project ID
+        varType: string
+      - name: name_prefix
+        description: Name prefix for the instance template
+        varType: string
+        defaultValue: default-it
+      - name: machine_type
+        description: Machine type to create, e.g. n1-standard-1
+        varType: string
+        defaultValue: n1-standard-1
+      - name: can_ip_forward
+        description: Enable IP forwarding, for NAT instances for example
+        varType: string
+        defaultValue: "false"
+      - name: tags
+        description: Network tags, provided as a list
+        varType: list(string)
         defaultValue: []
+      - name: labels
+        description: Labels, provided as a map
+        varType: map(string)
+        defaultValue: {}
+      - name: source_image
+        description: Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image.
+        varType: string
+        defaultValue: ""
+      - name: source_image_family
+        description: Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image.
+        varType: string
+        defaultValue: ""
+      - name: source_image_project
+        description: Project where the source image comes from. The default project contains Rocky Linux images.
+        varType: string
+        defaultValue: ""
+      - name: disk_size_gb
+        description: Boot disk size in GB
+        varType: string
+        defaultValue: "100"
+      - name: disk_type
+        description: Boot disk type, can be either pd-ssd, local-ssd, or pd-standard
+        varType: string
+        defaultValue: pd-standard
+      - name: auto_delete
+        description: Whether or not the boot disk should be auto-deleted
+        varType: bool
+        defaultValue: true
       - name: additional_disks
         description: List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#disk_name
         varType: |-
@@ -101,74 +140,8 @@ spec:
               disk_labels  = map(string)
             }))
         defaultValue: []
-      - name: auto_delete
-        description: Whether or not the boot disk should be auto-deleted
-        varType: bool
-        defaultValue: true
-      - name: can_ip_forward
-        description: Enable IP forwarding, for NAT instances for example
-        varType: string
-        defaultValue: "false"
-      - name: disk_size_gb
-        description: Boot disk size in GB
-        varType: string
-        defaultValue: "100"
-      - name: disk_type
-        description: Boot disk type, can be either pd-ssd, local-ssd, or pd-standard
-        varType: string
-        defaultValue: pd-standard
-      - name: ipv6_access_config
-        description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
-        varType: |-
-          list(object({
-              network_tier = string
-            }))
-        defaultValue: []
-      - name: labels
-        description: Labels, provided as a map
-        varType: map(string)
-        defaultValue: {}
-      - name: machine_type
-        description: Machine type to create, e.g. n1-standard-1
-        varType: string
-        defaultValue: n1-standard-1
-      - name: metadata
-        description: Metadata, provided as a map
-        varType: map(string)
-        defaultValue: {}
-      - name: name_prefix
-        description: Name prefix for the instance template
-        varType: string
-        defaultValue: default-it
       - name: network
         description: The name or self_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks.
-        varType: string
-        defaultValue: ""
-      - name: project_id
-        description: The GCP project ID
-        varType: string
-      - name: service_account
-        description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
-        varType: |-
-          object({
-              email  = string
-              scopes = set(string)
-            })
-        required: true
-      - name: source_image
-        description: Source disk image. If neither source_image nor source_image_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image.
-        varType: string
-        defaultValue: ""
-      - name: source_image_family
-        description: Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image.
-        varType: string
-        defaultValue: ""
-      - name: source_image_project
-        description: Project where the source image comes from. The default project contains Rocky Linux images.
-        varType: string
-        defaultValue: ""
-      - name: startup_script
-        description: User startup script to run when instances spin up
         varType: string
         defaultValue: ""
       - name: subnetwork
@@ -179,9 +152,36 @@ spec:
         description: The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used.
         varType: string
         defaultValue: ""
-      - name: tags
-        description: Network tags, provided as a list
-        varType: list(string)
+      - name: startup_script
+        description: User startup script to run when instances spin up
+        varType: string
+        defaultValue: ""
+      - name: metadata
+        description: Metadata, provided as a map
+        varType: map(string)
+        defaultValue: {}
+      - name: service_account
+        description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
+        varType: |-
+          object({
+              email  = string
+              scopes = set(string)
+            })
+        required: true
+      - name: access_config
+        description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
+        varType: |-
+          list(object({
+              nat_ip       = string
+              network_tier = string
+            }))
+        defaultValue: []
+      - name: ipv6_access_config
+        description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
+        varType: |-
+          list(object({
+              network_tier = string
+            }))
         defaultValue: []
     outputs:
       - name: preemptible_name

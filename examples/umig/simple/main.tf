@@ -34,11 +34,11 @@ module "umig" {
   source  = "terraform-google-modules/vm/google//modules/umig"
   version = "~> 12.0"
 
-  project_id        = var.project_id
-  subnetwork        = var.subnetwork
+  project_id         = var.project_id
+  subnetwork         = var.subnetwork
   subnetwork_project = var.project_id
-  num_instances     = var.num_instances
-  hostname          = "umig-simple"
-  instance_template = module.instance_template.self_link
-  region            = var.region
+  num_instances      = var.num_instances
+  hostname           = "umig-simple"
+  instance_template  = module.instance_template.self_link
+  region             = var.region
 }

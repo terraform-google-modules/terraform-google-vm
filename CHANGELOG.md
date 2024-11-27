@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [12.1.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v12.1.0...v12.1.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* Update variable's order in variables.tf and update display met… ([#444](https://github.com/terraform-google-modules/terraform-google-vm/issues/444)) ([99a2395](https://github.com/terraform-google-modules/terraform-google-vm/commit/99a2395d95591cb8191086f23399c69ca2cbd05b))
+
 ## [12.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v12.0.0...v12.1.0) (2024-10-22)
 
 

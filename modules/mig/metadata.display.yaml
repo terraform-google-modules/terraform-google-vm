@@ -67,6 +67,7 @@ spec:
         hostname:
           name: hostname
           title: Hostname
+          invisible: false
         instance_template:
           name: instance_template
           title: Instance Template
@@ -79,6 +80,9 @@ spec:
         mig_name:
           name: mig_name
           title: Mig Name
+          invisible: false
+          regexValidation: ^[a-z][a-z0-9-]{0,61}[a-z0-9]$
+          validation: Use lowercase letters, numbers, and hyphens. Start with a letter and end with letter/number. Must be 63 characters or fewer.
         mig_timeouts:
           name: mig_timeouts
           title: Mig Timeouts
@@ -91,6 +95,7 @@ spec:
         project_id:
           name: project_id
           title: Project Id
+          invisible: false
         region:
           name: region
           title: Region
@@ -109,6 +114,7 @@ spec:
         target_size:
           name: target_size
           title: Target Size
+          invisible: false
         update_policy:
           name: update_policy
           title: Update Policy

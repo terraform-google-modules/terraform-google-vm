@@ -22,10 +22,9 @@ variable "project_id" {
   default     = null
 }
 
-variable "hostname" {
-  description = "Hostname prefix for instances"
+variable "region" {
+  description = "The Google Cloud region where the managed instance group resides."
   type        = string
-  default     = "default"
 }
 
 variable "mig_name" {
@@ -34,9 +33,16 @@ variable "mig_name" {
   default     = ""
 }
 
-variable "region" {
-  description = "The Google Cloud region where the managed instance group resides."
+variable "hostname" {
+  description = "Hostname prefix for instances"
   type        = string
+  default     = "default"
+}
+
+variable "target_size" {
+  description = "The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set."
+  type        = number
+  default     = 1
 }
 
 variable "instance_template_initial_version" {
@@ -52,12 +58,6 @@ variable "instance_template_next_version" {
 variable "next_version_percent" {
   description = "Percentage of instances defined in the second version"
   type        = number
-}
-
-variable "target_size" {
-  description = "The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set."
-  type        = number
-  default     = 1
 }
 
 variable "target_pools" {

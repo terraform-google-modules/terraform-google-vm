@@ -83,18 +83,22 @@ spec:
       - name: project_id
         description: The Google Cloud project ID
         varType: string
-      - name: hostname
-        description: Hostname prefix for instances
-        varType: string
-        defaultValue: default
-      - name: mig_name
-        description: Managed instance group name. When variable is empty, name will be derived from var.hostname.
-        varType: string
-        defaultValue: ""
       - name: region
         description: The Google Cloud region where the managed instance group resides.
         varType: string
         required: true
+      - name: mig_name
+        description: Managed instance group name. When variable is empty, name will be derived from var.hostname.
+        varType: string
+        defaultValue: ""
+      - name: hostname
+        description: Hostname prefix for instances
+        varType: string
+        defaultValue: default
+      - name: target_size
+        description: The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set.
+        varType: number
+        defaultValue: 1
       - name: instance_template
         description: Instance template self_link used to create compute instances
         varType: string
@@ -102,13 +106,9 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
-              version: ~> 12.0
+              version: ">= 12.0"
             spec:
               outputExpr: self_link
-      - name: target_size
-        description: The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set.
-        varType: number
-        defaultValue: 1
       - name: target_pools
         description: The target load balancing pools to assign this group to.
         varType: list(string)

@@ -20,10 +20,28 @@ variable "project_id" {
   default     = null
 }
 
+variable "region" {
+  type        = string
+  description = "Region where the instance template should be created."
+  default     = null
+}
+
 variable "name_prefix" {
   description = "Name prefix for the instance template"
   type        = string
   default     = "default-instance-template"
+}
+
+variable "machine_type" {
+  description = "Machine type to create, e.g. n1-standard-1"
+  type        = string
+  default     = "n1-standard-1"
+}
+
+variable "spot" {
+  type        = bool
+  description = "Provision a SPOT instance"
+  default     = false
 }
 
 variable "description" {
@@ -36,12 +54,6 @@ variable "instance_description" {
   description = "Description of the generated instances"
   type        = string
   default     = ""
-}
-
-variable "machine_type" {
-  description = "Machine type to create, e.g. n1-standard-1"
-  type        = string
-  default     = "n1-standard-1"
 }
 
 variable "min_cpu_platform" {
@@ -71,12 +83,6 @@ variable "labels" {
 variable "preemptible" {
   type        = bool
   description = "Allow the instance to be preempted"
-  default     = false
-}
-
-variable "spot" {
-  type        = bool
-  description = "Provision a SPOT instance"
   default     = false
 }
 
@@ -111,12 +117,6 @@ variable "spot_instance_termination_action" {
     condition     = contains(["STOP", "DELETE"], var.spot_instance_termination_action)
     error_message = "Allowed values for spot_instance_termination_action are: \"STOP\" or \"DELETE\"."
   }
-}
-
-variable "region" {
-  type        = string
-  description = "Region where the instance template should be created."
-  default     = null
 }
 
 variable "enable_nested_virtualization" {

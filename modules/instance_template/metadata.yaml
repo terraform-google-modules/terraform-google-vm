@@ -83,10 +83,21 @@ spec:
       - name: project_id
         description: The GCP project ID
         varType: string
+      - name: region
+        description: Region where the instance template should be created.
+        varType: string
       - name: name_prefix
         description: Name prefix for the instance template
         varType: string
         defaultValue: default-instance-template
+      - name: machine_type
+        description: Machine type to create, e.g. n1-standard-1
+        varType: string
+        defaultValue: n1-standard-1
+      - name: spot
+        description: Provision a SPOT instance
+        varType: bool
+        defaultValue: false
       - name: description
         description: The template's description
         varType: string
@@ -95,10 +106,6 @@ spec:
         description: Description of the generated instances
         varType: string
         defaultValue: ""
-      - name: machine_type
-        description: Machine type to create, e.g. n1-standard-1
-        varType: string
-        defaultValue: n1-standard-1
       - name: min_cpu_platform
         description: "Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform"
         varType: string
@@ -118,10 +125,6 @@ spec:
         description: Allow the instance to be preempted
         varType: bool
         defaultValue: false
-      - name: spot
-        description: Provision a SPOT instance
-        varType: bool
-        defaultValue: false
       - name: automatic_restart
         description: (Optional) Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user).
         varType: bool
@@ -137,9 +140,6 @@ spec:
         description: Action to take when Compute Engine preempts a Spot VM.
         varType: string
         defaultValue: STOP
-      - name: region
-        description: Region where the instance template should be created.
-        varType: string
       - name: enable_nested_virtualization
         description: Defines whether the instance should have nested virtualization enabled.
         varType: bool
@@ -265,24 +265,24 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-memorystore
-              version: ~> 10.0
+              version: ">= 12.0"
             spec:
-              outputExpr: env_vars
+              outputExpr: "{\"REDIS_HOST\": host, \"REDIS_PORT\": port}"
           - source:
               source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
-              version: ~> 21.0
+              version: ">= 23.0"
             spec:
-              outputExpr: env_vars
+              outputExpr: "{\"CLOUD_SQL_DATABASE_HOST\" : instance_first_ip_address, \"CLOUD_SQL_DATABASE_CONNECTION_NAME\" : instance_connection_name, \"CLOUD_SQL_DATABASE_NAME\" : env_vars.CLOUD_SQL_DATABASE_NAME}"
           - source:
               source: github.com/terraform-google-modules/terraform-google-sql-db//modules/mysql
-              version: ~> 22.0
+              version: ">= 23.0"
             spec:
-              outputExpr: env_vars
+              outputExpr: "{\"CLOUD_SQL_DATABASE_HOST\" : instance_first_ip_address, \"CLOUD_SQL_DATABASE_CONNECTION_NAME\" : instance_connection_name, \"CLOUD_SQL_DATABASE_NAME\" : env_vars.CLOUD_SQL_DATABASE_NAME}"
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
-              version: ~> 4.3
+              version: ">= 4.4"
             spec:
-              outputExpr: env_vars
+              outputExpr: "{\"SERVICE_ACCOUNT_EMAIL\" : email, \"SERVICE_ACCOUNT_IAM_EMAIL\" : iam_email}"
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
         varType: |-
@@ -294,7 +294,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
-              version: ~> 4.3
+              version: ">= 4.4"
             spec:
               outputExpr: email
               inputPath: email

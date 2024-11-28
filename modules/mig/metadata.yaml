@@ -296,6 +296,9 @@ spec:
         type: string
       - name: instance_group_manager
         description: An instance of google_compute_region_instance_group_manager of the instance group.
+        type:
+          - object
+          - base_instance_name: string
       - name: self_link
         description: Self-link of managed instance group
         type: string

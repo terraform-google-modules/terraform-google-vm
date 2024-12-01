@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [12.1.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v12.1.1...v12.1.2) (2024-12-01)
+
+
+### Bug Fixes
+
+* update the alt default value with correct type ([#446](https://github.com/terraform-google-modules/terraform-google-vm/issues/446)) ([78a223b](https://github.com/terraform-google-modules/terraform-google-vm/commit/78a223b692bbd3e20b0cee4d700750c506358936))
+
 ## [12.1.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v12.1.0...v12.1.1) (2024-11-27)
 
 

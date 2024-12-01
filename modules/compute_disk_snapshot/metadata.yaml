@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-vm
       sourceType: git
       dir: /modules/compute_disk_snapshot
-    version: 12.1.1
+    version: 12.1.2
     actuationTool:
       flavor: Terraform
       version: ">=0.13.0"

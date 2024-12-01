@@ -34,8 +34,8 @@ spec:
           altDefaults:
             - type: ALTERNATE_TYPE_DC
               value:
-                nat_ip: null
-                network_tier: PREMIUM
+                - nat_ip: null
+                  network_tier: PREMIUM
         additional_disks:
           name: additional_disks
           title: Additional Disks

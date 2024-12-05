@@ -24,6 +24,7 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | instance\_template | Instance template self\_link used to create compute instances | `string` | n/a | yes |
 | ipv6\_access\_config | IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access. | <pre>list(object({<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | labels | (Optional) Labels to override those from the template, provided as a map | `map(string)` | `null` | no |
+| metadata | Metadata, provided as a map. |  `map(string)` | `null` | no |
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
 | num\_instances | Number of instances to create. This value is ignored if static\_ips is provided. | `number` | `"1"` | no |
 | region | Region where the instances should be created. | `string` | `null` | no |

@@ -51,7 +51,6 @@ resource "google_compute_instance_from_template" "compute_instance" {
   deletion_protection = var.deletion_protection
   resource_policies   = var.resource_policies
   labels              = var.labels
-  metadata            = var.metadata
 
   params {
     resource_manager_tags = var.resource_manager_tags
@@ -91,5 +90,6 @@ resource "google_compute_instance_from_template" "compute_instance" {
   }
 
   source_instance_template = var.instance_template
+  metadata            = var.metadata
 }
 

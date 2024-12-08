@@ -129,16 +129,7 @@ spec:
         defaultValue: true
       - name: additional_disks
         description: List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#disk_name
-        varType: |-
-          list(object({
-              disk_name    = string
-              device_name  = string
-              auto_delete  = bool
-              boot         = bool
-              disk_size_gb = number
-              disk_type    = string
-              disk_labels  = map(string)
-            }))
+        varType: "list(object({\r\n    disk_name    = string\r\n    device_name  = string\r\n    auto_delete  = bool\r\n    boot         = bool\r\n    disk_size_gb = number\r\n    disk_type    = string\r\n    disk_labels  = map(string)\r\n  }))"
         defaultValue: []
       - name: network
         description: The name or self_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks.
@@ -162,26 +153,15 @@ spec:
         defaultValue: {}
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
-        varType: |-
-          object({
-              email  = string
-              scopes = set(string)
-            })
+        varType: "object({\r\n    email  = string\r\n    scopes = set(string)\r\n  })"
         required: true
       - name: access_config
         description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
-        varType: |-
-          list(object({
-              nat_ip       = string
-              network_tier = string
-            }))
+        varType: "list(object({\r\n    nat_ip       = string\r\n    network_tier = string\r\n  }))"
         defaultValue: []
       - name: ipv6_access_config
         description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
-        varType: |-
-          list(object({
-              network_tier = string
-            }))
+        varType: "list(object({\r\n    network_tier = string\r\n  }))"
         defaultValue: []
     outputs:
       - name: preemptible_name

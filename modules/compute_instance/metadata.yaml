@@ -106,18 +106,11 @@ spec:
         defaultValue: []
       - name: access_config
         description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
-        varType: |-
-          list(object({
-              nat_ip       = string
-              network_tier = string
-            }))
+        varType: "list(object({\r\n    nat_ip       = string\r\n    network_tier = string\r\n  }))"
         defaultValue: []
       - name: ipv6_access_config
         description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
-        varType: |-
-          list(object({
-              network_tier = string
-            }))
+        varType: "list(object({\r\n    network_tier = string\r\n  }))"
         defaultValue: []
       - name: num_instances
         description: Number of instances to create. This value is ignored if static_ips is provided.
@@ -143,11 +136,7 @@ spec:
         defaultValue: false
       - name: alias_ip_ranges
         description: (Optional) An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
-        varType: |-
-          list(object({
-              ip_cidr_range         = string
-              subnetwork_range_name = string
-            }))
+        varType: "list(object({\r\n    ip_cidr_range         = string\r\n    subnetwork_range_name = string\r\n  }))"
         defaultValue: []
       - name: resource_policies
         description: (Optional) A list of short names or self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported.
@@ -158,6 +147,9 @@ spec:
         varType: map(string)
       - name: resource_manager_tags
         description: (Optional) A tag is a key-value pair that can be attached to a Google Cloud resource. You can use tags to conditionally allow or deny policies based on whether a resource has a specific tag. This value is not returned by the API. In Terraform, this value cannot be updated and changing it will recreate the resource.
+        varType: map(string)
+      - name: metadata
+        description: Metadata Key Map
         varType: map(string)
     outputs:
       - name: available_zones

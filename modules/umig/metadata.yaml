@@ -101,20 +101,7 @@ spec:
         defaultValue: ""
       - name: additional_networks
         description: Additional network interface details for GCE, if any.
-        varType: |-
-          list(object({
-              network            = string
-              subnetwork         = string
-              subnetwork_project = string
-              network_ip         = string
-              access_config = list(object({
-                nat_ip       = string
-                network_tier = string
-              }))
-              ipv6_access_config = list(object({
-                network_tier = string
-              }))
-            }))
+        varType: "list(object({\r\n    network            = string\r\n    subnetwork         = string\r\n    subnetwork_project = string\r\n    network_ip         = string\r\n    access_config = list(object({\r\n      nat_ip       = string\r\n      network_tier = string\r\n    }))\r\n    ipv6_access_config = list(object({\r\n      network_tier = string\r\n    }))\r\n  }))"
         defaultValue: []
       - name: hostname
         description: Hostname of instances
@@ -130,11 +117,7 @@ spec:
         defaultValue: "1"
       - name: named_ports
         description: Named name and named port
-        varType: |-
-          list(object({
-              name = string
-              port = number
-            }))
+        varType: "list(object({\r\n    name = string\r\n    port = number\r\n  }))"
         defaultValue: []
       - name: instance_template
         description: Instance template self_link used to create compute instances
@@ -142,18 +125,11 @@ spec:
         required: true
       - name: access_config
         description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
-        varType: |-
-          list(list(object({
-              nat_ip       = string
-              network_tier = string
-            })))
+        varType: "list(list(object({\r\n    nat_ip       = string\r\n    network_tier = string\r\n  })))"
         defaultValue: []
       - name: ipv6_access_config
         description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
-        varType: |-
-          list(list(object({
-              network_tier = string
-            })))
+        varType: "list(list(object({\r\n    network_tier = string\r\n  })))"
         defaultValue: []
       - name: hostname_suffix_separator
         description: Separator character to compose hostname when add_hostname_suffix is set to true.

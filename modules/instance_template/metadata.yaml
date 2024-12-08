@@ -184,21 +184,7 @@ spec:
         defaultValue: "true"
       - name: additional_disks
         description: List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#disk_name
-        varType: |-
-          list(object({
-              auto_delete     = optional(bool, true)
-              boot            = optional(bool, false)
-              device_name     = optional(string)
-              disk_name       = optional(string)
-              disk_size_gb    = optional(number)
-              disk_type       = optional(string)
-              disk_labels     = optional(map(string), {})
-              interface       = optional(string)
-              mode            = optional(string)
-              source          = optional(string)
-              source_image    = optional(string)
-              source_snapshot = optional(string)
-            }))
+        varType: "list(object({\r\n    auto_delete     = optional(bool, true)\r\n    boot            = optional(bool, false)\r\n    device_name     = optional(string)\r\n    disk_name       = optional(string)\r\n    disk_size_gb    = optional(number)\r\n    disk_type       = optional(string)\r\n    disk_labels     = optional(map(string), {})\r\n    interface       = optional(string)\r\n    mode            = optional(string)\r\n    source          = optional(string)\r\n    source_image    = optional(string)\r\n    source_snapshot = optional(string)\r\n  }))"
         defaultValue: []
       - name: disk_resource_policies
         description: A list (short name or id) of resource policies to attach to this disk for automatic snapshot creations
@@ -228,27 +214,7 @@ spec:
         varType: string
       - name: additional_networks
         description: Additional network interface details for GCE, if any.
-        varType: |-
-          list(object({
-              network            = string
-              subnetwork         = string
-              subnetwork_project = string
-              network_ip         = string
-              nic_type           = string
-              stack_type         = string
-              queue_count        = number
-              access_config = list(object({
-                nat_ip       = string
-                network_tier = string
-              }))
-              ipv6_access_config = list(object({
-                network_tier = string
-              }))
-              alias_ip_range = list(object({
-                ip_cidr_range         = string
-                subnetwork_range_name = string
-              }))
-            }))
+        varType: "list(object({\r\n    network            = string\r\n    subnetwork         = string\r\n    subnetwork_project = string\r\n    network_ip         = string\r\n    nic_type           = string\r\n    stack_type         = string\r\n    queue_count        = number\r\n    access_config = list(object({\r\n      nat_ip       = string\r\n      network_tier = string\r\n    }))\r\n    ipv6_access_config = list(object({\r\n      network_tier = string\r\n    }))\r\n    alias_ip_range = list(object({\r\n      ip_cidr_range         = string\r\n      subnetwork_range_name = string\r\n    }))\r\n  }))"
         defaultValue: []
       - name: total_egress_bandwidth_tier
         description: Egress bandwidth tier setting for supported VM families
@@ -285,11 +251,7 @@ spec:
               outputExpr: "{\"SERVICE_ACCOUNT_EMAIL\" : email, \"SERVICE_ACCOUNT_IAM_EMAIL\" : iam_email}"
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
-        varType: |-
-          object({
-              email  = string
-              scopes = optional(set(string), ["cloud-platform"])
-            })
+        varType: "object({\r\n    email  = string\r\n    scopes = optional(set(string), [\"cloud-platform\"])\r\n  })"
         required: true
         connections:
           - source:
@@ -304,12 +266,7 @@ spec:
         defaultValue: false
       - name: shielded_instance_config
         description: Not used unless enable_shielded_vm is true. Shielded VM configuration for the instance.
-        varType: |-
-          object({
-              enable_secure_boot          = bool
-              enable_vtpm                 = bool
-              enable_integrity_monitoring = bool
-            })
+        varType: "object({\r\n    enable_secure_boot          = bool\r\n    enable_vtpm                 = bool\r\n    enable_integrity_monitoring = bool\r\n  })"
         defaultValue:
           enable_integrity_monitoring: true
           enable_secure_boot: true
@@ -323,36 +280,18 @@ spec:
         varType: string
       - name: access_config
         description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
-        varType: |-
-          list(object({
-              nat_ip       = string
-              network_tier = string
-            }))
+        varType: "list(object({\r\n    nat_ip       = string\r\n    network_tier = string\r\n  }))"
         defaultValue: []
       - name: ipv6_access_config
         description: IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access.
-        varType: |-
-          list(object({
-              network_tier = string
-            }))
+        varType: "list(object({\r\n    network_tier = string\r\n  }))"
         defaultValue: []
       - name: gpu
         description: GPU information. Type and count of GPU to attach to the instance template. See https://cloud.google.com/compute/docs/gpus more details
-        varType: |-
-          object({
-              type  = string
-              count = number
-            })
+        varType: "object({\r\n    type  = string\r\n    count = number\r\n  })"
       - name: alias_ip_range
-        description: |
-          An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
-          ip_cidr_range: The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. At the time of writing only a netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API error.
-          subnetwork_range_name: The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used.
-        varType: |-
-          object({
-              ip_cidr_range         = string
-              subnetwork_range_name = string
-            })
+        description: "An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.\r\nip_cidr_range: The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. At the time of writing only a netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API error.\r\nsubnetwork_range_name: The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used.\r\n"
+        varType: "object({\r\n    ip_cidr_range         = string\r\n    subnetwork_range_name = string\r\n  })"
     outputs:
       - name: name
         description: Name of instance template

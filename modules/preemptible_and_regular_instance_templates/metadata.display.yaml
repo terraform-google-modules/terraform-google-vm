@@ -1,0 +1,93 @@
+# Copyright 2024 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-vm-preemptible-and-regular-instance-templates-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: preemptible_and_regular_instance_templates
+    source:
+      repo: https://github.com/terraform-google-modules/terraform-google-vm
+      sourceType: git
+      dir: /modules/preemptible_and_regular_instance_templates
+  ui:
+    input:
+      variables:
+        access_config:
+          name: access_config
+          title: Access Config
+        additional_disks:
+          name: additional_disks
+          title: Additional Disks
+        auto_delete:
+          name: auto_delete
+          title: Auto Delete
+        can_ip_forward:
+          name: can_ip_forward
+          title: Can Ip Forward
+        disk_size_gb:
+          name: disk_size_gb
+          title: Disk Size Gb
+        disk_type:
+          name: disk_type
+          title: Disk Type
+        ipv6_access_config:
+          name: ipv6_access_config
+          title: Ipv6 Access Config
+        labels:
+          name: labels
+          title: Labels
+        machine_type:
+          name: machine_type
+          title: Machine Type
+        metadata:
+          name: metadata
+          title: Metadata
+        name_prefix:
+          name: name_prefix
+          title: Name Prefix
+        network:
+          name: network
+          title: Network
+        project_id:
+          name: project_id
+          title: Project Id
+        service_account:
+          name: service_account
+          title: Service Account
+        source_image:
+          name: source_image
+          title: Source Image
+        source_image_family:
+          name: source_image_family
+          title: Source Image Family
+        source_image_project:
+          name: source_image_project
+          title: Source Image Project
+        startup_script:
+          name: startup_script
+          title: Startup Script
+        subnetwork:
+          name: subnetwork
+          title: Subnetwork
+        subnetwork_project:
+          name: subnetwork_project
+          title: Subnetwork Project
+        tags:
+          name: tags
+          title: Tags

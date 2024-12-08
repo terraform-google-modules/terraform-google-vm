@@ -131,6 +131,6 @@ variable "resource_manager_tags" {
 
 variable "metadata" {
   description = "Metadata Key Map"
-  type = map(string)
-  default = null
+  type        = map(string)
+  default     = null
 }

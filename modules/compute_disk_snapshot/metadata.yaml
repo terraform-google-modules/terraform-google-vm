@@ -94,54 +94,15 @@ spec:
         required: true
       - name: snapshot_retention_policy
         description: The retention policy to be applied to the schedule policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#retention_policy
-        varType: |-
-          object(
-              {
-                max_retention_days    = number
-                on_source_disk_delete = string
-              }
-            )
+        varType: "object(\r\n    {\r\n      max_retention_days    = number\r\n      on_source_disk_delete = string\r\n    }\r\n  )"
         required: true
       - name: snapshot_schedule
         description: The scheduled to be used by the snapshot policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#schedule
-        varType: |-
-          object(
-              {
-                daily_schedule = object(
-                  {
-                    days_in_cycle = number
-                    start_time    = string
-                  }
-                )
-                hourly_schedule = object(
-                  {
-                    hours_in_cycle = number
-                    start_time     = string
-                  }
-                )
-                weekly_schedule = object(
-                  {
-                    day_of_weeks = set(object(
-                      {
-                        day        = string
-                        start_time = string
-                      }
-                    ))
-                  }
-                )
-              }
-            )
+        varType: "object(\r\n    {\r\n      daily_schedule = object(\r\n        {\r\n          days_in_cycle = number\r\n          start_time    = string\r\n        }\r\n      )\r\n      hourly_schedule = object(\r\n        {\r\n          hours_in_cycle = number\r\n          start_time     = string\r\n        }\r\n      )\r\n      weekly_schedule = object(\r\n        {\r\n          day_of_weeks = set(object(\r\n            {\r\n              day        = string\r\n              start_time = string\r\n            }\r\n          ))\r\n        }\r\n      )\r\n    }\r\n  )"
         required: true
       - name: snapshot_properties
         description: The properties of the schedule policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#snapshot_properties
-        varType: |-
-          object(
-              {
-                guest_flush       = bool
-                labels            = map(string)
-                storage_locations = list(string)
-              }
-            )
+        varType: "object(\r\n    {\r\n      guest_flush       = bool\r\n      labels            = map(string)\r\n      storage_locations = list(string)\r\n    }\r\n  )"
       - name: disks
         description: List of self_links persistent disks to attach the snapshot policy to (ie. projects/project_id/disks/diskname/zones/zone_name)
         varType: list(string)

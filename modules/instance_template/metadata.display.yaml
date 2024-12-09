@@ -60,7 +60,7 @@ spec:
         description:
           name: description
           title: Description
-          invisible: false
+          level: 1
         disk_encryption_key:
           name: disk_encryption_key
           title: Disk Encryption Key
@@ -91,7 +91,7 @@ spec:
         instance_description:
           name: instance_description
           title: Instance Description
-          invisible: false
+          level: 1
         ipv6_access_config:
           name: ipv6_access_config
           title: Ipv6 Access Config
@@ -101,7 +101,7 @@ spec:
         machine_type:
           name: machine_type
           title: Machine Type
-          invisible: false
+          level: 1
         maintenance_interval:
           name: maintenance_interval
           title: Maintenance Interval
@@ -114,9 +114,9 @@ spec:
         name_prefix:
           name: name_prefix
           title: Name Prefix
-          invisible: false
           regexValidation: ^[a-z][a-z0-9-]{0,51}[a-z0-9]$
           validation: Use lowercase letters, numbers, and hyphens. Start with a letter and end with letter/number. Must be 53 characters or fewer.
+          level: 1
         network:
           name: network
           title: Network
@@ -135,11 +135,11 @@ spec:
         project_id:
           name: project_id
           title: Project Id
-          invisible: false
+          level: 1
         region:
           name: region
           title: Region
-          invisible: false
+          level: 1
         resource_policies:
           name: resource_policies
           title: Resource Policies
@@ -161,7 +161,7 @@ spec:
         spot:
           name: spot
           title: Spot
-          invisible: false
+          level: 1
         spot_instance_termination_action:
           name: spot_instance_termination_action
           title: Spot Instance Termination Action

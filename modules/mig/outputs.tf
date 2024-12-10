@@ -35,3 +35,11 @@ output "health_check_self_links" {
   description = "All self_links of healthchecks created for the instance group."
   value       = local.healthchecks
 }
+
+output "apphub_workload_uri" {
+  value = {
+    workload_uri = "//compute.googleapis.com/projects${element(split("/projects", google_compute_region_instance_group_manager.mig.instance_group), 1)}"
+    workload_id  = substr(join("-", [tostring(google_compute_region_instance_group_manager.mig.name), md5(tostring(google_compute_region_instance_group_manager.mig.self_link))]), 0, 63)
+  }
+  description = "Workload URI in CAIS style to be used by Apphub."
+}

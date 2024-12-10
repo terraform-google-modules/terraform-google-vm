@@ -52,6 +52,7 @@ The current version is 2.X. The following guides are available to assist with up
 
 | Name | Description |
 |------|-------------|
+| apphub\_workload\_uri | Workload URI in CAIS style to be used by Apphub. |
 | health\_check\_self\_links | All self\_links of healthchecks created for the instance group. |
 | instance\_group | Instance-group url of managed instance group |
 | instance\_group\_manager | An instance of google\_compute\_region\_instance\_group\_manager of the instance group. |

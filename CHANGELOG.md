@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [12.2.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v12.1.2...v12.2.0) (2024-12-10)
+
+
+### Features
+
+* add apphub_workload_uri output variable and update metadata ([#451](https://github.com/terraform-google-modules/terraform-google-vm/issues/451)) ([fa80759](https://github.com/terraform-google-modules/terraform-google-vm/commit/fa80759c0909405bcf99eabed2b938113bfe1c87))
+
 ## [12.1.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v12.1.1...v12.1.2) (2024-12-01)
 
 

@@ -83,6 +83,7 @@ spec:
       - name: project_id
         description: The Google Cloud project ID
         varType: string
+        required: true
       - name: region
         description: The Google Cloud region where the managed instance group resides.
         varType: string

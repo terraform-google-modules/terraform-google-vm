@@ -38,6 +38,7 @@ module "mig_with_percent" {
   source  = "terraform-google-modules/vm/google//modules/mig_with_percent"
   version = "~> 12.0"
 
+  project_id                        = var.project_id
   region                            = var.region
   target_size                       = 4
   hostname                          = "mig-with-percent-simple"

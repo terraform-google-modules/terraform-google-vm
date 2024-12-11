@@ -39,7 +39,7 @@ The current version is 2.X. The following guides are available to assist with up
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | `number` | `2` | no |
 | named\_ports | Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports | <pre>list(object({<br>    name = string<br>    port = number<br>  }))</pre> | `[]` | no |
 | next\_version\_percent | Percentage of instances defined in the second version | `number` | n/a | yes |
-| project\_id | The Google Cloud project ID | `string` | `null` | no |
+| project\_id | The Google Cloud project ID | `string` | n/a | yes |
 | region | The Google Cloud region where the managed instance group resides. | `string` | n/a | yes |
 | scaling\_schedules | Autoscaling, scaling schedule block. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#scaling_schedules | <pre>list(object({<br>    disabled              = bool<br>    duration_sec          = number<br>    min_required_replicas = number<br>    name                  = string<br>    schedule              = string<br>    time_zone             = string<br>  }))</pre> | `[]` | no |
 | stateful\_disks | Disks created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs | <pre>list(object({<br>    device_name = string<br>    delete_rule = string<br>  }))</pre> | `[]` | no |

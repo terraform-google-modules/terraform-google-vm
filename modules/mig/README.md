@@ -38,7 +38,7 @@ The current version is 2.X. The following guides are available to assist with up
 | mig\_timeouts | Times for creation, deleting and updating the MIG resources. Can be helpful when using wait\_for\_instances to allow a longer VM startup time. | <pre>object({<br>    create = string<br>    update = string<br>    delete = string<br>  })</pre> | <pre>{<br>  "create": "5m",<br>  "delete": "15m",<br>  "update": "5m"<br>}</pre> | no |
 | min\_replicas | The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. | `number` | `2` | no |
 | named\_ports | Named name and named port. https://cloud.google.com/load-balancing/docs/backend-service#named_ports | <pre>list(object({<br>    name = string<br>    port = number<br>  }))</pre> | `[]` | no |
-| project\_id | The Google Cloud project ID | `string` | `null` | no |
+| project\_id | The Google Cloud project ID | `string` | n/a | yes |
 | region | The Google Cloud region where the managed instance group resides. | `string` | n/a | yes |
 | scaling\_schedules | Autoscaling, scaling schedule block. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#scaling_schedules | <pre>list(object({<br>    disabled              = bool<br>    duration_sec          = number<br>    min_required_replicas = number<br>    name                  = string<br>    schedule              = string<br>    time_zone             = string<br>  }))</pre> | `[]` | no |
 | stateful\_disks | Disks created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-disks-in-migs | <pre>list(object({<br>    device_name = string<br>    delete_rule = string<br>  }))</pre> | `[]` | no |

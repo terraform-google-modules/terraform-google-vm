@@ -17,13 +17,11 @@
 variable "project_id" {
   type        = string
   description = "The GCP project ID"
-  default     = null
 }
 
 variable "region" {
   type        = string
   description = "Region where the instance template should be created."
-  default     = null
 }
 
 variable "name_prefix" {

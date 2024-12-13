@@ -83,6 +83,11 @@ spec:
       - name: project_id
         description: The GCP project ID
         varType: string
+        required: true
+      - name: region
+        description: Region where the instance template should be created.
+        varType: string
+        required: true
       - name: name_prefix
         description: Name prefix for the instance template
         varType: string

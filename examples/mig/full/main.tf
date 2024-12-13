@@ -32,6 +32,7 @@ module "instance_template" {
 
   name_prefix     = "${var.hostname}-instance-template"
   project_id      = var.project_id
+  region          = var.region
   machine_type    = var.machine_type
   tags            = var.tags
   labels          = var.labels

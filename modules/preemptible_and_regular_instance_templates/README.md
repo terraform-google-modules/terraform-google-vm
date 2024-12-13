@@ -24,7 +24,8 @@ See the [simple](../../examples/preemptible_and_regular_instance_templates/simpl
 | metadata | Metadata, provided as a map | `map(string)` | `{}` | no |
 | name\_prefix | Name prefix for the instance template | `string` | `"default-it"` | no |
 | network | The name or self\_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | `string` | `""` | no |
-| project\_id | The GCP project ID | `string` | `null` | no |
+| project\_id | The GCP project ID | `string` | n/a | yes |
+| region | Region where the instance template should be created. | `string` | n/a | yes |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account. | <pre>object({<br>    email  = string<br>    scopes = set(string)<br>  })</pre> | n/a | yes |
 | source\_image | Source disk image. If neither source\_image nor source\_image\_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image. | `string` | `""` | no |
 | source\_image\_family | Source image family. If neither source\_image nor source\_image\_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image. | `string` | `""` | no |

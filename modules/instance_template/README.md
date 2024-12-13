@@ -44,8 +44,8 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | nic\_type | Valid values are "VIRTIO\_NET", "GVNIC" or set to null to accept API default behavior. | `string` | `null` | no |
 | on\_host\_maintenance | Instance availability Policy | `string` | `"MIGRATE"` | no |
 | preemptible | Allow the instance to be preempted | `bool` | `false` | no |
-| project\_id | The GCP project ID | `string` | `null` | no |
-| region | Region where the instance template should be created. | `string` | `null` | no |
+| project\_id | The GCP project ID | `string` | n/a | yes |
+| region | Region where the instance template should be created. | `string` | n/a | yes |
 | resource\_policies | A list of self\_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported. | `list(string)` | `[]` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account. | <pre>object({<br>    email  = string<br>    scopes = optional(set(string), ["cloud-platform"])<br>  })</pre> | n/a | yes |
 | shielded\_instance\_config | Not used unless enable\_shielded\_vm is true. Shielded VM configuration for the instance. | <pre>object({<br>    enable_secure_boot          = bool<br>    enable_vtpm                 = bool<br>    enable_integrity_monitoring = bool<br>  })</pre> | <pre>{<br>  "enable_integrity_monitoring": true,<br>  "enable_secure_boot": true,<br>  "enable_vtpm": true<br>}</pre> | no |

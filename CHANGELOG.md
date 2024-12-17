@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v12.1.2...v13.0.0) (2024-12-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* make project_id and region as required input for instance_template ([#455](https://github.com/terraform-google-modules/terraform-google-vm/issues/455))
+* make project_id as required input for modules/mig and update apphub_workload_uri… ([#453](https://github.com/terraform-google-modules/terraform-google-vm/issues/453))
+
+### Features
+
+* add apphub_workload_uri output variable and update metadata ([#451](https://github.com/terraform-google-modules/terraform-google-vm/issues/451)) ([fa80759](https://github.com/terraform-google-modules/terraform-google-vm/commit/fa80759c0909405bcf99eabed2b938113bfe1c87))
+
+
+### Bug Fixes
+
+* make project_id and region as required input for instance_template ([#455](https://github.com/terraform-google-modules/terraform-google-vm/issues/455)) ([2b8b2b3](https://github.com/terraform-google-modules/terraform-google-vm/commit/2b8b2b3d26d2c47e1811bc7beb5834b79b623683))
+* make project_id as required input for modules/mig and update apphub_workload_uri… ([#453](https://github.com/terraform-google-modules/terraform-google-vm/issues/453)) ([0c9d75b](https://github.com/terraform-google-modules/terraform-google-vm/commit/0c9d75bee450e9ae5da1072502ec364d14be7af4))
+
 ## [12.1.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v12.1.1...v12.1.2) (2024-12-01)
 
 

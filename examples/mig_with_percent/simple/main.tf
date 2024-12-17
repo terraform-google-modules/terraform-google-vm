@@ -30,6 +30,8 @@ module "preemptible_and_regular_instance_templates" {
   source  = "terraform-google-modules/vm/google//modules/preemptible_and_regular_instance_templates"
   version = "~> 12.0"
 
+  project_id      = var.project_id
+  region          = var.region
   subnetwork      = var.subnetwork
   service_account = var.service_account
 }

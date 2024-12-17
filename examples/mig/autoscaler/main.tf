@@ -31,6 +31,7 @@ module "instance_template" {
   version = "~> 12.0"
 
   project_id      = var.project_id
+  region          = var.region
   subnetwork      = var.subnetwork
   service_account = var.service_account
 }

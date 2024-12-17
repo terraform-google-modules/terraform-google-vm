@@ -26,6 +26,7 @@ module "preemptible_and_regular_instance_templates" {
 
   subnetwork      = var.subnetwork
   project_id      = var.project_id
+  region          = var.region
   service_account = var.service_account
   name_prefix     = "pvm-and-regular-simple"
   tags            = var.tags

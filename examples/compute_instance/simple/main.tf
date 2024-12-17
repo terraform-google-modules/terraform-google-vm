@@ -16,7 +16,7 @@
 
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 12.0"
+  version = "~> 13.0"
 
   region             = var.region
   project_id         = var.project_id
@@ -27,7 +27,7 @@ module "instance_template" {
 
 module "compute_instance" {
   source  = "terraform-google-modules/vm/google//modules/compute_instance"
-  version = "~> 12.0"
+  version = "~> 13.0"
 
   region              = var.region
   zone                = var.zone

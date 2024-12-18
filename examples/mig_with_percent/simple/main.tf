@@ -28,7 +28,7 @@ provider "google-beta" {
 
 module "preemptible_and_regular_instance_templates" {
   source  = "terraform-google-modules/vm/google//modules/preemptible_and_regular_instance_templates"
-  version = "~> 12.0"
+  version = "~> 13.0"
 
   project_id      = var.project_id
   region          = var.region
@@ -38,7 +38,7 @@ module "preemptible_and_regular_instance_templates" {
 
 module "mig_with_percent" {
   source  = "terraform-google-modules/vm/google//modules/mig_with_percent"
-  version = "~> 12.0"
+  version = "~> 13.0"
 
   project_id                        = var.project_id
   region                            = var.region

@@ -89,7 +89,7 @@ module "instance_template" {
 
 module "compute_instance" {
   source  = "terraform-google-modules/vm/google//modules/compute_instance"
-  version = "~> 12.0"
+  version = "~> 13.0"
 
   region              = var.region
   subnetwork          = var.subnetwork

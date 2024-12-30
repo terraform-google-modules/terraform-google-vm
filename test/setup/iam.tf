@@ -16,7 +16,6 @@
 
 locals {
   vm_required_roles = [
-    "roles/owner",
     "roles/compute.admin",
     "roles/compute.networkAdmin",
     "roles/iam.serviceAccountUser",

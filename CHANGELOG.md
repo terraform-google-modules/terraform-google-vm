@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.0.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.0.1...v13.0.2) (2025-01-07)
+
+
+### Bug Fixes
+
+* add new field location in apphub_workload_uri output of mig module ([#462](https://github.com/terraform-google-modules/terraform-google-vm/issues/462)) ([47df12d](https://github.com/terraform-google-modules/terraform-google-vm/commit/47df12d308f3a95c907dea9b1eb8fd8dfc0404de))
+* use less privilege roles for ci service account ([#459](https://github.com/terraform-google-modules/terraform-google-vm/issues/459)) ([ff60365](https://github.com/terraform-google-modules/terraform-google-vm/commit/ff603651bb3f66b7ef397749e15557713e9a0f69))
+
 ## [13.0.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.0.0...v13.0.1) (2024-12-17)
 
 

@@ -375,7 +375,7 @@ variable "confidential_instance_type" {
 variable "access_config" {
   description = "Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet."
   type = list(object({
-    nat_ip       = string
+    nat_ip       = optional(string)
     network_tier = string
   }))
   default = []

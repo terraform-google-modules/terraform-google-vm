@@ -120,6 +120,9 @@ spec:
         network:
           name: network
           title: Network
+          altDefaults:
+            - type: ALTERNATE_TYPE_DC
+              value: default  
         network_ip:
           name: network_ip
           title: Network Ip

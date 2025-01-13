@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.0.2...v13.1.0) (2025-01-13)
+
+
+### Features
+
+* make nat_ip of access_config optional ([#463](https://github.com/terraform-google-modules/terraform-google-vm/issues/463)) ([b3661b9](https://github.com/terraform-google-modules/terraform-google-vm/commit/b3661b922bb8aabcee05280470fc16a1d0bc152d))
+
 ## [13.0.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.0.1...v13.0.2) (2025-01-07)
 
 

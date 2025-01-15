@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.1.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.1.0...v13.1.1) (2025-01-13)
+
+
+### Bug Fixes
+
+* add alternate default for network input of instance_template ([#466](https://github.com/terraform-google-modules/terraform-google-vm/issues/466)) ([7fb0320](https://github.com/terraform-google-modules/terraform-google-vm/commit/7fb03200fcf5fa1d98da1649da8a389a9b53cc08))
+
 ## [13.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.0.2...v13.1.0) (2025-01-13)
 
 

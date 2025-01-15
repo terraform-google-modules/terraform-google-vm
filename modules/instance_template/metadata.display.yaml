@@ -51,6 +51,7 @@ spec:
         automatic_restart:
           name: automatic_restart
           title: Automatic Restart
+          level: 1
         can_ip_forward:
           name: can_ip_forward
           title: Can Ip Forward
@@ -73,9 +74,11 @@ spec:
         disk_size_gb:
           name: disk_size_gb
           title: Disk Size Gb
+          level: 1
         disk_type:
           name: disk_type
           title: Disk Type
+          level: 1
         enable_confidential_vm:
           name: enable_confidential_vm
           title: Enable Confidential Vm
@@ -111,6 +114,11 @@ spec:
         min_cpu_platform:
           name: min_cpu_platform
           title: Min Cpu Platform
+          enumValueLabels:
+            - label: Intel Haswell
+              value: Intel Haswell
+            - label: Intel Skylake
+              value: Intel Skylake
         name_prefix:
           name: name_prefix
           title: Name Prefix
@@ -120,6 +128,7 @@ spec:
         network:
           name: network
           title: Network
+          level: 1
           altDefaults:
             - type: ALTERNATE_TYPE_DC
               value: default
@@ -155,6 +164,7 @@ spec:
         source_image:
           name: source_image
           title: Source Image
+          level: 1
         source_image_family:
           name: source_image_family
           title: Source Image Family
@@ -177,6 +187,7 @@ spec:
         subnetwork:
           name: subnetwork
           title: Subnetwork
+          level: 1
         subnetwork_project:
           name: subnetwork_project
           title: Subnetwork Project
@@ -186,6 +197,7 @@ spec:
         threads_per_core:
           name: threads_per_core
           title: Threads Per Core
+          level: 1
         total_egress_bandwidth_tier:
           name: total_egress_bandwidth_tier
           title: Total Egress Bandwidth Tier

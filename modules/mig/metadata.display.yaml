@@ -46,6 +46,14 @@ spec:
         autoscaling_mode:
           name: autoscaling_mode
           title: Autoscaling Mode
+          level: 1
+          enumValueLabels:
+            - label: ON
+              value: ON
+            - label: ONLY_SCALE_OUT
+              value: ONLY_SCALE_OUT
+            - label: OFF
+              value: OFF
         autoscaling_scale_in_control:
           name: autoscaling_scale_in_control
           title: Autoscaling Scale In Control
@@ -77,6 +85,7 @@ spec:
         max_replicas:
           name: max_replicas
           title: Max Replicas
+          level: 1
         mig_name:
           name: mig_name
           title: Mig Name
@@ -89,6 +98,7 @@ spec:
         min_replicas:
           name: min_replicas
           title: Min Replicas
+          level: 1
         named_ports:
           name: named_ports
           title: Named Ports

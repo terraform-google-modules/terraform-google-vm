@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.1.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.1.1...v13.1.2) (2025-01-16)
+
+
+### Bug Fixes
+
+* update display metadata for instance_template and mig module ([#465](https://github.com/terraform-google-modules/terraform-google-vm/issues/465)) ([35ab2cc](https://github.com/terraform-google-modules/terraform-google-vm/commit/35ab2cce716bc05314c056a0bad0541ba2b56389))
+
 ## [13.1.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.1.0...v13.1.1) (2025-01-13)
 
 

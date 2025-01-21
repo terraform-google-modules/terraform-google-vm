@@ -48,12 +48,12 @@ spec:
           title: Autoscaling Mode
           level: 1
           enumValueLabels:
-            - label: ON
-              value: ON
+            - label: "ON"
+              value: "ON"
             - label: ONLY_SCALE_OUT
               value: ONLY_SCALE_OUT
-            - label: OFF
-              value: OFF
+            - label: "OFF"
+              value: "OFF"
         autoscaling_scale_in_control:
           name: autoscaling_scale_in_control
           title: Autoscaling Scale In Control

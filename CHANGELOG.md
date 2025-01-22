@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.1.3](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.1.2...v13.1.3) (2025-01-21)
+
+
+### Bug Fixes
+
+* yaml parser treats ON/OFF as boolean and lint fails ([#473](https://github.com/terraform-google-modules/terraform-google-vm/issues/473)) ([8a35127](https://github.com/terraform-google-modules/terraform-google-vm/commit/8a351276fdaa33767c5882fbf86724b2377001be))
+
 ## [13.1.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.1.1...v13.1.2) (2025-01-16)
 
 

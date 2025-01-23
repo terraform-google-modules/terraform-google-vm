@@ -74,6 +74,8 @@ spec:
         location: examples/preemptible_and_regular_instance_templates/simple
       - name: simple
         location: examples/umig/simple
+      - name: simple_with_sa_creation
+        location: examples/instance_template/simple_with_sa_creation
       - name: static_ips
         location: examples/umig/static_ips
       - name: tags
@@ -292,7 +294,6 @@ spec:
               email  = string
               scopes = optional(set(string), ["cloud-platform"])
             })
-        required: true
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
@@ -300,6 +301,14 @@ spec:
             spec:
               outputExpr: email
               inputPath: email
+      - name: create_service_account
+        description: Create a new service account to attach to the instance. This is alternate to providing the service_account input variable. Please provide the service_account input if setting this to false!
+        varType: bool
+        defaultValue: true
+      - name: service_account_project_roles
+        description: Roles to grant to the newly created cloud run SA in specified project. Should be used with create_service_account set to true and no input for service_account
+        varType: list(string)
+        defaultValue: []
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool
@@ -365,6 +374,8 @@ spec:
       - name: self_link_unique
         description: Unique self-link of instance template (recommended output to use instead of self_link)
         type: string
+      - name: service_account_info
+        description: Service account id and email
       - name: tags
         description: Tags that will be associated with instance(s)
         type:

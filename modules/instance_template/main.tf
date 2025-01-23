@@ -63,6 +63,40 @@ locals {
     # must be true when preemtible or spot is true
     var.preemptible || var.spot ? true : false
   )
+
+  service_account = (
+    var.service_account != null
+    ? var.service_account
+    : (
+      var.create_service_account
+      ? { email : google_service_account.sa[0].email, scopes : ["cloud-platform"] }
+      : null
+    )
+  )
+  create_service_account = var.create_service_account ? var.service_account == null : false
+
+  service_account_prefix = substr("${var.name_prefix}-${var.region}", 0, 27)
+  service_account_output = local.create_service_account ? {
+    id     = google_service_account.sa[0].account_id,
+    email  = google_service_account.sa[0].email,
+    member = google_service_account.sa[0].member
+  } : {}
+}
+
+# Service account
+resource "google_service_account" "sa" {
+  count        = local.create_service_account ? 1 : 0
+  project      = var.project_id
+  account_id   = "${local.service_account_prefix}-sa"
+  display_name = "Service account for ${var.name_prefix} in ${var.region}"
+}
+
+resource "google_project_iam_member" "roles" {
+  for_each = toset(distinct(var.service_account_project_roles))
+
+  project = var.project_id
+  role    = each.value
+  member  = "serviceAccount:${local.service_account.email}"
 }
 
 ####################
@@ -111,7 +145,7 @@ resource "google_compute_instance_template" "tpl" {
   }
 
   dynamic "service_account" {
-    for_each = var.service_account == null ? [] : [var.service_account]
+    for_each = local.service_account == null ? [] : [local.service_account]
     content {
       email  = lookup(service_account.value, "email", null)
       scopes = lookup(service_account.value, "scopes", null)

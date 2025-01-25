@@ -29,235 +29,250 @@ steps:
       - prepare
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run all --stage init --verbose']
-- id: create-all
-  wait_for:
+- id: it-simple-sa-apply
+  waitFor:
     - init-all
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create']
-- id: converge-it-simple-local
-  wait_for:
-    - create-all
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge it-simple-local']
-- id: verify-it-simple-local
-  wait_for:
-    - converge-it-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify it-simple-local']
-- id: destroy-it-simple-local
-  wait_for:
-    - verify-it-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy it-simple-local']
-- id: converge-it-additional-disks-local
-  wait_for:
-    - create-all
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge it-additional-disks-local']
-- id: verify-it-additional-disks-local
-  wait_for:
-    - converge-it-additional-disks-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify it-additional-disks-local']
-- id: destroy-it-additional-disks-local
-  wait_for:
-    - verify-it-additional-disks-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy it-additional-disks-local']
-- id: converge-preemptible-and-regular-instance-templates-simple-local
-  wait_for:
-    - create-all
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge preemptible-and-regular-instance-templates-simple-local']
-- id: verify-preemptible-and-regular-instance-templates-simple-local
-  wait_for:
-    - converge-preemptible-and-regular-instance-templates-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify preemptible-and-regular-instance-templates-simple-local']
-- id: destroy-preemptible-and-regular-instance-templates-simple-local
-  wait_for:
-    - verify-preemptible-and-regular-instance-templates-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy preemptible-and-regular-instance-templates-simple-local']
-- id: go-init-instance-simple
+  args: ['/bin/bash', '-c', 'cft test run TestInstanceTemplateSimpleSAModule --stage apply --verbose']
+- id: it-simple-sa-verify
   waitFor:
-    - create-all
+    - it-simple-sa-apply
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=init go test -v -run TestInstanceSimpleModule ./... -p 1']
-- id: go-apply-instance-simple
+  args: ['/bin/bash', '-c', 'cft test run TestInstanceTemplateSimpleSAModule --stage verify --verbose']
+- id: it-simple-sa-destroy
   waitFor:
-    - go-init-instance-simple
+    - it-simple-sa-verify
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=apply go test -v -run TestInstanceSimpleModule ./... -p 1']
-  timeout: 3600s
-- id: go-verify-instance-simple
-  waitFor:
-    - go-apply-instance-simple
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=verify go test -v -run TestInstanceSimpleModule ./... -p 1']
-- id: go-destroy-instance-simple
-  waitFor:
-    - go-verify-instance-simple
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=teardown go test -v -run TestInstanceSimpleModule ./... -p 1']
-  timeout: 1800s
-- id: converge-mig-simple-local
-  wait_for:
-    - create-all
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge mig-simple-local']
-- id: verify-mig-simple-local
-  wait_for:
-    - converge-mig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify mig-simple-local']
-- id: destroy-mig-simple-local
-  wait_for:
-    - verify-mig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-simple-local']
-- id: create-mig-autoscaler-local
-  wait_for:
-    - destroy-it-simple-local
-    - destroy-it-additional-disks-local
-    - destroy-preemptible-and-regular-instance-templates-simple-local
-    - go-destroy-instance-simple
-    - destroy-mig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create mig-autoscaler-local']
-- id: converge-mig-autoscaler-local
-  wait_for:
-    - create-mig-autoscaler-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge mig-autoscaler-local']
-- id: verify-mig-autoscaler-local
-  wait_for:
-    - converge-mig-autoscaler-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify mig-autoscaler-local']
-- id: destroy-mig-autoscaler-local
-  wait_for:
-    - verify-mig-autoscaler-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-autoscaler-local']
-- id: create-umig-simple-local
-  wait_for:
-    - destroy-it-simple-local
-    - destroy-it-additional-disks-local
-    - destroy-preemptible-and-regular-instance-templates-simple-local
-    - go-destroy-instance-simple
-    - destroy-mig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create umig-simple-local']
-- id: converge-umig-simple-local
-  wait_for:
-    - create-umig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge umig-simple-local']
-- id: verify-umig-simple-local
-  wait_for:
-    - converge-umig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify umig-simple-local']
-- id: destroy-umig-simple-local
-  wait_for:
-    - verify-umig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy umig-simple-local']
-- id: create-umig-named-ports-local
-  wait_for:
-    - destroy-it-simple-local
-    - destroy-it-additional-disks-local
-    - destroy-preemptible-and-regular-instance-templates-simple-local
-    - go-destroy-instance-simple
-    - destroy-mig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create umig-named-ports-local']
-- id: converge-umig-named-ports-local
-  wait_for:
-    - create-umig-named-ports-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge umig-named-ports-local']
-- id: verify-umig-named-ports-local
-  wait_for:
-    - converge-umig-named-ports-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify umig-named-ports-local']
-- id: destroy-umig-named-ports-local
-  wait_for:
-    - verify-umig-named-ports-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy umig-named-ports-local']
-- id: create-umig-static-ips-local
-  wait_for:
-    - destroy-it-simple-local
-    - destroy-it-additional-disks-local
-    - destroy-preemptible-and-regular-instance-templates-simple-local
-    - go-destroy-instance-simple
-    - destroy-mig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create umig-static-ips-local']
-- id: converge-umig-static-ips-local
-  wait_for:
-    - create-umig-static-ips-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge umig-static-ips-local']
-- id: verify-umig-static-ips-local
-  wait_for:
-    - converge-umig-static-ips-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify umig-static-ips-local']
-- id: destroy-umig-static-ips-local
-  wait_for:
-    - verify-umig-static-ips-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy umig-static-ips-local']
-- id: create-mig-with-percent-simple-local
-  wait_for:
-    - destroy-it-simple-local
-    - destroy-it-additional-disks-local
-    - destroy-preemptible-and-regular-instance-templates-simple-local
-    - go-destroy-instance-simple
-    - destroy-mig-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create mig-with-percent-simple-local']
-- id: converge-mig-with-percent-simple-local
-  wait_for:
-    - create-mig-with-percent-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge mig-with-percent-simple-local']
-- id: verify-mig-with-percent-simple-local
-  wait_for:
-    - converge-mig-with-percent-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify mig-with-percent-simple-local']
-- id: destroy-mig-with-percent-simple-local
-  wait_for:
-    - verify-mig-with-percent-simple-local
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-with-percent-simple-local']
-- id: go-init-statful-mig
-  waitFor:
-    - create-all
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage create --verbose']
-- id: go-apply-statful-mig
-  waitFor:
-    - go-init-statful-mig
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage apply --verbose']
-  timeout: 3600s
-- id: go-verify-statful-mig
-  waitFor:
-    - go-apply-statful-mig
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage verify --verbose']
-- id: go-destroy-statful-mig
-  waitFor:
-    - go-verify-statful-mig
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage destroy --verbose']
-  timeout: 1800s
+  args: ['/bin/bash', '-c', 'cft test run TestInstanceTemplateSimpleSAModule --stage destroy --verbose']
+# - id: create-all
+#   wait_for:
+#     - init-all
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create']
+# - id: converge-it-simple-local
+#   wait_for:
+#     - create-all
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge it-simple-local']
+# - id: verify-it-simple-local
+#   wait_for:
+#     - converge-it-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify it-simple-local']
+# - id: destroy-it-simple-local
+#   wait_for:
+#     - verify-it-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy it-simple-local']
+# - id: converge-it-additional-disks-local
+#   wait_for:
+#     - create-all
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge it-additional-disks-local']
+# - id: verify-it-additional-disks-local
+#   wait_for:
+#     - converge-it-additional-disks-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify it-additional-disks-local']
+# - id: destroy-it-additional-disks-local
+#   wait_for:
+#     - verify-it-additional-disks-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy it-additional-disks-local']
+# - id: converge-preemptible-and-regular-instance-templates-simple-local
+#   wait_for:
+#     - create-all
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge preemptible-and-regular-instance-templates-simple-local']
+# - id: verify-preemptible-and-regular-instance-templates-simple-local
+#   wait_for:
+#     - converge-preemptible-and-regular-instance-templates-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify preemptible-and-regular-instance-templates-simple-local']
+# - id: destroy-preemptible-and-regular-instance-templates-simple-local
+#   wait_for:
+#     - verify-preemptible-and-regular-instance-templates-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy preemptible-and-regular-instance-templates-simple-local']
+# - id: go-init-instance-simple
+#   waitFor:
+#     - create-all
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=init go test -v -run TestInstanceSimpleModule ./... -p 1']
+# - id: go-apply-instance-simple
+#   waitFor:
+#     - go-init-instance-simple
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=apply go test -v -run TestInstanceSimpleModule ./... -p 1']
+#   timeout: 3600s
+# - id: go-verify-instance-simple
+#   waitFor:
+#     - go-apply-instance-simple
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=verify go test -v -run TestInstanceSimpleModule ./... -p 1']
+# - id: go-destroy-instance-simple
+#   waitFor:
+#     - go-verify-instance-simple
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'cd test/integration && RUN_STAGE=teardown go test -v -run TestInstanceSimpleModule ./... -p 1']
+#   timeout: 1800s
+# - id: converge-mig-simple-local
+#   wait_for:
+#     - create-all
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge mig-simple-local']
+# - id: verify-mig-simple-local
+#   wait_for:
+#     - converge-mig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify mig-simple-local']
+# - id: destroy-mig-simple-local
+#   wait_for:
+#     - verify-mig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-simple-local']
+# - id: create-mig-autoscaler-local
+#   wait_for:
+#     - destroy-it-simple-local
+#     - destroy-it-additional-disks-local
+#     - destroy-preemptible-and-regular-instance-templates-simple-local
+#     - go-destroy-instance-simple
+#     - destroy-mig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create mig-autoscaler-local']
+# - id: converge-mig-autoscaler-local
+#   wait_for:
+#     - create-mig-autoscaler-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge mig-autoscaler-local']
+# - id: verify-mig-autoscaler-local
+#   wait_for:
+#     - converge-mig-autoscaler-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify mig-autoscaler-local']
+# - id: destroy-mig-autoscaler-local
+#   wait_for:
+#     - verify-mig-autoscaler-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-autoscaler-local']
+# - id: create-umig-simple-local
+#   wait_for:
+#     - destroy-it-simple-local
+#     - destroy-it-additional-disks-local
+#     - destroy-preemptible-and-regular-instance-templates-simple-local
+#     - go-destroy-instance-simple
+#     - destroy-mig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create umig-simple-local']
+# - id: converge-umig-simple-local
+#   wait_for:
+#     - create-umig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge umig-simple-local']
+# - id: verify-umig-simple-local
+#   wait_for:
+#     - converge-umig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify umig-simple-local']
+# - id: destroy-umig-simple-local
+#   wait_for:
+#     - verify-umig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy umig-simple-local']
+# - id: create-umig-named-ports-local
+#   wait_for:
+#     - destroy-it-simple-local
+#     - destroy-it-additional-disks-local
+#     - destroy-preemptible-and-regular-instance-templates-simple-local
+#     - go-destroy-instance-simple
+#     - destroy-mig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create umig-named-ports-local']
+# - id: converge-umig-named-ports-local
+#   wait_for:
+#     - create-umig-named-ports-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge umig-named-ports-local']
+# - id: verify-umig-named-ports-local
+#   wait_for:
+#     - converge-umig-named-ports-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify umig-named-ports-local']
+# - id: destroy-umig-named-ports-local
+#   wait_for:
+#     - verify-umig-named-ports-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy umig-named-ports-local']
+# - id: create-umig-static-ips-local
+#   wait_for:
+#     - destroy-it-simple-local
+#     - destroy-it-additional-disks-local
+#     - destroy-preemptible-and-regular-instance-templates-simple-local
+#     - go-destroy-instance-simple
+#     - destroy-mig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create umig-static-ips-local']
+# - id: converge-umig-static-ips-local
+#   wait_for:
+#     - create-umig-static-ips-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge umig-static-ips-local']
+# - id: verify-umig-static-ips-local
+#   wait_for:
+#     - converge-umig-static-ips-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify umig-static-ips-local']
+# - id: destroy-umig-static-ips-local
+#   wait_for:
+#     - verify-umig-static-ips-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy umig-static-ips-local']
+# - id: create-mig-with-percent-simple-local
+#   wait_for:
+#     - destroy-it-simple-local
+#     - destroy-it-additional-disks-local
+#     - destroy-preemptible-and-regular-instance-templates-simple-local
+#     - go-destroy-instance-simple
+#     - destroy-mig-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do create mig-with-percent-simple-local']
+# - id: converge-mig-with-percent-simple-local
+#   wait_for:
+#     - create-mig-with-percent-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do converge mig-with-percent-simple-local']
+# - id: verify-mig-with-percent-simple-local
+#   wait_for:
+#     - converge-mig-with-percent-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do verify mig-with-percent-simple-local']
+# - id: destroy-mig-with-percent-simple-local
+#   wait_for:
+#     - verify-mig-with-percent-simple-local
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy mig-with-percent-simple-local']
+# - id: go-init-statful-mig
+#   waitFor:
+#     - create-all
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage create --verbose']
+# - id: go-apply-statful-mig
+#   waitFor:
+#     - go-init-statful-mig
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage apply --verbose']
+#   timeout: 3600s
+# - id: go-verify-statful-mig
+#   waitFor:
+#     - go-apply-statful-mig
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage verify --verbose']
+# - id: go-destroy-statful-mig
+#   waitFor:
+#     - go-verify-statful-mig
+#   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage destroy --verbose']
+#   timeout: 1800s
 tags:
 - 'ci'
 - 'integration'

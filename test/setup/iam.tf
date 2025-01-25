@@ -19,7 +19,9 @@ locals {
     "roles/compute.admin",
     "roles/compute.networkAdmin",
     "roles/iam.serviceAccountUser",
+    "roles/iam.serviceAccountAdmin",
     "roles/compute.instanceAdmin",
+    "roles/resourcemanager.projectIamAdmin",
   ]
 }
 

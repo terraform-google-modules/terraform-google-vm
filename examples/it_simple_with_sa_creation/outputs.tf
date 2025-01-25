@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
+output "self_link" {
+  description = "Self-link to the instance template"
+  value       = module.instance_template.self_link
+}
 
+output "name" {
+  description = "Name of the instance templates"
+  value       = module.instance_template.name
+}
 
-variable "project_id" {
+output "project_id" {
   description = "The GCP project to use for integration tests"
-  type        = string
-}
-
-variable "tags" {
-  type        = list(string)
-  description = "Network tags, provided as a list"
-}
-
-variable "labels" {
-  type        = map(string)
-  description = "Labels, provided as a map"
+  value       = var.project_id
 }

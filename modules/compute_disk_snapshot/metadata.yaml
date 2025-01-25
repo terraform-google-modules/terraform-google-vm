@@ -103,34 +103,34 @@ spec:
             )
         required: true
       - name: snapshot_schedule
-        description: The scheduled to be used by the snapshot policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#schedule
+        description: 'The schedule to be used by the snapshot policy. Exactly one of daily_schedule, hourly_schedule, or weekly_schedule must be provided. For more details see [the official documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#schedule).'
         varType: |-
           object(
-              {
-                daily_schedule = object(
-                  {
-                    days_in_cycle = number
-                    start_time    = string
-                  }
-                )
-                hourly_schedule = object(
-                  {
-                    hours_in_cycle = number
-                    start_time     = string
-                  }
-                )
-                weekly_schedule = object(
-                  {
-                    day_of_weeks = set(object(
-                      {
-                        day        = string
-                        start_time = string
-                      }
-                    ))
-                  }
-                )
-              }
-            )
+            {
+              daily_schedule = optional(object(
+                {
+                  days_in_cycle = number
+                  start_time    = string
+                }
+              ))
+              hourly_schedule = optional(object(
+                {
+                  hours_in_cycle = number
+                  start_time     = string
+                }
+              ))
+              weekly_schedule = optional(object(
+                {
+                  day_of_weeks = set(object(
+                    {
+                      day        = string
+                      start_time = string
+                    }
+                  ))
+                }
+              ))
+            }
+          )
         required: true
       - name: snapshot_properties
         description: The properties of the schedule policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#snapshot_properties

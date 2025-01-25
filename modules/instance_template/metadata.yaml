@@ -309,6 +309,27 @@ spec:
         description: Roles to grant to the newly created cloud run SA in specified project. Should be used with create_service_account set to true and no input for service_account
         varType: list(string)
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
+              version: ">= 23.0"
+            spec:
+              outputExpr: "[\"roles/cloudsql.instanceUser\", \"roles/cloudsql.client\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-sql-db//modules/mysql
+              version: ">= 23.0"
+            spec:
+              outputExpr: "[\"roles/cloudsql.instanceUser\", \"roles/cloudsql.client\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-memorystore
+              version: ">= 12.0"
+            spec:
+              outputExpr: "[\"roles/redis.editor\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-project-factory//modules/project_services
+              version: ">= 17.1.0"
+            spec:
+              outputExpr: "[\"roles/aiplatform.user\"]"
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool
@@ -376,6 +397,11 @@ spec:
         type: string
       - name: service_account_info
         description: Service account id and email
+        type:
+          - object
+          - email: string
+            id: string
+            member: string
       - name: tags
         description: Tags that will be associated with instance(s)
         type:

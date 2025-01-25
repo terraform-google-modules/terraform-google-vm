@@ -58,12 +58,10 @@ spec:
         confidential_instance_type:
           name: confidential_instance_type
           title: Confidential Instance Type
-        create_new_service_account:
-          name: create_new_service_account
-          title: Create New Service Account
         create_service_account:
           name: create_service_account
           title: Create Service Account
+          level: 1
         description:
           name: description
           title: Description

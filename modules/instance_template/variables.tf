@@ -328,6 +328,19 @@ variable "service_account" {
     scopes = optional(set(string), ["cloud-platform"])
   })
   description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account."
+  default     = null
+}
+
+variable "create_service_account" {
+  type        = bool
+  description = "Create a new service account to attach to the instance. This is alternate to providing the service_account input variable. Please provide the service_account input if setting this to false."
+  default     = true
+}
+
+variable "service_account_project_roles" {
+  type        = list(string)
+  description = "Roles to grant to the newly created cloud run SA in specified project. Should be used with create_service_account set to true and no input for service_account"
+  default     = []
 }
 
 ###########################

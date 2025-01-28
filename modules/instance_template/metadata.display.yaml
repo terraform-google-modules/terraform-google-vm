@@ -58,6 +58,10 @@ spec:
         confidential_instance_type:
           name: confidential_instance_type
           title: Confidential Instance Type
+        create_service_account:
+          name: create_service_account
+          title: Create Service Account
+          level: 1
         description:
           name: description
           title: Description
@@ -158,6 +162,9 @@ spec:
         service_account:
           name: service_account
           title: Service Account
+        service_account_project_roles:
+          name: service_account_project_roles
+          title: Service Account Project Roles
         shielded_instance_config:
           name: shielded_instance_config
           title: Shielded Instance Config
@@ -171,6 +178,7 @@ spec:
         source_image_project:
           name: source_image_project
           title: Source Image Project
+          level: 1
         spot:
           name: spot
           title: Spot

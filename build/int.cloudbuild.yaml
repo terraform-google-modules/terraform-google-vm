@@ -258,6 +258,25 @@ steps:
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestMigStatefulModule --stage destroy --verbose']
   timeout: 1800s
+- id: it-simple-sa-apply
+  waitFor:
+    - destroy-it-simple-local
+    - destroy-it-additional-disks-local
+    - destroy-preemptible-and-regular-instance-templates-simple-local
+    - go-destroy-instance-simple
+    - destroy-mig-simple-local
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestInstanceTemplateSimpleSAModule --stage apply --verbose']
+- id: it-simple-sa-verify
+  waitFor:
+    - it-simple-sa-apply
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestInstanceTemplateSimpleSAModule --stage verify --verbose']
+- id: it-simple-sa-destroy
+  waitFor:
+    - it-simple-sa-verify
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestInstanceTemplateSimpleSAModule --stage destroy --verbose']
 tags:
 - 'ci'
 - 'integration'

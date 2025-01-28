@@ -21,6 +21,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | automatic\_restart | (Optional) Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). | `bool` | `true` | no |
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | `string` | `"false"` | no |
 | confidential\_instance\_type | Defines the confidential computing technology the instance uses. If this is set to "SEV\_SNP", var.min\_cpu\_platform will be automatically set to "AMD Milan". See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#confidential_instance_type. | `string` | `null` | no |
+| create\_service\_account | Create a new service account to attach to the instance. This is alternate to providing the service\_account input variable. Please provide the service\_account input if setting this to false. | `bool` | `true` | no |
 | description | The template's description | `string` | `""` | no |
 | disk\_encryption\_key | The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance | `string` | `null` | no |
 | disk\_labels | Labels to be assigned to boot disk, provided as a map | `map(string)` | `{}` | no |
@@ -47,7 +48,8 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | project\_id | The GCP project ID | `string` | n/a | yes |
 | region | Region where the instance template should be created. | `string` | n/a | yes |
 | resource\_policies | A list of self\_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported. | `list(string)` | `[]` | no |
-| service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account. | <pre>object({<br>    email  = string<br>    scopes = optional(set(string), ["cloud-platform"])<br>  })</pre> | n/a | yes |
+| service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account. | <pre>object({<br>    email  = string<br>    scopes = optional(set(string), ["cloud-platform"])<br>  })</pre> | `null` | no |
+| service\_account\_project\_roles | Roles to grant to the newly created cloud run SA in specified project. Should be used with create\_service\_account set to true and no input for service\_account | `list(string)` | `[]` | no |
 | shielded\_instance\_config | Not used unless enable\_shielded\_vm is true. Shielded VM configuration for the instance. | <pre>object({<br>    enable_secure_boot          = bool<br>    enable_vtpm                 = bool<br>    enable_integrity_monitoring = bool<br>  })</pre> | <pre>{<br>  "enable_integrity_monitoring": true,<br>  "enable_secure_boot": true,<br>  "enable_vtpm": true<br>}</pre> | no |
 | source\_image | Source disk image. If neither source\_image nor source\_image\_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image. | `string` | `""` | no |
 | source\_image\_family | Source image family. If neither source\_image nor source\_image\_family is specified, defaults to the latest public Rocky Linux 9 optimized for GCP image. | `string` | `"rocky-linux-9-optimized-gcp"` | no |
@@ -69,6 +71,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | name | Name of instance template |
 | self\_link | Self-link of instance template |
 | self\_link\_unique | Unique self-link of instance template (recommended output to use instead of self\_link) |
+| service\_account\_info | Service account id and email |
 | tags | Tags that will be associated with instance(s) |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

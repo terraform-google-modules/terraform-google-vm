@@ -54,6 +54,8 @@ spec:
         location: examples/umig/full
       - name: healthcheck
         location: examples/mig/healthcheck
+      - name: it_simple_with_sa_creation
+        location: examples/it_simple_with_sa_creation
       - name: mig_stateful
         location: examples/mig_stateful
       - name: multiple_interfaces
@@ -292,7 +294,6 @@ spec:
               email  = string
               scopes = optional(set(string), ["cloud-platform"])
             })
-        required: true
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
@@ -300,6 +301,35 @@ spec:
             spec:
               outputExpr: email
               inputPath: email
+      - name: create_service_account
+        description: Create a new service account to attach to the instance. This is alternate to providing the service_account input variable. Please provide the service_account input if setting this to false.
+        varType: bool
+        defaultValue: true
+      - name: service_account_project_roles
+        description: Roles to grant to the newly created cloud run SA in specified project. Should be used with create_service_account set to true and no input for service_account
+        varType: list(string)
+        defaultValue: []
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
+              version: ">= 23.0"
+            spec:
+              outputExpr: "[\"roles/cloudsql.instanceUser\", \"roles/cloudsql.client\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-sql-db//modules/mysql
+              version: ">= 23.0"
+            spec:
+              outputExpr: "[\"roles/cloudsql.instanceUser\", \"roles/cloudsql.client\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-memorystore
+              version: ">= 12.0"
+            spec:
+              outputExpr: "[\"roles/redis.editor\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-project-factory//modules/project_services
+              version: ">= 17.1.0"
+            spec:
+              outputExpr: "[\"roles/aiplatform.user\"]"
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool
@@ -365,6 +395,13 @@ spec:
       - name: self_link_unique
         description: Unique self-link of instance template (recommended output to use instead of self_link)
         type: string
+      - name: service_account_info
+        description: Service account id and email
+        type:
+          - object
+          - email: string
+            id: string
+            member: string
       - name: tags
         description: Tags that will be associated with instance(s)
         type:
@@ -377,7 +414,9 @@ spec:
           - roles/compute.admin
           - roles/compute.networkAdmin
           - roles/iam.serviceAccountUser
+          - roles/iam.serviceAccountAdmin
           - roles/compute.instanceAdmin
+          - roles/resourcemanager.projectIamAdmin
     services:
       - cloudresourcemanager.googleapis.com
       - storage-api.googleapis.com

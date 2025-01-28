@@ -85,13 +85,16 @@ locals {
 
 # Service account
 resource "google_service_account" "sa" {
-  count        = local.create_service_account ? 1 : 0
+  provider = google-beta
+  count    = local.create_service_account ? 1 : 0
+
   project      = var.project_id
   account_id   = "${local.service_account_prefix}-sa"
   display_name = "Service account for ${var.name_prefix} in ${var.region}"
 }
 
 resource "google_project_iam_member" "roles" {
+  provider = google-beta
   for_each = toset(distinct(var.service_account_project_roles))
 
   project = var.project_id

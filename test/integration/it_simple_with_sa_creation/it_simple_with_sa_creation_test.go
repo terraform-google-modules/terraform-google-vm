@@ -27,6 +27,7 @@ func TestInstanceTemplateSimpleSAModule(t *testing.T) {
 
 	const instanceNamePrefix = "it-simple-sa"
 	const expected_templates = 1
+	const expected_sa = 1
 
 	insSimpleT := tft.NewTFBlueprintTest(t)
 	insSimpleT.DefineVerify(func(assert *assert.Assertions) {
@@ -34,6 +35,9 @@ func TestInstanceTemplateSimpleSAModule(t *testing.T) {
 
 		instance_templates := gcloud.Run(t, fmt.Sprintf("compute instance-templates list --project %s --filter name~%s", insSimpleT.GetStringOutput("project_id"), instanceNamePrefix))
 		assert.Equal(expected_templates, len(instance_templates.Array()), fmt.Sprintf("should have %d instance_templates", expected_templates))
+
+		service_accounts := gcloud.Run(t, fmt.Sprintf("iam service-accounts list --project %s --filter email~%s", insSimpleT.GetStringOutput("project_id"), instanceNamePrefix))
+		assert.Equal(expected_sa, len(service_accounts.Array()), fmt.Sprintf("should have %d service_accounts", expected_sa))
 	})
 	insSimpleT.Test()
 }

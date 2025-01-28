@@ -21,7 +21,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | automatic\_restart | (Optional) Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). | `bool` | `true` | no |
 | can\_ip\_forward | Enable IP forwarding, for NAT instances for example | `string` | `"false"` | no |
 | confidential\_instance\_type | Defines the confidential computing technology the instance uses. If this is set to "SEV\_SNP", var.min\_cpu\_platform will be automatically set to "AMD Milan". See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#confidential_instance_type. | `string` | `null` | no |
-| create\_service\_account | Create a new service account to attach to the instance. This is alternate to providing the service\_account input variable. Please provide the service\_account input if setting this to false! | `bool` | `true` | no |
+| create\_service\_account | Create a new service account to attach to the instance. This is alternate to providing the service\_account input variable. Please provide the service\_account input if setting this to false. | `bool` | `true` | no |
 | description | The template's description | `string` | `""` | no |
 | disk\_encryption\_key | The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance | `string` | `null` | no |
 | disk\_labels | Labels to be assigned to boot disk, provided as a map | `map(string)` | `{}` | no |

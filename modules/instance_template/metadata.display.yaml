@@ -178,6 +178,7 @@ spec:
         source_image_project:
           name: source_image_project
           title: Source Image Project
+          level: 1
         spot:
           name: spot
           title: Spot

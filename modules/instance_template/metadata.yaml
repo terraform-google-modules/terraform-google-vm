@@ -302,7 +302,7 @@ spec:
               outputExpr: email
               inputPath: email
       - name: create_service_account
-        description: Create a new service account to attach to the instance. This is alternate to providing the service_account input variable. Please provide the service_account input if setting this to false!
+        description: Create a new service account to attach to the instance. This is alternate to providing the service_account input variable. Please provide the service_account input if setting this to false.
         varType: bool
         defaultValue: true
       - name: service_account_project_roles
@@ -424,7 +424,5 @@ spec:
       - compute.googleapis.com
       - iam.googleapis.com
     providerVersions:
-      - source: hashicorp/google
-        version: ">= 5.36, < 7"
       - source: hashicorp/google-beta
         version: ">= 5.36, < 7"

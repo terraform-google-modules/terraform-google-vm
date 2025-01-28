@@ -26,14 +26,25 @@ import (
 func TestInstanceTemplateSimpleSAModule(t *testing.T) {
 
 	const instanceNamePrefix = "it-simple-sa"
-	const expected_templates = 1
+	const expectedTemplates = 1
+	const expectedServiceAccounts = 1
 
-	insSimpleT := tft.NewTFBlueprintTest(t)
-	insSimpleT.DefineVerify(func(assert *assert.Assertions) {
-		insSimpleT.DefaultVerify(assert)
+	instanceSimpleTest := tft.NewTFBlueprintTest(t)
+	instanceSimpleTest.DefineVerify(func(assert *assert.Assertions) {
+		instanceSimpleTest.DefaultVerify(assert)
 
-		instance_templates := gcloud.Run(t, fmt.Sprintf("compute instance-templates list --project %s --filter name~%s", insSimpleT.GetStringOutput("project_id"), instanceNamePrefix))
-		assert.Equal(expected_templates, len(instance_templates.Array()), fmt.Sprintf("should have %d instance_templates", expected_templates))
+		projectID := instanceSimpleTest.GetStringOutput("project_id")
+		instanceTemplates := gcloud.Run(t, fmt.Sprintf("compute instance-templates list --project %s --filter name~%s", projectID, instanceNamePrefix))
+		assert.Equal(expectedTemplates, len(instanceTemplates.Array()), fmt.Sprintf("should have %d instance templates", expectedTemplates))
+
+		serviceAccounts := gcloud.Run(t, fmt.Sprintf("iam service-accounts list --project %s --filter email~%s", projectID, instanceNamePrefix))
+		assert.Equal(expectedServiceAccounts, len(serviceAccounts.Array()), fmt.Sprintf("should have %d service accounts", expectedServiceAccounts))
+
+		for _, it := range instanceTemplates.Array() {
+			instanceTemplateName := it.Get("name").String()
+			instanceTemplateServiceAccounts := gcloud.Run(t, fmt.Sprintf("compute instance-templates describe %s --project %s", instanceTemplateName, projectID), gcloud.WithCommonArgs([]string{"--format", "json(properties.serviceAccounts)"}))
+			assert.Contains(instanceTemplateServiceAccounts.String(), instanceNamePrefix, fmt.Sprintf("Instance template service account %s should contain %s", instanceTemplateServiceAccounts.String(), instanceNamePrefix))
+		}
 	})
-	insSimpleT.Test()
+	instanceSimpleTest.Test()
 }

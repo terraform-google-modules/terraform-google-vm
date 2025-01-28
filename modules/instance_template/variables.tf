@@ -333,7 +333,7 @@ variable "service_account" {
 
 variable "create_service_account" {
   type        = bool
-  description = "Create a new service account to attach to the instance. This is alternate to providing the service_account input variable. Please provide the service_account input if setting this to false!"
+  description = "Create a new service account to attach to the instance. This is alternate to providing the service_account input variable. Please provide the service_account input if setting this to false."
   default     = true
 }
 

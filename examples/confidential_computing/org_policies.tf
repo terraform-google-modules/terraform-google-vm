@@ -16,7 +16,7 @@
 
 module "confidential-computing-org-policy" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.3"
+  version = "~> 6.0"
 
   project_id       = var.project_id
   policy_for       = "project"
@@ -28,7 +28,7 @@ module "confidential-computing-org-policy" {
 
 module "enforce-cmek-org-policy" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.3"
+  version = "~> 6.0"
 
   project_id       = var.project_id
   policy_for       = "project"
@@ -40,7 +40,7 @@ module "enforce-cmek-org-policy" {
 
 module "restrict-cmek-cryptokey-projects-policy" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.3"
+  version = "~> 6.0"
 
   project_id        = var.project_id
   policy_for        = "project"

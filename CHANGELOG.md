@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.2.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.1.3...v13.2.0) (2025-01-28)
+
+
+### Features
+
+* create service account as part of instance template module ([#475](https://github.com/terraform-google-modules/terraform-google-vm/issues/475)) ([bd21f7b](https://github.com/terraform-google-modules/terraform-google-vm/commit/bd21f7b21dc29a4125a365f68663a8783155c532))
+
 ## [13.1.3](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.1.2...v13.1.3) (2025-01-21)
 
 

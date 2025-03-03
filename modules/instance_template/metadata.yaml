@@ -287,6 +287,12 @@ spec:
               version: ">= 4.4"
             spec:
               outputExpr: "{\"SERVICE_ACCOUNT_EMAIL\" : email, \"SERVICE_ACCOUNT_IAM_EMAIL\" : iam_email}"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-spanner
+              version: ">= 1.1.1"
+              spec:
+                outputExpr: env_vars
+                inputPath: env_vars
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
         varType: |-
@@ -330,6 +336,11 @@ spec:
               version: ">= 17.1.0"
             spec:
               outputExpr: "[\"roles/aiplatform.user\"]"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-spanner
+              version: ">= 1.1.1"
+              spec:
+                outputExpr: "[\"roles/spanner.databaseAdmin\"]"
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool

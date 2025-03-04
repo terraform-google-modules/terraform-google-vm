@@ -292,6 +292,11 @@ spec:
               version: ">= 7.0.0"
             spec:
               outputExpr: "{\"TOPIC_ID\": id}"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-bigquery
+              version: ^10.0
+            spec:
+              outputExpr: "{\"BIGQUERY_DATASET\" : env_vars.BIGQUERY_DATASET, \"BIGQUERY_TABLES\" : env_vars.BIGQUERY_TABLES, \"BIGQUERY_VIEWS\" : env_vars.BIGQUERY_VIEWS, \"BIGQUERY_MATERIALIZED_VIEWS\" : env_vars.BIGQUERY_MATERIALIZED_VIEWS, \"BIGQUERY_EXTERNAL_TABLES\" : env_vars.BIGQUERY_EXTERNAL_TABLES, \"BIGQUERY_ROUTINES\" : env_vars.BIGQUERY_ROUTINES}"
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
         varType: |-
@@ -340,6 +345,11 @@ spec:
               version: ">= 7.0.0"
             spec:
               outputExpr: "[\"roles/pubsub.publisher\", \"roles/pubsub.subscriber\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-bigquery
+              version: ^10.0
+            spec:
+              outputExpr: "[\"roles/bigquery.dataEditor\"]"
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool

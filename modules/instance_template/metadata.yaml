@@ -297,6 +297,11 @@ spec:
               version: ^10.0
             spec:
               outputExpr: "{\"BIGQUERY_DATASET\" : env_vars.BIGQUERY_DATASET, \"BIGQUERY_TABLES\" : env_vars.BIGQUERY_TABLES, \"BIGQUERY_VIEWS\" : env_vars.BIGQUERY_VIEWS, \"BIGQUERY_MATERIALIZED_VIEWS\" : env_vars.BIGQUERY_MATERIALIZED_VIEWS, \"BIGQUERY_EXTERNAL_TABLES\" : env_vars.BIGQUERY_EXTERNAL_TABLES, \"BIGQUERY_ROUTINES\" : env_vars.BIGQUERY_ROUTINES}"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-bigtable
+              version: ">= 0.1.0"
+            spec:
+              outputExpr: "{\"BIGTABLE_INSTANCE_ID\" : instance_id, \"BIGTABLE_TABLE_IDS\" : table_ids}"
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
         varType: |-

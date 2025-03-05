@@ -288,6 +288,11 @@ spec:
             spec:
               outputExpr: "{\"SERVICE_ACCOUNT_EMAIL\" : email, \"SERVICE_ACCOUNT_IAM_EMAIL\" : iam_email}"
           - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-spanner
+              version: ">= 1.1.1"
+            spec:
+              outputExpr: env_vars
+          - source:
               source: github.com/terraform-google-modules/terraform-google-pubsub
               version: ">= 7.0.0"
             spec:
@@ -345,6 +350,11 @@ spec:
               version: ">= 17.1.0"
             spec:
               outputExpr: "[\"roles/aiplatform.user\"]"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-spanner
+              version: ">= 1.1.1"
+            spec:
+              outputExpr: "[\"roles/spanner.databaseAdmin\"]"
           - source:
               source: github.com/terraform-google-modules/terraform-google-pubsub
               version: ">= 7.0.0"

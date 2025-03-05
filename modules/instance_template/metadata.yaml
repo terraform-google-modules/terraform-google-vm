@@ -287,8 +287,9 @@ spec:
               version: ">= 4.4"
             spec:
               outputExpr: "{\"SERVICE_ACCOUNT_EMAIL\" : email, \"SERVICE_ACCOUNT_IAM_EMAIL\" : iam_email}"
-          - source: github.com/GoogleCloudPlatform/terraform-google-cloud-spanner
-            version: ">= 1.1.1"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-spanner
+              version: ">= 1.1.1"
             spec:
               outputExpr: env_vars
               inputPath: env_vars

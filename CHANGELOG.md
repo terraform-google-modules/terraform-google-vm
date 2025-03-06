@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.2.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.2.1...v13.2.2) (2025-03-06)
+
+
+### Bug Fixes
+
+* Update metadata to add connection for regional-lb ([#489](https://github.com/terraform-google-modules/terraform-google-vm/issues/489)) ([e27e2e5](https://github.com/terraform-google-modules/terraform-google-vm/commit/e27e2e5931f522277aa7a40c55ebf233c1cee25d))
+
 ## [13.2.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.2.0...v13.2.1) (2025-03-06)
 
 

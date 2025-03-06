@@ -311,8 +311,8 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-regional-lb-http//modules/frontend
               version: ">= 0.4.0"
             spec:
-              outputExpr: "{\"ip_address_http\": ip_address_http, \"ip_address_https\": ip_address_https}"  
-              inputPath: env_vars      
+              outputExpr: "{\"IP_ADDRESS_HTTP\": ip_address_http, \"IP_ADDRESS_HTTPS\": ip_address_https}"
+              inputPath: env_vars
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
         varType: |-

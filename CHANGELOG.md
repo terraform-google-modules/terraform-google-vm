@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.2.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.2.0...v13.2.1) (2025-03-06)
+
+
+### Bug Fixes
+
+* update service_account_id output variable ([#486](https://github.com/terraform-google-modules/terraform-google-vm/issues/486)) ([03757f5](https://github.com/terraform-google-modules/terraform-google-vm/commit/03757f5ca4ea5000a7047cdf44b94c96901f9ae5))
+
 ## [13.2.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.1.3...v13.2.0) (2025-01-28)
 
 

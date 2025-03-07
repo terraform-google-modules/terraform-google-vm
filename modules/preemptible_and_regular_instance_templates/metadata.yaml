@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-vm
       sourceType: git
       dir: /modules/preemptible_and_regular_instance_templates
-    version: 13.2.2
+    version: 13.2.3
     actuationTool:
       flavor: Terraform
       version: ">=0.13.0"

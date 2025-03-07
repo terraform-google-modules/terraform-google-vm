@@ -18,12 +18,6 @@
 # Locals
 #########
 
-data "google_service_account" "existing_sa" {
-  provider   = google-beta
-  count      = local.create_service_account == false ? 1 : 0
-  account_id = google_compute_instance_template.tpl.service_account[0].email
-}
-
 locals {
   source_image         = var.source_image != "" ? var.source_image : "rocky-linux-9-optimized-gcp-v20240111"
   source_image_family  = var.source_image_family != "" ? var.source_image_family : "rocky-linux-9-optimized-gcp"
@@ -86,11 +80,7 @@ locals {
     id     = google_service_account.sa[0].account_id,
     email  = google_service_account.sa[0].email,
     member = google_service_account.sa[0].member
-    } : {
-    id     = data.google_service_account.existing_sa[0].account_id,
-    email  = data.google_service_account.existing_sa[0].email,
-    member = data.google_service_account.existing_sa[0].member
-  }
+  } : {}
 }
 
 # Service account

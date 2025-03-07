@@ -370,6 +370,11 @@ spec:
               version: ^10.0
             spec:
               outputExpr: "[\"roles/bigquery.dataEditor\"]"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-bigtable
+              version: ">= 0.1.0"
+            spec:
+              outputExpr: "[\"roles/bigtable.admin\"]"
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool

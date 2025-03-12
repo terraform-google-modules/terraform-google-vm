@@ -306,7 +306,7 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-bigtable
               version: ">= 0.1.0"
             spec:
-              outputExpr: "{\"BIGTABLE_INSTANCE_ID\" : instance_id, \"BIGTABLE_TABLE_IDS\" : table_ids[0]}"
+              outputExpr: "{\"BIGTABLE_INSTANCE_ID\" : instance_id, \"BIGTABLE_TABLE_ID\" : table_ids[0]}"
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-regional-lb-http//modules/frontend
               version: ">= 0.4.0"

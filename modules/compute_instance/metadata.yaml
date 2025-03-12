@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-vm
       sourceType: git
       dir: /modules/compute_instance
-    version: 13.2.3
+    version: 13.2.4
     actuationTool:
       flavor: Terraform
       version: ">=0.13.0"

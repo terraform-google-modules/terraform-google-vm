@@ -375,6 +375,11 @@ spec:
               version: ">= 0.1.0"
             spec:
               outputExpr: "[\"roles/bigtable.admin\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
+              version: ">= 0.10.1"
+            spec:
+              outputExpr: "[\"roles/storage.objectAdmin\"]"    
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool

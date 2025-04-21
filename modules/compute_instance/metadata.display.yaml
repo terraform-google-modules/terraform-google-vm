@@ -1,0 +1,84 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-vm-compute-instance-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Compute Instance
+    source:
+      repo: https://github.com/terraform-google-modules/terraform-google-vm
+      sourceType: git
+      dir: /modules/compute_instance
+  ui:
+    input:
+      variables:
+        access_config:
+          name: access_config
+          title: Access Config
+        add_hostname_suffix:
+          name: add_hostname_suffix
+          title: Add Hostname Suffix
+        alias_ip_ranges:
+          name: alias_ip_ranges
+          title: Alias Ip Ranges
+        deletion_protection:
+          name: deletion_protection
+          title: Deletion Protection
+        hostname:
+          name: hostname
+          title: Hostname
+        hostname_suffix_separator:
+          name: hostname_suffix_separator
+          title: Hostname Suffix Separator
+        instance_template:
+          name: instance_template
+          title: Instance Template
+        ipv6_access_config:
+          name: ipv6_access_config
+          title: Ipv6 Access Config
+        labels:
+          name: labels
+          title: Labels
+        network:
+          name: network
+          title: Network
+        num_instances:
+          name: num_instances
+          title: Num Instances
+        region:
+          name: region
+          title: Region
+        resource_manager_tags:
+          name: resource_manager_tags
+          title: Resource Manager Tags
+        resource_policies:
+          name: resource_policies
+          title: Resource Policies
+        static_ips:
+          name: static_ips
+          title: Static Ips
+        subnetwork:
+          name: subnetwork
+          title: Subnetwork
+        subnetwork_project:
+          name: subnetwork_project
+          title: Subnetwork Project
+        zone:
+          name: zone
+          title: Zone

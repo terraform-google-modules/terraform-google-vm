@@ -28,7 +28,7 @@ spec:
     version: 13.2.4
     actuationTool:
       flavor: Terraform
-      version: ">=1.3"
+      version: ">=1.3.0"
     description: {}
   content:
     examples:
@@ -431,7 +431,7 @@ spec:
               subnetwork_range_name = string
             })
       - name: resource_manager_tags
-        description: (Optional) A tag is a key-value pair that can be attached to a Google Cloud resource. You can use tags to conditionally allow or deny policies based on whether a resource has a specific tag. This value is not returned by the API. In Terraform, this value cannot be updated and changing it will recreate the resource.
+        description: (Optional) A set of key/value resource manager tag pairs to bind to the instances. Keys must be in the format tagKeys/{tag_key_id}, and values are in the format tagValues/456
         varType: map(string)
     outputs:
       - name: name

@@ -120,6 +120,8 @@ resource "google_compute_instance_template" "tpl" {
   region                  = var.region
   min_cpu_platform        = local.min_cpu_platform
   resource_policies       = var.resource_policies
+  resource_manager_tags   = var.resource_manager_tags
+
   dynamic "disk" {
     for_each = local.all_disks
     content {

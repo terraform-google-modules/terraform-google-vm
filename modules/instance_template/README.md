@@ -47,6 +47,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | preemptible | Allow the instance to be preempted | `bool` | `false` | no |
 | project\_id | The GCP project ID | `string` | n/a | yes |
 | region | Region where the instance template should be created. | `string` | n/a | yes |
+| resource\_manager\_tags | (Optional) A set of key/value resource manager tag pairs to bind to the instances. Keys must be in the format tagKeys/{tag\_key\_id}, and values are in the format tagValues/456 | `map(string)` | `null` | no |
 | resource\_policies | A list of self\_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported. | `list(string)` | `[]` | no |
 | service\_account | Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account. | <pre>object({<br>    email  = string<br>    scopes = optional(set(string), ["cloud-platform"])<br>  })</pre> | `null` | no |
 | service\_account\_project\_roles | Roles to grant to the newly created cloud run SA in specified project. Should be used with create\_service\_account set to true and no input for service\_account | `list(string)` | `[]` | no |

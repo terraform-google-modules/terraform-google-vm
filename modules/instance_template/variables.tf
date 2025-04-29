@@ -429,3 +429,9 @@ EOF
   })
   default = null
 }
+
+variable "resource_manager_tags" {
+  description = "(Optional) A set of key/value resource manager tag pairs to bind to the instances. Keys must be in the format tagKeys/{tag_key_id}, and values are in the format tagValues/456"
+  type        = map(string)
+  default     = null
+}

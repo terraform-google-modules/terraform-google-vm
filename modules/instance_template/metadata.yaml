@@ -28,7 +28,7 @@ spec:
     version: 13.2.4
     actuationTool:
       flavor: Terraform
-      version: ">=1.3"
+      version: ">=1.3.0"
     description: {}
   content:
     examples:
@@ -430,28 +430,20 @@ spec:
               ip_cidr_range         = string
               subnetwork_range_name = string
             })
+      - name: resource_manager_tags
+        description: (Optional) A set of key/value resource manager tag pairs to bind to the instances. Keys must be in the format tagKeys/{tag_key_id}, and values are in the format tagValues/456
+        varType: map(string)
     outputs:
       - name: name
         description: Name of instance template
-        type: string
       - name: self_link
         description: Self-link of instance template
-        type: string
       - name: self_link_unique
         description: Unique self-link of instance template (recommended output to use instead of self_link)
-        type: string
       - name: service_account_info
         description: Service account id and email
-        type:
-          - object
-          - email: string
-            id: string
-            member: string
       - name: tags
         description: Tags that will be associated with instance(s)
-        type:
-          - list
-          - string
   requirements:
     roles:
       - level: Project

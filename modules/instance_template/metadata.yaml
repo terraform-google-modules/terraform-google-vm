@@ -308,6 +308,11 @@ spec:
             spec:
               outputExpr: "{\"BIGTABLE_INSTANCE_ID\" : instance_id, \"BIGTABLE_TABLE_ID\" : table_ids[0]}"
           - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-firestore
+              version: ">= 0.1.0"
+            spec:
+              outputExpr: "{\"FIRESTORE_DATABASE_ID\": database_id}"
+          - source:
               source: github.com/GoogleCloudPlatform/terraform-google-regional-lb-http//modules/frontend
               version: ">= 0.4.0"
             spec:
@@ -375,6 +380,11 @@ spec:
               version: ">= 0.1.0"
             spec:
               outputExpr: "[\"roles/bigtable.admin\"]"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-firestore
+              version: ">= 0.1.0"
+            spec:
+              outputExpr: "[\"roles/datastore.user\"]"
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool

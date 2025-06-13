@@ -317,6 +317,12 @@ spec:
               version: ">= 0.4.0"
             spec:
               outputExpr: "{\"IP_ADDRESS_HTTP\": ip_address_http, \"IP_ADDRESS_HTTPS\": ip_address_https}"
+          - source:
+              source: https://github.com/GoogleCloudPlatform/terraform-google-alloy-db
+              version: ">= 5.0"
+            spec:
+              outputExpr: "{\"ALLOYDB_CLUSTER\" : cluster_id, \"ALLOYDB_PRIMARY_INSTANCE\" : primary_instance_id}"
+              inputPath: env_vars
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
         varType: |-
@@ -385,6 +391,11 @@ spec:
               version: ">= 0.1.0"
             spec:
               outputExpr: "[\"roles/datastore.user\"]"
+          - source:
+              source: https://github.com/GoogleCloudPlatform/terraform-google-alloy-db
+              version: ">= 5.0"
+            spec:
+              outputExpr: "[\"roles/alloydb.admin\"]"
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool

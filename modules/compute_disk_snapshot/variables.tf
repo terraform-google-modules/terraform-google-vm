@@ -40,22 +40,22 @@ variable "snapshot_retention_policy" {
 }
 
 variable "snapshot_schedule" {
-  description = "The scheduled to be used by the snapshot policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#schedule"
+  description = "The schedule to be used by the snapshot policy. For more details see https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_resource_policy#schedule"
   type = object(
     {
-      daily_schedule = object(
+      daily_schedule = optional(object(
         {
           days_in_cycle = number
           start_time    = string
         }
-      )
-      hourly_schedule = object(
+      ))
+      hourly_schedule = optional(object(
         {
           hours_in_cycle = number
           start_time     = string
         }
-      )
-      weekly_schedule = object(
+      ))
+      weekly_schedule = optional(object(
         {
           day_of_weeks = set(object(
             {
@@ -64,9 +64,17 @@ variable "snapshot_schedule" {
             }
           ))
         }
-      )
+      ))
     }
   )
+  validation {
+  condition = (
+    (var.snapshot_schedule.daily_schedule != null && var.snapshot_schedule.hourly_schedule == null && var.snapshot_schedule.weekly_schedule == null) ||
+    (var.snapshot_schedule.daily_schedule == null && var.snapshot_schedule.hourly_schedule != null && var.snapshot_schedule.weekly_schedule == null) ||
+    (var.snapshot_schedule.daily_schedule == null && var.snapshot_schedule.hourly_schedule == null && var.snapshot_schedule.weekly_schedule != null)
+  )
+  error_message = "Exactly one of daily_schedule, hourly_schedule, or weekly_schedule must be provided."
+  }
 }
 
 variable "snapshot_properties" {

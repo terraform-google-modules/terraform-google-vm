@@ -321,7 +321,7 @@ spec:
               source: https://github.com/GoogleCloudPlatform/terraform-google-alloy-db
               version: ">= 5.0"
             spec:
-              outputExpr: "{\"ALLOYDB_CLUSTER\" : cluster_id, \"ALLOYDB_PRIMARY_INSTANCE\" : primary_instance_id}"
+              outputExpr: "{\"ALLOYDB_INSTANCE_HOST\" : primary_instance_ip}"
               inputPath: env_vars
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.

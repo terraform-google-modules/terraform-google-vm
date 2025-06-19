@@ -319,7 +319,7 @@ spec:
               outputExpr: "{\"IP_ADDRESS_HTTP\": ip_address_http, \"IP_ADDRESS_HTTPS\": ip_address_https}"
           - source:
               source: https://github.com/GoogleCloudPlatform/terraform-google-alloy-db
-              version: ">= 5.0"
+              version: ">= 5.0.1"
             spec:
               outputExpr: "{\"ALLOYDB_INSTANCE_HOST\" : primary_instance_ip}"
               inputPath: env_vars
@@ -393,7 +393,7 @@ spec:
               outputExpr: "[\"roles/datastore.user\"]"
           - source:
               source: https://github.com/GoogleCloudPlatform/terraform-google-alloy-db
-              version: ">= 5.0"
+              version: ">= 5.0.1"
             spec:
               outputExpr: "[\"roles/alloydb.admin\"]"
       - name: enable_shielded_vm

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.3.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.2.4...v13.3.0) (2025-06-20)
+
+
+### Features
+
+* added resource_manager_tags in instance_template sub-module ([#501](https://github.com/terraform-google-modules/terraform-google-vm/issues/501)) ([5786237](https://github.com/terraform-google-modules/terraform-google-vm/commit/57862373d8b83b112c25a6fbe70529431231a623))
+* Adding connection metadata for AlloyDB ([#504](https://github.com/terraform-google-modules/terraform-google-vm/issues/504)) ([a827c62](https://github.com/terraform-google-modules/terraform-google-vm/commit/a827c62b9a794a81786aaf1179a7b6e5ba98acd7))
+
 ## [13.2.4](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.2.3...v13.2.4) (2025-03-12)
 
 

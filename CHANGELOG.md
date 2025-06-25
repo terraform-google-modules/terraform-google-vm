@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.4.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.3.0...v13.4.0) (2025-06-25)
+
+
+### Features
+
+* Adding read instance ips in connection metadata ([#505](https://github.com/terraform-google-modules/terraform-google-vm/issues/505)) ([760c941](https://github.com/terraform-google-modules/terraform-google-vm/commit/760c941ff005f9388090aeb769822c0627b72ccc))
+
 ## [13.3.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.2.4...v13.3.0) (2025-06-20)
 
 

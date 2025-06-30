@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.4.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.4.0...v13.4.1) (2025-06-30)
+
+
+### Bug Fixes
+
+* Update test execution order to fix limit of 5 network per project and metadata with output type ([#507](https://github.com/terraform-google-modules/terraform-google-vm/issues/507)) ([78e1ce9](https://github.com/terraform-google-modules/terraform-google-vm/commit/78e1ce982b0db04cf71365b5a5e5dc24b56ab2f9))
+
 ## [13.4.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.3.0...v13.4.0) (2025-06-25)
 
 

@@ -79,6 +79,8 @@ spec:
         instance_template:
           name: instance_template
           title: Instance Template
+          regexValidation: ^https:\/\/www\.googleapis\.com\/compute\/v1\/projects\/[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?\/(?:global|regions\/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)\/instanceTemplates\/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?$
+          validation: Invalid template url format, valid format is either https://www.googleapis.com/compute/v1/projects/PROJECT_ID/regions/REGION/instanceTemplates/TEMPLATE_NAME (regional) or https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/instanceTemplates/TEMPLATE_NAME (global).
         labels:
           name: labels
           title: Labels

@@ -14,6 +14,52 @@
  * limitations under the License.
  */
 
+locals {
+  per_module_services = {
+    compute_disk_snapshot = [
+      "compute.googleapis.com",
+    ]
+
+    compute_instance = [
+      "compute.googleapis.com",
+      "iam.googleapis.com",
+    ]
+
+    instance_template = [
+      "compute.googleapis.com",
+      "iam.googleapis.com",
+    ]
+
+    mig = [
+      "compute.googleapis.com",
+      "iam.googleapis.com",
+    ]
+
+    mig_with_percent = [
+      "compute.googleapis.com",
+      "iam.googleapis.com",
+    ]
+
+    umig = [
+      "compute.googleapis.com",
+      "iam.googleapis.com",
+    ]
+
+    preemptible_and_regular_instance_templates = [
+      "compute.googleapis.com",
+      "iam.googleapis.com",
+    ]
+
+    root = [
+      "compute.googleapis.com",
+      "iam.googleapis.com",
+      "logging.googleapis.com",
+      "monitoring.googleapis.com",
+      "serviceusage.googleapis.com",
+    ]
+  }
+}
+
 module "project_ci_vm" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 17.0"
@@ -24,11 +70,8 @@ module "project_ci_vm" {
   folder_id         = var.folder_id
   billing_account   = var.billing_account
 
-  activate_apis = [
+  activate_apis = concat([
     "cloudresourcemanager.googleapis.com",
     "storage-api.googleapis.com",
-    "serviceusage.googleapis.com",
-    "compute.googleapis.com",
-    "iam.googleapis.com",
-  ]
+  ], flatten(values(local.per_module_services)))
 }

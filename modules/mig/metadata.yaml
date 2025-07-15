@@ -316,16 +316,11 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/compute.admin
-          - roles/compute.networkAdmin
+          - roles/logging.logWriter
+          - roles/compute.instanceAdmin.v1
+          - roles/compute.viewer
           - roles/iam.serviceAccountUser
-          - roles/iam.serviceAccountAdmin
-          - roles/compute.instanceAdmin
-          - roles/resourcemanager.projectIamAdmin
     services:
-      - cloudresourcemanager.googleapis.com
-      - storage-api.googleapis.com
-      - serviceusage.googleapis.com
       - compute.googleapis.com
       - iam.googleapis.com
     providerVersions:

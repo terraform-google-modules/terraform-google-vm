@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,7 @@
  * limitations under the License.
  */
 
-module "project_ci_vm" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 17.0"
-
-  name              = "ci-vm-module"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
-
-  activate_apis = [
-    "cloudresourcemanager.googleapis.com",
-    "storage-api.googleapis.com",
-    "serviceusage.googleapis.com",
-    "compute.googleapis.com",
-    "iam.googleapis.com",
-    "cloudkms.googleapis.com",
-  ]
+variable "project_id" {
+  description = "The GCP project to use for integration tests."
+  type        = string
 }

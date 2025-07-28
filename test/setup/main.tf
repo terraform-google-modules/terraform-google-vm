@@ -28,9 +28,14 @@ locals {
     instance_template = [
       "compute.googleapis.com",
       "iam.googleapis.com",
+      "cloudresourcemanager.googleapis.com",
+      "serviceusage.googleapis.com",
     ]
 
     mig = [
+      "cloudresourcemanager.googleapis.com",
+      "storage-api.googleapis.com",
+      "serviceusage.googleapis.com",
       "compute.googleapis.com",
       "iam.googleapis.com",
     ]

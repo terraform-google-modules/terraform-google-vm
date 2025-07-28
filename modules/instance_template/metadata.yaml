@@ -483,8 +483,10 @@ spec:
           - roles/iam.serviceAccountUser
           - roles/logging.logWriter
     services:
+      - cloudresourcemanager.googleapis.com
       - compute.googleapis.com
       - iam.googleapis.com
+      - serviceusage.googleapis.com
     providerVersions:
       - source: hashicorp/google-beta
         version: ">= 5.36, < 7"

@@ -95,14 +95,14 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/compute.imageUser
-          - roles/compute.networkAdmin
-          - roles/logging.logWriter
-          - roles/monitoring.viewer
           - roles/compute.admin
           - roles/iam.serviceAccountAdmin
           - roles/iam.serviceAccountUser
           - roles/compute.securityAdmin
+          - roles/compute.imageUser
+          - roles/compute.networkAdmin
+          - roles/logging.logWriter
+          - roles/monitoring.viewer
     services:
       - compute.googleapis.com
       - iam.googleapis.com

@@ -22,9 +22,12 @@ locals {
     ]
 
     compute_instance = [
-      "roles/compute.instanceAdmin.v1",
+      "roles/compute.admin",
+      "roles/compute.networkAdmin",
       "roles/iam.serviceAccountUser",
-      "roles/logging.logWriter",
+      "roles/iam.serviceAccountAdmin",
+      "roles/compute.instanceAdmin",
+      "roles/resourcemanager.projectIamAdmin",
     ]
 
     instance_template = [
@@ -34,8 +37,7 @@ locals {
     ]
 
     mig = [
-      "roles/compute.instanceAdmin.v1",
-      "roles/compute.viewer",
+      "roles/compute.admin",
       "roles/iam.serviceAccountUser",
       "roles/logging.logWriter",
     ]

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.4.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.4.1...v13.4.2) (2025-07-31)
+
+
+### Bug Fixes
+
+* Add validation for instance template ([#510](https://github.com/terraform-google-modules/terraform-google-vm/issues/510)) ([a5a89d1](https://github.com/terraform-google-modules/terraform-google-vm/commit/a5a89d14160b7ed4e0163063b757cec00bdf0149))
+
 ## [13.4.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.4.0...v13.4.1) (2025-06-30)
 
 

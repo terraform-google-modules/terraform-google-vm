@@ -22,6 +22,7 @@ locals {
     "roles/iam.serviceAccountAdmin",
     "roles/compute.instanceAdmin",
     "roles/resourcemanager.projectIamAdmin",
+    "roles/cloudkms.admin",
   ]
 }
 

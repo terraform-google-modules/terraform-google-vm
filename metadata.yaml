@@ -54,6 +54,8 @@ spec:
         location: examples/instance_template/confidential_computing
       - name: confidential_computing_intel
         location: examples/confidential_computing_intel
+      - name: confidential_gpu
+        location: examples/confidential_gpu
       - name: disk_snapshot
         location: examples/compute_instance/disk_snapshot
       - name: encrypted_disks
@@ -101,9 +103,11 @@ spec:
           - roles/iam.serviceAccountAdmin
           - roles/compute.instanceAdmin
           - roles/resourcemanager.projectIamAdmin
+          - roles/cloudkms.admin
     services:
       - cloudresourcemanager.googleapis.com
       - storage-api.googleapis.com
       - serviceusage.googleapis.com
       - compute.googleapis.com
       - iam.googleapis.com
+      - cloudkms.googleapis.com

@@ -95,6 +95,7 @@ spec:
     roles:
       - level: Project
         roles:
+          - roles/monitoring.viewer
           - roles/compute.admin
           - roles/iam.serviceAccountAdmin
           - roles/iam.serviceAccountUser
@@ -102,7 +103,6 @@ spec:
           - roles/compute.imageUser
           - roles/compute.networkAdmin
           - roles/logging.logWriter
-          - roles/monitoring.viewer
     services:
       - compute.googleapis.com
       - iam.googleapis.com

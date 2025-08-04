@@ -479,9 +479,10 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/compute.instanceAdmin.v1
           - roles/iam.serviceAccountUser
           - roles/logging.logWriter
+          - roles/compute.admin
+          - roles/iam.serviceAccountAdmin
     services:
       - cloudresourcemanager.googleapis.com
       - compute.googleapis.com

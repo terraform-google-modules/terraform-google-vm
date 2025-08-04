@@ -172,13 +172,14 @@ spec:
     roles:
       - level: Project
         roles:
+          - roles/compute.networkAdmin
+          - roles/iam.serviceAccountUser
           - roles/iam.serviceAccountAdmin
           - roles/compute.instanceAdmin
           - roles/resourcemanager.projectIamAdmin
           - roles/compute.admin
-          - roles/compute.networkAdmin
-          - roles/iam.serviceAccountUser
     services:
+      - cloudresourcemanager.googleapis.com
       - compute.googleapis.com
       - iam.googleapis.com
     providerVersions:

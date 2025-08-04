@@ -31,7 +31,8 @@ locals {
     ]
 
     instance_template = [
-      "roles/compute.instanceAdmin.v1",
+      "roles/compute.admin",
+      "roles/iam.serviceAccountAdmin",
       "roles/iam.serviceAccountUser",
       "roles/logging.logWriter",
     ]

@@ -21,6 +21,7 @@ locals {
     ]
 
     compute_instance = [
+      "cloudresourcemanager.googleapis.com",
       "compute.googleapis.com",
       "iam.googleapis.com",
     ]

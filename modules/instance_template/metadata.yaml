@@ -479,18 +479,15 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/compute.admin
-          - roles/compute.networkAdmin
           - roles/iam.serviceAccountUser
+          - roles/logging.logWriter
+          - roles/compute.admin
           - roles/iam.serviceAccountAdmin
-          - roles/compute.instanceAdmin
-          - roles/resourcemanager.projectIamAdmin
     services:
       - cloudresourcemanager.googleapis.com
-      - storage-api.googleapis.com
-      - serviceusage.googleapis.com
       - compute.googleapis.com
       - iam.googleapis.com
+      - serviceusage.googleapis.com
     providerVersions:
       - source: hashicorp/google-beta
         version: ">= 5.36, < 7"

@@ -15,14 +15,73 @@
  */
 
 locals {
-  vm_required_roles = [
+  per_module_roles = {
+    compute_disk_snapshot = [
+      "roles/compute.storageAdmin",
+      "roles/logging.logWriter",
+    ]
+
+    compute_instance = [
+      "roles/compute.admin",
+      "roles/compute.networkAdmin",
+      "roles/iam.serviceAccountUser",
+      "roles/iam.serviceAccountAdmin",
+      "roles/compute.instanceAdmin",
+      "roles/resourcemanager.projectIamAdmin",
+    ]
+
+    instance_template = [
+      "roles/compute.admin",
+      "roles/iam.serviceAccountAdmin",
+      "roles/iam.serviceAccountUser",
+      "roles/logging.logWriter",
+    ]
+
+    mig = [
+      "roles/compute.admin",
+      "roles/iam.serviceAccountUser",
+      "roles/logging.logWriter",
+    ]
+
+    mig_with_percent = [
+      "roles/compute.instanceAdmin.v1",
+      "roles/compute.viewer",
+      "roles/iam.serviceAccountUser",
+      "roles/logging.logWriter",
+    ]
+
+    umig = [
+      "roles/compute.instanceAdmin.v1",
+      "roles/iam.serviceAccountUser",
+      "roles/logging.logWriter",
+    ]
+
+    preemptible_and_regular_instance_templates = [
+      "roles/compute.instanceAdmin.v1",
+      "roles/iam.serviceAccountUser",
+      "roles/logging.logWriter",
+    ]
+
+    root = [
+      "roles/compute.admin",
+      "roles/iam.serviceAccountAdmin",
+      "roles/iam.serviceAccountUser",
+      "roles/compute.securityAdmin",
+      "roles/compute.imageUser",
+      "roles/compute.networkAdmin",
+      "roles/logging.logWriter",
+      "roles/monitoring.viewer",
+    ]
+  }
+
+  vm_required_roles = concat([
     "roles/compute.admin",
     "roles/compute.networkAdmin",
     "roles/iam.serviceAccountUser",
     "roles/iam.serviceAccountAdmin",
     "roles/compute.instanceAdmin",
     "roles/resourcemanager.projectIamAdmin",
-  ]
+  ], flatten(values(local.per_module_roles)))
 }
 
 resource "google_service_account" "ci_vm_account" {

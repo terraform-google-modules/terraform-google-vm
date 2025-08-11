@@ -95,15 +95,17 @@ spec:
     roles:
       - level: Project
         roles:
+          - roles/monitoring.viewer
           - roles/compute.admin
-          - roles/compute.networkAdmin
-          - roles/iam.serviceAccountUser
           - roles/iam.serviceAccountAdmin
-          - roles/compute.instanceAdmin
-          - roles/resourcemanager.projectIamAdmin
+          - roles/iam.serviceAccountUser
+          - roles/compute.securityAdmin
+          - roles/compute.imageUser
+          - roles/compute.networkAdmin
+          - roles/logging.logWriter
     services:
-      - cloudresourcemanager.googleapis.com
-      - storage-api.googleapis.com
-      - serviceusage.googleapis.com
       - compute.googleapis.com
       - iam.googleapis.com
+      - logging.googleapis.com
+      - monitoring.googleapis.com
+      - serviceusage.googleapis.com

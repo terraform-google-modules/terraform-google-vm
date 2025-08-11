@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.5.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.4.2...v13.5.0) (2025-08-11)
+
+
+### Features
+
+* per module requirements configs to vm ([#512](https://github.com/terraform-google-modules/terraform-google-vm/issues/512)) ([8b44c66](https://github.com/terraform-google-modules/terraform-google-vm/commit/8b44c667bfc6df92cde7e7483e9a41e14f9a5c20))
+
 ## [13.4.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.4.1...v13.4.2) (2025-07-31)
 
 

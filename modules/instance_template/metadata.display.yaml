@@ -139,7 +139,7 @@ spec:
                     - label: STANDARD
                       value: STANDARD
                     - label: FIXED_STANDARD
-                      value: FIXED_STANDARD  
+                      value: FIXED_STANDARD
             ipv6_access_config:
               name: ipv6_access_config
               title: Ipv6 Access Config

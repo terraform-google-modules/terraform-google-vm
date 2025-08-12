@@ -68,7 +68,7 @@ spec:
                 - label: hyperdisk-throughput
                   value: hyperdisk-throughput
                 - label: hyperdisk-extreme
-                  value: hyperdisk-extreme    
+                  value: hyperdisk-extreme
             interface:
               name: interface
               title: Interface
@@ -123,7 +123,7 @@ spec:
                 - label: IPV4_ONLY
                   value: IPV4_ONLY
                 - label: IPV6_ONLY
-                  value: IPV6_ONLY  
+                  value: IPV6_ONLY
                 - label: IPV4_IPV6
                   value: IPV4_IPV6
             access_config:
@@ -184,7 +184,7 @@ spec:
             - label: SEV_SNP
               value: SEV_SNP
             - label: TDX
-              value: TDX  
+              value: TDX
         create_service_account:
           name: create_service_account
           title: Create Service Account
@@ -224,7 +224,7 @@ spec:
             - label: hyperdisk-throughput
               value: hyperdisk-throughput
             - label: hyperdisk-extreme
-              value: hyperdisk-extreme    
+              value: hyperdisk-extreme
         enable_confidential_vm:
           name: enable_confidential_vm
           title: Enable Confidential Vm
@@ -331,12 +331,6 @@ spec:
         resource_manager_tags:
           name: resource_manager_tags
           title: Resource Manager Tags
-          properties:
-            value:
-              name: value
-              title: Value
-              regexValidation: ^tagValues\/\d+$
-              validation: Resource Manager tag values must be in the format 'tagValues/{tag_value_id}'.
         resource_policies:
           name: resource_policies
           title: Resource Policies
@@ -383,7 +377,7 @@ spec:
             - label: IPV4_IPV6
               value: IPV4_IPV6
             - label: IPV6_ONLY
-              value: IPV6_ONLY  
+              value: IPV6_ONLY
         startup_script:
           name: startup_script
           title: Startup Script

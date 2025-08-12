@@ -17,9 +17,9 @@ resource "google_compute_instance_iam_member" "osadmin" {
 }
 
 resource "google_secret_manager_secret_iam_member" "secrets" {
-  count     = length(var.secrets)
+  for_each     = toset(var.secrets)
   project   = var.project_id
-  secret_id = var.secrets[count.index]
+  secret_id = each.value
   role      = "roles/secretmanager.secretAccessor"
   member    = var.service_account
 }

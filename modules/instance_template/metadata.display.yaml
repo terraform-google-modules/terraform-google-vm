@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -92,12 +92,12 @@ spec:
             network:
               name: network
               title: Network
-              regexValidation: ^(?:projects\/[a-z0-9-]+\/)?global\/networks\/[a-z0-9-]{1,63}$
+              regexValidation: ^(?:[a-z0-9-]{1,63}|projects\/[a-z0-9-]+\/global\/networks\/[a-z0-9-]{1,63})$
               validation: Invalid network format. Must be a network name or a self link.
             subnetwork:
               name: subnetwork
               title: Subnetwork
-              regexValidation: ^(?:projects\/[a-z0-9-]+\/)?(?:regions\/[a-z0-9-]+\/)?subnetworks\/[a-z0-9-]{1,63}$
+              regexValidation: ^(?:[a-z0-9-]{1,63}|(?:projects\/[a-z0-9-]+\/)?(?:regions\/[a-z0-9-]+\/)?subnetworks\/[a-z0-9-]{1,63})$
               validation: Invalid subnetwork format. Must be a subnetwork name or a self link.
             network_ip:
               name: network_ip
@@ -272,17 +272,22 @@ spec:
         min_cpu_platform:
           name: min_cpu_platform
           title: Min Cpu Platform
+          enumValueLabels:
+            - label: Intel Haswell
+              value: Intel Haswell
+            - label: Intel Skylake
+              value: Intel Skylake
         name_prefix:
           name: name_prefix
           title: Name Prefix
-          regexValidation: ^.{1,54}$
-          validation: Name prefix must be 54 characters or less.
+          regexValidation: ^[a-z][a-z0-9-]{0,51}[a-z0-9]$
+          validation: Use lowercase letters, numbers, and hyphens. Start with a letter and end with letter/number. Must be 53 characters or fewer.
           level: 1
         network:
           name: network
           title: Network
           level: 1
-          regexValidation: ^(?:projects\/[a-z0-9-]+\/)?global\/networks\/[a-z0-9-]{1,63}$
+          regexValidation: ^(?:[a-z0-9-]{1,63}|projects\/[a-z0-9-]+\/global\/networks\/[a-z0-9-]{1,63})$
           validation: Invalid network format. Must be a network name or a self link.
           altDefaults:
             - type: ALTERNATE_TYPE_DC
@@ -385,7 +390,7 @@ spec:
           name: subnetwork
           title: Subnetwork
           level: 1
-          regexValidation: ^(?:projects\/[a-z0-9-]+\/)?(?:regions\/[a-z0-9-]+\/)?subnetworks\/[a-z0-9-]{1,63}$
+          regexValidation: ^(?:[a-z0-9-]{1,63}|(?:projects\/[a-z0-9-]+\/)?(?:regions\/[a-z0-9-]+\/)?subnetworks\/[a-z0-9-]{1,63})$
           validation: Invalid subnetwork format. Must be a subnetwork name or a self link.
         subnetwork_project:
           name: subnetwork_project

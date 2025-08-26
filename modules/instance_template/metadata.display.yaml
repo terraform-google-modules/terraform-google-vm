@@ -92,17 +92,17 @@ spec:
             network:
               name: network
               title: Network
-              regexValidation: "^(?:[a-z0-9-]{1,63}|projects\\/[a-z0-9-]+\\/global\\/networks\\/[a-z0-9-]{1,63})$"
+              regexValidation: "^(?:[a-z0-9-]{1,63}|projects/[a-z0-9-]+/global/networks/[a-z0-9-]{1,63})$"
               validation: Invalid network format. Must be a network name or a self link.
             subnetwork:
               name: subnetwork
               title: Subnetwork
-              regexValidation: "^(?:[a-z0-9-]{1,63}|(?:projects\\/[a-z0-9-]+\\/)?(?:regions\\/[a-z0-9-]+\\/)?subnetworks\\/[a-z0-9-]{1,63})$"
+              regexValidation: "^(?:[a-z0-9-]{1,63}|(?:projects/[a-z0-9-]+/)?(?:regions/[a-z0-9-]+/)?subnetworks/[a-z0-9-]{1,63})$"
               validation: Invalid subnetwork format. Must be a subnetwork name or a self link.
             network_ip:
               name: network_ip
               title: Network Ip
-              regexValidation: ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
+              regexValidation: "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
               validation: Invalid IP address format. Must be a valid IPv4 address.
             nic_type:
               name: nic_type
@@ -287,7 +287,7 @@ spec:
           name: network
           title: Network
           level: 1
-          regexValidation: "^(?:[a-z0-9-]{1,63}|projects\\/[a-z0-9-]+\\/global\\/networks\\/[a-z0-9-]{1,63})$"
+          regexValidation: "^(?:[a-z0-9-]{1,63}|projects/[a-z0-9-]+/global/networks/[a-z0-9-]{1,63})$"
           validation: Invalid network format. Must be a network name or a self link.
           altDefaults:
             - type: ALTERNATE_TYPE_DC
@@ -295,7 +295,7 @@ spec:
         network_ip:
           name: network_ip
           title: Network Ip
-          regexValidation: ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
+          regexValidation: "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
           validation: Invalid IP address format. Must be a valid IPv4 address.
         nic_type:
           name: nic_type
@@ -345,7 +345,7 @@ spec:
         service_account_project_roles:
           name: service_account_project_roles
           title: Service Account Project Roles
-          regexValidation: "^(roles\\/[a-zA-Z0-9_\\.]+|(projects\\/[a-z][a-z0-9\\-]{4,28}[a-z0-9]|organizations\\/[0-9]+)\\/roles\\/[a-zA-Z0-9_]+)$"
+          regexValidation: "^(roles/[a-zA-Z0-9_.]+|(projects/[a-z][a-z0-9-]{4,28}[a-z0-9]|organizations/[0-9]+)/roles/[a-zA-Z0-9_]+)$"
           validation: Role must be a valid Google Cloud IAM role name, in the format of 'roles/{role_name}'.
         shielded_instance_config:
           name: shielded_instance_config
@@ -390,7 +390,7 @@ spec:
           name: subnetwork
           title: Subnetwork
           level: 1
-          regexValidation: "^(?:[a-z0-9-]{1,63}|(?:projects\\/[a-z0-9-]+\\/)?(?:regions\\/[a-z0-9-]+\\/)?subnetworks\\/[a-z0-9-]{1,63})$"
+          regexValidation: "^(?:[a-z0-9-]{1,63}|(?:projects/[a-z0-9-]+/)?(?:regions/[a-z0-9-]+/)?subnetworks/[a-z0-9-]{1,63})$"
           validation: Invalid subnetwork format. Must be a subnetwork name or a self link.
         subnetwork_project:
           name: subnetwork_project

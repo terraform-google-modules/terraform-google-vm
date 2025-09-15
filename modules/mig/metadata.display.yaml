@@ -31,9 +31,20 @@ spec:
         autoscaler_name:
           name: autoscaler_name
           title: Autoscaler Name
+          regexValidation: ^[a-z][a-z0-9-]{0,61}[a-z0-9]$
+          validation: Autoscaler name must be between 1 and 63 characters long, start with a lowercase letter, and can contain lowercase letters, numbers, and hyphens.
         autoscaling_cpu:
           name: autoscaling_cpu
           title: Autoscaling Cpu
+          properties:
+            predictive_method:
+              name: predictive_method
+              title: Predictive Method
+              enumValueLabels:
+                - label: NONE
+                  value: NONE
+                - label: OPTIMIZE_AVAILABILITY
+                  value: OPTIMIZE_AVAILABILITY
         autoscaling_enabled:
           name: autoscaling_enabled
           title: Autoscaling Enabled
@@ -43,6 +54,17 @@ spec:
         autoscaling_metric:
           name: autoscaling_metric
           title: Autoscaling Metric
+          properties:
+            type:
+              name: type
+              title: Type
+              enumValueLabels:
+                - label: GAUGE
+                  value: GAUGE
+                - label: DELTA_PER_SECOND
+                  value: DELTA_PER_SECOND
+                - label: DELTA_PER_MINUTE
+                  value: DELTA_PER_MINUTE
         autoscaling_mode:
           name: autoscaling_mode
           title: Autoscaling Mode
@@ -63,23 +85,57 @@ spec:
         distribution_policy_target_shape:
           name: distribution_policy_target_shape
           title: Distribution Policy Target Shape
+          enumValueLabels:
+            - label: EVEN
+              value: EVEN
+            - label: BALANCED
+              value: BALANCED
+            - label: ANY
+              value: ANY
+            - label: ANY_SINGLE_ZONE
+              value: ANY_SINGLE_ZONE
         distribution_policy_zones:
           name: distribution_policy_zones
           title: Distribution Policy Zones
         health_check:
           name: health_check
           title: Health Check
+          properties:
+            type:
+              name: type
+              title: Type
+              enumValueLabels:
+                - label: HTTPS
+                  value: HTTPS
+                - label: HTTP
+                  value: HTTP
+                - label: TCP
+                  value: TCP
+                - label: SSL
+                  value: SSL
+            proxy_header:
+              name: proxy_header
+              title: Proxy Header
+              enumValueLabels:
+                - label: NONE
+                  value: NONE
+                - label: PROXY_V1
+                  value: PROXY_V1
         health_check_name:
           name: health_check_name
           title: Health Check Name
+          regexValidation: ^[a-z][a-z0-9-]{0,61}[a-z0-9]$
+          validation: Health check name must be between 1 and 63 characters long, start with a lowercase letter, and can contain lowercase letters, numbers, and hyphens.
         hostname:
           name: hostname
           title: Hostname
           level: 1
+          regexValidation: ^[a-z][a-z0-9-]{0,61}[a-z0-9]$
+          validation: Hostname must be between 1 and 63 characters long, start with a lowercase letter, and can contain lowercase letters, numbers, and hyphens.
         instance_template:
           name: instance_template
           title: Instance Template
-          regexValidation: ^https:\/\/www\.googleapis\.com\/compute\/v1\/projects\/[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?\/(?:global|regions\/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)\/instanceTemplates\/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?$
+          regexValidation: "^https://www.googleapis.com/compute/v1/projects/[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?/(?:global|regions/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)/instanceTemplates/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?$"
           validation: Invalid template url format, valid format is either https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceTemplates/{template_name} (regional) or https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates/{template_name} (global).
         labels:
           name: labels
@@ -104,6 +160,12 @@ spec:
         named_ports:
           name: named_ports
           title: Named Ports
+          properties:
+            name:
+              name: name
+              title: Port Name
+              regexValidation: ^[a-z]([-a-z0-9]{0,61}[a-z0-9])?$
+              validation: Port name must be between 1 and 63 characters long, start with a lowercase letter, and can contain lowercase letters, numbers, and hyphens.
         project_id:
           name: project_id
           title: Project Id
@@ -114,12 +176,36 @@ spec:
         scaling_schedules:
           name: scaling_schedules
           title: Scaling Schedules
+          properties:
+            schedule:
+              name: schedule
+              title: Schedule
+              regexValidation: "^(*|([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])(-([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]))?)(,(*|([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])(-([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]))?))* (*|([0-9]|1[0-9]|2[0-3])(-([0-9]|1[0-9]|2[0-3]))?)(,(*|([0-9]|1[0-9]|2[0-3])(-([0-9]|1[0-9]|2[0-3]))?))* (*|([1-9]|1[0-9]|2[0-9]|3[0-1])(-([1-9]|1[0-9]|2[0-9]|3[0-1]))?)(,(*|([1-9]|1[0-9]|2[0-9]|3[0-1])(-([1-9]|1[0-9]|2[0-9]|3[0-1]))?))* (*|([1-9]|1[0-2])(-([1-9]|1[0-2]))?)(,(*|([1-9]|1[0-2])(-([1-9]|1[0-2]))?))* (*|([0-6])(-([0-6]))?)(,(*|([0-6])(-([0-6]))?))*$"
+              validation: Schedule must be in cron format.
         stateful_disks:
           name: stateful_disks
           title: Stateful Disks
+          properties:
+            delete_rule:
+              name: delete_rule
+              title: Delete Rule
+              enumValueLabels:
+                - label: NEVER
+                  value: NEVER
+                - label: ON_PERMANENT_INSTANCE_DELETION
+                  value: ON_PERMANENT_INSTANCE_DELETION
         stateful_ips:
           name: stateful_ips
           title: Stateful Ips
+          properties:
+            delete_rule:
+              name: delete_rule
+              title: Delete Rule
+              enumValueLabels:
+                - label: NEVER
+                  value: NEVER
+                - label: ON_PERMANENT_INSTANCE_DELETION
+                  value: ON_PERMANENT_INSTANCE_DELETION
         target_pools:
           name: target_pools
           title: Target Pools
@@ -130,6 +216,55 @@ spec:
         update_policy:
           name: update_policy
           title: Update Policy
+          properties:
+            instance_redistribution_type:
+              name: instance_redistribution_type
+              title: Instance Redistribution Type
+              enumValueLabels:
+                - label: PROACTIVE
+                  value: PROACTIVE
+                - label: NONE
+                  value: NONE
+            replacement_method:
+              name: replacement_method
+              title: Replacement Method
+              enumValueLabels:
+                - label: RECREATE
+                  value: RECREATE
+                - label: SUBSTITUTE
+                  value: SUBSTITUTE
+            minimal_action:
+              name: minimal_action
+              title: Minimal Action
+              enumValueLabels:
+                - label: RESTART
+                  value: RESTART
+                - label: REPLACE
+                  value: REPLACE
+                - label: REFRESH
+                  value: REFRESH
+                - label: NONE
+                  value: NONE
+            type:
+              name: type
+              title: Type
+              enumValueLabels:
+                - label: PROACTIVE
+                  value: PROACTIVE
+                - label: OPPORTUNISTIC
+                  value: OPPORTUNISTIC
+            most_disruptive_allowed_action:
+              name: most_disruptive_allowed_action
+              title: Most Disruptive Allowed Action
+              enumValueLabels:
+                - label: REPLACE
+                  value: REPLACE
+                - label: RESTART
+                  value: RESTART
+                - label: REFRESH
+                  value: REFRESH
+                - label: NONE
+                  value: NONE
         wait_for_instances:
           name: wait_for_instances
           title: Wait For Instances

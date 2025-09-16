@@ -31,6 +31,17 @@ spec:
         access_config:
           name: access_config
           title: Access Config
+          properties:
+            network_tier:
+              name: network_tier
+              title: Network Tier
+              enumValueLabels:
+                - label: PREMIUM
+                  value: PREMIUM
+                - label: STANDARD
+                  value: STANDARD
+                - label: FIXED_STANDARD
+                  value: FIXED_STANDARD
           altDefaults:
             - type: ALTERNATE_TYPE_DC
               value:
@@ -39,15 +50,119 @@ spec:
         additional_disks:
           name: additional_disks
           title: Additional Disks
+          properties:
+            disk_type:
+              name: disk_type
+              title: Disk Type
+              enumValueLabels:
+                - label: pd-standard
+                  value: pd-standard
+                - label: pd-balanced
+                  value: pd-balanced
+                - label: pd-ssd
+                  value: pd-ssd
+                - label: local-ssd
+                  value: local-ssd
+                - label: hyperdisk-balanced
+                  value: hyperdisk-balanced
+                - label: hyperdisk-throughput
+                  value: hyperdisk-throughput
+                - label: hyperdisk-extreme
+                  value: hyperdisk-extreme
+            interface:
+              name: interface
+              title: Interface
+              enumValueLabels:
+                - label: SCSI
+                  value: SCSI
+                - label: NVME
+                  value: NVME
+            mode:
+              name: mode
+              title: Mode
+              enumValueLabels:
+                - label: READ_WRITE
+                  value: READ_WRITE
+                - label: READ_ONLY
+                  value: READ_ONLY
         additional_networks:
           name: additional_networks
           title: Additional Networks
+          properties:
+            network:
+              name: network
+              title: Network
+              regexValidation: "^(?:[a-z0-9-]{1,63}|projects/[a-z0-9-]+/global/networks/[a-z0-9-]{1,63})$"
+              validation: Invalid network format. Must be a network name or a self link.
+            subnetwork:
+              name: subnetwork
+              title: Subnetwork
+              regexValidation: "^(?:[a-z0-9-]{1,63}|(?:projects/[a-z0-9-]+/)?(?:regions/[a-z0-9-]+/)?subnetworks/[a-z0-9-]{1,63})$"
+              validation: Invalid subnetwork format. Must be a subnetwork name or a self link.
+            network_ip:
+              name: network_ip
+              title: Network Ip
+              regexValidation: "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+              validation: Invalid IP address format. Must be a valid IPv4 address.
+            nic_type:
+              name: nic_type
+              title: Nic Type
+              enumValueLabels:
+                - label: VIRTIO_NET
+                  value: VIRTIO_NET
+                - label: GVNIC
+                  value: GVNIC
+                - label: MRDMA
+                  value: MRDMA
+                - label: IRDMA
+                  value: IRDMA
+            stack_type:
+              name: stack_type
+              title: Stack Type
+              enumValueLabels:
+                - label: IPV4_ONLY
+                  value: IPV4_ONLY
+                - label: IPV6_ONLY
+                  value: IPV6_ONLY
+                - label: IPV4_IPV6
+                  value: IPV4_IPV6
+            access_config:
+              name: access_config
+              title: Access Config
+              properties:
+                network_tier:
+                  name: network_tier
+                  title: Network Tier
+                  enumValueLabels:
+                    - label: PREMIUM
+                      value: PREMIUM
+                    - label: STANDARD
+                      value: STANDARD
+                    - label: FIXED_STANDARD
+                      value: FIXED_STANDARD
+            ipv6_access_config:
+              name: ipv6_access_config
+              title: Ipv6 Access Config
+              properties:
+                network_tier:
+                  name: network_tier
+                  title: Network Tier
+                  enumValueLabels:
+                    - label: PREMIUM
+                      value: PREMIUM
+                    - label: STANDARD
+                      value: STANDARD
         alias_ip_range:
           name: alias_ip_range
           title: Alias Ip Range
         auto_delete:
           name: auto_delete
           title: Auto Delete
+          enumValueLabels:
+            - label: "true"
+              value: "true"
+            - label: "false"
+              value: "false"
         automatic_restart:
           name: automatic_restart
           title: Automatic Restart
@@ -55,9 +170,21 @@ spec:
         can_ip_forward:
           name: can_ip_forward
           title: Can Ip Forward
+          enumValueLabels:
+            - label: "false"
+              value: "false"
+            - label: "true"
+              value: "true"
         confidential_instance_type:
           name: confidential_instance_type
           title: Confidential Instance Type
+          enumValueLabels:
+            - label: SEV
+              value: SEV
+            - label: SEV_SNP
+              value: SEV_SNP
+            - label: TDX
+              value: TDX
         create_service_account:
           name: create_service_account
           title: Create Service Account
@@ -83,6 +210,21 @@ spec:
           name: disk_type
           title: Disk Type
           level: 1
+          enumValueLabels:
+            - label: pd-standard
+              value: pd-standard
+            - label: pd-balanced
+              value: pd-balanced
+            - label: pd-ssd
+              value: pd-ssd
+            - label: local-ssd
+              value: local-ssd
+            - label: hyperdisk-balanced
+              value: hyperdisk-balanced
+            - label: hyperdisk-throughput
+              value: hyperdisk-throughput
+            - label: hyperdisk-extreme
+              value: hyperdisk-extreme
         enable_confidential_vm:
           name: enable_confidential_vm
           title: Enable Confidential Vm
@@ -102,6 +244,15 @@ spec:
         ipv6_access_config:
           name: ipv6_access_config
           title: Ipv6 Access Config
+          properties:
+            network_tier:
+              name: network_tier
+              title: Network Tier
+              enumValueLabels:
+                - label: PREMIUM
+                  value: PREMIUM
+                - label: STANDARD
+                  value: STANDARD
         labels:
           name: labels
           title: Labels
@@ -133,21 +284,44 @@ spec:
           name: network
           title: Network
           level: 1
+          regexValidation: "^(?:[a-z0-9-]{1,63}|projects/[a-z0-9-]+/global/networks/[a-z0-9-]{1,63})$"
+          validation: Invalid network format. Must be a network name or a self link.
           altDefaults:
             - type: ALTERNATE_TYPE_DC
               value: default
         network_ip:
           name: network_ip
           title: Network Ip
+          regexValidation: "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+          validation: Invalid IP address format. Must be a valid IPv4 address.
         nic_type:
           name: nic_type
           title: Nic Type
+          enumValueLabels:
+            - label: VIRTIO_NET
+              value: VIRTIO_NET
+            - label: GVNIC
+              value: GVNIC
+            - label: MRDMA
+              value: MRDMA
+            - label: IRDMA
+              value: IRDMA
         on_host_maintenance:
           name: on_host_maintenance
           title: On Host Maintenance
+          enumValueLabels:
+            - label: MIGRATE
+              value: MIGRATE
+            - label: TERMINATE
+              value: TERMINATE
         preemptible:
           name: preemptible
           title: Preemptible
+          enumValueLabels:
+            - label: "true"
+              value: "true"
+            - label: "false"
+              value: "false"
         project_id:
           name: project_id
           title: Project Id
@@ -168,6 +342,8 @@ spec:
         service_account_project_roles:
           name: service_account_project_roles
           title: Service Account Project Roles
+          regexValidation: "^(roles/[a-zA-Z0-9_.]+|(projects/[a-z][a-z0-9-]{4,28}[a-z0-9]|organizations/[0-9]+)/roles/[a-zA-Z0-9_]+)$"
+          validation: Role must be a valid Google Cloud IAM role name, in the format of 'roles/{role_name}'.
         shielded_instance_config:
           name: shielded_instance_config
           title: Shielded Instance Config
@@ -189,9 +365,21 @@ spec:
         spot_instance_termination_action:
           name: spot_instance_termination_action
           title: Spot Instance Termination Action
+          enumValueLabels:
+            - label: STOP
+              value: STOP
+            - label: DELETE
+              value: DELETE
         stack_type:
           name: stack_type
           title: Stack Type
+          enumValueLabels:
+            - label: IPV4_ONLY
+              value: IPV4_ONLY
+            - label: IPV4_IPV6
+              value: IPV4_IPV6
+            - label: IPV6_ONLY
+              value: IPV6_ONLY
         startup_script:
           name: startup_script
           title: Startup Script
@@ -199,6 +387,8 @@ spec:
           name: subnetwork
           title: Subnetwork
           level: 1
+          regexValidation: "^(?:[a-z0-9-]{1,63}|(?:projects/[a-z0-9-]+/)?(?:regions/[a-z0-9-]+/)?subnetworks/[a-z0-9-]{1,63})$"
+          validation: Invalid subnetwork format. Must be a subnetwork name or a self link.
         subnetwork_project:
           name: subnetwork_project
           title: Subnetwork Project
@@ -212,3 +402,8 @@ spec:
         total_egress_bandwidth_tier:
           name: total_egress_bandwidth_tier
           title: Total Egress Bandwidth Tier
+          enumValueLabels:
+            - label: DEFAULT
+              value: DEFAULT
+            - label: TIER_1
+              value: TIER_1

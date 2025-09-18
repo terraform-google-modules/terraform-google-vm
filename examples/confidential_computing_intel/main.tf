@@ -27,7 +27,7 @@ resource "random_string" "suffix" {
 
 module "kms" {
   source  = "terraform-google-modules/kms/google"
-  version = "3.2.0"
+  version = "4.0.0"
 
   keyring              = "${var.keyring}-${local.default_suffix}"
   location             = var.location

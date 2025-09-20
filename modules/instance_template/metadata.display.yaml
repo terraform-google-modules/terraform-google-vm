@@ -263,6 +263,9 @@ spec:
         maintenance_interval:
           name: maintenance_interval
           title: Maintenance Interval
+          enumValueLabels:
+            - label: PERIODIC
+              value: PERIODIC
         metadata:
           name: metadata
           title: Metadata

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.6.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.5.0...v13.6.0) (2025-09-22)
+
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v7 (major) ([#526](https://github.com/terraform-google-modules/terraform-google-vm/issues/526)) ([f753635](https://github.com/terraform-google-modules/terraform-google-vm/commit/f7536352287fa92a1d98c771eac6d94df99cc212))
+
 ## [13.5.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.4.2...v13.5.0) (2025-09-16)
 
 

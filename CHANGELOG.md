@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.6.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.6.0...v13.6.1) (2025-09-30)
+
+
+### Bug Fixes
+
+* added missing validations ([#530](https://github.com/terraform-google-modules/terraform-google-vm/issues/530)) ([00fb172](https://github.com/terraform-google-modules/terraform-google-vm/commit/00fb172d76321a89465cbfb4b771fd3ecaa1da09))
+
 ## [13.6.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.5.0...v13.6.0) (2025-09-22)
 
 

@@ -73,7 +73,11 @@ locals {
       : null
     )
   )
-  create_service_account = var.create_service_account ? var.service_account == null : false
+  create_service_account = var.create_service_account && (
+    var.service_account == null ||
+    var.service_account.email == null ||
+    var.service_account.email == ""
+  )
 
   service_account_prefix = substr("${var.name_prefix}-${var.region}", 0, 27)
   service_account_output = local.create_service_account ? {

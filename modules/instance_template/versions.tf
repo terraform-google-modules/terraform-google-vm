@@ -21,6 +21,10 @@ terraform {
       source  = "hashicorp/google-beta"
       version = ">= 5.36, < 8"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "< 4.0"
+    }
   }
   provider_meta "google" {
     module_name = "blueprints/terraform/terraform-google-vm:instance_template/v13.6.1"

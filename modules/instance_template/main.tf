@@ -75,12 +75,17 @@ locals {
   )
   create_service_account = var.create_service_account ? var.service_account == null : false
 
-  service_account_prefix = substr("${var.name_prefix}-${var.region}", 0, 27)
+  service_account_prefix = "${substr("${var.name_prefix}-${var.region}", 0, 23)}-${random_integer.sa_suffix.result}"
   service_account_output = local.create_service_account ? {
     id     = google_service_account.sa[0].account_id,
     email  = google_service_account.sa[0].email,
     member = google_service_account.sa[0].member
   } : {}
+}
+
+resource "random_integer" "sa_suffix" {
+  min = 1000
+  max = 9999
 }
 
 # Service account

@@ -206,11 +206,12 @@ variable "autoscaling_cpu" {
 }
 
 variable "autoscaling_metric" {
-  description = "Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#metric"
+  description = "Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#metric-1"
   type = list(object({
     name   = string
     target = number
     type   = string
+    filter = optional(string)
   }))
   default = []
 }

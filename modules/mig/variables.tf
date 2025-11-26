@@ -206,7 +206,7 @@ variable "autoscaling_cpu" {
 }
 
 variable "autoscaling_metric" {
-  description = "Autoscaling, metric policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#metric-1"
+  description = "Autoscaling, metric policy block as single element array. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_region_autoscaler#metric-1"
   type = list(object({
     name   = string
     target = number

@@ -123,6 +123,12 @@ variable "enable_nested_virtualization" {
   default     = false
 }
 
+variable "enable_display" {
+  type        = bool
+  description = "Defines whether the instacne should have a display associated with it"
+  default     = false
+}
+
 variable "threads_per_core" {
   description = "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1."
   type        = number
@@ -435,3 +441,5 @@ variable "resource_manager_tags" {
   type        = map(string)
   default     = null
 }
+
+#

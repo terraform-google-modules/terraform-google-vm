@@ -144,7 +144,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
-              version: ~> 13.5
+              version: ~> 13.6
             spec:
               outputExpr: self_link
       - name: region
@@ -188,7 +188,7 @@ spec:
       - name: instances_details
         description: List of all details for compute instances
         type:
-          - tuple
+          - list
           - - - object
               - advanced_machine_features:
                   - list
@@ -386,12 +386,12 @@ spec:
                             seconds: number
                       min_node_cpus: number
                       node_affinities:
-                        - set
+                        - list
                         - - object
                           - key: string
                             operator: string
                             values:
-                              - set
+                              - list
                               - string
                       on_host_maintenance: string
                       on_instance_stop_action:
@@ -413,7 +413,7 @@ spec:
                   - - object
                     - email: string
                       scopes:
-                        - set
+                        - list
                         - string
                 shielded_instance_config:
                   - list
@@ -423,7 +423,7 @@ spec:
                       enable_vtpm: bool
                 source_instance_template: string
                 tags:
-                  - set
+                  - list
                   - string
                 tags_fingerprint: string
                 terraform_labels:
@@ -438,7 +438,7 @@ spec:
       - name: instances_self_links
         description: List of self-links for compute instances
         type:
-          - tuple
+          - list
           - - string
   requirements:
     roles:

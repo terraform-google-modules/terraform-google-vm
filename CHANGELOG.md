@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.7.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.6.1...v13.7.0) (2025-12-08)
+
+
+### Features
+
+* **vm:** Add blueprint  metadata for compute_instance module ([#539](https://github.com/terraform-google-modules/terraform-google-vm/issues/539)) ([290899b](https://github.com/terraform-google-modules/terraform-google-vm/commit/290899b1f4ce649e4de5c946f10abec152943eda))
+
 ## [13.6.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.6.0...v13.6.1) (2025-09-30)
 
 

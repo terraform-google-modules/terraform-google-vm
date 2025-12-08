@@ -135,6 +135,12 @@ variable "threads_per_core" {
   default     = null
 }
 
+variable "visible_core_count" {
+  description = "The number of cores visible to the machine - can be used to decrease licensing costs with Premium OS's"
+  type        = number
+  default     = null
+}
+
 variable "resource_policies" {
   type        = list(string)
   description = "A list of self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported."

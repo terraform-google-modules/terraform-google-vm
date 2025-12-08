@@ -236,6 +236,7 @@ resource "google_compute_instance_template" "tpl" {
   advanced_machine_features {
     enable_nested_virtualization = var.enable_nested_virtualization
     threads_per_core             = var.threads_per_core
+    visible_core_count           = var.visible_core_count
   }
 
   dynamic "shielded_instance_config" {

@@ -90,6 +90,12 @@ spec:
         description: Subnet to deploy to. Only one of network or subnetwork should be specified.
         varType: string
         defaultValue: ""
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-network//modules/subnets
+              version: ~> 6.0
+            spec:
+              outputExpr: subnets[0].self_link
       - name: subnetwork_project
         description: The project that subnetwork belongs to
         varType: string
@@ -106,6 +112,12 @@ spec:
         description: List of static IPs for VM instances
         varType: list(string)
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-address
+              version: ~> 4.2
+            spec:
+              outputExpr: addresses
       - name: access_config
         description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
         varType: |-
@@ -129,6 +141,12 @@ spec:
         description: Instance template self_link used to create compute instances
         varType: string
         required: true
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
+              version: ~> 13.6
+            spec:
+              outputExpr: self_link
       - name: region
         description: Region where the instances should be created.
         varType: string
@@ -164,10 +182,264 @@ spec:
     outputs:
       - name: available_zones
         description: List of available zones in region
+        type:
+          - list
+          - string
       - name: instances_details
         description: List of all details for compute instances
+        type:
+          - list
+          - - - object
+              - advanced_machine_features:
+                  - list
+                  - - object
+                    - enable_nested_virtualization: bool
+                      enable_uefi_networking: bool
+                      performance_monitoring_unit: string
+                      threads_per_core: number
+                      turbo_mode: string
+                      visible_core_count: number
+                allow_stopping_for_update: bool
+                attached_disk:
+                  - list
+                  - - object
+                    - device_name: string
+                      disk_encryption_key_raw: string
+                      disk_encryption_key_rsa: string
+                      disk_encryption_key_sha256: string
+                      disk_encryption_service_account: string
+                      force_attach: bool
+                      kms_key_self_link: string
+                      mode: string
+                      source: string
+                boot_disk:
+                  - list
+                  - - object
+                    - auto_delete: bool
+                      device_name: string
+                      disk_encryption_key_raw: string
+                      disk_encryption_key_rsa: string
+                      disk_encryption_key_sha256: string
+                      disk_encryption_service_account: string
+                      force_attach: bool
+                      guest_os_features:
+                        - list
+                        - string
+                      initialize_params:
+                        - list
+                        - - object
+                          - architecture: string
+                            enable_confidential_compute: bool
+                            image: string
+                            labels:
+                              - map
+                              - string
+                            provisioned_iops: number
+                            provisioned_throughput: number
+                            resource_manager_tags:
+                              - map
+                              - string
+                            resource_policies:
+                              - list
+                              - string
+                            size: number
+                            snapshot: string
+                            source_image_encryption_key:
+                              - list
+                              - - object
+                                - kms_key_self_link: string
+                                  kms_key_service_account: string
+                                  raw_key: string
+                                  rsa_encrypted_key: string
+                                  sha256: string
+                            source_snapshot_encryption_key:
+                              - list
+                              - - object
+                                - kms_key_self_link: string
+                                  kms_key_service_account: string
+                                  raw_key: string
+                                  rsa_encrypted_key: string
+                                  sha256: string
+                            storage_pool: string
+                            type: string
+                      interface: string
+                      kms_key_self_link: string
+                      mode: string
+                      source: string
+                can_ip_forward: bool
+                confidential_instance_config:
+                  - list
+                  - - object
+                    - confidential_instance_type: string
+                      enable_confidential_compute: bool
+                cpu_platform: string
+                creation_timestamp: string
+                current_status: string
+                deletion_protection: bool
+                description: string
+                desired_status: string
+                effective_labels:
+                  - map
+                  - string
+                enable_display: bool
+                guest_accelerator:
+                  - list
+                  - - object
+                    - count: number
+                      type: string
+                hostname: string
+                id: string
+                instance_encryption_key:
+                  - list
+                  - - object
+                    - kms_key_self_link: string
+                      kms_key_service_account: string
+                      sha256: string
+                instance_id: string
+                key_revocation_action_type: string
+                label_fingerprint: string
+                labels:
+                  - map
+                  - string
+                machine_type: string
+                metadata:
+                  - map
+                  - string
+                metadata_fingerprint: string
+                metadata_startup_script: string
+                min_cpu_platform: string
+                name: string
+                network_interface:
+                  - list
+                  - - object
+                    - access_config:
+                        - list
+                        - - object
+                          - nat_ip: string
+                            network_tier: string
+                            public_ptr_domain_name: string
+                      alias_ip_range:
+                        - list
+                        - - object
+                          - ip_cidr_range: string
+                            subnetwork_range_name: string
+                      internal_ipv6_prefix_length: number
+                      ipv6_access_config:
+                        - list
+                        - - object
+                          - external_ipv6: string
+                            external_ipv6_prefix_length: string
+                            name: string
+                            network_tier: string
+                            public_ptr_domain_name: string
+                      ipv6_access_type: string
+                      ipv6_address: string
+                      name: string
+                      network: string
+                      network_attachment: string
+                      network_ip: string
+                      nic_type: string
+                      queue_count: number
+                      stack_type: string
+                      subnetwork: string
+                      subnetwork_project: string
+                network_performance_config:
+                  - list
+                  - - object
+                    - total_egress_bandwidth_tier: string
+                params:
+                  - list
+                  - - object
+                    - resource_manager_tags:
+                        - map
+                        - string
+                project: string
+                reservation_affinity:
+                  - list
+                  - - object
+                    - specific_reservation:
+                        - list
+                        - - object
+                          - key: string
+                            values:
+                              - list
+                              - string
+                      type: string
+                resource_policies:
+                  - list
+                  - string
+                scheduling:
+                  - list
+                  - - object
+                    - automatic_restart: bool
+                      availability_domain: number
+                      instance_termination_action: string
+                      local_ssd_recovery_timeout:
+                        - list
+                        - - object
+                          - nanos: number
+                            seconds: number
+                      max_run_duration:
+                        - list
+                        - - object
+                          - nanos: number
+                            seconds: number
+                      min_node_cpus: number
+                      node_affinities:
+                        - list
+                        - - object
+                          - key: string
+                            operator: string
+                            values:
+                              - list
+                              - string
+                      on_host_maintenance: string
+                      on_instance_stop_action:
+                        - list
+                        - - object
+                          - discard_local_ssd: bool
+                      preemptible: bool
+                      provisioning_model: string
+                      termination_time: string
+                scratch_disk:
+                  - list
+                  - - object
+                    - device_name: string
+                      interface: string
+                      size: number
+                self_link: string
+                service_account:
+                  - list
+                  - - object
+                    - email: string
+                      scopes:
+                        - list
+                        - string
+                shielded_instance_config:
+                  - list
+                  - - object
+                    - enable_integrity_monitoring: bool
+                      enable_secure_boot: bool
+                      enable_vtpm: bool
+                source_instance_template: string
+                tags:
+                  - list
+                  - string
+                tags_fingerprint: string
+                terraform_labels:
+                  - map
+                  - string
+                timeouts:
+                  - object
+                  - create: string
+                    delete: string
+                    update: string
+                zone: string
       - name: instances_self_links
         description: List of self-links for compute instances
+        type:
+          - list
+          - - string
   requirements:
     roles:
       - level: Project

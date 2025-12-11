@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.8.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.7.0...v13.8.0) (2025-12-10)
+
+
+### Features
+
+* **compute_instance:** Update address module dependency to v4.3 ([#544](https://github.com/terraform-google-modules/terraform-google-vm/issues/544)) ([eca39cb](https://github.com/terraform-google-modules/terraform-google-vm/commit/eca39cbf6430ef90575be0e9b3c4292ce3ae5d78))
+
 ## [13.7.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.6.1...v13.7.0) (2025-12-08)
 
 

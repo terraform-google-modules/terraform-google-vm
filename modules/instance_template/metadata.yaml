@@ -401,6 +401,11 @@ spec:
               version: ">= 5.0.1"
             spec:
               outputExpr: "[\"roles/alloydb.admin\"]"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-filestore
+              version: ">= 0.1.0"
+            spec:
+              outputExpr: "[\"roles/file.editor\"]"
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.9.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.8.0...v13.9.0) (2025-12-19)
+
+
+### Features
+
+* Add Filestore source to metadata.yaml ([#546](https://github.com/terraform-google-modules/terraform-google-vm/issues/546)) ([ee2ecbc](https://github.com/terraform-google-modules/terraform-google-vm/commit/ee2ecbc57058840214ceed0b1ab32e3e9711ac75))
+* **versionUpdate:** Update version for address input ([#549](https://github.com/terraform-google-modules/terraform-google-vm/issues/549)) ([72bdafa](https://github.com/terraform-google-modules/terraform-google-vm/commit/72bdafa715917f0d5538b77b4f29b18a9bb60e60))
+
 ## [13.8.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.7.0...v13.8.0) (2025-12-10)
 
 

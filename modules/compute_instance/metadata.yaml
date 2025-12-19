@@ -115,7 +115,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-address
-              version: ~> 4.3
+              version: ~> 4.4
             spec:
               outputExpr: addresses
       - name: access_config

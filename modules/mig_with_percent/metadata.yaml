@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-vm
       sourceType: git
       dir: /modules/mig_with_percent
-    version: 13.9.0
+    version: 13.10.0
     actuationTool:
       flavor: Terraform
       version: ">=1.3.0"

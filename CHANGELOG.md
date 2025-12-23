@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [13.10.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.9.0...v13.10.0) (2025-12-23)
+
+
+### Features
+
+* **compute_instance:** Refactor metadata file ([#550](https://github.com/terraform-google-modules/terraform-google-vm/issues/550)) ([1358ec8](https://github.com/terraform-google-modules/terraform-google-vm/commit/1358ec81abd53f18c4e6f3b3be14c9e73b91590c))
+
 ## [13.9.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.8.0...v13.9.0) (2025-12-19)
 
 

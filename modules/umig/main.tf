@@ -48,7 +48,7 @@ data "google_compute_zones" "available" {
 resource "google_compute_instance_from_template" "compute_instance" {
   provider = google
   count    = local.num_instances
-  name     = format("%s%s%s", local.hostname, var.hostname_suffix_separator, format("%03d", count.index + 1))
+  name     = var.add_hostname_suffix ? format("%s%s%s", local.hostname, var.hostname_suffix_separator, format("%03d", count.index + 1)) : local.hostname
   project  = var.project_id
   zone     = local.zones[count.index % length(local.zones)]
 

@@ -122,6 +122,10 @@ spec:
         description: Hostname of instances
         varType: string
         defaultValue: ""
+      - name: add_hostname_suffix
+        description: Adds a suffix to the hostname
+        varType: bool
+        defaultValue: true
       - name: static_ips
         description: List of static IPs for VM instances
         varType: list(string)

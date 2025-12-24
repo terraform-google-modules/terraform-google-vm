@@ -66,6 +66,7 @@ spec:
         region:
           name: region
           title: Region
+          level: 1
         resource_manager_tags:
           name: resource_manager_tags
           title: Resource Manager Tags

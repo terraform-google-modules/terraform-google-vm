@@ -72,18 +72,18 @@ resource "google_compute_region_instance_group_manager" "mig" {
   }
 
   dynamic "stateful_internal_ip" {
-    for_each = [for static_ip in var.stateful_ips : static_ip if static_ip["is_external"] == false]
+    for_each = [for static_ip in var.stateful_ips: static_ip if static_ip["is_external"] == false]
     content {
-      interface_name = stateful_internal_ip.value.interface_name
-      delete_rule    = lookup(stateful_internal_ip.value, "delete_rule", null)
+      interface_name         = stateful_internal_ip.value.interface_name
+      delete_rule            = lookup(stateful_internal_ip.value, "delete_rule", null)
     }
   }
 
   dynamic "stateful_external_ip" {
-    for_each = [for static_ip in var.stateful_ips : static_ip if static_ip["is_external"] == true]
+    for_each = [for static_ip in var.stateful_ips: static_ip if static_ip["is_external"] == true]
     content {
-      interface_name = stateful_external_ip.value.interface_name
-      delete_rule    = lookup(stateful_external_ip.value, "delete_rule", null)
+      interface_name         = stateful_external_ip.value.interface_name
+      delete_rule            = lookup(stateful_external_ip.value, "delete_rule", null)
     }
   }
 
@@ -98,7 +98,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
       max_unavailable_fixed          = lookup(update_policy.value, "max_unavailable_fixed", null)
       max_unavailable_percent        = lookup(update_policy.value, "max_unavailable_percent", null)
       min_ready_sec                  = lookup(update_policy.value, "min_ready_sec", null)
-      replacement_method             = lookup(update_policy.value, "replacement_method", null)
+      replacement_method             = lookup(update_policy.value, "replacement_method", "SUBSTITUTE")
       most_disruptive_allowed_action = lookup(update_policy.value, "most_disruptive_allowed_action", null)
       minimal_action                 = update_policy.value.minimal_action
       type                           = update_policy.value.type
@@ -218,7 +218,7 @@ resource "google_compute_health_check" "http" {
   }
 
   log_config {
-    enable = var.health_check["enable_logging"]
+    enable       = var.health_check["enable_logging"]
   }
 }
 
@@ -240,6 +240,6 @@ resource "google_compute_health_check" "tcp" {
   }
 
   log_config {
-    enable = var.health_check["enable_logging"]
+    enable       = var.health_check["enable_logging"]
   }
 }

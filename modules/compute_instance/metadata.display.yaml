@@ -63,6 +63,9 @@ spec:
           name: num_instances
           title: Num Instances
           level: 1
+        project_id:
+          name: project_id
+          title: Project Id
         region:
           name: region
           title: Region

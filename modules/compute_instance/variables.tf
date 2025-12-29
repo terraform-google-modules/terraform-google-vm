@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+ variable "project_id" {
+  description = "The ID of the project in which the resources will be created."
+  type        = string
+}
+
 variable "network" {
   description = "Network to deploy to. Only one of network or subnetwork should be specified."
   type        = string

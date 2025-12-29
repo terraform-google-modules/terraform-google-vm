@@ -5,6 +5,7 @@ This is a collection of opinionated submodules that can be used as building bloc
 * [Instance template](modules/instance_template)
 * [Managed instance group](modules/mig)
 * [Unmanaged instance group](modules/umig)
+* [OS Login SSH Public Key](modules/oslogin)
 
 ## Compatibility
 This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=0.13, please open an issue.

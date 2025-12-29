@@ -61,6 +61,7 @@ module "compute_instance" {
   source  = "terraform-google-modules/vm/google//modules/compute_instance"
   version = "~> 13.0"
 
+  project_id        = var.project_id
   region            = var.region
   subnetwork        = var.subnetwork
   num_instances     = 1

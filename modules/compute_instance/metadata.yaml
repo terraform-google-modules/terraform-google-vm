@@ -83,7 +83,7 @@ spec:
   interfaces:
     variables:
       - name: project_id
-        description: The ID of the project in which the resources will be created.
+        description: The ID of the project in which the compute instance will be created.
         varType: string
         required: true
       - name: network

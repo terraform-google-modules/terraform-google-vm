@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
- variable "project_id" {
-  description = "The ID of the project in which the resources will be created."
+variable "project_id" {
+  description = "The ID of the project in which the compute instance will be created."
   type        = string
 }
 

@@ -82,6 +82,10 @@ spec:
         location: examples/compute_instance/tags
   interfaces:
     variables:
+      - name: project_id
+        description: The ID of the project in which the compute instance will be created.
+        varType: string
+        required: true
       - name: network
         description: Network to deploy to. Only one of network or subnetwork should be specified.
         varType: string

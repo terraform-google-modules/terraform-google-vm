@@ -22,7 +22,6 @@ locals {
   # at the end of the list to work around "list does not have any elements so cannot
   # determine type" error when var.static_ips is empty
   static_ips = concat(var.static_ips, ["NOT_AN_IP"])
-  project_id = length(regexall("/projects/([^/]*)", var.instance_template)) > 0 ? flatten(regexall("/projects/([^/]*)", var.instance_template))[0] : null
 
   # When no network or subnetwork has been defined, we want to use the settings from
   # the template instead.
@@ -34,7 +33,7 @@ locals {
 ###############
 
 data "google_compute_zones" "available" {
-  project = local.project_id
+  project = var.project_id
   region  = var.region
 }
 
@@ -46,7 +45,7 @@ resource "google_compute_instance_from_template" "compute_instance" {
   provider            = google
   count               = local.num_instances
   name                = var.add_hostname_suffix ? format("%s%s%s", local.hostname, var.hostname_suffix_separator, format("%03d", count.index + 1)) : local.hostname
-  project             = local.project_id
+  project             = var.project_id
   zone                = var.zone == null ? data.google_compute_zones.available.names[count.index % length(data.google_compute_zones.available.names)] : var.zone
   deletion_protection = var.deletion_protection
   resource_policies   = var.resource_policies

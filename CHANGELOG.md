@@ -2,6 +2,60 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [14.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.0.0...v14.1.0) (2025-12-30)
+
+
+### Features
+
+* **versionUpdate:** Update version for template input ([#558](https://github.com/terraform-google-modules/terraform-google-vm/issues/558)) ([9a36643](https://github.com/terraform-google-modules/terraform-google-vm/commit/9a36643e7bac7e49601d2d20f99c2ef6a0e5a273))
+
+## [14.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.10.1...v14.0.0) (2025-12-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* add project_id as explicit input to compute_instance module ([#554](https://github.com/terraform-google-modules/terraform-google-vm/issues/554))
+
+### Features
+
+* add project_id as explicit input to compute_instance module ([#554](https://github.com/terraform-google-modules/terraform-google-vm/issues/554)) ([e322413](https://github.com/terraform-google-modules/terraform-google-vm/commit/e3224131ed5cb57e60fe248d79939df35637bf02))
+
+## [13.10.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.10.0...v13.10.1) (2025-12-23)
+
+
+### Bug Fixes
+
+* fix metadata file output ([#552](https://github.com/terraform-google-modules/terraform-google-vm/issues/552)) ([8f16583](https://github.com/terraform-google-modules/terraform-google-vm/commit/8f1658355f5466e106abd4e470a71b45bdff43ad))
+
+## [13.10.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.9.0...v13.10.0) (2025-12-23)
+
+
+### Features
+
+* **compute_instance:** Refactor metadata file ([#550](https://github.com/terraform-google-modules/terraform-google-vm/issues/550)) ([1358ec8](https://github.com/terraform-google-modules/terraform-google-vm/commit/1358ec81abd53f18c4e6f3b3be14c9e73b91590c))
+
+## [13.9.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.8.0...v13.9.0) (2025-12-19)
+
+
+### Features
+
+* Add Filestore source to metadata.yaml ([#546](https://github.com/terraform-google-modules/terraform-google-vm/issues/546)) ([ee2ecbc](https://github.com/terraform-google-modules/terraform-google-vm/commit/ee2ecbc57058840214ceed0b1ab32e3e9711ac75))
+* **versionUpdate:** Update version for address input ([#549](https://github.com/terraform-google-modules/terraform-google-vm/issues/549)) ([72bdafa](https://github.com/terraform-google-modules/terraform-google-vm/commit/72bdafa715917f0d5538b77b4f29b18a9bb60e60))
+
+## [13.8.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.7.0...v13.8.0) (2025-12-10)
+
+
+### Features
+
+* **compute_instance:** Update address module dependency to v4.3 ([#544](https://github.com/terraform-google-modules/terraform-google-vm/issues/544)) ([eca39cb](https://github.com/terraform-google-modules/terraform-google-vm/commit/eca39cbf6430ef90575be0e9b3c4292ce3ae5d78))
+
+## [13.7.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.6.1...v13.7.0) (2025-12-08)
+
+
+### Features
+
+* **vm:** Add blueprint  metadata for compute_instance module ([#539](https://github.com/terraform-google-modules/terraform-google-vm/issues/539)) ([290899b](https://github.com/terraform-google-modules/terraform-google-vm/commit/290899b1f4ce649e4de5c946f10abec152943eda))
+
 ## [13.6.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.6.0...v13.6.1) (2025-09-30)
 
 

@@ -43,6 +43,7 @@ spec:
         hostname:
           name: hostname
           title: Hostname
+          level: 1
         hostname_suffix_separator:
           name: hostname_suffix_separator
           title: Hostname Suffix Separator
@@ -61,6 +62,10 @@ spec:
         num_instances:
           name: num_instances
           title: Num Instances
+          level: 1
+        project_id:
+          name: project_id
+          title: Project Id
         region:
           name: region
           title: Region
@@ -82,3 +87,4 @@ spec:
         zone:
           name: zone
           title: Zone
+          level: 1

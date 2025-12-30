@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-vm
       sourceType: git
       dir: /modules/instance_template
-    version: 13.6.1
+    version: 14.1.0
     actuationTool:
       flavor: Terraform
       version: ">=1.3.0"
@@ -336,6 +336,12 @@ spec:
             spec:
               outputExpr: email
               inputPath: email
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-filestore
+              version: ">= 0.1.0"
+            spec:
+              outputExpr: "{\"FILESTORE_MOUNT_POINT\": mount_point}"
+              inputPath: env_vars
       - name: create_service_account
         description: Create a new service account to attach to the instance. This is alternate to providing the service_account input variable. Please provide the service_account input if setting this to false.
         varType: bool
@@ -395,6 +401,11 @@ spec:
               version: ">= 5.0.1"
             spec:
               outputExpr: "[\"roles/alloydb.admin\"]"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-filestore
+              version: ">= 0.1.0"
+            spec:
+              outputExpr: "[\"roles/file.editor\"]"
       - name: enable_shielded_vm
         description: Whether to enable the Shielded VM configuration on the instance. Note that the instance image must support Shielded VMs. See https://cloud.google.com/compute/docs/images
         varType: bool

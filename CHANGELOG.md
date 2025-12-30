@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [14.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.10.1...v14.0.0) (2025-12-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* add project_id as explicit input to compute_instance module ([#554](https://github.com/terraform-google-modules/terraform-google-vm/issues/554))
+
+### Features
+
+* add project_id as explicit input to compute_instance module ([#554](https://github.com/terraform-google-modules/terraform-google-vm/issues/554)) ([e322413](https://github.com/terraform-google-modules/terraform-google-vm/commit/e3224131ed5cb57e60fe248d79939df35637bf02))
+
 ## [13.10.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.10.0...v13.10.1) (2025-12-23)
 
 

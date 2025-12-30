@@ -148,7 +148,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
-              version: ~> 13.6
+              version: ~> 13.10
             spec:
               outputExpr: self_link
       - name: region

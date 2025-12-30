@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [14.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.0.0...v14.1.0) (2025-12-30)
+
+
+### Features
+
+* **versionUpdate:** Update version for template input ([#558](https://github.com/terraform-google-modules/terraform-google-vm/issues/558)) ([9a36643](https://github.com/terraform-google-modules/terraform-google-vm/commit/9a36643e7bac7e49601d2d20f99c2ef6a0e5a273))
+
 ## [14.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v13.10.1...v14.0.0) (2025-12-29)
 
 

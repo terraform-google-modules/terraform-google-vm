@@ -85,9 +85,9 @@ variable "stateful_disks" {
 variable "stateful_ips" {
   description = "Statful IPs created on the instances that will be preserved on instance delete. https://cloud.google.com/compute/docs/instance-groups/configuring-stateful-ip-addresses-in-migs"
   type = list(object({
-    interface_name = string
-    delete_rule    = string
-    is_external    = bool
+    interface_name         = string
+    delete_rule            = string
+    is_external            = bool
   }))
   default = []
 }

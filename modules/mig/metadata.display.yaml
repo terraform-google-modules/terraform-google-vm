@@ -1,4 +1,4 @@
-# Copyright 2025 Google LLC
+# Copyright 2026 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -37,11 +37,6 @@ spec:
           name: autoscaling_cpu
           title: Autoscaling Cpu
           properties:
-            target:
-              name: target
-              title: Target
-              min: 0.0
-              max: 1.0
             predictive_method:
               name: predictive_method
               title: Predictive Method
@@ -50,6 +45,10 @@ spec:
                   value: NONE
                 - label: OPTIMIZE_AVAILABILITY
                   value: OPTIMIZE_AVAILABILITY
+            target:
+              name: target
+              title: Target
+              max: 1
         autoscaling_enabled:
           name: autoscaling_enabled
           title: Autoscaling Enabled
@@ -60,8 +59,7 @@ spec:
             target:
               name: target
               title: Target
-              min: 0.0
-              max: 1.0
+              max: 1
         autoscaling_metric:
           name: autoscaling_metric
           title: Autoscaling Metric
@@ -69,8 +67,7 @@ spec:
             target:
               name: target
               title: Target
-              min: 0.0
-              max: 1.0
+              max: 1
             type:
               name: type
               title: Type
@@ -99,16 +96,13 @@ spec:
             fixed_replicas:
               name: fixed_replicas
               title: Fixed Replicas
-              min: 0
             percent_replicas:
               name: percent_replicas
               title: Percent Replicas
-              min: 0
               max: 100
         cooldown_period:
           name: cooldown_period
           title: Cooldown Period
-          min: 0
         distribution_policy_target_shape:
           name: distribution_policy_target_shape
           title: Distribution Policy Target Shape
@@ -128,6 +122,23 @@ spec:
           name: health_check
           title: Health Check
           properties:
+            initial_delay_sec:
+              name: initial_delay_sec
+              title: Initial Delay Sec
+              max: 3600
+            port:
+              name: port
+              title: Port
+              min: 1
+              max: 65535
+            proxy_header:
+              name: proxy_header
+              title: Proxy Header
+              enumValueLabels:
+                - label: NONE
+                  value: NONE
+                - label: PROXY_V1
+                  value: PROXY_V1
             type:
               name: type
               title: Type
@@ -140,24 +151,6 @@ spec:
                   value: TCP
                 - label: SSL
                   value: SSL
-            initial_delay_sec:
-              name: initial_delay_sec
-              title: Initial Delay Sec
-              min: 0
-              max: 3600
-            proxy_header:
-              name: proxy_header
-              title: Proxy Header
-              enumValueLabels:
-                - label: NONE
-                  value: NONE
-                - label: PROXY_V1
-                  value: PROXY_V1
-            port:
-              name: port
-              title: Port
-              min: 1
-              max: 65535
         health_check_name:
           name: health_check_name
           title: Health Check Name
@@ -166,13 +159,13 @@ spec:
         hostname:
           name: hostname
           title: Hostname
-          level: 1
           regexValidation: ^[a-z][a-z0-9-]{0,61}[a-z0-9]$
           validation: Hostname must be between 1 and 63 characters long, start with a lowercase letter, and can contain lowercase letters, numbers, and hyphens.
+          level: 1
         instance_template:
           name: instance_template
           title: Instance Template
-          regexValidation: "^https://www.googleapis.com/compute/v1/projects/[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?/(?:global|regions/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)/instanceTemplates/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?$"
+          regexValidation: ^https://www.googleapis.com/compute/v1/projects/[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?/(?:global|regions/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)/instanceTemplates/[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?$
           validation: Invalid template url format, valid format is either https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceTemplates/{template_name} (regional) or https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates/{template_name} (global).
         labels:
           name: labels
@@ -226,7 +219,7 @@ spec:
             schedule:
               name: schedule
               title: Schedule
-              regexValidation: "^([*]|([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])(-([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]))?)(,([*]|([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])(-([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]))?))* ([*]|([0-9]|1[0-9]|2[0-3])(-([0-9]|1[0-9]|2[0-3]))?)(,([*]|([0-9]|1[0-9]|2[0-3])(-([0-9]|1[0-9]|2[0-3]))?))* ([*]|([1-9]|1[0-9]|2[0-9]|3[0-1])(-([1-9]|1[0-9]|2[0-9]|3[0-1]))?)(,([*]|([1-9]|1[0-9]|2[0-9]|3[0-1])(-([1-9]|1[0-9]|2[0-9]|3[0-1]))?))* ([*]|([1-9]|1[0-2])(-([1-9]|1[0-2]))?)(,([*]|([1-9]|1[0-2])(-([1-9]|1[0-2]))?))* ([*]|([0-6])(-([0-6]))?)(,([*]|([0-6])(-([0-6]))?))*$"
+              regexValidation: ^([*]|([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])(-([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]))?)(,([*]|([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])(-([0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]))?))* ([*]|([0-9]|1[0-9]|2[0-3])(-([0-9]|1[0-9]|2[0-3]))?)(,([*]|([0-9]|1[0-9]|2[0-3])(-([0-9]|1[0-9]|2[0-3]))?))* ([*]|([1-9]|1[0-9]|2[0-9]|3[0-1])(-([1-9]|1[0-9]|2[0-9]|3[0-1]))?)(,([*]|([1-9]|1[0-9]|2[0-9]|3[0-1])(-([1-9]|1[0-9]|2[0-9]|3[0-1]))?))* ([*]|([1-9]|1[0-2])(-([1-9]|1[0-2]))?)(,([*]|([1-9]|1[0-2])(-([1-9]|1[0-2]))?))* ([*]|([0-6])(-([0-6]))?)(,([*]|([0-6])(-([0-6]))?))*$
               validation: Schedule must be in cron format.
         stateful_disks:
           name: stateful_disks
@@ -258,7 +251,6 @@ spec:
         target_size:
           name: target_size
           title: Target Size
-          min: 0
           level: 1
         update_policy:
           name: update_policy
@@ -275,26 +267,15 @@ spec:
             max_surge_percent:
               name: max_surge_percent
               title: Max Surge Percent
-              min: 0
               max: 100
             max_unavailable_percent:
               name: max_unavailable_percent
               title: Max Unavailable Percent
-              min: 0
               max: 100
             min_ready_sec:
               name: min_ready_sec
               title: Min Ready Sec
-              min: 0
               max: 3600
-            replacement_method:
-              name: replacement_method
-              title: Replacement Method
-              enumValueLabels:
-                - label: RECREATE
-                  value: RECREATE
-                - label: SUBSTITUTE
-                  value: SUBSTITUTE
             minimal_action:
               name: minimal_action
               title: Minimal Action
@@ -307,14 +288,6 @@ spec:
                   value: REFRESH
                 - label: NONE
                   value: NONE
-            type:
-              name: type
-              title: Type
-              enumValueLabels:
-                - label: PROACTIVE
-                  value: PROACTIVE
-                - label: OPPORTUNISTIC
-                  value: OPPORTUNISTIC
             most_disruptive_allowed_action:
               name: most_disruptive_allowed_action
               title: Most Disruptive Allowed Action
@@ -327,6 +300,22 @@ spec:
                   value: REFRESH
                 - label: NONE
                   value: NONE
+            replacement_method:
+              name: replacement_method
+              title: Replacement Method
+              enumValueLabels:
+                - label: RECREATE
+                  value: RECREATE
+                - label: SUBSTITUTE
+                  value: SUBSTITUTE
+            type:
+              name: type
+              title: Type
+              enumValueLabels:
+                - label: PROACTIVE
+                  value: PROACTIVE
+                - label: OPPORTUNISTIC
+                  value: OPPORTUNISTIC
         wait_for_instances:
           name: wait_for_instances
           title: Wait For Instances

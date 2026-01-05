@@ -322,6 +322,11 @@ spec:
               version: ">= 5.0.1"
             spec:
               outputExpr: "{\"ALLOYDB_INSTANCE_HOST\" : primary_instance_ip, \"ALLOYDB_READ_REPLICAS\": env_vars.ALLOYDB_READ_REPLICAS}"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-filestore
+              version: ">= 0.1.0"
+            spec:
+              outputExpr: "{\"FILESTORE_MOUNT_POINT\": mount_point}"
       - name: service_account
         description: Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account.
         varType: |-
@@ -336,12 +341,6 @@ spec:
             spec:
               outputExpr: email
               inputPath: email
-          - source:
-              source: github.com/GoogleCloudPlatform/terraform-google-cloud-filestore
-              version: ">= 0.1.0"
-            spec:
-              outputExpr: "{\"FILESTORE_MOUNT_POINT\": mount_point}"
-              inputPath: env_vars
       - name: create_service_account
         description: Create a new service account to attach to the instance. This is alternate to providing the service_account input variable. Please provide the service_account input if setting this to false.
         varType: bool

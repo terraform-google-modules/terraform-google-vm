@@ -40,7 +40,9 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | Name | Description |
 |------|-------------|
 | available\_zones | List of available zones in region |
+| instance\_name | The name of the first compute instance. |
 | instances\_details | List of all details for compute instances |
 | instances\_self\_links | List of self-links for compute instances |
+| service\_account\_email | The service account email associated with the instances. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

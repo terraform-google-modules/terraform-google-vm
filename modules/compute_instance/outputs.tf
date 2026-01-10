@@ -30,12 +30,3 @@ output "available_zones" {
   value       = data.google_compute_zones.available.names
 }
 
-output "service_account_email" {
-  description = "The service account email associated with the instances."
-  value       = try(google_compute_instance_from_template.compute_instance[0].service_account[0].email, null)
-}
-
-output "instance_name" {
-  description = "The name of the first compute instance."
-  value       = try(google_compute_instance_from_template.compute_instance[0].name, "")
-}

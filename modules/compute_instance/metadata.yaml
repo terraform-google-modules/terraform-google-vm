@@ -189,8 +189,6 @@ spec:
         type:
           - list
           - string
-      - name: instance_name
-        description: The name of the first compute instance.
       - name: instances_details
         description: List of all details for compute instances
         type:
@@ -446,8 +444,6 @@ spec:
         type:
           - list
           - string
-      - name: service_account_email
-        description: The service account email associated with the instances.
   requirements:
     roles:
       - level: Project

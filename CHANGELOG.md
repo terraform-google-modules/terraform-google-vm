@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [14.2.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.1.0...v14.2.0) (2026-01-10)
+
+
+### Features
+
+* **compute_instance:** Update version constraints in metadata.yaml ([#564](https://github.com/terraform-google-modules/terraform-google-vm/issues/564)) ([afb028d](https://github.com/terraform-google-modules/terraform-google-vm/commit/afb028d07e7c69dc454d1ec687c8681a65af73ce))
+
 ## [14.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.0.0...v14.1.0) (2025-12-30)
 
 

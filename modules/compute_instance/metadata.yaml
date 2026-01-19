@@ -119,7 +119,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-address
-              version: ">= 4.4"
+              version: ">=4.4"
             spec:
               outputExpr: addresses
       - name: access_config
@@ -188,6 +188,10 @@ spec:
         description: List of available zones in region
         type:
           - list
+          - string
+      - name: instance_name
+        description: The name of the first compute instance.
+        type:
           - string
       - name: instances_details
         description: List of all details for compute instances
@@ -443,6 +447,10 @@ spec:
         description: List of self-links for compute instances
         type:
           - list
+          - string
+      - name: service_account_email
+        description: The service account email associated with the instances.
+        type:
           - string
   requirements:
     roles:

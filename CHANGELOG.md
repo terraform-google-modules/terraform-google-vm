@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [14.3.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.2.0...v14.3.0) (2026-01-19)
+
+
+### Features
+
+* expose output for connections ([#562](https://github.com/terraform-google-modules/terraform-google-vm/issues/562)) ([df25433](https://github.com/terraform-google-modules/terraform-google-vm/commit/df2543344ce582d371b1a1615948f4de4a5e33f8))
+
+
+### Bug Fixes
+
+* Move Filestore input connection from env_vars to metadata ([#560](https://github.com/terraform-google-modules/terraform-google-vm/issues/560)) ([519ee8f](https://github.com/terraform-google-modules/terraform-google-vm/commit/519ee8fca5e9b070514d947cd577dfcc7a3e5bd4))
+
 ## [14.2.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.1.0...v14.2.0) (2026-01-10)
 
 

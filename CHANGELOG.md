@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [14.3.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.3.0...v14.3.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* Simplify type definition for instance_name and service_account_email ([#567](https://github.com/terraform-google-modules/terraform-google-vm/issues/567)) ([215b550](https://github.com/terraform-google-modules/terraform-google-vm/commit/215b550436d7c23a6a509beed5826d3b6a26c5c7))
+
 ## [14.3.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.2.0...v14.3.0) (2026-01-19)
 
 

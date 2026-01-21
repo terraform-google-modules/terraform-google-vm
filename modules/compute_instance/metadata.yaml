@@ -191,8 +191,7 @@ spec:
           - string
       - name: instance_name
         description: The name of the first compute instance.
-        type:
-          - string
+        type: string
       - name: instances_details
         description: List of all details for compute instances
         type:
@@ -450,8 +449,7 @@ spec:
           - string
       - name: service_account_email
         description: The service account email associated with the instances.
-        type:
-          - string
+        type: string
   requirements:
     roles:
       - level: Project

@@ -31,6 +31,9 @@ spec:
         access_config:
           name: access_config
           title: Access Config
+        add_hostname_suffix:
+          name: add_hostname_suffix
+          title: Add Hostname Suffix
         additional_networks:
           name: additional_networks
           title: Additional Networks

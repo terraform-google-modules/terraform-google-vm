@@ -28,7 +28,7 @@ provider "google-beta" {
 
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 13.0"
+  version = "~> 14.0"
 
   name_prefix     = "${var.hostname}-instance-template"
   project_id      = var.project_id
@@ -59,7 +59,7 @@ module "instance_template" {
 
 module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "~> 13.0"
+  version = "~> 14.0"
 
   project_id                = var.project_id
   hostname                  = var.hostname

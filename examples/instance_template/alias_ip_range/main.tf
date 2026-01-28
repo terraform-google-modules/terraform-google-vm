@@ -26,7 +26,7 @@ resource "google_compute_address" "ip_address" {
 
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 13.0"
+  version = "~> 14.0"
 
   project_id      = var.project_id
   region          = var.region

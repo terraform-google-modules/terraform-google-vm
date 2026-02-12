@@ -15,7 +15,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 |------|-------------|------|---------|:--------:|
 | access\_config | Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet. | <pre>list(object({<br>    nat_ip       = optional(string)<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | additional\_disks | List of maps of additional disks. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#disk_name | <pre>list(object({<br>    auto_delete     = optional(bool, true)<br>    boot            = optional(bool, false)<br>    device_name     = optional(string)<br>    disk_name       = optional(string)<br>    disk_size_gb    = optional(number)<br>    disk_type       = optional(string)<br>    disk_labels     = optional(map(string), {})<br>    interface       = optional(string)<br>    mode            = optional(string)<br>    source          = optional(string)<br>    source_image    = optional(string)<br>    source_snapshot = optional(string)<br>  }))</pre> | `[]` | no |
-| additional\_networks | Additional network interface details for GCE, if any. | <pre>list(object({<br>    network            = string<br>    subnetwork         = string<br>    subnetwork_project = string<br>    network_ip         = string<br>    nic_type           = string<br>    stack_type         = string<br>    queue_count        = number<br>    access_config = list(object({<br>      nat_ip       = string<br>      network_tier = string<br>    }))<br>    ipv6_access_config = list(object({<br>      network_tier = string<br>    }))<br>    alias_ip_range = list(object({<br>      ip_cidr_range         = string<br>      subnetwork_range_name = string<br>    }))<br>  }))</pre> | `[]` | no |
+| additional\_networks | Additional network interface details for GCE, if any. | <pre>list(object({<br>    network            = optional(string)<br>    subnetwork         = optional(string)<br>    subnetwork_project = optional(string)<br>    network_ip         = optional(string)<br>    nic_type           = optional(string)<br>    stack_type         = optional(string)<br>    <br>    # New Fields<br>    queue_count        = optional(number) # Multi-queue count (Rx/Tx)<br>    network_attachment = optional(string) # Consumer link for PSC-I<br>    vlan               = optional(number) # VLAN tag (2-255)<br><br>    # Access Config (External IPv4)<br>    access_config = optional(list(object({<br>      nat_ip       = optional(string)<br>      network_tier = optional(string) # PREMIUM or STANDARD<br>    })), [])<br><br>    # IPv6 Access Config (External IPv6)<br>    ipv6_access_config = optional(list(object({<br>      network_tier = string # Always PREMIUM for IPv6<br>    })), [])<br><br>    # Alias IP Ranges (Secondary ranges)<br>    alias_ip_range = optional(list(object({<br>      ip_cidr_range         = string<br>      subnetwork_range_name = optional(string)<br>    })), [])<br>  }))</pre> | `[]` | no |
 | alias\_ip\_range | An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.<br>ip\_cidr\_range: The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. At the time of writing only a netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API error.<br>subnetwork\_range\_name: The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used. | <pre>object({<br>    ip_cidr_range         = string<br>    subnetwork_range_name = string<br>  })</pre> | `null` | no |
 | auto\_delete | Whether or not the boot disk should be auto-deleted | `string` | `"true"` | no |
 | automatic\_restart | (Optional) Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). | `bool` | `true` | no |
@@ -41,6 +41,7 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | min\_cpu\_platform | Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform | `string` | `null` | no |
 | name\_prefix | Name prefix for the instance template | `string` | `"default-instance-template"` | no |
 | network | The name or self\_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks. | `string` | `""` | no |
+| network\_attachment | The self\_link of the network attachment for PSC-I connection. | `string` | `null` | no |
 | network\_ip | Private IP address to assign to the instance if desired. | `string` | `""` | no |
 | nic\_type | Valid values are "VIRTIO\_NET", "GVNIC" or set to null to accept API default behavior. | `string` | `null` | no |
 | on\_host\_maintenance | Instance availability Policy | `string` | `"MIGRATE"` | no |
@@ -59,17 +60,20 @@ See the [simple](../../examples/instance_template/simple) for a usage example.
 | spot\_instance\_termination\_action | Action to take when Compute Engine preempts a Spot VM. | `string` | `"STOP"` | no |
 | stack\_type | The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4\_ONLY. | `string` | `null` | no |
 | startup\_script | User startup script to run when instances spin up | `string` | `""` | no |
+| subnets | Optional: A map containing subnet details Used to derive the subnetwork URI if subnetwork is not provided. | <pre>list(object({<br>    id      = string<br>    region  = string<br>    purpose = string<br>  }))</pre> | `[]` | no |
 | subnetwork | The name of the subnetwork to attach this interface to. The subnetwork must exist in the same region this instance will be created in. Either network or subnetwork must be provided. | `string` | `""` | no |
 | subnetwork\_project | The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used. | `string` | `""` | no |
 | tags | Network tags, provided as a list | `list(string)` | `[]` | no |
 | threads\_per\_core | The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. | `number` | `null` | no |
 | total\_egress\_bandwidth\_tier | Egress bandwidth tier setting for supported VM families | `string` | `"DEFAULT"` | no |
+| vlan | The VLAN ID for the primary network interface (Dynamic NIC), must be an integer from 2 to 255. | `number` | `null` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | name | Name of instance template |
+| network\_interface\_details | The names and VLAN tags of the template interfaces. |
 | self\_link | Self-link of instance template |
 | self\_link\_unique | Unique self-link of instance template (recommended output to use instead of self\_link) |
 | service\_account\_info | Service account id and email |

@@ -212,6 +212,12 @@ spec:
         description: The name or self_link of the network to attach this interface to. Use network attribute for Legacy or Auto subnetted networks and subnetwork for custom subnetted networks.
         varType: string
         defaultValue: ""
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-network
+              version: ">= 9.1"
+            spec:
+              outputExpr: network_name
       - name: subnetwork
         description: The name of the subnetwork to attach this interface to. The subnetwork must exist in the same region this instance will be created in. Either network or subnetwork must be provided.
         varType: string
@@ -220,6 +226,33 @@ spec:
         description: The ID of the project in which the subnetwork belongs. If it is not provided, the provider project is used.
         varType: string
         defaultValue: ""
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-network
+              version: ">= 9.1"
+            spec:
+              outputExpr: project_id
+      - name: network_attachment
+        description: The self_link of the network attachment for PSC-I connection.
+        varType: string
+      - name: vlan
+        description: The VLAN ID for the primary network interface (Dynamic NIC), must be an integer from 2 to 255.
+        varType: number
+      - name: subnets
+        description: "Optional: A map containing subnet details Used to derive the subnetwork URI if subnetwork is not provided."
+        varType: |-
+          list(object({
+              id      = string
+              region  = string
+              purpose = string
+            }))
+        defaultValue: []
+        connections:
+          - source:
+             source: github.com/terraform-google-modules/terraform-google-network
+              version: ">= 9.1"
+            spec:
+              outputExpr: subnets_by_region_purpose
       - name: network_ip
         description: Private IP address to assign to the instance if desired.
         varType: string
@@ -234,24 +267,34 @@ spec:
         description: Additional network interface details for GCE, if any.
         varType: |-
           list(object({
-              network            = string
-              subnetwork         = string
-              subnetwork_project = string
-              network_ip         = string
-              nic_type           = string
-              stack_type         = string
-              queue_count        = number
-              access_config = list(object({
-                nat_ip       = string
-                network_tier = string
-              }))
-              ipv6_access_config = list(object({
-                network_tier = string
-              }))
-              alias_ip_range = list(object({
+              network            = optional(string)
+              subnetwork         = optional(string)
+              subnetwork_project = optional(string)
+              network_ip         = optional(string)
+              nic_type           = optional(string)
+              stack_type         = optional(string)
+              
+              # New Fields
+              queue_count        = optional(number) # Multi-queue count (Rx/Tx)
+              network_attachment = optional(string) # Consumer link for PSC-I
+              vlan               = optional(number) # VLAN tag (2-255)
+
+              # Access Config (External IPv4)
+              access_config = optional(list(object({
+                nat_ip       = optional(string)
+                network_tier = optional(string) # PREMIUM or STANDARD
+              })), [])
+
+              # IPv6 Access Config (External IPv6)
+              ipv6_access_config = optional(list(object({
+                network_tier = string # Always PREMIUM for IPv6
+              })), [])
+
+              # Alias IP Ranges (Secondary ranges)
+              alias_ip_range = optional(list(object({
                 ip_cidr_range         = string
-                subnetwork_range_name = string
-              }))
+                subnetwork_range_name = optional(string)
+              })), [])
             }))
         defaultValue: []
       - name: total_egress_bandwidth_tier
@@ -467,6 +510,9 @@ spec:
       - name: name
         description: Name of instance template
         type: string
+      - name: network_interface_details
+        description: The names and VLAN tags of the template interfaces.
+        type: string
       - name: self_link
         description: Self-link of instance template
         type: string
@@ -500,4 +546,4 @@ spec:
       - serviceusage.googleapis.com
     providerVersions:
       - source: hashicorp/google-beta
-        version: ">= 5.36, < 7"
+        version: ">= 5.36, < 8"

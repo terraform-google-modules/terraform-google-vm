@@ -159,11 +159,22 @@ resource "google_compute_instance_template" "tpl" {
 
   network_interface {
     network            = var.network
-    subnetwork         = var.subnetwork
+    subnetwork = (
+      var.subnetwork != "" ? var.subnetwork :
+      try(
+        [
+          for s in var.subnets : s.id
+          if s.region == var.region && (s.purpose == "PRIVATE")
+        ][0],
+        ""
+      )
+    )
     subnetwork_project = var.subnetwork_project
     network_ip         = length(var.network_ip) > 0 ? var.network_ip : null
     nic_type           = var.nic_type
     stack_type         = var.stack_type
+    vlan               = var.vlan
+    network_attachment = var.network_attachment
     dynamic "access_config" {
       for_each = var.access_config
       content {
@@ -192,9 +203,11 @@ resource "google_compute_instance_template" "tpl" {
       network            = network_interface.value.network
       subnetwork         = network_interface.value.subnetwork
       subnetwork_project = network_interface.value.subnetwork_project
-      network_ip         = length(network_interface.value.network_ip) > 0 ? network_interface.value.network_ip : null
+      network_ip         = try(length(network_interface.value.network_ip),0) > 0 ? network_interface.value.network_ip : null
       nic_type           = network_interface.value.nic_type
       stack_type         = network_interface.value.stack_type
+      network_attachment = network_interface.value.network_attachment
+      vlan               = network_interface.value.vlan
       queue_count        = network_interface.value.queue_count
       dynamic "access_config" {
         for_each = network_interface.value.access_config

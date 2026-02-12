@@ -38,3 +38,15 @@ output "service_account_info" {
   description = "Service account id and email"
   value       = local.service_account_output
 }
+
+output "network_interface_details" {
+  description = "The names and VLAN tags of the template interfaces."
+  # Extracts the name (e.g., nic0.10) and VLAN ID for every interface
+  value = [
+    for iface in google_compute_instance_template.tpl.network_interface : {
+      name = iface.name
+      vlan = iface.vlan
+    }
+  ]
+}
+

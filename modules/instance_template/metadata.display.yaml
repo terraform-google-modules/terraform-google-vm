@@ -31,6 +31,11 @@ spec:
         access_config:
           name: access_config
           title: Access Config
+          altDefaults:
+            - type: ALTERNATE_TYPE_DC
+              value:
+                - nat_ip: null
+                  network_tier: PREMIUM
           properties:
             network_tier:
               name: network_tier
@@ -42,11 +47,6 @@ spec:
                   value: STANDARD
                 - label: FIXED_STANDARD
                   value: FIXED_STANDARD
-          altDefaults:
-            - type: ALTERNATE_TYPE_DC
-              value:
-                - nat_ip: null
-                  network_tier: PREMIUM
         additional_disks:
           name: additional_disks
           title: Additional Disks
@@ -89,43 +89,6 @@ spec:
           name: additional_networks
           title: Additional Networks
           properties:
-            network:
-              name: network
-              title: Network
-              regexValidation: "^(?:[a-z0-9-]{1,63}|projects/[a-z0-9-]+/global/networks/[a-z0-9-]{1,63})$"
-              validation: Invalid network format. Must be a network name or a self link.
-            subnetwork:
-              name: subnetwork
-              title: Subnetwork
-              regexValidation: "^(?:[a-z0-9-]{1,63}|(?:projects/[a-z0-9-]+/)?(?:regions/[a-z0-9-]+/)?subnetworks/[a-z0-9-]{1,63})$"
-              validation: Invalid subnetwork format. Must be a subnetwork name or a self link.
-            network_ip:
-              name: network_ip
-              title: Network Ip
-              regexValidation: "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
-              validation: Invalid IP address format. Must be a valid IPv4 address.
-            nic_type:
-              name: nic_type
-              title: Nic Type
-              enumValueLabels:
-                - label: VIRTIO_NET
-                  value: VIRTIO_NET
-                - label: GVNIC
-                  value: GVNIC
-                - label: MRDMA
-                  value: MRDMA
-                - label: IRDMA
-                  value: IRDMA
-            stack_type:
-              name: stack_type
-              title: Stack Type
-              enumValueLabels:
-                - label: IPV4_ONLY
-                  value: IPV4_ONLY
-                - label: IPV6_ONLY
-                  value: IPV6_ONLY
-                - label: IPV4_IPV6
-                  value: IPV4_IPV6
             access_config:
               name: access_config
               title: Access Config
@@ -152,6 +115,43 @@ spec:
                       value: PREMIUM
                     - label: STANDARD
                       value: STANDARD
+            network:
+              name: network
+              title: Network
+              regexValidation: ^(?:[a-z0-9-]{1,63}|projects/[a-z0-9-]+/global/networks/[a-z0-9-]{1,63})$
+              validation: Invalid network format. Must be a network name or a self link.
+            network_ip:
+              name: network_ip
+              title: Network Ip
+              regexValidation: ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
+              validation: Invalid IP address format. Must be a valid IPv4 address.
+            nic_type:
+              name: nic_type
+              title: Nic Type
+              enumValueLabels:
+                - label: VIRTIO_NET
+                  value: VIRTIO_NET
+                - label: GVNIC
+                  value: GVNIC
+                - label: MRDMA
+                  value: MRDMA
+                - label: IRDMA
+                  value: IRDMA
+            stack_type:
+              name: stack_type
+              title: Stack Type
+              enumValueLabels:
+                - label: IPV4_ONLY
+                  value: IPV4_ONLY
+                - label: IPV6_ONLY
+                  value: IPV6_ONLY
+                - label: IPV4_IPV6
+                  value: IPV4_IPV6
+            subnetwork:
+              name: subnetwork
+              title: Subnetwork
+              regexValidation: ^(?:[a-z0-9-]{1,63}|(?:projects/[a-z0-9-]+/)?(?:regions/[a-z0-9-]+/)?subnetworks/[a-z0-9-]{1,63})$
+              validation: Invalid subnetwork format. Must be a subnetwork name or a self link.
         alias_ip_range:
           name: alias_ip_range
           title: Alias Ip Range
@@ -209,7 +209,6 @@ spec:
         disk_type:
           name: disk_type
           title: Disk Type
-          level: 1
           enumValueLabels:
             - label: pd-standard
               value: pd-standard
@@ -225,6 +224,7 @@ spec:
               value: hyperdisk-throughput
             - label: hyperdisk-extreme
               value: hyperdisk-extreme
+          level: 1
         enable_confidential_vm:
           name: enable_confidential_vm
           title: Enable Confidential Vm
@@ -283,16 +283,19 @@ spec:
         network:
           name: network
           title: Network
-          level: 1
-          regexValidation: "^(?:[a-z0-9-]{1,63}|projects/[a-z0-9-]+/global/networks/[a-z0-9-]{1,63})$"
+          regexValidation: ^(?:[a-z0-9-]{1,63}|projects/[a-z0-9-]+/global/networks/[a-z0-9-]{1,63})$
           validation: Invalid network format. Must be a network name or a self link.
+          level: 1
           altDefaults:
             - type: ALTERNATE_TYPE_DC
               value: default
+        network_attachment:
+          name: network_attachment
+          title: Network Attachment
         network_ip:
           name: network_ip
           title: Network Ip
-          regexValidation: "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+          regexValidation: ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
           validation: Invalid IP address format. Must be a valid IPv4 address.
         nic_type:
           name: nic_type
@@ -342,7 +345,7 @@ spec:
         service_account_project_roles:
           name: service_account_project_roles
           title: Service Account Project Roles
-          regexValidation: "^(roles/[a-zA-Z0-9_.]+|(projects/[a-z][a-z0-9-]{4,28}[a-z0-9]|organizations/[0-9]+)/roles/[a-zA-Z0-9_]+)$"
+          regexValidation: ^(roles/[a-zA-Z0-9_.]+|(projects/[a-z][a-z0-9-]{4,28}[a-z0-9]|organizations/[0-9]+)/roles/[a-zA-Z0-9_]+)$
           validation: Role must be a valid Google Cloud IAM role name, in the format of 'roles/{role_name}'.
         shielded_instance_config:
           name: shielded_instance_config
@@ -383,12 +386,15 @@ spec:
         startup_script:
           name: startup_script
           title: Startup Script
+        subnets:
+          name: subnets
+          title: Subnets
         subnetwork:
           name: subnetwork
           title: Subnetwork
-          level: 1
-          regexValidation: "^(?:[a-z0-9-]{1,63}|(?:projects/[a-z0-9-]+/)?(?:regions/[a-z0-9-]+/)?subnetworks/[a-z0-9-]{1,63})$"
+          regexValidation: ^(?:[a-z0-9-]{1,63}|(?:projects/[a-z0-9-]+/)?(?:regions/[a-z0-9-]+/)?subnetworks/[a-z0-9-]{1,63})$
           validation: Invalid subnetwork format. Must be a subnetwork name or a self link.
+          level: 1
         subnetwork_project:
           name: subnetwork_project
           title: Subnetwork Project
@@ -407,3 +413,10 @@ spec:
               value: DEFAULT
             - label: TIER_1
               value: TIER_1
+        vlan:
+          name: vlan
+          title: Vlan
+    runtime:
+      outputs:
+        network_interface_details:
+          visibility: VISIBILITY_ROOT

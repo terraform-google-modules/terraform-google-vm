@@ -232,6 +232,33 @@ variable "subnetwork_project" {
   default     = ""
 }
 
+variable "network_attachment" {
+  description = "The self_link of the network attachment for PSC-I connection."
+  type        = string
+  default     = null
+}
+
+variable "vlan" {
+  description = "The VLAN ID for the primary network interface (Dynamic NIC), must be an integer from 2 to 255."
+  type        = number
+  default     = null
+
+  validation {
+    condition     = var.vlan == null ? true : (var.vlan >= 2 && var.vlan <= 255)
+    error_message = "The VLAN ID must be an integer between 2 and 255."
+  }
+}
+
+variable "subnets" {
+  description = "Optional: A map containing subnet details Used to derive the subnetwork URI if subnetwork is not provided."
+  type = list(object({
+    id      = string
+    region  = string
+    purpose = string
+  }))
+  default = []
+}
+
 variable "network_ip" {
   description = "Private IP address to assign to the instance if desired."
   type        = string
@@ -259,24 +286,34 @@ variable "additional_networks" {
   description = "Additional network interface details for GCE, if any."
   default     = []
   type = list(object({
-    network            = string
-    subnetwork         = string
-    subnetwork_project = string
-    network_ip         = string
-    nic_type           = string
-    stack_type         = string
-    queue_count        = number
-    access_config = list(object({
-      nat_ip       = string
-      network_tier = string
-    }))
-    ipv6_access_config = list(object({
-      network_tier = string
-    }))
-    alias_ip_range = list(object({
+    network            = optional(string)
+    subnetwork         = optional(string)
+    subnetwork_project = optional(string)
+    network_ip         = optional(string)
+    nic_type           = optional(string)
+    stack_type         = optional(string)
+    
+    # New Fields
+    queue_count        = optional(number) # Multi-queue count (Rx/Tx)
+    network_attachment = optional(string) # Consumer link for PSC-I
+    vlan               = optional(number) # VLAN tag (2-255)
+
+    # Access Config (External IPv4)
+    access_config = optional(list(object({
+      nat_ip       = optional(string)
+      network_tier = optional(string) # PREMIUM or STANDARD
+    })), [])
+
+    # IPv6 Access Config (External IPv6)
+    ipv6_access_config = optional(list(object({
+      network_tier = string # Always PREMIUM for IPv6
+    })), [])
+
+    # Alias IP Ranges (Secondary ranges)
+    alias_ip_range = optional(list(object({
       ip_cidr_range         = string
-      subnetwork_range_name = string
-    }))
+      subnetwork_range_name = optional(string)
+    })), [])
   }))
   validation {
     condition = alltrue([

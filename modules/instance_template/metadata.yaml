@@ -249,7 +249,7 @@ spec:
         defaultValue: []
         connections:
           - source:
-             source: github.com/terraform-google-modules/terraform-google-network
+              source: github.com/terraform-google-modules/terraform-google-network
               version: ">= 9.1"
             spec:
               outputExpr: subnets_by_region_purpose
@@ -273,7 +273,7 @@ spec:
               network_ip         = optional(string)
               nic_type           = optional(string)
               stack_type         = optional(string)
-              
+
               # New Fields
               queue_count        = optional(number) # Multi-queue count (Rx/Tx)
               network_attachment = optional(string) # Consumer link for PSC-I

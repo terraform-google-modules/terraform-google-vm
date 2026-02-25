@@ -292,7 +292,7 @@ variable "additional_networks" {
     network_ip         = optional(string)
     nic_type           = optional(string)
     stack_type         = optional(string)
-    
+
     # New Fields
     queue_count        = optional(number) # Multi-queue count (Rx/Tx)
     network_attachment = optional(string) # Consumer link for PSC-I

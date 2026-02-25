@@ -215,7 +215,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-network
-              version: ">= 9.1"
+              version: ">= 16.0.0"
             spec:
               outputExpr: network_name
       - name: subnetwork
@@ -229,7 +229,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-network
-              version: ">= 9.1"
+              version: ">= 16.0.0"
             spec:
               outputExpr: project_id
       - name: network_attachment
@@ -250,7 +250,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-network
-              version: ">= 9.1"
+              version: ">= 16.0.0"
             spec:
               outputExpr: subnets_by_region_purpose
       - name: network_ip

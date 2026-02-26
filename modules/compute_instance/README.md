@@ -25,7 +25,7 @@ See the [simple](https://github.com/terraform-google-modules/terraform-google-vm
 | ipv6\_access\_config | IPv6 access configurations. Currently a max of 1 IPv6 access configuration is supported. If not specified, the instance will have no external IPv6 Internet access. | <pre>list(object({<br>    network_tier = string<br>  }))</pre> | `[]` | no |
 | labels | (Optional) Labels to override those from the template, provided as a map | `map(string)` | `null` | no |
 | network | Network to deploy to. Only one of network or subnetwork should be specified. | `string` | `""` | no |
-| num\_instances | Number of instances to create. This value is ignored if static\_ips is provided. | `number` | `"1"` | no |
+| num\_instances | Number of instances to create. This value is ignored if static\_ips is provided. | `number` | `1` | no |
 | project\_id | The ID of the project in which the compute instance will be created. | `string` | n/a | yes |
 | region | Region where the instances should be created. | `string` | `null` | no |
 | resource\_manager\_tags | (Optional) A tag is a key-value pair that can be attached to a Google Cloud resource. You can use tags to conditionally allow or deny policies based on whether a resource has a specific tag. This value is not returned by the API. In Terraform, this value cannot be updated and changing it will recreate the resource. | `map(string)` | `null` | no |

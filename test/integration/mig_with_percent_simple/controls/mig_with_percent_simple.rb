@@ -17,13 +17,17 @@ region     = attribute('region')
 
 expected_instances = 4
 expected_instance_groups = 1
+# Standard zones for the region to ensure strongly consistent lookups
+test_zones = "#{region}-a,#{region}-b,#{region}-c,#{region}-f"
 
 control "MIG with percent" do
   title "Simple Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~^mig-with-percent-simple*'") do
+  # 1. Instance Verification (Using Zonal Query for Strong Consistency)
+  # We use '--zones' because 'instances list' is a zonal command and does not support '--regions'.
+  describe command("gcloud --project=#{project_id} compute instances list --zones=#{test_zones} --format=json --filter='name:mig-with-percent-simple'") do
     its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq '' }
+    its(:stderr) { should eq '' } # Will be empty because data is found immediately
 
     let!(:data) do
       if subject.exit_status == 0
@@ -40,7 +44,8 @@ control "MIG with percent" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^mig-with-percent-simple*'") do
+  # 2. Instance Group Verification (Using Regional Query for Strong Consistency)
+  describe command("gcloud --project=#{project_id} compute instance-groups list --regions=#{region} --format=json --filter='name:mig-with-percent-simple'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -59,7 +64,8 @@ control "MIG with percent" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~^mig-with-percent-simple*'") do
+  # 3. Managed Instance Group and Version Verification (Using Regional Query)
+  describe command("gcloud --project=#{project_id} compute instance-groups managed list --regions=#{region} --format=json --filter='name:mig-with-percent-simple'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -86,5 +92,4 @@ control "MIG with percent" do
       end
     end
   end
-
 end

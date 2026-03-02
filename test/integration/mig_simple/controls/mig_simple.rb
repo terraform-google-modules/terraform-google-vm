@@ -21,9 +21,12 @@ expected_instance_groups = 1
 control "MIG" do
   title "Simple Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~^mig-simple*'") do
+  # 1. Instance Verification (Using Strongly Consistent Zonal Query)
+  # We use '--zones' instead of '--regions' because 'instances list' is a zonal command.
+  # For the standard 'us-central1' test, we check all 4 possible zones.
+  describe command("gcloud compute instances list --project=#{project_id} --zones=#{region}-a,#{region}-b,#{region}-c,#{region}-f --format=json --filter='name:mig-simple'") do
     its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq '' }
+    its(:stderr) { should eq '' } # Will be empty because data is found immediately
 
     let!(:data) do
       if subject.exit_status == 0
@@ -40,7 +43,8 @@ control "MIG" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^mig-simple*'") do
+  # 2. Instance Group Verification (Regional Query - Supported and Reliable)
+  describe command("gcloud compute instance-groups list --project=#{project_id} --regions=#{region} --format=json --filter='name:mig-simple'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -59,7 +63,8 @@ control "MIG" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~^mig-simple*'") do
+  # 3. Managed Instance Group Verification (Regional Query - Supported and Reliable)
+  describe command("gcloud compute instance-groups managed list --project=#{project_id} --regions=#{region} --format=json --filter='name:mig-simple'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -71,11 +76,10 @@ control "MIG" do
       end
     end
 
-    describe "number of instance groups" do
+    describe "number of managed instance groups" do
       it "should be #{expected_instance_groups}" do
         expect(data.length).to eq(expected_instance_groups)
       end
     end
   end
-
 end

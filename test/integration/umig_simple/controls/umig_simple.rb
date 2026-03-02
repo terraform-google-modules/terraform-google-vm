@@ -16,13 +16,16 @@ project_id = attribute('project_id')
 
 expected_instances = 4
 expected_instance_groups = 4
+# List of zones used in the test to ensure strongly consistent lookups
+test_zones = "us-central1-a,us-central1-b,us-central1-c,us-central1-f"
 
 control "UMIG" do
   title "Simple Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~umig-simple*'") do
+  # 1. Instance Verification (Using Strongly Consistent Zonal Query)
+  describe command("gcloud --project=#{project_id} compute instances list --zones=#{test_zones} --format=json --filter='name:umig-simple'") do
     its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq '' }
+    its(:stderr) { should eq '' } # Will be empty because data is found immediately
 
     let!(:data) do
       if subject.exit_status == 0
@@ -39,48 +42,36 @@ control "UMIG" do
     end
 
     describe "instance 001" do
-      let(:instance) do
-        data.find { |i| i['name'] == "umig-simple-001" }
-      end
-
-      it "should be in zone us-central1-a}" do
+      let(:instance) { data.find { |i| i['name'] == "umig-simple-001" } }
+      it "should be in zone us-central1-a" do
         expect(instance['zone']).to match(/.*us-central1-a$/)
       end
     end
 
     describe "instance 002" do
-      let(:instance) do
-        data.find { |i| i['name'] == "umig-simple-002" }
-      end
-
-      it "should be in zone us-central1-b}" do
+      let(:instance) { data.find { |i| i['name'] == "umig-simple-002" } }
+      it "should be in zone us-central1-b" do
         expect(instance['zone']).to match(/.*us-central1-b$/)
       end
     end
 
     describe "instance 003" do
-      let(:instance) do
-        data.find { |i| i['name'] == "umig-simple-003" }
-      end
-
-      it "should be in zone us-central1-c}" do
+      let(:instance) { data.find { |i| i['name'] == "umig-simple-003" } }
+      it "should be in zone us-central1-c" do
         expect(instance['zone']).to match(/.*us-central1-c$/)
       end
     end
 
     describe "instance 004" do
-      let(:instance) do
-        data.find { |i| i['name'] == "umig-simple-004" }
-      end
-
-      it "should be in zone us-central1-f}" do
+      let(:instance) { data.find { |i| i['name'] == "umig-simple-004" } }
+      it "should be in zone us-central1-f" do
         expect(instance['zone']).to match(/.*us-central1-f$/)
       end
     end
-
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~umig-simple*'") do
+  # 2. Instance Group Verification (Using Strongly Consistent Zonal Query)
+  describe command("gcloud --project=#{project_id} compute instance-groups list --zones=#{test_zones} --format=json --filter='name:umig-simple'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -99,56 +90,40 @@ control "UMIG" do
     end
 
     describe "instance group 001" do
-      let(:instance_group) do
-        data.find { |i| i['name'] == "umig-simple-instance-group-001" }
-      end
-
+      let(:instance_group) { data.find { |i| i['name'] == "umig-simple-instance-group-001" } }
       it "should be in zone us-central1-a" do
         expect(instance_group['zone']).to match(/.*us-central1-a$/)
       end
-
       it "should have size 1" do
         expect(instance_group['size']).to eq(1)
       end
     end
 
     describe "instance group 002" do
-      let(:instance_group) do
-        data.find { |i| i['name'] == "umig-simple-instance-group-002" }
-      end
-
+      let(:instance_group) { data.find { |i| i['name'] == "umig-simple-instance-group-002" } }
       it "should be in zone us-central1-b" do
         expect(instance_group['zone']).to match(/.*us-central1-b$/)
       end
-
       it "should have size 1" do
         expect(instance_group['size']).to eq(1)
       end
     end
 
     describe "instance group 003" do
-      let(:instance_group) do
-        data.find { |i| i['name'] == "umig-simple-instance-group-003" }
-      end
-
+      let(:instance_group) { data.find { |i| i['name'] == "umig-simple-instance-group-003" } }
       it "should be in zone us-central1-c" do
         expect(instance_group['zone']).to match(/.*us-central1-c$/)
       end
-
       it "should have size 1" do
         expect(instance_group['size']).to eq(1)
       end
     end
 
     describe "instance group 004" do
-      let(:instance_group) do
-        data.find { |i| i['name'] == "umig-simple-instance-group-004" }
-      end
-
+      let(:instance_group) { data.find { |i| i['name'] == "umig-simple-instance-group-004" } }
       it "should be in zone us-central1-f" do
         expect(instance_group['zone']).to match(/.*us-central1-f$/)
       end
-
       it "should have size 1" do
         expect(instance_group['size']).to eq(1)
       end

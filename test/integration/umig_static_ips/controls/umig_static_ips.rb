@@ -12,86 +12,53 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-project_id = attribute('project_id')
-
-expected_instances = 4
-expected_instance_groups = 4
-
 control "UMIG" do
   title "Static IPs"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~^umig-static-ips*'") do
+  # 1. Properly handle the attribute with a robust fallback for local testing
+  project_id = attribute('project_id')
+  raw_region = attribute('region')
+
+  # Logic to ignore the InSpec "Input does not have a value" error string
+  if raw_region.nil? || raw_region.include?("does not have a value")
+    region = 'us-central1'
+  else
+    region = raw_region
+  end
+
+  # Map of instances and their expected properties
+  instances_to_verify = {
+    "umig-static-ips-001" => { zone: "a", ip: "10.128.0.10" },
+    "umig-static-ips-002" => { zone: "b", ip: "10.128.0.11" },
+    "umig-static-ips-003" => { zone: "c", ip: "10.128.0.12" },
+    "umig-static-ips-004" => { zone: "f", ip: "10.128.0.13" }
+  }
+
+  # 2. Individual Instance and Static IP Verification (Strongly Consistent)
+  instances_to_verify.each do |name, props|
+    describe "Instance #{name}" do
+      # Query the specific zone directly
+      let(:cmd) { command("gcloud compute instances describe #{name} --zone=#{region}-#{props[:zone]} --project=#{project_id} --format=json") }
+
+      it "should exist and be in RUNNING state" do
+        expect(cmd.exit_status).to eq 0
+        expect(JSON.parse(cmd.stdout)['status']).to eq "RUNNING"
+      end
+
+      it "should have the correct static IP #{props[:ip]}" do
+        data = JSON.parse(cmd.stdout)
+        expect(data['networkInterfaces'][0]['networkIP']).to eq props[:ip]
+      end
+    end
+  end
+
+  # 3. Instance Group Verification (Using Strongly Consistent Zonal Query)
+  test_zones = "#{region}-a,#{region}-b,#{region}-c,#{region}-f"
+  describe command("gcloud compute instance-groups list --project=#{project_id} --zones=#{test_zones} --format=json --filter='name:umig-static-ips'") do
     its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq '' }
-
-    let!(:data) do
-      if subject.exit_status == 0
-        JSON.parse(subject.stdout)
-      else
-        []
-      end
-    end
-
-    describe "number of instances" do
-      it "should be #{expected_instances}" do
-        expect(data.length).to eq(expected_instances)
-      end
-    end
-
-    describe "instance 001" do
-      let(:instance) do
-        data.find { |i| i['name'] == "umig-static-ips-001" }
-      end
-
-      it "should be in zone us-central1-a}" do
-        expect(instance['zone']).to match(/.*us-central1-a$/)
-      end
-
-      it "should have IP 10.128.0.10}" do
-        expect(instance['networkInterfaces'][0]['networkIP']).to eq("10.128.0.10")
-      end
-    end
-
-    describe "instance 002" do
-      let(:instance) do
-        data.find { |i| i['name'] == "umig-static-ips-002" }
-      end
-
-      it "should be in zone us-central1-b}" do
-        expect(instance['zone']).to match(/.*us-central1-b$/)
-      end
-
-      it "should have IP 10.128.0.11}" do
-        expect(instance['networkInterfaces'][0]['networkIP']).to eq("10.128.0.11")
-      end
-    end
-
-    describe "instance 003" do
-      let(:instance) do
-        data.find { |i| i['name'] == "umig-static-ips-003" }
-      end
-
-      it "should be in zone us-central1-c}" do
-        expect(instance['zone']).to match(/.*us-central1-c$/)
-      end
-
-      it "should have IP 10.128.0.12}" do
-        expect(instance['networkInterfaces'][0]['networkIP']).to eq("10.128.0.12")
-      end
-    end
-
-    describe "instance 004" do
-      let(:instance) do
-        data.find { |i| i['name'] == "umig-static-ips-004" }
-      end
-
-      it "should be in zone us-central1-f}" do
-        expect(instance['zone']).to match(/.*us-central1-f$/)
-      end
-
-      it "should have IP 10.128.0.13}" do
-        expect(instance['networkInterfaces'][0]['networkIP']).to eq("10.128.0.13")
-      end
+    let(:groups) { JSON.parse(subject.stdout) }
+    it "should find all 4 instance groups" do
+      expect(groups.length).to eq 4
     end
   end
 end

@@ -16,13 +16,16 @@ project_id = attribute('project_id')
 
 expected_instances = 4
 expected_instance_groups = 4
+test_zones = "us-central1-a,us-central1-b,us-central1-c,us-central1-f"
 
 control "UMIG" do
   title "With named ports"
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^umig-named-ports*'") do
+  # We add the --zones flag here to hit the strongly consistent zonal API.
+  # This prevents the test from failing with 0 instance groups due to aggregation lag.
+  describe command("gcloud --project=#{project_id} compute instance-groups list --zones=#{test_zones} --format=json --filter='name:umig-named-ports'") do
     its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq '' }
+    its(:stderr) { should eq '' } # Will be empty because data is found immediately
 
     let!(:data) do
       if subject.exit_status == 0

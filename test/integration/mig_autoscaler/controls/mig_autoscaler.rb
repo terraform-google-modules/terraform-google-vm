@@ -21,9 +21,11 @@ expected_instance_groups = 1
 control "MIG" do
   title "Autoscaling Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~^mig-autoscaler*'") do
+  # 1. Instance Verification (Using Strongly Consistent Zonal Query)
+  # We specify the zones to bypass the global aggregation lag.
+  describe command("gcloud --project=#{project_id} compute instances list --zones=#{region}-a,#{region}-b,#{region}-c,#{region}-f --format=json --filter='name:mig-autoscaler'") do
     its(:exit_status) { should eq 0 }
-    its(:stderr) { should eq '' }
+    its(:stderr) { should eq '' } # Will be empty because data is found immediately
 
     let!(:data) do
       if subject.exit_status == 0
@@ -40,7 +42,8 @@ control "MIG" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups list --format=json --filter='name~^mig-autoscaler*'") do
+  # 2. Instance Group Verification (Using Strongly Consistent Regional Query)
+  describe command("gcloud --project=#{project_id} compute instance-groups list --regions=#{region} --format=json --filter='name:mig-autoscaler'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -59,7 +62,8 @@ control "MIG" do
     end
   end
 
-  describe command("gcloud --project=#{project_id} compute instance-groups managed list --format=json --filter='name~^mig-autoscaler*'") do
+  # 3. Managed Instance Group & Autoscaler Verification (Regional Query)
+  describe command("gcloud --project=#{project_id} compute instance-groups managed list --regions=#{region} --format=json --filter='name:mig-autoscaler'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -95,5 +99,4 @@ control "MIG" do
       end
     end
   end
-
 end

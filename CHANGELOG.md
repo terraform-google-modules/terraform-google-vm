@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [15.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.3.1...v15.0.0) (2026-03-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* add support for PSC-I and Dynamic NICs in instance_template and MIG ([#569](https://github.com/terraform-google-modules/terraform-google-vm/issues/569))
+
+### Features
+
+* add support for PSC-I and Dynamic NICs in instance_template and MIG ([#569](https://github.com/terraform-google-modules/terraform-google-vm/issues/569)) ([1305126](https://github.com/terraform-google-modules/terraform-google-vm/commit/1305126a26f55a6bb18f33b7724d366b441fd122))
+
+
+### Bug Fixes
+
+* Replace num_instance default value from "1" to 1 ([#572](https://github.com/terraform-google-modules/terraform-google-vm/issues/572)) ([e84f8fb](https://github.com/terraform-google-modules/terraform-google-vm/commit/e84f8fb1b25eb43837afa71346a6ef108b964bb5))
+
 ## [14.3.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.3.0...v14.3.1) (2026-01-21)
 
 

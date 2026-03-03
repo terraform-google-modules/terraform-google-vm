@@ -66,7 +66,7 @@ resource "google_kms_crypto_key_iam_binding" "crypto_key" {
 
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 13.0"
+  version = "~> 14.0"
 
   region     = var.region
   project_id = var.project_id
@@ -89,7 +89,7 @@ module "instance_template" {
 
 module "compute_instance" {
   source  = "terraform-google-modules/vm/google//modules/compute_instance"
-  version = "~> 13.0"
+  version = "~> 14.0"
 
   project_id          = var.project_id
   region              = var.region

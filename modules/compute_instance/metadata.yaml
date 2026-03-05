@@ -408,6 +408,7 @@ spec:
                     preemptible: bool
                     provisioning_model: string
                     termination_time: string
+                    location_hint: string
               scratch_disk:
                 - list
                 - - object

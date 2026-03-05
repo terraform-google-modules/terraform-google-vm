@@ -472,3 +472,9 @@ variable "resource_manager_tags" {
   type        = map(string)
   default     = null
 }
+
+variable "location_hint" {
+  description = "Custom location hint for the scheduling strategy in the instance template."
+  type        = string
+  default     = null
+}

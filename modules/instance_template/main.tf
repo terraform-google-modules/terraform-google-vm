@@ -73,6 +73,7 @@ locals {
       : null
     )
   )
+  location_hint = var.location_hint
   create_service_account = var.create_service_account ? var.service_account == null : false
 
   service_account_prefix = substr("${var.name_prefix}-${var.region}", 0, 27)
@@ -243,6 +244,8 @@ resource "google_compute_instance_template" "tpl" {
     on_host_maintenance         = local.on_host_maintenance
     preemptible                 = local.preemptible
     provisioning_model          = var.spot ? "SPOT" : null
+    location_hint               = local.location_hint
+
   }
 
   advanced_machine_features {

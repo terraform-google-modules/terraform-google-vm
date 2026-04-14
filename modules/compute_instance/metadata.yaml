@@ -103,7 +103,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-network
-              version: ~> 18.0.0
+              version: "~> 18.0.0"
             spec:
               outputExpr: subnets_self_links[0]
       - name: subnetwork_project

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [15.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.0.0...v15.1.0) (2026-04-21)
+
+
+### Features
+
+* Add missing VPC connection for Compute Instance ([#577](https://github.com/terraform-google-modules/terraform-google-vm/issues/577)) ([1a45d69](https://github.com/terraform-google-modules/terraform-google-vm/commit/1a45d6923d13dc1eedb2fb9ca1da730d5ac87abf))
+
 ## [15.0.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v14.3.1...v15.0.0) (2026-03-02)
 
 

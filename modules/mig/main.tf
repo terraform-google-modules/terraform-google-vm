@@ -105,6 +105,21 @@ resource "google_compute_region_instance_group_manager" "mig" {
     }
   }
 
+  dynamic "instance_lifecycle_policy" {
+    for_each = var.instance_lifecycle_policy != null ? [var.instance_lifecycle_policy] : []
+    content {
+      default_action_on_failure = instance_lifecycle_policy.value.default_action_on_failure
+      on_failed_health_check    = instance_lifecycle_policy.value.on_failed_health_check
+      force_update_on_repair    = instance_lifecycle_policy.value.force_update_on_repair
+      dynamic "on_repair" {
+        for_each = instance_lifecycle_policy.value.on_repair != null ? [instance_lifecycle_policy.value.on_repair] : []
+        content {
+          allow_changing_zone = on_repair.value.allow_changing_zone
+        }
+      }
+    }
+  }
+
   all_instances_config {
     labels = var.labels
   }

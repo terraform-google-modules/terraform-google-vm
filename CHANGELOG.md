@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [15.2.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.1.0...v15.2.0) (2026-04-29)
+
+
+### Features
+
+* Update VPC version for Compute Instance ([#582](https://github.com/terraform-google-modules/terraform-google-vm/issues/582)) ([4163c00](https://github.com/terraform-google-modules/terraform-google-vm/commit/4163c00f06daabc9318e62e1ca395af11785e121))
+
 ## [15.1.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.0.0...v15.1.0) (2026-04-21)
 
 

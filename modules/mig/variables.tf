@@ -284,3 +284,16 @@ variable "labels" {
   description = "Labels, provided as a map"
   default     = {}
 }
+
+variable "instance_lifecycle_policy" {
+  description = "The instance lifecycle policy for this managed instance group. https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/compute_region_instance_group_manager#nested_schema_for-instance_lifecycle_policy"
+  type = object({
+    default_action_on_failure = optional(string, "REPAIR")
+    on_failed_health_check    = optional(string, "DEFAULT_ACTION")
+    force_update_on_repair    = optional(string, "NO")
+    on_repair = optional(object({
+      allow_changing_zone = optional(string, "NO")
+    }))
+  })
+  default = null
+}

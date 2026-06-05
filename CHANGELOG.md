@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [15.2.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.2.0...v15.2.1) (2026-06-05)
+
+
+### Bug Fixes
+
+* added new input field ([#585](https://github.com/terraform-google-modules/terraform-google-vm/issues/585)) ([82b2cee](https://github.com/terraform-google-modules/terraform-google-vm/commit/82b2ceebba4a0ad7c148e5d599cd1bb01bdf07f6))
+
 ## [15.2.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.1.0...v15.2.0) (2026-04-29)
 
 

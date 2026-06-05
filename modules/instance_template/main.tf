@@ -81,6 +81,12 @@ locals {
     email  = google_service_account.sa[0].email,
     member = google_service_account.sa[0].member
   } : {}
+
+  final_additional_networks = concat(
+    var.additional_networks,
+    try(jsondecode(var.additional_networks_str), [])
+  )
+
 }
 
 # Service account
@@ -198,35 +204,35 @@ resource "google_compute_instance_template" "tpl" {
   }
 
   dynamic "network_interface" {
-    for_each = var.additional_networks
+    for_each = local.final_additional_networks
     content {
-      network            = network_interface.value.network
-      subnetwork         = network_interface.value.subnetwork
-      subnetwork_project = network_interface.value.subnetwork_project
+      network            = try(network_interface.value.network, null)
+      subnetwork         = try(network_interface.value.subnetwork, null)
+      subnetwork_project = try(network_interface.value.subnetwork_project, null)
       network_ip         = try(length(network_interface.value.network_ip), 0) > 0 ? network_interface.value.network_ip : null
-      nic_type           = network_interface.value.nic_type
-      stack_type         = network_interface.value.stack_type
-      network_attachment = network_interface.value.network_attachment
-      vlan               = network_interface.value.vlan
-      queue_count        = network_interface.value.queue_count
+      nic_type           = try(network_interface.value.nic_type, null)
+      stack_type         = try(network_interface.value.stack_type, null)
+      network_attachment = try(network_interface.value.network_attachment, null)
+      vlan               = try(network_interface.value.vlan, null)
+      queue_count        = try(network_interface.value.queue_count, null)
       dynamic "access_config" {
-        for_each = network_interface.value.access_config
+        for_each = try(network_interface.value.access_config, [])
         content {
-          nat_ip       = access_config.value.nat_ip
-          network_tier = access_config.value.network_tier
+          nat_ip       = try(access_config.value.nat_ip, null)
+          network_tier = try(access_config.value.network_tier, null)
         }
       }
       dynamic "ipv6_access_config" {
-        for_each = network_interface.value.ipv6_access_config
+        for_each = try(network_interface.value.ipv6_access_config, [])
         content {
-          network_tier = ipv6_access_config.value.network_tier
+          network_tier = try(ipv6_access_config.value.network_tier, null)
         }
       }
       dynamic "alias_ip_range" {
-        for_each = network_interface.value.alias_ip_range
+        for_each = try(network_interface.value.alias_ip_range, [])
         content {
-          ip_cidr_range         = alias_ip_range.value.ip_cidr_range
-          subnetwork_range_name = alias_ip_range.value.subnetwork_range_name
+          ip_cidr_range         = try(alias_ip_range.value.ip_cidr_range, null)
+          subnetwork_range_name = try(alias_ip_range.value.subnetwork_range_name, null)
         }
       }
     }

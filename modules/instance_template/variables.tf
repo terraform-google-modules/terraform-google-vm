@@ -282,6 +282,12 @@ variable "stack_type" {
   default     = null
 }
 
+variable "additional_networks_str" {
+  description = "Additional network interface details for GCE provided as a JSON-encoded string. Expected format: '[{\"network\":\"vpc-1\",\"subnetwork\":\"sub-1\"}]'."
+  type        = string
+  default     = "[]"
+}
+
 variable "additional_networks" {
   description = "Additional network interface details for GCE, if any."
   default     = []

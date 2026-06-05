@@ -263,6 +263,10 @@ spec:
       - name: stack_type
         description: The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4_ONLY.
         varType: string
+      - name: additional_networks_str
+        description: "Additional network interface details for GCE provided as a JSON-encoded string. Expected format: '[{\"network\":\"vpc-1\",\"subnetwork\":\"sub-1\"}]'."
+        varType: string
+        defaultValue: "[]"
       - name: additional_networks
         description: Additional network interface details for GCE, if any.
         varType: |-

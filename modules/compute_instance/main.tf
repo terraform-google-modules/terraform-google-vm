@@ -104,8 +104,24 @@ resource "google_compute_instance" "compute_instance" {
   metadata            = var.metadata
   tags                = var.tags
 
-  params {
-    resource_manager_tags = var.resource_manager_tags
+  dynamic "params" {
+    for_each = var.resource_manager_tags != null ? [1] : []
+    content {
+      resource_manager_tags = var.resource_manager_tags
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      key_revocation_action_type,
+      effective_labels,
+      terraform_labels,
+      attached_disk,
+      metadata["ssh-keys"],
+      metadata["startup-script"],
+      scratch_disk,
+      scheduling[0].local_ssd_recovery_timeout,
+    ]
   }
 
   boot_disk {
@@ -131,6 +147,7 @@ resource "google_compute_instance" "compute_instance" {
       network            = var.network
       subnetwork         = var.subnetwork
       subnetwork_project = var.subnetwork_project
+      nic_type           = var.nic_type
       network_ip         = length(var.static_ips) == 0 ? "" : element(local.static_ips, count.index)
       dynamic "access_config" {
         for_each = var.access_config

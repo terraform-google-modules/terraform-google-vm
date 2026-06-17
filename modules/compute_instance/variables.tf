@@ -185,3 +185,9 @@ variable "resource_manager_tags" {
   type        = map(string)
   default     = null
 }
+
+variable "nic_type" {
+  description = "(Optional) The type of vNIC to be used on the primary network interface. Possible values: GVNIC, VIRTIO_NET. Changing this forces recreation."
+  type        = string
+  default     = null
+}

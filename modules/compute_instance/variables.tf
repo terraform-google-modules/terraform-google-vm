@@ -79,8 +79,60 @@ variable "num_instances" {
 }
 
 variable "instance_template" {
-  description = "Instance template self_link used to create compute instances"
+  description = "Instance template self_link used to create compute instances. When null, a standalone google_compute_instance is created and machine_type + boot_disk must be provided."
   type        = string
+  default     = null
+}
+
+variable "machine_type" {
+  description = "(Optional) The machine type to use for standalone instances (when instance_template is null). Example: n2-standard-4."
+  type        = string
+  default     = null
+}
+
+variable "boot_disk" {
+  description = "(Optional) Boot disk configuration for standalone instances (when instance_template is null)."
+  type = object({
+    auto_delete       = optional(bool, true)
+    device_name       = optional(string)
+    source_image      = optional(string)
+    disk_size_gb      = optional(number)
+    disk_type         = optional(string)
+    disk_labels       = optional(map(string), {})
+    kms_key_self_link = optional(string)
+  })
+  default = null
+}
+
+variable "service_account" {
+  description = "(Optional) Service account to attach to standalone instances (when instance_template is null)."
+  type = object({
+    email  = optional(string)
+    scopes = list(string)
+  })
+  default = null
+}
+
+variable "metadata" {
+  description = "(Optional) Metadata key/value pairs to make available from within standalone instances."
+  type        = map(string)
+  default     = {}
+}
+
+variable "tags" {
+  description = "(Optional) Network tags to attach to standalone instances."
+  type        = list(string)
+  default     = []
+}
+
+variable "scheduling" {
+  description = "(Optional) Scheduling configuration for standalone instances."
+  type = object({
+    on_host_maintenance = optional(string, "MIGRATE")
+    automatic_restart   = optional(bool, true)
+    preemptible         = optional(bool, false)
+  })
+  default = null
 }
 
 variable "region" {

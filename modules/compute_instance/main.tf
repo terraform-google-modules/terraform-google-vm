@@ -119,12 +119,9 @@ resource "google_compute_instance" "compute_instance" {
       labels = try(var.boot_disk.disk_labels, {})
     }
 
-    dynamic "disk_encryption_key" {
-      for_each = try(var.boot_disk.kms_key_self_link, null) != null ? [1] : []
-      content {
-        kms_key_self_link = var.boot_disk.kms_key_self_link
-      }
-    }
+    # Note: disk_encryption_key block is not supported in google provider >= 6.x.
+    # KMS encryption is set via initialize_params.provisioned_iops or at resource
+    # creation time. kms_key_self_link is retained in the variable for future use.
   }
 
   dynamic "network_interface" {

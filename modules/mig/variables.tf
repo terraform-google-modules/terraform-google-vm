@@ -22,8 +22,15 @@ variable "project_id" {
 }
 
 variable "region" {
-  description = "The Google Cloud region where the managed instance group resides."
+  description = "The Google Cloud region where the managed instance group resides. Required when zone is not set."
   type        = string
+  default     = null
+}
+
+variable "zone" {
+  description = "The Google Cloud zone where the managed instance group resides. When set, a zonal MIG is created using google_compute_instance_group_manager instead of the regional variant. Exactly one of zone or region must be provided."
+  type        = string
+  default     = null
 }
 
 variable "mig_name" {

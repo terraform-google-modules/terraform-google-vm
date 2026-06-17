@@ -17,21 +17,24 @@
 // This file was automatically generated from a template in ./autogen
 
 locals {
+  is_zonal = var.zone != null
   healthchecks = concat(
     google_compute_health_check.https[*].self_link,
     google_compute_health_check.http[*].self_link,
     google_compute_health_check.tcp[*].self_link,
   )
-  distribution_policy_zones    = coalescelist(var.distribution_policy_zones, data.google_compute_zones.available.names)
+  distribution_policy_zones    = local.is_zonal ? [] : coalescelist(var.distribution_policy_zones, try(data.google_compute_zones.available[0].names, []))
   autoscaling_scale_in_enabled = var.autoscaling_scale_in_control.fixed_replicas != null || var.autoscaling_scale_in_control.percent_replicas != null
 }
 
 data "google_compute_zones" "available" {
+  count   = local.is_zonal ? 0 : 1
   project = var.project_id
   region  = var.region
 }
 
 resource "google_compute_region_instance_group_manager" "mig" {
+  count              = local.is_zonal ? 0 : 1
   provider           = google-beta
   base_instance_name = var.hostname
   project            = var.project_id
@@ -123,12 +126,143 @@ resource "google_compute_region_instance_group_manager" "mig" {
 
 resource "google_compute_region_autoscaler" "autoscaler" {
   provider = google
-  count    = var.autoscaling_enabled ? 1 : 0
+  count    = var.autoscaling_enabled && !local.is_zonal ? 1 : 0
   name     = var.autoscaler_name == "" ? "${var.hostname}-autoscaler" : var.autoscaler_name
   project  = var.project_id
   region   = var.region
 
-  target = google_compute_region_instance_group_manager.mig.self_link
+  target = google_compute_region_instance_group_manager.mig[0].self_link
+
+  autoscaling_policy {
+    max_replicas    = var.max_replicas
+    min_replicas    = var.min_replicas
+    cooldown_period = var.cooldown_period
+    mode            = var.autoscaling_mode
+    dynamic "scale_in_control" {
+      for_each = local.autoscaling_scale_in_enabled ? [var.autoscaling_scale_in_control] : []
+      content {
+        max_scaled_in_replicas {
+          fixed   = lookup(scale_in_control.value, "fixed_replicas", null)
+          percent = lookup(scale_in_control.value, "percent_replicas", null)
+        }
+        time_window_sec = lookup(scale_in_control.value, "time_window_sec", null)
+      }
+    }
+    dynamic "cpu_utilization" {
+      for_each = var.autoscaling_cpu
+      content {
+        target            = lookup(cpu_utilization.value, "target", null)
+        predictive_method = lookup(cpu_utilization.value, "predictive_method", null)
+      }
+    }
+    dynamic "metric" {
+      for_each = var.autoscaling_metric
+      content {
+        name   = lookup(metric.value, "name", null)
+        target = lookup(metric.value, "target", null)
+        type   = lookup(metric.value, "type", null)
+      }
+    }
+    dynamic "load_balancing_utilization" {
+      for_each = var.autoscaling_lb
+      content {
+        target = lookup(load_balancing_utilization.value, "target", null)
+      }
+    }
+    dynamic "scaling_schedules" {
+      for_each = var.scaling_schedules
+      content {
+        disabled              = lookup(scaling_schedules.value, "disabled", null)
+        duration_sec          = lookup(scaling_schedules.value, "duration_sec", null)
+        min_required_replicas = lookup(scaling_schedules.value, "min_required_replicas", null)
+        name                  = lookup(scaling_schedules.value, "name", null)
+        schedule              = lookup(scaling_schedules.value, "schedule", null)
+        time_zone             = lookup(scaling_schedules.value, "time_zone", null)
+      }
+    }
+  }
+}
+
+resource "google_compute_instance_group_manager" "mig_zonal" {
+  count              = local.is_zonal ? 1 : 0
+  provider           = google-beta
+  base_instance_name = var.hostname
+  project            = var.project_id
+
+  version {
+    name              = "${var.hostname}-mig-version-0"
+    instance_template = var.instance_template
+  }
+
+  name = var.mig_name == "" ? "${var.hostname}-mig" : var.mig_name
+  zone = var.zone
+
+  dynamic "named_port" {
+    for_each = var.named_ports
+    content {
+      name = lookup(named_port.value, "name", null)
+      port = lookup(named_port.value, "port", null)
+    }
+  }
+
+  target_pools = var.target_pools
+  target_size  = var.autoscaling_enabled ? null : var.target_size
+
+  wait_for_instances = var.wait_for_instances
+
+  dynamic "auto_healing_policies" {
+    for_each = local.healthchecks
+    content {
+      health_check      = auto_healing_policies.value
+      initial_delay_sec = var.health_check["initial_delay_sec"]
+    }
+  }
+
+  dynamic "stateful_disk" {
+    for_each = var.stateful_disks
+    content {
+      device_name = stateful_disk.value.device_name
+      delete_rule = lookup(stateful_disk.value, "delete_rule", null)
+    }
+  }
+
+  dynamic "update_policy" {
+    for_each = var.update_policy
+    content {
+      max_surge_fixed         = lookup(update_policy.value, "max_surge_fixed", null)
+      max_surge_percent       = lookup(update_policy.value, "max_surge_percent", null)
+      max_unavailable_fixed   = lookup(update_policy.value, "max_unavailable_fixed", null)
+      max_unavailable_percent = lookup(update_policy.value, "max_unavailable_percent", null)
+      min_ready_sec           = lookup(update_policy.value, "min_ready_sec", null)
+      replacement_method      = lookup(update_policy.value, "replacement_method", null)
+      minimal_action          = update_policy.value.minimal_action
+      type                    = update_policy.value.type
+    }
+  }
+
+  all_instances_config {
+    labels = var.labels
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  timeouts {
+    create = var.mig_timeouts.create
+    update = var.mig_timeouts.update
+    delete = var.mig_timeouts.delete
+  }
+}
+
+resource "google_compute_autoscaler" "autoscaler_zonal" {
+  provider = google
+  count    = var.autoscaling_enabled && local.is_zonal ? 1 : 0
+  name     = var.autoscaler_name == "" ? "${var.hostname}-autoscaler" : var.autoscaler_name
+  project  = var.project_id
+  zone     = var.zone
+
+  target = google_compute_instance_group_manager.mig_zonal[0].self_link
 
   autoscaling_policy {
     max_replicas    = var.max_replicas

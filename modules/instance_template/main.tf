@@ -19,7 +19,7 @@
 #########
 
 locals {
-  source_image         = var.source_image != "" ? var.source_image : "rocky-linux-9-optimized-gcp-v20240111"
+  source_image         = var.source_image != "" ? var.source_image : "rocky-linux-9-optimized-gcp-v20260720"
   source_image_family  = var.source_image_family != "" ? var.source_image_family : "rocky-linux-9-optimized-gcp"
   source_image_project = var.source_image_project != "" ? var.source_image_project : "rocky-linux-cloud"
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [15.2.2](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.2.1...v15.2.2) (2026-09-04)
+
+
+### Bug Fixes
+
+* Update the image to the latest version to v20260720 this is required for moss ([#592](https://github.com/terraform-google-modules/terraform-google-vm/issues/592)) ([65883bd](https://github.com/terraform-google-modules/terraform-google-vm/commit/65883bdd574e6cdb9d90836da2458c7999e57c3f))
+
 ## [15.2.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.2.0...v15.2.1) (2026-06-05)
 
 

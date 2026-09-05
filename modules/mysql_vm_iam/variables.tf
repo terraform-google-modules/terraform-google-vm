@@ -29,12 +29,6 @@ variable "instance_ips" {
   default     = []
 }
 
-variable "secrets" {
-  type        = list(string)
-  description = "IDs of Secrets Manager secrets that contain backup user credentials"
-  default     = []
-}
-
 variable "iap_accessor_iam" {
   type        = string
   description = "IAM Email of the group that can access the instances via IAP"

@@ -16,13 +16,6 @@ resource "google_compute_instance_iam_member" "osadmin" {
   member        = var.iam_dba_email
 }
 
-resource "google_secret_manager_secret_iam_member" "secrets" {
-  for_each   = toset(var.secrets)
-  secret_id = each.value
-  role      = "roles/secretmanager.secretAccessor"
-  member    = var.service_account
-}
-
 resource "google_iap_tunnel_iam_member" "iap_tunnel" {
   count   = var.iap_accessor_iam == null ? 0 : length(var.instance_hostnames)
   project = var.project_id

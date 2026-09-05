@@ -320,6 +320,18 @@ spec:
             spec:
               outputExpr: "{\"REDIS_HOST\": host, \"REDIS_PORT\": env_vars.REDIS_PORT, \"REDIS_AUTH_STRING\": auth_string}"
           - source:
+              source: github.com/terraform-google-modules/terraform-google-memorystore//modules/redis-cluster
+              version: ">= 15.1.0"
+            spec:
+              outputExpr: "{\"REDIS_CLUSTER_HOST\": env_vars.REDIS_CLUSTER_HOST, \"REDIS_CLUSTER_PORT\": env_vars.REDIS_CLUSTER_PORT}"
+              inputPath: env_vars
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-memorystore//modules/valkey
+              version: ">= 16.2.0"
+            spec:
+              outputExpr: "{\"VALKEY_HOST\": env_vars.VALKEY_HOST, \"VALKEY_PORT\": env_vars.VALKEY_PORT}"
+              inputPath: env_vars
+          - source:
               source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
               version: ">= 23.0"
             spec:
@@ -412,6 +424,16 @@ spec:
               version: ">= 12.0"
             spec:
               outputExpr: "[\"roles/redis.editor\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-memorystore//modules/redis-cluster
+              version: ">= 15.1.0"
+            spec:
+              outputExpr: "[\"roles/redis.dbConnectionUser\"]"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-memorystore//modules/valkey
+              version: ">= 16.2.0"
+            spec:
+              outputExpr: "[\"roles/memorystore.dbConnectionUser\"]"
           - source:
               source: github.com/terraform-google-modules/terraform-google-project-factory//modules/project_services
               version: ">= 17.1.0"

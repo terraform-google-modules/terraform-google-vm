@@ -101,7 +101,7 @@ resource "google_service_account" "sa" {
 
 resource "google_project_iam_member" "roles" {
   provider = google-beta
-  for_each = toset(distinct(var.service_account_project_roles))
+  for_each = try(local.service_account.email, "") != "" ? toset(distinct(var.service_account_project_roles)) : []
 
   project = var.project_id
   role    = each.value

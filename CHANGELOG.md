@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [15.4.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.4.0...v15.4.1) (2026-09-29)
+
+
+### Bug Fixes
+
+* ignore empty service account emails in iam binding for_each ([#600](https://github.com/terraform-google-modules/terraform-google-vm/issues/600)) ([5ed8211](https://github.com/terraform-google-modules/terraform-google-vm/commit/5ed82110fa97068a9c962cc44fdbd078b0ece50d))
+
 ## [15.4.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.3.0...v15.4.0) (2026-09-25)
 
 

@@ -119,6 +119,7 @@ spec:
       - name: distribution_policy_target_shape
         description: MIG target distribution shape (EVEN, BALANCED, ANY, ANY_SINGLE_ZONE)
         varType: string
+        defaultValue: null
       - name: distribution_policy_zones
         description: The distribution policy, i.e. which zone(s) should instances be create in. Default is all zones in given region.
         varType: list(string)
@@ -215,6 +216,7 @@ spec:
       - name: autoscaling_mode
         description: Operating mode of the autoscaling policy. If omitted, the default value is ON. https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_autoscaler#mode
         varType: string
+        defaultValue: null
       - name: autoscaling_cpu
         description: Autoscaling, cpu utilization policy block as single element array. https://www.terraform.io/docs/providers/google/r/compute_autoscaler#cpu_utilization
         varType: |-

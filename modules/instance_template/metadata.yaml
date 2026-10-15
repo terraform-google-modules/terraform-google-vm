@@ -113,6 +113,7 @@ spec:
       - name: min_cpu_platform
         description: "Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform"
         varType: string
+        defaultValue: null
       - name: can_ip_forward
         description: Enable IP forwarding, for NAT instances for example
         varType: string
@@ -136,6 +137,7 @@ spec:
       - name: maintenance_interval
         description: Specifies the frequency of planned maintenance events
         varType: string
+        defaultValue: null
       - name: on_host_maintenance
         description: Instance availability Policy
         varType: string
@@ -151,6 +153,7 @@ spec:
       - name: threads_per_core
         description: The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1.
         varType: number
+        defaultValue: null
       - name: resource_policies
         description: A list of self_links of resource policies to attach to the instance. Modifying this list will cause the instance to recreate. Currently a max of 1 resource policy is supported.
         varType: list(string)
@@ -182,6 +185,7 @@ spec:
       - name: disk_encryption_key
         description: The id of the encryption key that is stored in Google Cloud KMS to use to encrypt all the disks on this instance
         varType: string
+        defaultValue: null
       - name: auto_delete
         description: Whether or not the boot disk should be auto-deleted
         varType: string
@@ -235,9 +239,11 @@ spec:
       - name: network_attachment
         description: The self_link of the network attachment for PSC-I connection.
         varType: string
+        defaultValue: null
       - name: vlan
         description: The VLAN ID for the primary network interface (Dynamic NIC), must be an integer from 2 to 255.
         varType: number
+        defaultValue: null
       - name: subnets
         description: "Optional: A map containing subnet details Used to derive the subnetwork URI if subnetwork is not provided."
         varType: |-
@@ -260,9 +266,11 @@ spec:
       - name: nic_type
         description: Valid values are "VIRTIO_NET", "GVNIC" or set to null to accept API default behavior.
         varType: string
+        defaultValue: null
       - name: stack_type
         description: The stack type for this network interface to identify whether the IPv6 feature is enabled or not. Values are `IPV4_IPV6` or `IPV4_ONLY`. Default behavior is equivalent to IPV4_ONLY.
         varType: string
+        defaultValue: null
       - name: additional_networks_str
         description: "Additional network interface details for GCE provided as a JSON-encoded string. Expected format: '[{\"network\":\"vpc-1\",\"subnetwork\":\"sub-1\"}]'."
         varType: string
@@ -393,6 +401,7 @@ spec:
               email  = string
               scopes = optional(set(string), ["cloud-platform"])
             })
+        defaultValue: null
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
@@ -497,6 +506,7 @@ spec:
       - name: confidential_instance_type
         description: Defines the confidential computing technology the instance uses. If this is set to "SEV_SNP", var.min_cpu_platform will be automatically set to "AMD Milan". See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#confidential_instance_type.
         varType: string
+        defaultValue: null
       - name: access_config
         description: Access configurations, i.e. IPs via which the VM instance can be accessed via the Internet.
         varType: |-
@@ -519,6 +529,7 @@ spec:
               type  = string
               count = number
             })
+        defaultValue: null
       - name: alias_ip_range
         description: |
           An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
@@ -529,9 +540,11 @@ spec:
               ip_cidr_range         = string
               subnetwork_range_name = string
             })
+        defaultValue: null
       - name: resource_manager_tags
         description: (Optional) A set of key/value resource manager tag pairs to bind to the instances. Keys must be in the format tagKeys/{tag_key_id}, and values are in the format tagValues/456
         varType: map(string)
+        defaultValue: null
     outputs:
       - name: name
         description: Name of instance template

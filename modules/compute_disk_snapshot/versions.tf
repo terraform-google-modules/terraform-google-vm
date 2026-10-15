@@ -19,7 +19,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = ">= 3.71, < 8"
+      version = ">= 3.71, < 9"
     }
     null = {
       source  = "hashicorp/null"
@@ -27,6 +27,6 @@ terraform {
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:compute_instance/v15.2.1"
+    module_name = "blueprints/terraform/terraform-google-vm:compute_instance/v15.4.1"
   }
 }

@@ -19,17 +19,17 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = ">= 4.48, < 8"
+      version = ">= 4.48, < 9"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = ">= 4.48, < 8"
+      version = ">= 4.48, < 9"
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v15.2.1"
+    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v15.4.1"
   }
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v15.2.1"
+    module_name = "blueprints/terraform/terraform-google-vm:mig_with_percent/v15.4.1"
   }
 }

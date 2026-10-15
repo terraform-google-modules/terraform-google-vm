@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [conventional-commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [15.4.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.4.0...v15.4.1) (2026-09-29)
+
+
+### Bug Fixes
+
+* ignore empty service account emails in iam binding for_each ([#600](https://github.com/terraform-google-modules/terraform-google-vm/issues/600)) ([5ed8211](https://github.com/terraform-google-modules/terraform-google-vm/commit/5ed82110fa97068a9c962cc44fdbd078b0ece50d))
+
+## [15.4.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.3.0...v15.4.0) (2026-09-25)
+
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v8 ([#595](https://github.com/terraform-google-modules/terraform-google-vm/issues/595)) ([121f463](https://github.com/terraform-google-modules/terraform-google-vm/commit/121f4630694c791c5e9f30ad16d59e79b61c904f))
+
+## [15.3.0](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.2.1...v15.3.0) (2026-09-07)
+
+
+### Features
+
+* add redis cluster and valkey cluster connections ([#594](https://github.com/terraform-google-modules/terraform-google-vm/issues/594)) ([6dcc16e](https://github.com/terraform-google-modules/terraform-google-vm/commit/6dcc16e6a61a0ebd727e74f21302ffc85624d1fc))
+
+
+### Bug Fixes
+
+* Update the image to the latest version to v20260720 this is required for moss ([#592](https://github.com/terraform-google-modules/terraform-google-vm/issues/592)) ([65883bd](https://github.com/terraform-google-modules/terraform-google-vm/commit/65883bdd574e6cdb9d90836da2458c7999e57c3f))
+
 ## [15.2.1](https://github.com/terraform-google-modules/terraform-google-vm/compare/v15.2.0...v15.2.1) (2026-06-05)
 
 

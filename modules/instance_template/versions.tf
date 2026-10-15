@@ -19,10 +19,10 @@ terraform {
   required_providers {
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = ">= 5.36, < 8"
+      version = ">= 5.36, < 9"
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:instance_template/v15.2.1"
+    module_name = "blueprints/terraform/terraform-google-vm:instance_template/v15.4.1"
   }
 }

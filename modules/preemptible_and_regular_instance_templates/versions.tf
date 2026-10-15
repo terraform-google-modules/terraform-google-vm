@@ -17,13 +17,13 @@
 terraform {
   required_version = ">=1.3.0"
   required_providers {
-    google      = ">= 3.88, < 8"
-    google-beta = ">= 3.88, < 8"
+    google      = ">= 3.88, < 9"
+    google-beta = ">= 3.88, < 9"
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v15.2.1"
+    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v15.4.1"
   }
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v15.2.1"
+    module_name = "blueprints/terraform/terraform-google-vm:preemptible_and_regular_instance_templates/v15.4.1"
   }
 }

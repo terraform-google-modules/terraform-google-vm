@@ -75,6 +75,16 @@ locals {
   )
   create_service_account = var.create_service_account ? var.service_account == null : false
 
+  # Decide from inputs only, so the roles for_each below is known at plan time
+  # even when the service account email is not (for example when project_id
+  # comes from a resource in the same apply). A caller-supplied empty email
+  # still binds nothing.
+  bind_service_account_roles = (
+    length(var.service_account_project_roles) == 0 ? false :
+    local.create_service_account ? true :
+    try(var.service_account.email, "") != ""
+  )
+
   service_account_prefix = substr("${var.name_prefix}-${var.region}", 0, 27)
   service_account_output = local.create_service_account ? {
     id     = google_service_account.sa[0].account_id,
@@ -101,7 +111,7 @@ resource "google_service_account" "sa" {
 
 resource "google_project_iam_member" "roles" {
   provider = google-beta
-  for_each = try(local.service_account.email, "") != "" ? toset(distinct(var.service_account_project_roles)) : []
+  for_each = local.bind_service_account_roles ? toset(distinct(var.service_account_project_roles)) : []
 
   project = var.project_id
   role    = each.value
